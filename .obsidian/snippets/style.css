@@ -1,0 +1,93 @@
+/* reading mode */
+.markdown-preview-view p {
+	text-align: justify;
+	text-justify: inter-word;
+}
+
+/* source view and live preview */
+.markdown-source-view.mod-cm6 .cm-line {
+	text-align: justify;
+	text-justify: inter-word;	
+}
+
+/* body {
+    /* --h1-color: var(--color-red); */
+    /* --h2-color: var(--color-purple); */
+    /* --h3-color: var(--color-yellow); */
+    /* --h4-color: var(--color-purple); */
+    /* --h5-color: var(--color-blue); */
+    /* --h6-color: var(--color-purple); */
+/* } */
+
+/* .cm-strong {
+  color: var(--color-green) !important;
+} */
+
+/* table strong {
+  color: var(--color-green);
+} */
+
+div[src$="#right"] {
+  text-align:right;
+}
+div[src$="#left"] {
+  text-align:left;
+}
+div[src$="#center"] {
+  text-align:center;
+}
+
+img[alt*="right"],
+.image-embed[alt*="right"],
+span.image-embed[alt*="right"],
+.internal-embed[alt*="right"],
+.markdown-source-view.mod-cm6 .cm-embed-block:has(img[alt*="right"]),
+.markdown-source-view.mod-cm6 .cm-embed-block:has([alt*="right"]) {
+    float: right !important;
+    clear: right !important;
+    margin-left: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+    margin-top: 0.25rem !important;
+}
+
+img[alt*="center"],
+.image-embed[alt*="center"],
+span.image-embed[alt*="center"],
+.internal-embed[alt*="center"],
+.markdown-source-view.mod-cm6 .cm-embed-block:has(img[alt*="center"]),
+.markdown-source-view.mod-cm6 .cm-embed-block:has([alt*="center"]) {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+}
+
+/* This is a highly experimental and simplified example.
+   Actual implementation would depend on Obsidian's internal DOM structure,
+   which can change. Not guaranteed to work or be stable. */
+.internal-link[href*="#"]::before {
+    display: none; /* Attempt to hide the file name portion */
+}
+.internal-link[href*="#"] {
+    /* Potentially adjust padding/margin if hiding the filename creates awkward spacing */
+    padding-left: 0;
+}
+
+/* Hide filenames in wikilinks */
+.internal-link .link-title {
+  display: none;
+}
+.internal-link:after {
+  content: attr(data-link-text);
+}
+
+.mermaid svg { 
+  max-width: 100%; 
+  width: 100%; 
+  height: auto;
+}
+
+
+/*.theme-dark .mermaid > svg {
+ filter: none; 
+}*/

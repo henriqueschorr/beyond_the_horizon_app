@@ -1,0 +1,11 @@
+{
+  "files": [
+    "CRUD.md",
+    "Reference.md",
+    "Ability.md"
+  ],
+  "templaterFiles": [],
+  "newFileTemplates": [],
+  "openNewFileTemplateInNewPane": true,
+  "useNewFileTemplateOnFileCreation": false
+}

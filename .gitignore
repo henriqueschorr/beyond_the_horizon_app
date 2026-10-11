@@ -1,0 +1,12 @@
+# Obsidian locks and local workspace trash
+*~lock~
+.trash/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temp/Cache files
+*.tmp
+*.log
