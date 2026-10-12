@@ -19,8 +19,6 @@ END $$;
 CREATE TABLE IF NOT EXISTS public.profiles (
     id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
     display_name TEXT NOT NULL CHECK (char_length(trim(display_name)) >= 1 AND char_length(display_name) <= 50),
-    avatar_url TEXT CHECK (avatar_url IS NULL OR char_length(avatar_url) <= 2048),
-    bio TEXT CHECK (bio IS NULL OR char_length(bio) <= 500),
     role public.user_role NOT NULL DEFAULT 'player',
     created_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now()),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now())

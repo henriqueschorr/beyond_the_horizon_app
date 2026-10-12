@@ -265,6 +265,23 @@ Below is the canonical structural design for the Logged-In player dashboard:
 - All Data Transfer Objects are explicitly suffixed with RequestDto or ResponseDto.
 - Ambiguous, unqualified, or generic DTO names are prohibited.
 
+### 8.5 Declarative Routing & Navigation Architecture (go_router)
+The client application adopts **go_router** as its official declarative routing and deep-linking solution on Flutter Web:
+1. **Canonical Route Map:**
+   - **/**: LoggedOutLandingScreen (Public zero-login landing portal).
+   - **/dashboard**: PlayerDashboardScreen (Guarded command deck for authenticated operatives).
+   - **/in-construction**: InConstructionScreen (Atmospheric terminal destination for modules under active construction, accepting **?module=...** query parameters).
+2. **Reactive Authentication Redirect Guards:**
+   - GoRouter is initialized with refreshListenable bound to AuthController.
+   - When an operative session is invalidated or signed out, GoRouter redirects protected routes back to **/**.
+   - Deep-linking to protected views (such as **/dashboard**) while unauthenticated automatically redirects visitors to **/**.
+3. **Decoupled Widget Callbacks (Rule 10):**
+   - Sub-widgets do not directly invoke global navigation singletons.
+   - Buttons receive plain callbacks (such as onTap) that invoke declarative routing in the parent scope.
+
+### 8.6 In-Construction Module Destination Pattern
+During early development phases, feature launchers whose underlying subsystem is still in progress (such as Compêndio, Jogar Personagem, and Criar Personagem) navigate to the dedicated atmospheric InConstructionScreen (*Módulo em Construção*). This screen presents terminal hazard styling, status telemetry codes (CODIGO_ESTADO_503_PLANNED), and a tactical return button to preserve interface coherence without dead-end clicks or broken layouts.
+
 ---
 
 ## 9. Researched Alternatives & Studied Layouts Archive

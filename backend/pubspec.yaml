@@ -1,0 +1,19 @@
+name: backend
+description: In-process domain services, mock repositories, and Shelf HTTP server for Beyond the Horizon App.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  shared:
+    path: ../shared
+  get_it: ^7.6.0
+  shelf: ^1.4.1
+  shelf_router: ^1.1.4
+  uuid: ^4.3.3
+  crypto: ^3.0.3
+
+dev_dependencies:
+  lints: ^3.0.0

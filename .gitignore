@@ -10,3 +10,12 @@ desktop.ini
 # Temp/Cache files
 *.tmp
 *.log
+Untitled.canvas
+
+# Flutter and Dart build artifacts & cache
+**/.dart_tool/
+**/build/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.pub-cache/
+**/.pub/

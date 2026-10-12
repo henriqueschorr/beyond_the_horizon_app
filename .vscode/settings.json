@@ -1,0 +1,9 @@
+{
+  "dart.projectSearchDepth": 5,
+  "dart.projectSearchPaths": [
+    "backend",
+    "shared",
+    "frontend"
+  ],
+  "dart.hotReloadOnSave": "all"
+}

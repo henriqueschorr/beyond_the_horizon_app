@@ -1,0 +1,16 @@
+import 'dependency_injection/service_locator.dart';
+import 'services/auth_service.dart';
+import 'services/profile_service.dart';
+
+/// Unified facade brokering in-process domain calls between frontend and backend.
+/// Exposes zero-latency class.method() execution with shared DTO wire contracts.
+class BackendService {
+  final AuthService auth;
+  final ProfileService profile;
+
+  BackendService({
+    AuthService? authService,
+    ProfileService? profileService,
+  })  : auth = authService ?? serviceLocator<AuthService>(),
+        profile = profileService ?? serviceLocator<ProfileService>();
+}

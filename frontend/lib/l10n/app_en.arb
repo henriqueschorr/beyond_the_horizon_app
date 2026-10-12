@@ -1,0 +1,70 @@
+{
+  "@@locale": "en",
+
+  "commonAppTitle": "Beyond the Horizon",
+  "commonClose": "Close",
+  "commonBack": "Back",
+  "commonOperative": "Operative",
+
+  "authEmailLabel": "Email",
+  "authEmailPlaceholder": "Enter your email",
+  "authPasswordLabel": "Password",
+  "authPasswordPlaceholder": "Enter your password",
+  "authSignInAction": "SIGN IN",
+  "authRegisterAction": "Register",
+
+  "registrationTitle": "NEW REGISTRATION",
+  "registrationCallsignLabel": "Display Name",
+  "registrationCallsignPlaceholder": "E.g.: Vance Specter",
+  "registrationEmailLabel": "Email",
+  "registrationEmailPlaceholder": "Enter your email",
+  "registrationPasswordLabel": "Password",
+  "registrationPasswordPlaceholder": "Enter your password",
+  "registrationSubmitAction": "COMPLETE REGISTRATION",
+
+  "landingCompendiumTooltip": "Compendium // Rulebook",
+  "landingSettingsTooltip": "Settings",
+
+  "dashboardWelcome": "WELCOME, {name}!",
+  "@dashboardWelcome": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dashboardStatus": "COMMAND DECK // STATUS: OPERATIONAL",
+  "featurePlayCharacterTitle": "PLAY CHARACTER",
+  "featurePlayCharacterSubtitle": "[ No active character loaded ]",
+  "featureCreateCharacterTitle": "CREATE CHARACTER",
+  "featureCreateCharacterSubtitle": "Step-by-step character creation wizard",
+  "featureCompendiumTitle": "COMPENDIUM",
+  "featureCompendiumSubtitle": "Core mechanics, species, skills, and armory",
+  "featureSettingsTitle": "SETTINGS",
+  "featureSettingsSubtitle": "CRT shaders, audio, and display preferences",
+  "featureSignOutTitle": "SIGN OUT",
+  "featureSignOutSubtitle": "Terminate session and return to portal",
+
+  "settingsTitle": "SETTINGS",
+
+  "inConstructionHeader": "TACTICAL SUBSYSTEM // STATUS TRANSMISSION",
+  "inConstructionNotice": "This module is actively being compiled and calibrated in the event horizon. Telemetry records and the corresponding database will be declassified in upcoming transmissions.",
+  "inConstructionStatusCode": "STATUS: MODULO_EM_DESENVOLVIMENTO // CODIGO_ESTADO_503_PLANNED",
+  "inConstructionProtocol": "LOCATION: SECTOR_TERMINAL_SUBROUTINE\nPROTOCOL: AWAITING_DATA_SYNCHRONIZATION",
+  "inConstructionReturnAction": "RETURN TO TERMINAL",
+
+  "telemetrySignalWarning": "TELEMETRY // UNSTABLE SIGNAL",
+  "telemetryResolutionTitle": "INSUFFICIENT RESOLUTION",
+  "telemetryResolutionMessage": "The tactical terminal requires a desktop or tablet workstation with at least 768px width to render the event horizon and command console.",
+  "telemetryErrorCode": "CODE: ERR_VIEWPORT_PHASE_1_MOBILE_EXCLUDED",
+  "telemetryConnectInstruction": "CONNECT VIA DESKTOP OR TACTICAL TABLET STATION.",
+
+  "errorEmptyEmail": "Email or callsign cannot be blank.",
+  "errorInvalidEmail": "Invalid email format.",
+  "errorEmptyPassword": "Password cannot be blank.",
+  "errorPasswordTooShort": "Password must be at least 8 characters.",
+  "errorEmptyCallsign": "Display name cannot be blank.",
+  "errorCallsignTooLong": "Display name must be at most 50 characters.",
+  "errorInvalidCredentials": "Invalid credentials: Email or password incorrect.",
+  "errorEmailAlreadyExists": "This email is already registered in the database."
+}

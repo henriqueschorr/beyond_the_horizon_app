@@ -78,8 +78,6 @@ erDiagram
     PROFILES {
         uuid id PK,FK "references auth.users(id)"
         string display_name "player operative callsign or name"
-        string avatar_url "dossier portrait URL (optional)"
-        string bio "personnel service dossier / notes (optional)"
         user_role role "player | facilitator | admin"
         timestamptz created_at "creation timestamp"
         timestamptz updated_at "last update timestamp"
@@ -97,8 +95,6 @@ erDiagram
 | :--- | :--- | :--- | :--- | :--- |
 | id | UUID | No | None | Primary key. References auth.users(id) ON DELETE CASCADE. |
 | display_name | TEXT | No | None | Player callsign or name. Enforces CHECK (char_length(trim(display_name)) >= 1 AND char_length(display_name) <= 50). |
-| avatar_url | TEXT | Yes | NULL | Optional link to avatar portrait. Enforces CHECK (avatar_url IS NULL OR char_length(avatar_url) <= 2048). |
-| bio | TEXT | Yes | NULL | Optional personnel notes or bio. Enforces CHECK (bio IS NULL OR char_length(bio) <= 500). |
 | role | public.user_role | No | 'player' | Account role enum (player, facilitator, admin). Protected against direct client updates. |
 | created_at | TIMESTAMPTZ | No | timezone('utc'::text, now()) | Record creation timestamp. |
 | updated_at | TIMESTAMPTZ | No | timezone('utc'::text, now()) | Record last modification timestamp, maintained automatically by trigger. |

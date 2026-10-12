@@ -1,0 +1,70 @@
+{
+  "@@locale": "pt",
+
+  "commonAppTitle": "Beyond the Horizon",
+  "commonClose": "Fechar",
+  "commonBack": "Voltar",
+  "commonOperative": "Operativo",
+
+  "authEmailLabel": "Email",
+  "authEmailPlaceholder": "Digite seu email",
+  "authPasswordLabel": "Senha",
+  "authPasswordPlaceholder": "Digite sua senha",
+  "authSignInAction": "ENTRAR",
+  "authRegisterAction": "Registrar",
+
+  "registrationTitle": "NOVO REGISTRO",
+  "registrationCallsignLabel": "Nome de Exibição",
+  "registrationCallsignPlaceholder": "Ex: Vance Specter",
+  "registrationEmailLabel": "Email",
+  "registrationEmailPlaceholder": "Digite seu email",
+  "registrationPasswordLabel": "Senha",
+  "registrationPasswordPlaceholder": "Digite sua senha",
+  "registrationSubmitAction": "CONCLUIR REGISTRO",
+
+  "landingCompendiumTooltip": "Compêndio // Livro de Regras",
+  "landingSettingsTooltip": "Configurações",
+
+  "dashboardWelcome": "BEM-VINDO, {name}!",
+  "@dashboardWelcome": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dashboardStatus": "TERMINAL DE COMANDO // STATUS: OPERACIONAL",
+  "featurePlayCharacterTitle": "JOGAR PERSONAGEM",
+  "featurePlayCharacterSubtitle": "[ Nenhum personagem ativo carregado ]",
+  "featureCreateCharacterTitle": "CRIAR PERSONAGEM",
+  "featureCreateCharacterSubtitle": "Assistente de criação de ficha passo a passo",
+  "featureCompendiumTitle": "COMPÊNDIO",
+  "featureCompendiumSubtitle": "Regras centrais, espécies, perícias e arsenal",
+  "featureSettingsTitle": "CONFIGURAÇÕES",
+  "featureSettingsSubtitle": "Simulação CRT, áudio e preferências de interface",
+  "featureSignOutTitle": "SAIR",
+  "featureSignOutSubtitle": "Encerrar sessão ativa e retornar ao portal",
+
+  "settingsTitle": "CONFIGURAÇÕES",
+
+  "inConstructionHeader": "SUBSISTEMA TÁTICO // TRANSMISSÃO DE STATUS",
+  "inConstructionNotice": "Este módulo está sendo ativamente compilado e calibrado no horizonte de eventos. Os registros de telemetria e o banco de dados correspondente serão desclassificados em próximas transmissões.",
+  "inConstructionStatusCode": "STATUS: MODULO_EM_DESENVOLVIMENTO // CODIGO_ESTADO_503_PLANNED",
+  "inConstructionProtocol": "LOCALIZAÇÃO: SUB-ROTINA_TERMINAL_DE_SETOR\nPROTOCOLO: AGUARDANDO_SINCRONIZACAO_DE_DADOS",
+  "inConstructionReturnAction": "RETORNAR AO TERMINAL",
+
+  "telemetrySignalWarning": "TELEMETRIA // SINAL INSTÁVEL",
+  "telemetryResolutionTitle": "RESOLUÇÃO INSUFICIENTE",
+  "telemetryResolutionMessage": "O terminal tático requer uma estação desktop ou tablet com largura mínima de 768px para renderizar o horizonte de eventos e o console de comando.",
+  "telemetryErrorCode": "CÓDIGO: ERR_VIEWPORT_PHASE_1_MOBILE_EXCLUDED",
+  "telemetryConnectInstruction": "CONECTE-SE VIA ESTAÇÃO DESKTOP OU TABLET TÁTICO.",
+
+  "errorEmptyEmail": "Email ou indicativo não pode ficar em branco.",
+  "errorInvalidEmail": "Formato de email inválido.",
+  "errorEmptyPassword": "Senha não pode ficar em branco.",
+  "errorPasswordTooShort": "Senha deve possuir pelo menos 8 caracteres.",
+  "errorEmptyCallsign": "Nome de exibição não pode ficar em branco.",
+  "errorCallsignTooLong": "Nome de exibição deve ter no máximo 50 caracteres.",
+  "errorInvalidCredentials": "Credenciais inválidas: Email ou senha incorretos.",
+  "errorEmailAlreadyExists": "Este email já se encontra registrado no banco de dados."
+}

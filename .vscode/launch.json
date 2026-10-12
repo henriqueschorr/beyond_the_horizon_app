@@ -1,0 +1,35 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Frontend (Chrome)",
+      "cwd": "frontend",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "-d",
+        "chrome",
+        "--web-port=3000"
+      ]
+    },
+    {
+      "name": "Frontend (Edge)",
+      "cwd": "frontend",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "-d",
+        "edge"
+      ]
+    },
+    {
+      "name": "Backend Server",
+      "cwd": "backend",
+      "request": "launch",
+      "type": "dart",
+      "program": "bin/server.dart"
+    }
+  ]
+}

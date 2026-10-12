@@ -74,24 +74,9 @@
               "icon": "lucide-file",
               "title": "04-sdd-frontend"
             }
-          },
-          {
-            "id": "e1b09dda9e7652bd",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "design/04-sdd-frontend.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "04-sdd-frontend"
-            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -150,7 +135,7 @@
             }
           },
           {
-            "id": "50eb19102a0231de",
+            "id": "a6f3dc22c1cbe76f",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -160,11 +145,12 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "0d5bd51d601cf895",
@@ -269,8 +255,21 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "274c8dfc8f1dc384",
+  "active": "94ea11d51150aedd",
   "lastOpenFiles": [
+    "frontend/lib/features/in_construction/pages/in_construction_page.dart",
+    "frontend/lib/features/in_construction/pages",
+    "frontend/lib/features/dashboard/pages/player_dashboard_page.dart",
+    "frontend/lib/features/dashboard/pages",
+    "frontend/lib/features/home/pages/logged_out_home_page.dart",
+    "frontend/lib/features/home/pages",
+    "frontend/lib/features/home/widgets/event_horizon_arc.dart",
+    "frontend/lib/features/home/widgets/responsive_telemetry_guard.dart",
+    "frontend/lib/features/home/widgets/crossword_brand_mark.dart",
+    "frontend/lib/features/home/screens/logged_out_home_screen.dart",
+    "frontend/lib/features/home/widgets",
+    "Untitled.canvas",
+    "design/04-sdd-frontend.md",
     "design/03-sdd-backend.md",
     "design/02-sdd-database.md",
     "design/01-sdd-overview.md",
@@ -279,22 +278,14 @@
     "design/assets/cassette_orange_moodboard.png",
     "design/assets/canonical_logged_in_sketch.png",
     "design/assets/canonical_logged_out_sketch.png",
-    "design/assets",
-    "design/04-sdd-frontend.md",
     "design/TODO.md",
-    "supabase/migrations/20261010000002_create_documentation_pages.sql",
     "design/markdown_presentation_reference.md",
-    "supabase/migrations/20261010000001_create_profiles_table.sql",
-    "supabase/migrations",
-    "supabase",
     "design/references/shared_design_trends_comparative_report.md",
     "design/references/remedy_design_reference.md",
     "design/references/mothership_design_reference.md",
     "design/references/fallout_design_reference.md",
     "design/references/death_in_space_design_reference.md",
     "design/references/alien_design_reference.md",
-    "design/references",
-    "design/design.md",
-    "Tags"
+    "design/design.md"
   ]
 }

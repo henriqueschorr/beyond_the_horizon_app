@@ -62,7 +62,7 @@ classDiagram
     class ProfileRepository {
         <<interface>>
         +getProfileById(String id) Future~UserProfileResponseDto?~
-        +updateProfile(String id, String displayName, String avatarUrl, String bio) Future~UserProfileResponseDto~
+        +updateProfile(String id, String displayName) Future~UserProfileResponseDto~
     }
 
     class DocumentationRepository {
@@ -99,7 +99,7 @@ Defines authentication workflows and session state management:
 #### 4.1.2 ProfileRepository
 Defines operative dossier profile querying and updates:
 - **getProfileById:** Retrieves the operative profile by user identifier.
-- **updateProfile:** Updates display name, avatar URL, or bio, rejecting any direct role modification.
+- **updateProfile:** Updates display name, rejecting any direct role modification.
 
 #### 4.1.3 DocumentationRepository (Public Zero-Login)
 Defines catalog querying and hierarchical structure generation for compendium rules:
@@ -126,7 +126,6 @@ In accordance with Phase 1 design, all repositories are implemented as in-memory
      - User ID: 00000000-0000-4000-8000-000000000001
      - Email: operative.vance@beyondthehorizon.space
      - Display Name: Vance "Specter"
-     - Bio: Operativo veterano de reconhecimento tático da Frota de Exploração.
      - Role: UserRole.player
    - Simulates token generation with cryptographically secure random session tokens.
    - Supports runtime registration, signin, signout, and profile updates during local app execution.
@@ -283,8 +282,8 @@ Matches the public.documentation_layout PostgreSQL enum:
 - **PasswordResetRequestDto:** Encapsulates email address for password recovery.
 
 #### 6.2.2 Profile DTOs
-- **UserProfileResponseDto:** Encapsulates id, displayName, avatarUrl, bio, role, createdAt, and updatedAt.
-- **UpdateProfileRequestDto:** Encapsulates optional displayName, avatarUrl, and bio. Enforces character length boundaries (display name 1 to 50 characters, bio max 500 characters, avatarUrl max 2048 characters).
+- **UserProfileResponseDto:** Encapsulates id, displayName, role, createdAt, and updatedAt.
+- **UpdateProfileRequestDto:** Encapsulates displayName. Enforces character length boundaries (display name 1 to 50 characters).
 
 #### 6.2.3 Documentation DTOs (Option A Wire Contracts)
 - **DocumentationPageSummaryResponseDto:** Lightweight catalog item carrying id, slug, category, layout, subcategory, sortOrder, locale, title, summary, storagePath, and updatedAt.
@@ -309,8 +308,6 @@ Domain services encapsulate business logic, coordinate repository queries, perfo
 - **getProfile(String userId):** Retrieves operative profile via ProfileRepository.getProfileById. Returns null if not found.
 - **updateProfile(String userId, UpdateProfileRequestDto request):**
   - Sanitizes and trims display name; enforces length between 1 and 50 characters.
-  - Sanitizes bio; enforces maximum length of 500 characters.
-  - Validates avatar URL format and length (maximum 2048 characters).
   - Enforces role protection: clients cannot modify account role (rejection in domain logic matching database trigger).
   - Calls ProfileRepository.updateProfile and returns UserProfileResponseDto.
 
@@ -465,7 +462,7 @@ The backend architecture enforces the following security standards:
    - Cryptographic token generation utilizes CSPRNG byte sequences and standard HMAC-SHA256 hashing.
    - Token comparisons utilize timing-safe equality checks to eliminate timing side-channel vulnerabilities.
 3. **A03 & A04 Injection & Insecure Design:**
-   - String boundaries are strictly validated on all incoming DTO fields (display name 1 to 50 characters, bio max 500 characters, avatar URL max 2048 characters).
+   - String boundaries are strictly validated on all incoming DTO fields (display name 1 to 50 characters).
    - Input fields are trimmed and sanitized of leading/trailing whitespace.
 4. **A05 Security Misconfiguration & Error Sanitization:**
    - In production execution, unhandled exceptions return sanitized, generic error descriptions.

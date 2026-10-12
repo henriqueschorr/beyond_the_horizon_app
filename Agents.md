@@ -105,9 +105,9 @@ When the user explicitly instructs you to commit:
 
 ---
 
-## 9. File & Directory Naming Conventions
+## 9. File, Directory & Identifier Naming Conventions
 
-- **Prohibited: Abbreviations in names.** Never use cryptic abbreviations in file or directory paths (e.g., use `dependency_injection/` instead of `di/`). All directory, file, and identifier names must be fully spelled out and self-documenting.
+- **Prohibited: Abbreviations in names and identifiers.** Never use cryptic abbreviations in file names, directory paths, variables, parameters, or identifiers (e.g., use dependency_injection/ instead of di/, serviceLocator instead of sl, repository instead of repo, controller instead of ctrl). All directory, file, variable, parameter, and symbol names must be fully spelled out and self-documenting.
 
 ---
 
@@ -139,6 +139,10 @@ When the user explicitly instructs you to commit:
 - **Data Model Respect in Resolvers**:
   - Image and metadata resolvers must prioritize backend DTO fields before falling back to static endpoints or asset fallbacks.
   - Favor instance methods/getters on controllers (e.g., `controller.avatarUrl`) over static class methods to keep widgets decoupled from global singletons.
+- **Form Submission & Async Orchestration in Controllers**:
+  - Modal dialogs, forms, and views MUST NOT manage local submitting state, local loading booleans, local error messages, or raw submit orchestration handlers.
+  - The Controller layer MUST own the entire flow: input coordination, validation invocation, loading state transitions (isLoading), error message mapping, and backend dispatch.
+  - Widgets observe the controller via ListenableBuilder and only trigger high-level controller methods (e.g., controller.register(...)), with the view strictly handling immediate navigation or dismissal on successful completion.
 
 ---
 
@@ -154,10 +158,12 @@ When the user explicitly instructs you to commit:
 
 ## 12. Internationalization & Localization (l10n) Policy
 
-- **Prohibited: Hardcoded user-facing strings and fallback literals.** Never provide hardcoded string literals as fallbacks for localized text (e.g., prohibited: `l10n?.actionRead ?? 'LER'` or `l10n?.contactAuthor ?? 'CONTATAR AUTOR'`).
-- **Strictly Non-Nullable Localizations**:
-  - All user-facing UI text MUST originate exclusively and directly from `AppLocalizations.of(context)!` (or a non-nullable `l10n.<key>`).
-  - If a translation key does not exist, add it to `app_en.arb` and `app_pt.arb` and synchronize `app_localizations*.dart` rather than writing inline fallback strings.
+- **Prohibited: Hardcoded user-facing strings, validation/error texts, and fallback literals**:
+  - Never provide hardcoded string literals as fallbacks or error messages in code (especially in DTOs, controllers, repositories, services, routers, or widgets).
+  - Validation messages and errors must never be hardcoded in pt-BR, en-US, or any natural language within business logic or data structures.
+  - All user-facing UI text, validation feedback, and errors MUST originate exclusively and directly from **AppLocalizations.of(context)!** (or non-nullable **l10n.errors.*** / **l10n.<domain>.***).
+  - Routers and route parameters must never declare hardcoded fallback text (e.g., prohibited: *state.uri.queryParameters['module'] ?? 'Módulo Geral'*). Use nullable parameters and let views resolve default headers through **AppLocalizations**.
+  - If a translation key does not exist, add it to **app_en.arb** and **app_pt.arb** and synchronize **app_localizations.dart** rather than writing inline fallback strings.
 
 ---
 
@@ -233,3 +239,32 @@ When the user explicitly instructs you to commit:
   - When designing, declaring, or referencing Data Transfer Objects (DTOs), always be completely explicit about whether the object represents a request or a response.
   - Suffix DTO class names and identifiers explicitly with RequestDto or ResponseDto (e.g., UserProfileResponseDto instead of UserProfileDto, UpdateProfileRequestDto, DocumentationPageSummaryResponseDto, DocumentationPageDetailResponseDto).
   - Prohibited: Ambiguous, unqualified, or generic DTO names (e.g., prohibited: UserProfileDto, PageDto, AuthDto).
+
+---
+
+## 20. Input Validation Architecture & Pure DTO Policy (Validator -> Controller Flow)
+
+- **Pure DTO Policy (No Validation in DTOs)**:
+  - Data Transfer Objects (DTOs) in the shared package are strictly pure wire contracts (properties, constructors, toMap, fromMap serialization).
+  - Prohibited: validate() methods or UI validation logic inside DTOs. DTOs must NEVER return user-facing error strings, natural language feedback, or localized text.
+- **Dedicated Frontend Validators**:
+  - All input field and form validations (presence, email RFC format, character lengths, password minimums) MUST be encapsulated in specialized frontend validator classes (e.g., AuthValidator).
+  - Validators take AppLocalizations as an argument and return localized error strings from l10n.errors.* (or null if valid).
+- **Validator -> Controller Flow**:
+  - Feature controllers consume these validator objects to validate inputs before submitting requests to backend services.
+  - Validators can also be directly reused across frontend UI widgets or form fields to validate individual fields as the user types or unfocuses.
+  - Backend domain exceptions use machine-readable error codes (e.g., invalid_credentials, email_already_exists via AuthException), which the frontend controller maps directly to l10n.errors.* before surfacing error state to UI screens.
+
+---
+
+## 21. Specific Exceptions Policy
+
+- **Exceptions Locations**:
+  - All exception definitions in the backend package must reside in a dedicated exceptions directory (e.g., backend/lib/exceptions/).
+- **Specific Typed Exceptions for Every Subsystem**:
+  - Never throw generic StateError, Exception, or raw String instances from repositories, services, or data sources.
+  - Every subsystem must define dedicated, strongly-typed machine-readable exceptions (such as AuthException, ProfileException, etc.) implementing the Exception interface.
+  - Each specific exception must provide standardized machine-readable error code constants (such as AuthException.invalidCredentials, ProfileException.profileNotFound) and an optional message.
+  - Natural language or localized text (pt-BR or en-US) is strictly prohibited in exception codes and messages.
+  - Frontend controllers catch these specific exceptions and map their machine codes strictly to localized messages via AppLocalizations.
+
