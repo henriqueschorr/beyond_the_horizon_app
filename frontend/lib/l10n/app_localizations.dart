@@ -96,17 +96,11 @@ class AppLocalizations {
         'landingSettingsTooltip': 'Configurações',
 
         // --- DASHBOARD ---
-        'dashboardStatus': 'TERMINAL DE COMANDO // STATUS: OPERACIONAL',
-        'featurePlayCharacterTitle': 'JOGAR PERSONAGEM',
-        'featurePlayCharacterSubtitle': '[ Nenhum personagem ativo carregado ]',
+        'featurePlayCharacterTitle': 'JOGAR COM PERSONAGEM',
         'featureCreateCharacterTitle': 'CRIAR PERSONAGEM',
-        'featureCreateCharacterSubtitle': 'Assistente de criação de ficha passo a passo',
         'featureCompendiumTitle': 'COMPÊNDIO',
-        'featureCompendiumSubtitle': 'Regras centrais, espécies, perícias e arsenal',
         'featureSettingsTitle': 'CONFIGURAÇÕES',
-        'featureSettingsSubtitle': 'Simulação CRT, áudio e preferências de interface',
         'featureSignOutTitle': 'SAIR',
-        'featureSignOutSubtitle': 'Encerrar sessão e retornar ao portal inicial',
 
         // --- SETTINGS ---
         'settingsTitle': 'CONFIGURAÇÕES',
@@ -167,17 +161,11 @@ class AppLocalizations {
       'landingSettingsTooltip': 'Settings',
 
       // --- DASHBOARD ---
-      'dashboardStatus': 'COMMAND DECK // STATUS: OPERATIONAL',
-      'featurePlayCharacterTitle': 'PLAY CHARACTER',
-      'featurePlayCharacterSubtitle': '[ No active character loaded ]',
+      'featurePlayCharacterTitle': 'PLAY WITH CHARACTER',
       'featureCreateCharacterTitle': 'CREATE CHARACTER',
-      'featureCreateCharacterSubtitle': 'Step-by-step character creation wizard',
       'featureCompendiumTitle': 'COMPENDIUM',
-      'featureCompendiumSubtitle': 'Core mechanics, species, skills, and armory',
       'featureSettingsTitle': 'SETTINGS',
-      'featureSettingsSubtitle': 'CRT shaders, audio, and display preferences',
       'featureSignOutTitle': 'SIGN OUT',
-      'featureSignOutSubtitle': 'Terminate session and return to portal',
 
       // --- SETTINGS ---
       'settingsTitle': 'SETTINGS',
@@ -248,18 +236,12 @@ class AppLocalizations {
   // PLAYER DASHBOARD GETTERS
   // ===========================================================================
   String dashboardWelcome(String name) =>
-      locale.languageCode == 'pt' ? 'BEM-VINDO, $name!' : 'WELCOME, $name!';
-  String get dashboardStatus => _localizedStrings['dashboardStatus']!;
+      locale.languageCode == 'pt' ? 'Bem-vindo, $name.' : 'Welcome, $name.';
   String get featurePlayCharacterTitle => _localizedStrings['featurePlayCharacterTitle']!;
-  String get featurePlayCharacterSubtitle => _localizedStrings['featurePlayCharacterSubtitle']!;
   String get featureCreateCharacterTitle => _localizedStrings['featureCreateCharacterTitle']!;
-  String get featureCreateCharacterSubtitle => _localizedStrings['featureCreateCharacterSubtitle']!;
   String get featureCompendiumTitle => _localizedStrings['featureCompendiumTitle']!;
-  String get featureCompendiumSubtitle => _localizedStrings['featureCompendiumSubtitle']!;
   String get featureSettingsTitle => _localizedStrings['featureSettingsTitle']!;
-  String get featureSettingsSubtitle => _localizedStrings['featureSettingsSubtitle']!;
   String get featureSignOutTitle => _localizedStrings['featureSignOutTitle']!;
-  String get featureSignOutSubtitle => _localizedStrings['featureSignOutSubtitle']!;
 
   // ===========================================================================
   // TERMINAL SETTINGS GETTERS
@@ -360,17 +342,11 @@ class DashboardL10n {
   DashboardL10n(this._l10n);
 
   String welcome(String name) => _l10n.dashboardWelcome(name);
-  String get status => _l10n.dashboardStatus;
   String get playCharacterTitle => _l10n.featurePlayCharacterTitle;
-  String get playCharacterSubtitle => _l10n.featurePlayCharacterSubtitle;
   String get createCharacterTitle => _l10n.featureCreateCharacterTitle;
-  String get createCharacterSubtitle => _l10n.featureCreateCharacterSubtitle;
   String get compendiumTitle => _l10n.featureCompendiumTitle;
-  String get compendiumSubtitle => _l10n.featureCompendiumSubtitle;
   String get settingsTitle => _l10n.featureSettingsTitle;
-  String get settingsSubtitle => _l10n.featureSettingsSubtitle;
   String get signOutTitle => _l10n.featureSignOutTitle;
-  String get signOutSubtitle => _l10n.featureSignOutSubtitle;
 }
 
 class SettingsL10n {

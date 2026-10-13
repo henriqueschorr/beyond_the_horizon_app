@@ -50,7 +50,7 @@ abstract final class AppTypography {
         fontWeight: FontWeight.w700,
         letterSpacing: 1.2,
         height: 1.20,
-        color: AppColors.darkTextPrimary,
+        color: AppColors.darkTextSecondary,
       );
 
   static TextStyle get tacticalLabelHighlighted => GoogleFonts.spaceMono(
@@ -66,7 +66,7 @@ abstract final class AppTypography {
         fontWeight: FontWeight.w700,
         letterSpacing: 0.8,
         height: 1.20,
-        color: AppColors.darkTextPrimary,
+        color: AppColors.darkTextSecondary,
       );
 
   static TextStyle get tacticalLabelSmallHighlighted => GoogleFonts.spaceMono(

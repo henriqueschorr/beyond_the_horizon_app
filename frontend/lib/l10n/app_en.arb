@@ -25,7 +25,7 @@
   "landingCompendiumTooltip": "Compendium // Rulebook",
   "landingSettingsTooltip": "Settings",
 
-  "dashboardWelcome": "WELCOME, {name}!",
+  "dashboardWelcome": "Welcome, {name}.",
   "@dashboardWelcome": {
     "placeholders": {
       "name": {
@@ -33,17 +33,11 @@
       }
     }
   },
-  "dashboardStatus": "COMMAND DECK // STATUS: OPERATIONAL",
-  "featurePlayCharacterTitle": "PLAY CHARACTER",
-  "featurePlayCharacterSubtitle": "[ No active character loaded ]",
+  "featurePlayCharacterTitle": "PLAY WITH CHARACTER",
   "featureCreateCharacterTitle": "CREATE CHARACTER",
-  "featureCreateCharacterSubtitle": "Step-by-step character creation wizard",
   "featureCompendiumTitle": "COMPENDIUM",
-  "featureCompendiumSubtitle": "Core mechanics, species, skills, and armory",
   "featureSettingsTitle": "SETTINGS",
-  "featureSettingsSubtitle": "CRT shaders, audio, and display preferences",
   "featureSignOutTitle": "SIGN OUT",
-  "featureSignOutSubtitle": "Terminate session and return to portal",
 
   "settingsTitle": "SETTINGS",
 

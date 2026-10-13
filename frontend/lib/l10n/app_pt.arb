@@ -25,7 +25,7 @@
   "landingCompendiumTooltip": "Compêndio // Livro de Regras",
   "landingSettingsTooltip": "Configurações",
 
-  "dashboardWelcome": "BEM-VINDO, {name}!",
+  "dashboardWelcome": "Bem-vindo, {name}.",
   "@dashboardWelcome": {
     "placeholders": {
       "name": {
@@ -33,17 +33,11 @@
       }
     }
   },
-  "dashboardStatus": "TERMINAL DE COMANDO // STATUS: OPERACIONAL",
-  "featurePlayCharacterTitle": "JOGAR PERSONAGEM",
-  "featurePlayCharacterSubtitle": "[ Nenhum personagem ativo carregado ]",
+  "featurePlayCharacterTitle": "JOGAR COM PERSONAGEM",
   "featureCreateCharacterTitle": "CRIAR PERSONAGEM",
-  "featureCreateCharacterSubtitle": "Assistente de criação de ficha passo a passo",
   "featureCompendiumTitle": "COMPÊNDIO",
-  "featureCompendiumSubtitle": "Regras centrais, espécies, perícias e arsenal",
   "featureSettingsTitle": "CONFIGURAÇÕES",
-  "featureSettingsSubtitle": "Simulação CRT, áudio e preferências de interface",
   "featureSignOutTitle": "SAIR",
-  "featureSignOutSubtitle": "Encerrar sessão ativa e retornar ao portal",
 
   "settingsTitle": "CONFIGURAÇÕES",
 

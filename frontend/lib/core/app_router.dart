@@ -1,9 +1,10 @@
 import 'package:go_router/go_router.dart';
 
 import '../features/auth/controllers/auth_controller.dart';
-import '../features/dashboard/pages/player_dashboard_page.dart';
-import '../features/home/pages/logged_out_home_page.dart';
+import '../features/landing/pages/landing_page.dart';
+import '../features/home/pages/home_page.dart';
 import '../features/in_construction/pages/in_construction_page.dart';
+import '../shared_widgets/shell/terminal_portal_shell.dart';
 
 /// Configures GoRouter declarative routing and reactive auth redirect guards.
 GoRouter createAppRouter(AuthController authController) {
@@ -12,23 +13,37 @@ GoRouter createAppRouter(AuthController authController) {
     refreshListenable: authController,
     redirect: (context, state) {
       final isAuthenticated = authController.isAuthenticated;
-      final isGoingToDashboard = state.matchedLocation == '/dashboard';
+      final isProtected = state.matchedLocation == '/home' || state.matchedLocation == '/dashboard';
 
-      if (isGoingToDashboard && !isAuthenticated) {
+      if (isProtected && !isAuthenticated) {
         return '/';
+      }
+      if (state.matchedLocation == '/dashboard') {
+        return '/home';
       }
       return null;
     },
     routes: [
-      GoRoute(
-        path: '/',
-        name: 'home',
-        builder: (context, state) => LoggedOutHomePage(),
-      ),
-      GoRoute(
-        path: '/dashboard',
-        name: 'dashboard',
-        builder: (context, state) => PlayerDashboardPage(),
+      ShellRoute(
+        builder: (context, state, child) {
+          return TerminalPortalShell(
+            currentLocation: state.matchedLocation,
+            authController: authController,
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: '/',
+            name: 'landing',
+            builder: (context, state) => LandingPage(authController: authController),
+          ),
+          GoRoute(
+            path: '/home',
+            name: 'home',
+            builder: (context, state) => HomePage(authController: authController),
+          ),
+        ],
       ),
       GoRoute(
         path: '/in-construction',

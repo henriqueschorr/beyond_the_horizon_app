@@ -56,10 +56,31 @@ class MockAuthRepository implements AuthRepository {
   @override
   Future<AuthSessionResponseDto> signInWithPassword(String email, String password) async {
     final normalizedEmail = email.trim().toLowerCase();
-    final account = _accountsByEmail[normalizedEmail];
+    var account = _accountsByEmail[normalizedEmail];
 
-    if (account == null || account.passwordHash != _hashPassword(password)) {
-      throw const AuthException(AuthException.invalidCredentials);
+    // In mock mode, allow any credentials to pass by auto-provisioning an operative account
+    if (account == null) {
+      final userId = _uuid.v4();
+      final displayName = normalizedEmail.contains('@')
+          ? normalizedEmail.split('@').first
+          : (normalizedEmail.isNotEmpty ? normalizedEmail : 'Operative');
+
+      account = _MockAccount(
+        userId: userId,
+        email: normalizedEmail,
+        passwordHash: _hashPassword(password),
+      );
+      _accountsByEmail[normalizedEmail] = account;
+
+      final now = DateTime.now().toUtc();
+      final profile = UserProfile(
+        id: userId,
+        displayName: displayName,
+        role: UserRole.player,
+        createdAt: now,
+        updatedAt: now,
+      );
+      _profileRepository.createProfile(profile);
     }
 
     final token = _generateToken();

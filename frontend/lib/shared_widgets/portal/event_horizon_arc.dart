@@ -1,17 +1,19 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import '../../../theme/color/app_colors.dart';
+import '../../theme/color/app_colors.dart';
 
-/// Parabolic Event Horizon Arc specified in SDD 04 Section 6.2.
-/// Sweeps up to an apex just beneath HORIZON and strictly exits through the lateral screen borders.
+/// Spherical Event Horizon Arc specified in SDD 04 Section 6.2.
+/// Sweeps up from off-screen left to a monumental spherical crest beneath the brand mark
+/// and continues its circular trajectory until exiting cleanly through the bottom of the viewport.
 class EventHorizonArc extends StatelessWidget {
+  final double apexX;
   final double apexY;
-  final double lateralExitRatio;
   final Widget? child;
 
   const EventHorizonArc({
     super.key,
+    required this.apexX,
     required this.apexY,
-    this.lateralExitRatio = 0.68,
     this.child,
   });
 
@@ -19,8 +21,8 @@ class EventHorizonArc extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomPaint(
       painter: _EventHorizonArcPainter(
+        apexX: apexX,
         apexY: apexY,
-        lateralExitRatio: lateralExitRatio,
       ),
       child: child,
     );
@@ -28,37 +30,57 @@ class EventHorizonArc extends StatelessWidget {
 }
 
 class _EventHorizonArcPainter extends CustomPainter {
+  final double apexX;
   final double apexY;
-  final double lateralExitRatio;
 
   const _EventHorizonArcPainter({
+    required this.apexX,
     required this.apexY,
-    required this.lateralExitRatio,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
     if (size.width <= 0 || size.height <= 0) return;
 
-    final lateralY = size.height * lateralExitRatio;
+    final double deltaY = math.max(100.0, size.height - apexY);
 
-    // Extend the parabola beyond lateral edges to eliminate odd angular cutoffs/endpoints
-    const extraX = 80.0;
-    final a = 4.0 * (lateralY - apexY) / (size.width * size.width);
-    final extendedDist = size.width / 2 + extraX;
-    final extendedY = apexY + a * extendedDist * extendedDist;
-    final extendedControlY = 2 * apexY - extendedY;
+    // True spherical radius calibrated to form an authentic celestial sphere.
+    // Scales harmoniously across viewports while ensuring the right leg completes
+    // its downward arc and exits through the bottom of the page.
+    final double radius = math.max(size.width * 0.52, deltaY * 1.30);
+    final double cy = apexY + radius;
+
+    const double extraX = 80.0;
+    final double bottomY = size.height + 40.0;
+    final double maxDy = (bottomY - apexY).clamp(0.0, radius * 0.98);
+
+    // 1. Right endpoint: exact circle intersection at bottomY
+    final double dxBottom = math.sqrt(math.max(0.0, maxDy * (2.0 * radius - maxDy)));
+    final double endX = apexX + dxBottom;
+    final double endY = apexY + maxDy;
+
+    // 2. Left endpoint: exact circle intersection at startX = -extraX
+    const double startX = -extraX;
+    final double dxLeft = (apexX - startX).clamp(0.0, radius * 0.98);
+    final double startY = cy - math.sqrt(math.max(0.0, radius * radius - dxLeft * dxLeft));
 
     // Clip strictly to canvas bounds so the extended arc cleanly exits the viewport
     canvas.save();
     canvas.clipRect(Rect.fromLTWH(0, 0, size.width, size.height));
 
-    // 1. Black hole void area beneath the arc
+    // 3. Exact circular arc path from start to end via Skia addArc:
+    final circleRect = Rect.fromCircle(center: Offset(apexX, cy), radius: radius);
+    final double startAngle = math.atan2(startY - cy, startX - apexX);
+    final double endAngle = math.atan2(endY - cy, endX - apexX);
+    final double sweepAngle = endAngle - startAngle;
+
+    final arcPath = Path()..addArc(circleRect, startAngle, sweepAngle);
+
+    // 4. Black hole singularity gravitational void beneath the circular arc:
     final voidPath = Path()
-      ..moveTo(-extraX, extendedY)
-      ..quadraticBezierTo(size.width / 2, extendedControlY, size.width + extraX, extendedY)
-      ..lineTo(size.width + extraX, size.height + 20.0)
-      ..lineTo(-extraX, size.height + 20.0)
+      ..addArc(circleRect, startAngle, sweepAngle)
+      ..lineTo(endX, bottomY + 20.0)
+      ..lineTo(startX, bottomY + 20.0)
       ..close();
 
     final voidPaint = Paint()
@@ -75,10 +97,7 @@ class _EventHorizonArcPainter extends CustomPainter {
 
     canvas.drawPath(voidPath, voidPaint);
 
-    // 2. Parabolic event horizon path extended off-screen
-    final arcPath = Path()
-      ..moveTo(-extraX, extendedY)
-      ..quadraticBezierTo(size.width / 2, extendedControlY, size.width + extraX, extendedY);
+    // 5. Draw the 4 luminous halo tiers along the exact circular arc:
 
     // Tier 1: Vast outer silver gravitational halo (broad continuous Gaussian bloom)
     final outerHaloPaint = Paint()
@@ -125,7 +144,6 @@ class _EventHorizonArcPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _EventHorizonArcPainter oldDelegate) {
-    return oldDelegate.apexY != apexY ||
-        oldDelegate.lateralExitRatio != lateralExitRatio;
+    return oldDelegate.apexX != apexX || oldDelegate.apexY != apexY;
   }
 }

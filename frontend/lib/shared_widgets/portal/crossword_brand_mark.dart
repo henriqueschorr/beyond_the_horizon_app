@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../theme/color/app_colors.dart';
+import '../../theme/color/app_colors.dart';
 
 /// Monumental typographic crossword brand mark specified in SDD 04 Section 6.1.
 /// B-E-Y-O-N-D intersects H-O-R-I-Z-O-N sharing the letter 'O'.
@@ -66,19 +66,22 @@ class CrosswordBrandMark extends StatelessWidget {
             children: [
               buildLetter('B'),
               buildLetter('E'),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  buildLetter('Y'),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      left: 8.0 * scale,
-                      top: 14.0 * scale,
+              SizedBox(
+                height: cellSize,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    buildLetter('Y'),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        left: 8.0 * scale,
+                        bottom: (letterSpacing / 2) + (6.0 * scale),
+                      ),
+                      child: Text('THE', style: particleTheStyle),
                     ),
-                    child: Text('THE', style: particleTheStyle),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

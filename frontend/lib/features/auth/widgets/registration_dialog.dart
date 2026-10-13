@@ -54,7 +54,7 @@ class _RegistrationDialogState extends State<RegistrationDialog> {
       backgroundColor: AppColors.darkBgSurface,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(6.0),
-        side: const BorderSide(color: AppColors.accentOrange, width: 1.0),
+        side: const BorderSide(color: AppColors.darkBorderProminent, width: 1.0),
       ),
       child: Container(
         constraints: const BoxConstraints(maxWidth: 460.0),

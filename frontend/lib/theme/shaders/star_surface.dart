@@ -63,18 +63,6 @@ class _StarSurfacePainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height * 0.45);
     final maxDist = sqrt(pow(size.width / 2, 2) + pow(size.height / 2, 2));
 
-    // Subtle cosmic radial wash
-    final washPaint = Paint()
-      ..shader = RadialGradient(
-        center: const Alignment(0.0, -0.1),
-        radius: 0.85,
-        colors: [
-          const Color(0xFF1E242C).withValues(alpha: 0.35),
-          Colors.transparent,
-        ],
-      ).createShader(Rect.fromLTWH(0, 0, size.width, size.height));
-    canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), washPaint);
-
     final starPaint = Paint()..style = PaintingStyle.fill;
 
     for (final star in _cachedStars) {

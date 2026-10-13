@@ -16,10 +16,11 @@ class MockAccountSeed {
 /// Seed data definitions for local and mock development environments.
 /// Decoupled from repository logic to allow independent fixture configuration.
 class MockSeeds {
-  static const String defaultOperativeId = '00000000-0000-4000-8000-000000000001';
-  static const String defaultEmail = 'operative.vance@beyondthehorizon.space';
-  static const String defaultCallsign = 'Vance "Specter"';
-  static const String defaultPassword = 'Specter2026!';
+  static const String defaultOperativeId =
+      '00000000-0000-4000-8000-000000000001';
+  static const String defaultEmail = 'test@test.com';
+  static const String defaultCallsign = 'Henrique';
+  static const String defaultPassword = 'test';
 
   /// Generates pre-seeded operative accounts.
   static List<MockAccountSeed> createInitialAccounts() {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'core/service_locator.dart';
 import 'core/app_router.dart';
@@ -10,6 +11,7 @@ import 'theme/color/app_colors.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  usePathUrlStrategy();
   setupFrontendServiceLocator();
 
   final authController = serviceLocator<AuthController>();

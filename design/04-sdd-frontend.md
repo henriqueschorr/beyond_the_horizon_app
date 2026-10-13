@@ -185,24 +185,25 @@ The monumental brand mark is structured as an off-center crossword puzzle sharin
 - The event horizon is rendered as a sweeping parabolic curve rising from the sides toward the central apex.
 - **Lateral Exit Rule:** The arc's side endpoints exit strictly through the **left and right lateral edges of the viewport** (at approximately 65% to 70% viewport height), never through the bottom edge.
 
-### 6.3 Access Console & Flanking Utility Buttons
+### 6.3 Access Console & Side-by-Side Utility Layout
 Positioned inside the black hole void beneath the submerged letters:
 
 ```
-+------+       +-----------------------+       +------+
-| [📖] |       |  [ Email / Callsign ] |       | [⚙️] |
-| Book |       +-----------------------+       | Gear |
-| Icon |       |  [ Password ]         |       | Icon |
-+------+       +-----------------------+       +------+
-               | [Registrar] [SIGN IN] |
-               +-----------------------+
++-----------------------+   |   [📖] COMPÊNDIO
+|  [ Email / Callsign ] |   |
++-----------------------+   |
+|  [ Password ]         |   |
++-----------------------+   |   [⚙️] CONFIGURAÇÕES
+| [Registrar] [ENTRAR]  |   |
++-----------------------+   |
 ```
 
-1. **Flanking Utility Icon Buttons:**
-   - **Left Button (Compêndio):** Rounded square with GrainSurface, displaying a clean Book icon. Pure icon presentation; displays hover tooltip: Compêndio // Regras Básicas (pt-BR) or Compendium // Core Rules (en). Zero-login access to public rules.
-   - **Right Button (Configurações / Settings):** Rounded square with GrainSurface, displaying a Classic Gear icon. Displays hover tooltip: Configurações do Terminal (pt-BR) or Terminal Settings (en). Opens display preferences drawer (CRT scanlines toggle, audio volume, light/dark mode).
+1. **Horizontal Layout Distribution (Side-by-Side):**
+   - **Login Block (Left):** Constrained to 320px width, containing the recessed email and password input fields, contextual error messages, and the balanced action row ([Registrar] and [ENTRAR]).
+   - **Vertical Divider Seam Line (Center):** A 1px wide vertical border line (darkBorderSubtle) with subtle edge fade gradients, stretching across the full intrinsic height of the login block with 36px horizontal margins.
+   - **Standalone Utility Menu Items (Right):** Compêndio and Configurações rendered vertically one below the other using NavigationMenu with isConnected set to false. Each item uses MenuItem with a 40x40 GrainSurface tactile node badge, animated hover glow, and sliding Space Grotesk action label without connecting circuit lines.
 2. **Input Fields Stack:**
-   - Recessed input well: Email / Callsign with 1px border (\#282E36) and dark well fill (\#0C0E10).
+   - Recessed input well: Email / Callsign with 1px border (\#282E36) and dark well fill (\#0C0E10). Field labels use darkTextSecondary (\#C8C4B8), reserving titanium silver strictly for titles.
    - Recessed input well: Password with matching styling.
    - Text Caret: Blinking block caret (█) in accent orange (\#FE6403).
 3. **Side-by-Side Action Row:**
@@ -227,18 +228,22 @@ Below is the canonical structural design for the Logged-In player dashboard:
 ### 7.2 Player Command Deck (Right Side)
 - **Direct Welcome Header:** Rendered in Space Grotesk Bold: Bem-vindo, [Nome]! (pt-BR) or Welcome, [Name]! (en). **No secondary metadata or status tags.**
 - **The Five Features in Strict Priority Order:**
-  - Each item is structured as a **rounded-square icon badge on the left (with GrainSurface noise texture) and the text label always showing clearly on its right**, with the entire interactive button surface wrapped in GrainSurface:
-  1. **[Icon] Jogar Personagem (Play Character):**
+  - Structured via NavigationMenu with isConnected set to true, using ConnectedMenuItem with top and bottom vertical conduit line segments, 40x40 GrainSurface tactile node badges, and sliding labels:
+  1. **[Icon] Jogar com Personagem (Play with Character):**
+     - Rendered with the bespoke top-down isometric D6 tabletop die icon.
      - If no active character exists: Dimmed / greyed-out state (\#7B8491) with helper tag: [ Nenhum personagem ativo ]. Clicking gently directs attention to Criar Personagem.
      - If an active character exists: Prominent active state with character callsign, species, and vitality meter, highlighted in Cassette 90 Orange (\#FE6403).
   2. **[Icon] Criar Personagem (Create Character):**
      - Always-active tactile launcher for the Step-by-Step Character Creation Wizard (OP-04).
+     - Displays person add outlined icon.
   3. **[Icon] Compêndio (Compendium):**
      - Full interactive rules browser indexing core mechanics, species profiles, career paths, and equipment.
+     - Displays book outlined icon.
   4. **[Icon] Configurações (Settings):**
      - Terminal preferences drawer (shaders, audio volume, themes).
+     - Displays gear outlined icon.
   5. **[Icon] Sair (Log Out):**
-     - Session sign-out action that smoothly glides the layout back to the centered logged-out state.
+     - Session sign-out action with destructive hover highlight that smoothly glides the layout back to the centered logged-out state.
 
 ---
 
