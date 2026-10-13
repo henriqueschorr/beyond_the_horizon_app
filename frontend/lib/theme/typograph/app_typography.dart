@@ -5,12 +5,36 @@ import '../color/app_colors.dart';
 /// Central typography styles defined in SDD 04 Section 4.2.
 /// Features Space Grotesk, Space Mono, and Inter font families.
 abstract final class AppTypography {
+  static TextStyle get monumentalTitle => GoogleFonts.spaceGrotesk(
+        fontSize: 64.0,
+        fontWeight: FontWeight.w700,
+        letterSpacing: 4.0,
+        height: 1.0,
+        color: AppColors.darkTextPrimary,
+      );
+
+  static TextStyle get monumentalSmall => GoogleFonts.spaceGrotesk(
+        fontSize: 16.0,
+        fontWeight: FontWeight.w700,
+        letterSpacing: 4.0,
+        height: 1.0,
+        color: AppColors.darkTextPrimary,
+      );
+
   static TextStyle get displayTitleLarge => GoogleFonts.spaceGrotesk(
         fontSize: 32.0,
         fontWeight: FontWeight.w700,
         letterSpacing: -0.5,
         height: 1.25,
         color: AppColors.darkTextPrimary,
+      );
+
+  static TextStyle get displayTitleLargeHighlighted => GoogleFonts.spaceGrotesk(
+        fontSize: 32.0,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.5,
+        height: 1.25,
+        color: AppColors.accentOrange,
       );
 
   static TextStyle get displayTitle => GoogleFonts.spaceGrotesk(
@@ -42,7 +66,15 @@ abstract final class AppTypography {
         fontWeight: FontWeight.w600,
         letterSpacing: 1.2,
         height: 1.20,
-        color: AppColors.darkTextPrimary,
+        color: AppColors.darkTextSecondary,
+      );
+
+  static TextStyle get navAnchorHighlighted => GoogleFonts.spaceGrotesk(
+        fontSize: 14.0,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 1.2,
+        height: 1.20,
+        color: AppColors.accentOrange,
       );
 
   static TextStyle get tacticalLabel => GoogleFonts.spaceMono(

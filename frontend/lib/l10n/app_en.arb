@@ -38,8 +38,16 @@
   "featureCompendiumTitle": "COMPENDIUM",
   "featureSettingsTitle": "SETTINGS",
   "featureSignOutTitle": "SIGN OUT",
+  "featureSignOutSessionAction": "SIGN OUT // TERMINATE SESSION",
+  "dashboardWelcomePrefix": "Welcome to Beyond the Horizon, ",
+  "dashboardWelcomeSuffix": ".",
+  "dashboardSubtitleExplore": "// BEGIN YOUR EXPLORATION",
+  "dashboardNoActiveCharacter": "NO ACTIVE CHARACTER",
+  "dashboardStatusReady": "READY",
+  "dashboardStatusUninitialized": "UNINITIALIZED",
 
   "settingsTitle": "SETTINGS",
+  "settingsNoOptionsNotice": "No configuration options currently available.",
 
   "inConstructionHeader": "TACTICAL SUBSYSTEM // STATUS TRANSMISSION",
   "inConstructionNotice": "This module is actively being compiled and calibrated in the event horizon. Telemetry records and the corresponding database will be declassified in upcoming transmissions.",
@@ -47,11 +55,11 @@
   "inConstructionProtocol": "LOCATION: SECTOR_TERMINAL_SUBROUTINE\nPROTOCOL: AWAITING_DATA_SYNCHRONIZATION",
   "inConstructionReturnAction": "RETURN TO TERMINAL",
 
-  "telemetrySignalWarning": "TELEMETRY // UNSTABLE SIGNAL",
-  "telemetryResolutionTitle": "INSUFFICIENT RESOLUTION",
-  "telemetryResolutionMessage": "The tactical terminal requires a desktop or tablet workstation with at least 768px width to render the event horizon and command console.",
-  "telemetryErrorCode": "CODE: ERR_VIEWPORT_PHASE_1_MOBILE_EXCLUDED",
-  "telemetryConnectInstruction": "CONNECT VIA DESKTOP OR TACTICAL TABLET STATION.",
+  "telemetrySignalWarning": "UNSUPPORTED SCREEN SIZE",
+  "telemetryResolutionTitle": "INSUFFICIENT SCREEN WIDTH",
+  "telemetryResolutionMessage": "This application requires a screen width of at least 768px. Access it on a desktop computer or tablet.",
+  "telemetryErrorCode": "ERROR: SCREEN_WIDTH_BELOW_768PX",
+  "telemetryConnectInstruction": "USE A DESKTOP OR TABLET DEVICE TO CONTINUE.",
 
   "errorEmptyEmail": "Email or callsign cannot be blank.",
   "errorInvalidEmail": "Invalid email format.",

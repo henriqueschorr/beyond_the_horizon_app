@@ -16,7 +16,7 @@ void main() {
 
   final authController = serviceLocator<AuthController>();
   final settingsController = serviceLocator<SettingsController>();
-  final router = createAppRouter(authController);
+  final router = createAppRouter(authController, settingsController);
 
   runApp(
     BeyondTheHorizonApp(

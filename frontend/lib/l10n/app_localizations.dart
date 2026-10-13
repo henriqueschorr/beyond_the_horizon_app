@@ -101,9 +101,17 @@ class AppLocalizations {
         'featureCompendiumTitle': 'COMPÊNDIO',
         'featureSettingsTitle': 'CONFIGURAÇÕES',
         'featureSignOutTitle': 'SAIR',
+        'featureSignOutSessionAction': 'ENCERRAR SESSÃO // SAIR',
+        'dashboardWelcomePrefix': 'Bem-vindo a Beyond the Horizon, ',
+        'dashboardWelcomeSuffix': '.',
+        'dashboardSubtitleExplore': '// INICIE SUA EXPLORAÇÃO',
+        'dashboardNoActiveCharacter': 'NENHUM PERSONAGEM ATIVO',
+        'dashboardStatusReady': 'PRONTO',
+        'dashboardStatusUninitialized': 'NÃO INICIALIZADO',
 
         // --- SETTINGS ---
         'settingsTitle': 'CONFIGURAÇÕES',
+        'settingsNoOptionsNotice': 'Nenhuma opção de configuração disponível no momento.',
 
         // --- IN-CONSTRUCTION ---
         'inConstructionHeader': 'SUBSISTEMA TÁTICO // TRANSMISSÃO DE STATUS',
@@ -113,11 +121,11 @@ class AppLocalizations {
         'inConstructionReturnAction': 'VOLTAR AO TERMINAL',
 
         // --- RESPONSIVE TELEMETRY ---
-        'telemetrySignalWarning': 'TELEMETRIA // SINAL INSTÁVEL',
-        'telemetryResolutionTitle': 'RESOLUÇÃO INSUFICIENTE',
-        'telemetryResolutionMessage': 'O terminal tático requer uma estação de trabalho desktop ou tablet com largura mínima de 768px para renderizar o horizonte de eventos e o console de comando.',
-        'telemetryErrorCode': 'CÓDIGO: ERR_VIEWPORT_PHASE_1_MOBILE_EXCLUDED',
-        'telemetryConnectInstruction': 'CONECTE-SE VIA ESTAÇÃO DESKTOP OU TABLET TÁTICO.',
+        'telemetrySignalWarning': 'TAMANHO DE TELA NÃO SUPORTADO',
+        'telemetryResolutionTitle': 'LARGURA DE TELA INSUFICIENTE',
+        'telemetryResolutionMessage': 'Esta aplicação requer uma largura de tela de pelo menos 768px. Acesse em um computador ou tablet.',
+        'telemetryErrorCode': 'ERRO: LARGURA_DE_TELA_ABAIXO_768PX',
+        'telemetryConnectInstruction': 'USE UM DISPOSITIVO DESKTOP OU TABLET PARA CONTINUAR.',
 
         // --- ERRORS ---
         'errorEmptyEmail': 'O email ou indicativo não pode ficar em branco.',
@@ -166,9 +174,17 @@ class AppLocalizations {
       'featureCompendiumTitle': 'COMPENDIUM',
       'featureSettingsTitle': 'SETTINGS',
       'featureSignOutTitle': 'SIGN OUT',
+      'featureSignOutSessionAction': 'SIGN OUT // TERMINATE SESSION',
+      'dashboardWelcomePrefix': 'Welcome to Beyond the Horizon, ',
+      'dashboardWelcomeSuffix': '.',
+      'dashboardSubtitleExplore': '// BEGIN YOUR EXPLORATION',
+      'dashboardNoActiveCharacter': 'NO ACTIVE CHARACTER',
+      'dashboardStatusReady': 'READY',
+      'dashboardStatusUninitialized': 'UNINITIALIZED',
 
       // --- SETTINGS ---
       'settingsTitle': 'SETTINGS',
+      'settingsNoOptionsNotice': 'No configuration options currently available.',
 
       // --- IN-CONSTRUCTION ---
       'inConstructionHeader': 'TACTICAL SUBSYSTEM // STATUS TRANSMISSION',
@@ -178,11 +194,11 @@ class AppLocalizations {
       'inConstructionReturnAction': 'RETURN TO TERMINAL',
 
       // --- RESPONSIVE TELEMETRY ---
-      'telemetrySignalWarning': 'TELEMETRY // UNSTABLE SIGNAL',
-      'telemetryResolutionTitle': 'INSUFFICIENT RESOLUTION',
-      'telemetryResolutionMessage': 'The tactical terminal requires a desktop or tablet workstation with at least 768px width to render the event horizon and command console.',
-      'telemetryErrorCode': 'CODE: ERR_VIEWPORT_PHASE_1_MOBILE_EXCLUDED',
-      'telemetryConnectInstruction': 'CONNECT VIA DESKTOP OR TACTICAL TABLET STATION.',
+      'telemetrySignalWarning': 'UNSUPPORTED SCREEN SIZE',
+      'telemetryResolutionTitle': 'INSUFFICIENT SCREEN WIDTH',
+      'telemetryResolutionMessage': 'This application requires a screen width of at least 768px. Access it on a desktop computer or tablet.',
+      'telemetryErrorCode': 'ERROR: SCREEN_WIDTH_BELOW_768PX',
+      'telemetryConnectInstruction': 'USE A DESKTOP OR TABLET DEVICE TO CONTINUE.',
 
       // --- ERRORS ---
       'errorEmptyEmail': 'Email or callsign cannot be blank.',
@@ -242,11 +258,19 @@ class AppLocalizations {
   String get featureCompendiumTitle => _localizedStrings['featureCompendiumTitle']!;
   String get featureSettingsTitle => _localizedStrings['featureSettingsTitle']!;
   String get featureSignOutTitle => _localizedStrings['featureSignOutTitle']!;
+  String get featureSignOutSessionAction => _localizedStrings['featureSignOutSessionAction']!;
+  String get dashboardWelcomePrefix => _localizedStrings['dashboardWelcomePrefix']!;
+  String get dashboardWelcomeSuffix => _localizedStrings['dashboardWelcomeSuffix']!;
+  String get dashboardSubtitleExplore => _localizedStrings['dashboardSubtitleExplore']!;
+  String get dashboardNoActiveCharacter => _localizedStrings['dashboardNoActiveCharacter']!;
+  String get dashboardStatusReady => _localizedStrings['dashboardStatusReady']!;
+  String get dashboardStatusUninitialized => _localizedStrings['dashboardStatusUninitialized']!;
 
   // ===========================================================================
   // TERMINAL SETTINGS GETTERS
   // ===========================================================================
   String get settingsTitle => _localizedStrings['settingsTitle']!;
+  String get settingsNoOptionsNotice => _localizedStrings['settingsNoOptionsNotice']!;
 
   // ===========================================================================
   // IN CONSTRUCTION DESTINATION GETTERS
@@ -347,6 +371,13 @@ class DashboardL10n {
   String get compendiumTitle => _l10n.featureCompendiumTitle;
   String get settingsTitle => _l10n.featureSettingsTitle;
   String get signOutTitle => _l10n.featureSignOutTitle;
+  String get signOutSessionAction => _l10n.featureSignOutSessionAction;
+  String get welcomePrefix => _l10n.dashboardWelcomePrefix;
+  String get welcomeSuffix => _l10n.dashboardWelcomeSuffix;
+  String get subtitleExplore => _l10n.dashboardSubtitleExplore;
+  String get noActiveCharacter => _l10n.dashboardNoActiveCharacter;
+  String get statusReady => _l10n.dashboardStatusReady;
+  String get statusUninitialized => _l10n.dashboardStatusUninitialized;
 }
 
 class SettingsL10n {
@@ -354,6 +385,7 @@ class SettingsL10n {
   SettingsL10n(this._l10n);
 
   String get title => _l10n.settingsTitle;
+  String get noOptionsNotice => _l10n.settingsNoOptionsNotice;
 }
 
 class InConstructionL10n {

@@ -75,7 +75,7 @@ In each universe, interfaces avoid multi-colored decorative gradients. Instead, 
 [ THE TWO TYPOGRAPHIC LAYERS OF INDUSTRIAL SCI-FI ]
 ==========================================================================
 LAYER 1: THE CORPORATE VOICE           LAYER 2: THE MACHINE VOICE
-Helvetica / Futura / Univers    <--->  OCR-A / Monofonto / Moore Computer
+Helvetica / Futura / Univers      ⟷    OCR-A / Monofonto / Moore Computer
 (Clean, unfeeling, bureaucratic)       (Chunky, fixed-pitch, telegraphic)
 ```
 

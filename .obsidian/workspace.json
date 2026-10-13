@@ -25,6 +25,23 @@
             }
           },
           {
+            "id": "97f3f20c4c9a1425",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "design/01-sdd-overview.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "01-sdd-overview"
+            }
+          },
+          {
             "id": "205eb5936d06bfde",
             "type": "leaf",
             "pinned": true,
@@ -76,7 +93,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -135,7 +152,7 @@
             }
           },
           {
-            "id": "a6f3dc22c1cbe76f",
+            "id": "1478f48461ebc2a5",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -255,26 +272,27 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "94ea11d51150aedd",
+  "active": "97f3f20c4c9a1425",
   "lastOpenFiles": [
-    "frontend/lib/features/in_construction/pages/in_construction_page.dart",
-    "frontend/lib/features/in_construction/pages",
-    "frontend/lib/features/dashboard/pages/player_dashboard_page.dart",
-    "frontend/lib/features/dashboard/pages",
-    "frontend/lib/features/home/pages/logged_out_home_page.dart",
-    "frontend/lib/features/home/pages",
-    "frontend/lib/features/home/widgets/event_horizon_arc.dart",
-    "frontend/lib/features/home/widgets/responsive_telemetry_guard.dart",
-    "frontend/lib/features/home/widgets/crossword_brand_mark.dart",
-    "frontend/lib/features/home/screens/logged_out_home_screen.dart",
-    "frontend/lib/features/home/widgets",
-    "Untitled.canvas",
-    "design/04-sdd-frontend.md",
-    "design/03-sdd-backend.md",
+    "frontend/lib/shared_widgets/navigation/menu_item.dart",
+    "frontend/lib/shared_widgets/navigation",
+    "frontend/lib/shared_widgets/layout/vertical_seam_divider.dart",
+    "frontend/lib/features/landing/widgets/logged_out_menu.dart",
+    "frontend/lib/features/landing/widgets/login_form.dart",
+    "frontend/lib/features/landing/widgets/event_horizon_arc.dart",
+    "frontend/lib/features/landing/widgets/crossword_brand_mark.dart",
     "design/02-sdd-database.md",
+    "Untitled.md",
+    "design/open_points.md",
+    "design/04-sdd-frontend.md",
+    "frontend/lib/features/home/widgets/player_menu_cards.dart",
+    "frontend/lib/features/landing/widgets/portal/event_horizon_arc.dart",
+    "frontend/lib/features/landing/widgets/portal/crossword_brand_mark.dart",
+    "frontend/lib/features/landing/widgets/portal",
+    "Untitled.canvas",
+    "design/03-sdd-backend.md",
     "design/01-sdd-overview.md",
     "design/compendium_keywords_plan.md",
-    "design/open_points.md",
     "design/assets/cassette_orange_moodboard.png",
     "design/assets/canonical_logged_in_sketch.png",
     "design/assets/canonical_logged_out_sketch.png",

@@ -11,6 +11,7 @@ desktop.ini
 *.tmp
 *.log
 Untitled.canvas
+Untitled.md
 
 # Flutter and Dart build artifacts & cache
 **/.dart_tool/

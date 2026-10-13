@@ -84,11 +84,11 @@ The typography of *Death in Space* strikes a balance between **heavy industrial 
 ```
 [ STOCKHOLM KARTELL MINIMALISM ]            [ JUNK-TECH INDUSTRIALISM ]
 --------------------------------------------------------------------------
-Total Solid Black Negative Space     <--->   Welded Patch Seams & Scratched Metal
-High-Contrast Stark Line Illustrations <---> Grimy Xerox Halftone Dot Screens
-Fine Hairline Geometric Gridlines    <--->   Loose Hand-Drawn Electrical Schematics
-Sparse Monospaced Telemetry Tables   <--->   Cosmic Dust Noise & Film Stippling
-Monochrome Silhouette Spot Art       <--->   Iridescent Void Distortion Artifacts
+Total Solid Black Negative Space       ⟷    Welded Patch Seams & Scratched Metal
+High-Contrast Stark Line Illustrations ⟷    Grimy Xerox Halftone Dot Screens
+Fine Hairline Geometric Gridlines      ⟷    Loose Hand-Drawn Electrical Schematics
+Sparse Monospaced Telemetry Tables     ⟷    Cosmic Dust Noise & Film Stippling
+Monochrome Silhouette Spot Art         ⟷    Iridescent Void Distortion Artifacts
 ```
 
 ### A. The Junk-Tech Aesthetic

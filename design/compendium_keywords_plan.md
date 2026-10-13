@@ -83,7 +83,7 @@ CREATE TRIGGER on_compendium_keywords_updated
 ## 3. Data Flow: Database to Flutter UI
 
 1. **Database**: Houses single authoritative source with parent hierarchy and metadata JSONB (e.g. attack_roll_min: 9, stress_cost: 1, severity: minor, roll_min: 1, roll_max: 30).
-2. **Backend**: KeywordService returns typed List<CompendiumKeywordDto> on startup.
+2. **Backend**: KeywordService returns typed List[CompendiumKeywordDto] on startup.
 3. **Frontend In-Memory Registry**: KeywordRegistry indexes all entries by slug and normalized aliases into an in-memory map.
 4. **Interactive Hover**:
    - KeywordTooltip with target slug (e.g. vulneravel).

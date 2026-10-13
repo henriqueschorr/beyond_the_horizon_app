@@ -82,11 +82,11 @@ Typography in *Mothership* functions as an active game engine. Text size, weight
 ```
 [ BRUTALIST ZINE PRINT ]                   [ INDUSTRIAL DIEGETIC UI ]
 --------------------------------------------------------------------------
-Uncoated Rough Recycled Paper        <--->   Black Box Reversal Banners
-Risograph Halftone Ink Bleed         <--->   Bracketed Fillable Checkboxes [ ]
-Offset Color Misregistration         <--->   Decision-Tree Flowchart Connectors
-High-Contrast Xerox Grain            <--->   Vector Isometric Hull Schematics
-Folded Staple-Bound Zine Spine       <--->   Heavy Structural Border Grids
+Uncoated Rough Recycled Paper          ⟷    Black Box Reversal Banners
+Risograph Halftone Ink Bleed           ⟷    Bracketed Fillable Checkboxes [ ]
+Offset Color Misregistration           ⟷    Decision-Tree Flowchart Connectors
+High-Contrast Xerox Grain              ⟷    Vector Isometric Hull Schematics
+Folded Staple-Bound Zine Spine         ⟷    Heavy Structural Border Grids
 ```
 
 ### A. Layout Tropes & Information Architecture

@@ -245,14 +245,36 @@ Below is the canonical structural design for the Logged-In player dashboard:
   5. **[Icon] Sair (Log Out):**
      - Session sign-out action with destructive hover highlight that smoothly glides the layout back to the centered logged-out state.
 
+### 7.3 Primary Minimalist Brutalism Architecture (Decoupled Landing & Home Pages)
+
+The platform architecture adopts the Minimalist Brutalism layout as its primary presentation. Landing Page and Home Page are fully decoupled into independent, self-contained feature pages without shared shell routing:
+
+1. **Public Landing Page (features/landing):**
+   - **Crossword Brand Mark:** Monumental typographic intersection of B-E-Y-O-N-D and H-O-R-I-Z-O-N sharing the letter O, positioned with submerged letters in the event horizon void.
+   - **Event Horizon Arc:** Spherical celestial halo sweeping across the viewport to form the void framing the credential access console.
+   - **Access Console:** Responsive authentication form with registration modal launcher and settings drawer trigger.
+2. **Authenticated Home Command Deck (features/home):**
+   - **Hero Greeting:** Space Grotesk Bold title **Welcome to Beyond the Horizon, [Name].** with the operative name highlighted in Cassette 90 Vibrant Orange (#FE6403).
+   - **Telemetry Subtitle:** Left-aligned technical tag **// BEGIN YOUR EXPLORATION** (**// INICIE SUA EXPLORAÇÃO**) positioned directly beneath the greeting.
+   - **Monumental 3-Card Portrait Triptych:**
+     - **Card 1 (Play with Character):** Features an isometric D6 icon in a carved-down recessed bay, GrainSurface toner noise texture, and reactive character presence checking. When an active character exists, the top-right rocker-switch lamp illuminates in vibrant orange with status **[ READY ]**. When uninitialized, the card dims, the rocker lamp de-energizes to dark slate (#444D5A), and status reads **[ UNINITIALIZED ]**.
+     - **Card 2 (Create Character):** Features an operative creation icon, active rocker-switch pill lamp, and tactical launch trigger.
+     - **Card 3 (Compendium):** Features a rulebook terminal icon, active rocker-switch pill lamp, and digital archive launch trigger.
+     - **Card Details:** Carved-down dark wells, top-left section stamping (// SEC-01, // SEC-02, // SEC-03), micro-barcode serials, and bottom hairline seams.
+   - **Corner Utility Sockets:**
+     - **Bottom-Left:** Standalone **CONFIGURAÇÕES** button opening the terminal settings drawer.
+     - **Bottom-Right:** Standalone **ENCERRAR SESSÃO // SAIR** button with exit icon and destructive hover state.
+3. **Transition Animation Phasing:**
+   - The complex in-shell gravitational swallowing transition between landing and home has been decoupled and noted in OP-11 for future dedicated re-engineering to achieve optimal cinematic fluidity.
+
 ---
 
 ## 8. State Management, Controllers & Architectural Boundaries
 
 ### 8.1 Presentation-Only StatelessWidgets (Rule 8 & 10)
-- Screen and shell layouts are strictly StatelessWidgets.
-- Controllers are resolved in **constructor initializer lists** (e.g., : controller = controller ?? serviceLocator&lt;T&gt;()), ensuring fields are non-nullable final T controller resolved once upon creation.
-- Calling serviceLocator&lt;T&gt;() inside build() methods of pages and shell layouts is strictly prohibited.
+- Screen and shell layouts are strictly StatelessWidgets or stateful widgets without business logic.
+- Controllers are resolved in **constructor initializer lists** (e.g., : controller = controller ?? serviceLocator[T]()), ensuring fields are non-nullable final T controller resolved once upon creation.
+- Calling serviceLocator[T]() inside build() methods of pages and shell layouts is strictly prohibited.
 - Building pages as StatefulWidgets solely to hold a controller in initState or call dispose is prohibited.
 
 ### 8.2 Controllers Hold State, Not Futures (Rule 10)
@@ -307,6 +329,10 @@ This section preserves all earlier layout iterations, wireframe concepts, and co
    - Asymmetric layout with prominent tangible dossier sheet and redaction bars.
 6. **Studied Alternative F: "The Minimalist Rules Explorer & Live Radar":**
    - Centered rules search bar with category pills and live dice breakdown.
+7. **Studied Alternative G: "The 2x2 Avionics Telemetry Grid":**
+   - 2x2 grid of equal-sized modular tiles with shared borders, top-right rocker switches, and bottom barcode telemetry. Explored during the cassette-futurism card iterations before settling on the 3-column monumental vertical triptych.
+8. **Studied Alternative H: "The Hi-Fi Tape Transport Deck (Linear Cassette Rack)":**
+   - Horizontal tape transport deck styling with mechanical push-down play/eject keys and analog VU needle meters.
 
 ### 9.2 Moodboard Color Spectrum & Alternative Orange Variants
 
@@ -325,6 +351,23 @@ Extracted from reference moodboard (cassette_orange_moodboard.png):
 | <span style="display:inline-block;width:24px;height:24px;background:#008080;border:1px solid #777;border-radius:3px;"></span> | **VHS Tracking Teal** | \#008080 | 0, 128, 128 | Video cassette band on Sakura Chroma and Polaroid spines. |
 | <span style="display:inline-block;width:24px;height:24px;background:#E6332A;border:1px solid #777;border-radius:3px;"></span> | **Retro Signal Red** | \#E6332A | 230, 51, 42 | Title lettering on T-70 SUPER CASSETTE and Agfa diamond logo. |
 | <span style="display:inline-block;width:24px;height:24px;background:#F4C430;border:1px solid #777;border-radius:3px;"></span> | **Test Pattern Yellow** | \#F4C430 | 244, 196, 48 | Calibration stripe on Supercolor cassette. |
+
+### 9.3 Brutalist & Sci-Fi Industrial Case Studies
+
+To synthesize the brutalist aesthetic with cosmic horror and cassette retrofuturism, the team examined four primary case studies:
+
+1. **SL24 Brutalist Data Logistics Cyber Typography (Behance):**
+   - Reference: https://www.behance.net/gallery/247026671/SL24-Brutalist-Data-Logistics-Cyber-Typography
+   - Key Takeaways: High-contrast data logistics framing, monospaced section tags (// SEC-01), barcode serials, micro-grid demarcation, and utilitarian information density.
+2. **Kai Voss Portfolio Agency Website (Dribbble):**
+   - Reference: https://dribbble.com/shots/27665960-Kai-Voss-Portfolio-Agency-Website
+   - Key Takeaways: Minimalist brutalism, stark typography, massive negative space balance, and monolithic structural divisions.
+3. **Arc Raiders Sci-Fi Brutalist Landing Page (Dribbble):**
+   - Reference: https://dribbble.com/shots/27299185-Arc-Raiders-Sci-Fi-Brutalist-Landing-Page
+   - Key Takeaways: Weathered industrial sci-fi, hazard indicators, tactile switch hardware, metallic chassis tones with vibrant signal orange highlights.
+4. **Sci-Fi Gaming Landing Page Concept (Dribbble):**
+   - Reference: https://dribbble.com/shots/27299149-Sci-Fi-Gaming-Landing-Page-Concept
+   - Key Takeaways: Cosmic horror atmosphere, dark void immersion, stark high-contrast typography, and deep-space singularity framing.
 
 ---
 

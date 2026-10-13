@@ -38,8 +38,16 @@
   "featureCompendiumTitle": "COMPÊNDIO",
   "featureSettingsTitle": "CONFIGURAÇÕES",
   "featureSignOutTitle": "SAIR",
+  "featureSignOutSessionAction": "ENCERRAR SESSÃO // SAIR",
+  "dashboardWelcomePrefix": "Bem-vindo a Beyond the Horizon, ",
+  "dashboardWelcomeSuffix": ".",
+  "dashboardSubtitleExplore": "// INICIE SUA EXPLORAÇÃO",
+  "dashboardNoActiveCharacter": "NENHUM PERSONAGEM ATIVO",
+  "dashboardStatusReady": "PRONTO",
+  "dashboardStatusUninitialized": "NÃO INICIALIZADO",
 
   "settingsTitle": "CONFIGURAÇÕES",
+  "settingsNoOptionsNotice": "Nenhuma opção de configuração disponível no momento.",
 
   "inConstructionHeader": "SUBSISTEMA TÁTICO // TRANSMISSÃO DE STATUS",
   "inConstructionNotice": "Este módulo está sendo ativamente compilado e calibrado no horizonte de eventos. Os registros de telemetria e o banco de dados correspondente serão desclassificados em próximas transmissões.",
@@ -47,11 +55,11 @@
   "inConstructionProtocol": "LOCALIZAÇÃO: SUB-ROTINA_TERMINAL_DE_SETOR\nPROTOCOLO: AGUARDANDO_SINCRONIZACAO_DE_DADOS",
   "inConstructionReturnAction": "RETORNAR AO TERMINAL",
 
-  "telemetrySignalWarning": "TELEMETRIA // SINAL INSTÁVEL",
-  "telemetryResolutionTitle": "RESOLUÇÃO INSUFICIENTE",
-  "telemetryResolutionMessage": "O terminal tático requer uma estação desktop ou tablet com largura mínima de 768px para renderizar o horizonte de eventos e o console de comando.",
-  "telemetryErrorCode": "CÓDIGO: ERR_VIEWPORT_PHASE_1_MOBILE_EXCLUDED",
-  "telemetryConnectInstruction": "CONECTE-SE VIA ESTAÇÃO DESKTOP OU TABLET TÁTICO.",
+  "telemetrySignalWarning": "TAMANHO DE TELA NÃO SUPORTADO",
+  "telemetryResolutionTitle": "LARGURA DE TELA INSUFICIENTE",
+  "telemetryResolutionMessage": "Esta aplicação requer uma largura de tela de pelo menos 768px. Acesse em um computador ou tablet.",
+  "telemetryErrorCode": "ERRO: LARGURA_DE_TELA_ABAIXO_768PX",
+  "telemetryConnectInstruction": "USE UM DISPOSITIVO DESKTOP OU TABLET PARA CONTINUAR.",
 
   "errorEmptyEmail": "Email ou indicativo não pode ficar em branco.",
   "errorInvalidEmail": "Formato de email inválido.",

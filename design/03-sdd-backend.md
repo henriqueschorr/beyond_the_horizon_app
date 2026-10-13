@@ -148,7 +148,7 @@ Dependency injection is managed centrally via get_it in backend/lib/dependency_i
 1. **Repository Registration:** Binds abstract repository interfaces to their mock implementations.
 2. **Domain Service Registration:** Binds business services as lazy singletons with their repository dependencies injected.
 3. **Route Handler Registration:** Binds route controller classes as lazy singletons with their respective services injected.
-4. **Constructor Fallback Standard:** All domain services and route controllers retain public constructor parameters with fallback defaults to serviceLocator<T>():
+4. **Constructor Fallback Standard:** All domain services and route controllers retain public constructor parameters with fallback defaults to serviceLocator[T]():
 
 ```dart
 class DocumentationService {
@@ -289,7 +289,7 @@ Matches the public.documentation_layout PostgreSQL enum:
 - **DocumentationPageSummaryResponseDto:** Lightweight catalog item carrying id, slug, category, layout, subcategory, sortOrder, locale, title, summary, storagePath, and updatedAt.
 - **DocumentationPageDetailResponseDto:** Full article payload containing all summary fields plus the resolved UTF-8 markdownContent, createdAt, and updatedAt.
 - **DocumentationCategoryGroupResponseDto:** Hub dashboard partition carrying category, localized category title, localized category description, and a list of DocumentationPageSummaryResponseDto articles.
-- **DocumentationNavigationNodeResponseDto:** Recursive tree node for the collapsable reading sidebar carrying label, optional slug (null for category folders), isLeaf boolean, and child nodes (List<DocumentationNavigationNodeResponseDto>).
+- **DocumentationNavigationNodeResponseDto:** Recursive tree node for the collapsable reading sidebar carrying label, optional slug (null for category folders), isLeaf boolean, and child nodes (List[DocumentationNavigationNodeResponseDto]).
 
 ---
 
@@ -338,7 +338,7 @@ For testing, CLI automation, and standalone execution, the backend provides a Sh
    - Response: 200 OK with JSON array of DocumentationPageSummaryResponseDto.
 
 2. **Get Compendium Page by Slug**
-   - **GET /api/compendium/pages/<slug>**
+   - **GET /api/compendium/pages/{slug}**
    - Query Parameters: locale (default: pt-BR).
    - Response: 200 OK with DocumentationPageDetailResponseDto, or 404 Not Found.
 
@@ -366,7 +366,7 @@ For testing, CLI automation, and standalone execution, the backend provides a Sh
 
 3. **Operative Sign Out**
    - **POST /api/auth/signout**
-   - Headers: Authorization: Bearer <sessionToken>
+   - Headers: Authorization: Bearer [sessionToken]
    - Response: 204 No Content.
 
 4. **Password Reset Request**
@@ -376,25 +376,25 @@ For testing, CLI automation, and standalone execution, the backend provides a Sh
 
 5. **Validate Session**
    - **GET /api/auth/session**
-   - Headers: Authorization: Bearer <sessionToken>
+   - Headers: Authorization: Bearer [sessionToken]
    - Response: 200 OK with AuthSessionResponseDto.
 
 #### 8.1.3 Profile Endpoints (Authenticated)
 
 1. **Get Current Operative Profile**
    - **GET /api/profiles/me**
-   - Headers: Authorization: Bearer <sessionToken>
+   - Headers: Authorization: Bearer [sessionToken]
    - Response: 200 OK with UserProfileResponseDto.
 
 2. **Update Current Operative Profile**
    - **PUT /api/profiles/me**
-   - Headers: Authorization: Bearer <sessionToken>
+   - Headers: Authorization: Bearer [sessionToken]
    - Payload: UpdateProfileRequestDto JSON.
    - Response: 200 OK with updated UserProfileResponseDto.
 
 3. **Get Operative Profile by ID**
-   - **GET /api/profiles/<id>**
-   - Headers: Authorization: Bearer <sessionToken>
+   - **GET /api/profiles/{id}**
+   - Headers: Authorization: Bearer [sessionToken]
    - Response: 200 OK with UserProfileResponseDto, or 404 Not Found.
 
 ---
@@ -438,15 +438,15 @@ graph TD
 ```
 
 ### 9.1 Facade Method Contracts
-- **backendService.auth.signIn(SignInRequestDto):** In-process call returning Future<AuthResponseDto>.
-- **backendService.auth.signUp(SignUpRequestDto):** In-process call returning Future<AuthResponseDto>.
+- **backendService.auth.signIn(SignInRequestDto):** In-process call returning Future[AuthResponseDto].
+- **backendService.auth.signUp(SignUpRequestDto):** In-process call returning Future[AuthResponseDto].
 - **backendService.auth.signOut():** In-process call invalidating current session.
-- **backendService.profile.getProfile(String id):** In-process call returning Future<UserProfileResponseDto?>.
-- **backendService.profile.updateProfile(UpdateProfileRequestDto):** In-process call returning Future<UserProfileResponseDto>.
-- **backendService.compendium.getPages({String locale, DocumentationCategory? category}):** Zero-login in-process call returning Future<List<DocumentationPageSummaryResponseDto>>.
-- **backendService.compendium.getPageBySlug(String slug, {String locale}):** Zero-login in-process call returning Future<DocumentationPageDetailResponseDto?>.
-- **backendService.compendium.getCategoryGroups({String locale}):** Zero-login in-process call returning Future<List<DocumentationCategoryGroupResponseDto>>.
-- **backendService.compendium.getNavigationTree({String locale}):** Zero-login in-process call returning Future<List<DocumentationNavigationNodeResponseDto>>.
+- **backendService.profile.getProfile(String id):** In-process call returning Future[UserProfileResponseDto?].
+- **backendService.profile.updateProfile(UpdateProfileRequestDto):** In-process call returning Future[UserProfileResponseDto].
+- **backendService.compendium.getPages({String locale, DocumentationCategory? category}):** Zero-login in-process call returning Future[List[DocumentationPageSummaryResponseDto]].
+- **backendService.compendium.getPageBySlug(String slug, {String locale}):** Zero-login in-process call returning Future[DocumentationPageDetailResponseDto?].
+- **backendService.compendium.getCategoryGroups({String locale}):** Zero-login in-process call returning Future[List[DocumentationCategoryGroupResponseDto]].
+- **backendService.compendium.getNavigationTree({String locale}):** Zero-login in-process call returning Future[List[DocumentationNavigationNodeResponseDto]].
 
 ---
 

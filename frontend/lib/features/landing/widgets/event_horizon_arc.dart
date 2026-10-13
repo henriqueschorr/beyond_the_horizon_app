@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import '../../theme/color/app_colors.dart';
+import '../../../theme/color/app_colors.dart';
 
 /// Spherical Event Horizon Arc specified in SDD 04 Section 6.2.
 /// Sweeps up from off-screen left to a monumental spherical crest beneath the brand mark

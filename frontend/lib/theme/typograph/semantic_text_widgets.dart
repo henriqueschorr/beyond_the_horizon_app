@@ -4,6 +4,61 @@ import 'app_typography.dart';
 /// Semantic typography widgets complying strictly with Rule 11 of Agents.md.
 /// Raw Text(...) and inline TextStyle(...) are prohibited in feature code.
 
+class MonumentalText extends StatelessWidget {
+  final String text;
+
+  const MonumentalText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.monumentalTitle,
+    );
+  }
+}
+
+class MonumentalSmallText extends StatelessWidget {
+  final String text;
+
+  const MonumentalSmallText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.monumentalSmall,
+    );
+  }
+}
+
+/// Dedicated selectable error message widget allowing users to highlight and copy diagnostic/auth errors directly.
+class SelectableErrorText extends StatelessWidget {
+  final String text;
+  final TextAlign? textAlign;
+
+  const SelectableErrorText(
+    this.text, {
+    super.key,
+    this.textAlign,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SelectableText(
+      text,
+      textAlign: textAlign,
+      style: AppTypography.legendHighlighted,
+    );
+  }
+}
+
 class DisplayTitleLargeText extends StatelessWidget {
   final String text;
 
@@ -85,6 +140,23 @@ class NavAnchorText extends StatelessWidget {
     return Text(
       text,
       style: AppTypography.navAnchor,
+    );
+  }
+}
+
+class NavAnchorHighlightedText extends StatelessWidget {
+  final String text;
+
+  const NavAnchorHighlightedText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.navAnchorHighlighted,
     );
   }
 }

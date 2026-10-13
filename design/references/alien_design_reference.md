@@ -234,11 +234,11 @@ The franchise’s tactile identity relies on the clash between **rigid manufactu
 ```
 [ MANUFACTURED INDUSTRIAL ]                  [ BIOMECHANICAL ALIEN ]
 --------------------------------------------------------------------------
-Quilted Padded Vinyl & Leather       <--->   Wet Translucent Viscous Slime
-Molded Beige/Grey ABS Plastic        <--->   Rigid Ribbed Chitin / Exoskeleton
-Grated Steel Mesh Catwalks           <--->   Skeletal Bone / Vertebral Columns
-CRT Curved Glass + Scanline Raster   <--->   Fibrous Giger Biomechanoid Cables
-Hydraulic Oil, Grime & Condensation  <--->   Hardened Resin & Calcified Secretions
+Quilted Padded Vinyl & Leather        ⟷    Wet Translucent Viscous Slime
+Molded Beige/Grey ABS Plastic         ⟷    Rigid Ribbed Chitin / Exoskeleton
+Grated Steel Mesh Catwalks            ⟷    Skeletal Bone / Vertebral Columns
+CRT Curved Glass + Scanline Raster    ⟷    Fibrous Giger Biomechanoid Cables
+Hydraulic Oil, Grime & Condensation   ⟷    Hardened Resin & Calcified Secretions
 ```
 
 ### A. The Industrial Tactile Arsenal (The "Used Future")

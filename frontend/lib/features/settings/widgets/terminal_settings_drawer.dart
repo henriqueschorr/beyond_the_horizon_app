@@ -4,8 +4,8 @@ import '../../../theme/typograph/semantic_text_widgets.dart';
 import '../controllers/settings_controller.dart';
 import '../../../l10n/app_localizations.dart';
 
-/// OP-PHASE-1-SETTINGS: Full preference controls (CRT scanlines, theme toggle, audio volume)
-/// are planned for Phase 1 integration. Currently displays an empty terminal drawer with close action.
+/// Terminal settings drawer providing preference controls.
+/// Enforces Rule 10 of Agents.md: StatelessWidget with constructor initializer resolution.
 class TerminalSettingsDrawer extends StatelessWidget {
   final SettingsController? settingsController;
 
@@ -45,6 +45,10 @@ class TerminalSettingsDrawer extends StatelessWidget {
                 height: 1.0,
                 color: AppColors.darkBorderSubtle,
               ),
+              const SizedBox(height: 24.0),
+
+              // Empty Preferences Notice
+              LegendText(l10n.settings.noOptionsNotice),
             ],
           ),
         ),

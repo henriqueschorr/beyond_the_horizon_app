@@ -134,29 +134,30 @@ To achieve parity with and exceed modern TTRPG companions (*D&D Beyond*, *Demipl
 
 ## 7. Visual Design DNA & Aesthetic Foundation
 
-The visual identity of *Beyond the Horizon App* merges **The Used Future** of industrial cassette sci-fi (*Alien*, *Fallout*, *Mothership*, *Death in Space*) with **Cosmic Void Minimalism** and **Tactile Telemetry Computing**.
+The visual identity of *Beyond the Horizon App* merges **Minimalist Brutalism** and **Cosmic Horror** with **Industrial Materiality** and **Cassette Retrofuturism** (*Alien*, *Fallout*, *Mothership*, *Death in Space*, *Arc Raiders*).
 
 ```mermaid
 graph TD
     Root["<b>BEYOND THE HORIZON APP DESIGN DNA</b>"]
     
-    Root --> BranchA["<b>INDUSTRIAL CASSETTE SCI-FI</b><br/>• Non-Pure Black Canvas (#101214)<br/>• Tactile Hardware & Actuator Micro-Physics<br/>• Cassette 90 Vibrant Orange Accent (#FE6403)<br/>• Analog Toner Grain (GrainSurface)<br/>• Used Future Weathered Materials"]
-    Root --> BranchB["<b>RETRO TELEMETRY COMPUTING</b><br/>• Three Distinct Typographic Voices<br/>• Space Mono Monospaced Technical Labels<br/>• Recessed Credential & Status Wells<br/>• Blinking Block Carets & Phosphor Shaders<br/>• Frictionless Zero-Login Access"]
-    Root --> BranchC["<b>COSMIC VOID MINIMALISM</b><br/>• Deterministic Sub-Pixel Starfield (StarSurface)<br/>• Sweeping Lateral Event Horizon Dome<br/>• Typographic Crossword Brand Mark<br/>• High-Contrast Titanium Hierarchy (#F0ECE1)<br/>• Uncluttered Space & Structural Focus"]
+    Root --> BranchA["<b>MINIMALIST BRUTALISM & COSMIC HORROR</b><br/>• Monolithic Geometrical Triptych Structures<br/>• Stark High-Contrast Titanium Hierarchy (#F0ECE1)<br/>• Unforgiving Gravitational Singularity Depths<br/>• Event Horizon Swallowing Transitions<br/>• Atmospheric Dread of the Unknown Void"]
+    Root --> BranchB["<b>INDUSTRIAL CASSETTE SCI-FI</b><br/>• Non-Pure Black Canvas (#101214)<br/>• Tactile Hardware & Actuator Micro-Physics<br/>• Cassette 90 Vibrant Orange Accent (#FE6403)<br/>• Analog Toner Grain (GrainSurface)<br/>• Used Future Weathered Materials"]
+    Root --> BranchC["<b>RETRO TELEMETRY COMPUTING</b><br/>• Three Distinct Typographic Voices<br/>• Space Mono Monospaced Technical Labels<br/>• Recessed Carved-Down Bays & Status Wells<br/>• Blinking Block Carets & Phosphor Shaders<br/>• Frictionless Zero-Login Access"]
 ```
 
 ### 7.1 Core Aesthetic Devices
 1. **Typographic Multi-Voice Hierarchy:** The interface balances three distinct typographic voices:
-   - **Monumental & Hero Voice (Space Grotesk):** For monumental crossword titles, major headlines, and section banners.
+   - **Monumental & Hero Voice (Space Grotesk):** For monumental crossword titles, major headlines, operative greetings, and section banners.
    - **Machine & Tactical Voice (Space Mono):** Bold, tracked uppercase monospaced labels for tactical action buttons, system status indicators, telemetry readouts, input field headers, and atmospheric tooltips.
    - **Editorial & Rules Lore Voice (Inter):** High-legibility neutral grotesque for long-form reading comfort across compendium articles and game rules lore.
-2. **Single Universal Accent Token:** The interface utilizes a single accent color across all interactive elements: **Cassette 90 Vibrant Orange** (\#FE6403 on dark mode surfaces, calibrated to high-contrast Burnt Tape Orange \#C2410C on light mode surfaces). Character resilience attributes exclusively reserve Blue, Red, Yellow, and Purple, eliminating any chromatic conflict.
-3. **Canvas Materiality Shaders:**
+2. **Minimalist Brutalism & Industrial Ergonomics:** Monolithic tall portrait card bays, stark section index stamping (// SEC-01), razor-sharp hairline borders, horizontal rocker-switch pill lamps with active/inactive LED illumination, recessed carved-down icon bays, and utilitarian micro-barcode footers.
+3. **Single Universal Accent Token:** The interface utilizes a single accent color across all interactive elements: **Cassette 90 Vibrant Orange** (#FE6403 on dark mode surfaces, calibrated to high-contrast Burnt Tape Orange #C2410C on light mode surfaces). Character resilience attributes exclusively reserve Blue, Red, Yellow, and Purple, eliminating any chromatic conflict.
+4. **Canvas Materiality Shaders:**
    - **StarSurface:** Deterministic sub-pixel starfield generated from fixed seed 42 with reading corridor attenuation.
-   - **GrainSurface:** Procedural analog risograph toner stipple stochastically overlaid across all non-text buttons (tactical buttons, rounded-square utility icon buttons, and dashboard feature launchers) to provide physical materiality. Pure text-only buttons remain untextured.
+   - **GrainSurface:** Procedural analog risograph toner stipple stochastically overlaid across non-text interactive elements, brutalist cards, and action buttons to provide physical materiality. Pure text-only buttons remain untextured.
    - **CrtSurface:** Reusable cathode-ray tube shader providing calibrated horizontal scanlines, phosphor glow, and curved perimeter vignette for future telemetry diagnostics and optional retro display mode.
-4. **Interactive Redaction Mechanic:** Undiscovered lore and Facilitator secrets display thick black redaction blocks (████████) on player screens until declassified.
-5. **The Facilitator Case Board (*Alan Wake 2* Mind Place):** The campaign and encounter planner offers a tactile board where NPC dossiers, threats, and clue nodes are pinned and connected with red relationship threads.
+5. **Interactive Redaction Mechanic:** Undiscovered lore and Facilitator secrets display thick black redaction blocks (████████) on player screens until declassified.
+6. **The Facilitator Case Board (*Alan Wake 2* Mind Place):** The campaign and encounter planner offers a tactile board where NPC dossiers, threats, and clue nodes are pinned and connected with red relationship threads.
 
 ---
 

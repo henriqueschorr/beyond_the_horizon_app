@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../theme/color/app_colors.dart';
 import '../../theme/shaders/grain_surface.dart';
-import 'menu_item_data.dart';
+import '../../theme/typograph/semantic_text_widgets.dart';
 
 /// Standalone tactile navigation menu item with hover animation,
 /// GrainSurface badge, and action label.
+/// Adheres strictly to Rule 8, Rule 11, and Rule 13 of Agents.md.
 class MenuItem extends StatefulWidget {
-  final MenuItemData data;
+  final Widget icon;
+  final String label;
+  final VoidCallback onTap;
 
   const MenuItem({
     super.key,
-    required this.data,
+    required this.icon,
+    required this.label,
+    required this.onTap,
   });
 
   @override
@@ -32,7 +36,6 @@ class _MenuItemState extends State<MenuItem> {
   Widget build(BuildContext context) {
     final highlightColor = AppColors.accentOrange;
     final nodeBorderColor = _isHovered ? highlightColor : AppColors.darkBorderSubtle;
-    final textColor = _isHovered ? AppColors.accentOrange : AppColors.darkTextSecondary;
 
     const double nodeSize = 40.0;
 
@@ -41,7 +44,7 @@ class _MenuItemState extends State<MenuItem> {
       onEnter: (_) => _handleHover(true),
       onExit: (_) => _handleHover(false),
       child: GestureDetector(
-        onTap: widget.data.onTap,
+        onTap: widget.onTap,
         behavior: HitTestBehavior.opaque,
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -65,7 +68,7 @@ class _MenuItemState extends State<MenuItem> {
                       color: _isHovered ? highlightColor : AppColors.darkTextPrimary,
                       size: 20.0,
                     ),
-                    child: widget.data.icon,
+                    child: widget.icon,
                   ),
                 ),
               ),
@@ -78,16 +81,9 @@ class _MenuItemState extends State<MenuItem> {
               offset: _isHovered ? const Offset(0.04, 0.0) : Offset.zero,
               duration: const Duration(milliseconds: 140),
               curve: Curves.easeOutCubic,
-              child: Text(
-                widget.data.label,
-                style: GoogleFonts.spaceGrotesk(
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 2.0,
-                  color: textColor,
-                  height: 1.0,
-                ),
-              ),
+              child: _isHovered
+                  ? NavAnchorHighlightedText(widget.label)
+                  : NavAnchorText(widget.label),
             ),
           ],
         ),

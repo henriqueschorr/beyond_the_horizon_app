@@ -97,11 +97,11 @@ When the user explicitly instructs you to commit:
 
 - **Prohibited: `Widget _buildX(...)` helper methods.** Never create methods that return widgets inside a State or Widget class. Always extract them into dedicated `StatelessWidget` or `StatefulWidget` classes to preserve element-tree optimizations and prevent cascading rebuilds.
 - **Dedicated Files vs. Local Widgets**:
-  - Extract to separate files in `features/<feature>/widgets/` or `shared_widgets/<domain>/` whenever a widget:
+  - Extract to separate files in features/[feature]/widgets/ or shared_widgets/[domain]/ whenever a widget:
     1. Contains internal state (hover, animations, controllers).
     2. Is reused across multiple files or screens.
     3. Represents an interactive primitive (e.g., buttons, badges, filter pills).
-  - Private classes (`class _LocalSubWidget extends StatelessWidget`) in the same file are permitted *only* for single-use, stateless layout decomposition to keep files concise (< 200 lines).
+  - Private classes (class _LocalSubWidget extends StatelessWidget) in the same file are permitted *only* for single-use, stateless layout decomposition to keep files concise (fewer than 200 lines).
 
 ---
 
@@ -116,18 +116,18 @@ When the user explicitly instructs you to commit:
 - **Strict Separation of Concerns (No Data Logic in Widgets)**:
   - Widgets MUST be purely presentational. NEVER perform data transformations inside widget build trees or State classes (e.g., regex checks, string splitting/joining, date formatting, or URL fallbacks).
   - All data formatting, validation, string manipulation, state transitions (e.g., counter increments, mode toggles), API dispatching, and route fallback resolution must reside in the feature's Controller or a dedicated domain helper.
-  - **Prohibited: Sub-widgets calling `serviceLocator<T>()`** inside local callbacks or event handlers (e.g., `_handleBack()`). Sub-widgets must receive plain callbacks or rely on controllers injected via constructor or scoped hierarchy.
+  - **Prohibited: Sub-widgets calling `serviceLocator[T]()`** inside local callbacks or event handlers (e.g., `_handleBack()`). Sub-widgets must receive plain callbacks or rely on controllers injected via constructor or scoped hierarchy.
 - **Dependency Injection & Service Locator (`get_it`)**:
   - Both frontend and backend utilize `get_it` as their centralized dependency injection / service locator container.
   - All services, controllers, repositories, and route handlers must register in their respective service locator configuration files.
-  - **Prohibited: Global `static final instance` singletons** on controllers, services, or repositories (e.g., `Service.instance`). All services, controllers, repositories, and route handlers must have public, injectable constructors with fallback to `serviceLocator<T>()` (e.g., `: _repo = repo ?? serviceLocator<Repo>()`), ensuring unit tests remain pure and mockable without locator initialization.
+  - **Prohibited: Global `static final instance` singletons** on controllers, services, or repositories (e.g., `Service.instance`). All services, controllers, repositories, and route handlers must have public, injectable constructors with fallback to `serviceLocator[T]()` (e.g., `: _repo = repo ?? serviceLocator[Repo]()`), ensuring unit tests remain pure and mockable without locator initialization.
 - **Pages & Shells are `StatelessWidget`s with Constructor Initializers**:
   - Screen and shell layouts MUST be `StatelessWidget`s.
-  - Controllers MUST be resolved in **constructor initializer lists** (`: controller = controller ?? serviceLocator<T>()`), ensuring fields are non-nullable `final T controller;` resolved once upon creation.
-  - **Prohibited: Calling `serviceLocator<T>()` inside `build()` methods** of pages and shell layouts. The `build()` method must be purely presentational, reading already-bound fields or inherited scope.
+  - Controllers MUST be resolved in **constructor initializer lists** (`: controller = controller ?? serviceLocator[T]()`), ensuring fields are non-nullable `final T controller;` resolved once upon creation.
+  - **Prohibited: Calling `serviceLocator[T]()` inside `build()` methods** of pages and shell layouts. The `build()` method must be purely presentational, reading already-bound fields or inherited scope.
   - Prohibited: Making a page a `StatefulWidget` solely to hold a controller in `initState` or call `dispose`.
 - **Controllers Hold State, Not Futures**:
-  - Prohibited: Getters with lazy side-effects (e.g., `Future<T> get future => _future ??= ApiService...`).
+  - Prohibited: Getters with lazy side-effects (e.g., `Future[T] get future => _future ??= ApiService...`).
   - Controllers (`ChangeNotifier`) must hold resolved data models, granular loading booleans (`isLoading...`), and error strings (`String? errorMessage`).
   - Fetching must be triggered via explicit asynchronous methods (`loadData()`, `refresh()`).
   - Widgets must observe state via `ListenableBuilder` (or `AnimatedBuilder`) instead of `FutureBuilder` and caching futures in `initState`.
@@ -161,7 +161,7 @@ When the user explicitly instructs you to commit:
 - **Prohibited: Hardcoded user-facing strings, validation/error texts, and fallback literals**:
   - Never provide hardcoded string literals as fallbacks or error messages in code (especially in DTOs, controllers, repositories, services, routers, or widgets).
   - Validation messages and errors must never be hardcoded in pt-BR, en-US, or any natural language within business logic or data structures.
-  - All user-facing UI text, validation feedback, and errors MUST originate exclusively and directly from **AppLocalizations.of(context)!** (or non-nullable **l10n.errors.*** / **l10n.<domain>.***).
+  - All user-facing UI text, validation feedback, and errors MUST originate exclusively and directly from **AppLocalizations.of(context)!** (or non-nullable **l10n.errors.*** / **l10n.[domain].***).
   - Routers and route parameters must never declare hardcoded fallback text (e.g., prohibited: *state.uri.queryParameters['module'] ?? 'Módulo Geral'*). Use nullable parameters and let views resolve default headers through **AppLocalizations**.
   - If a translation key does not exist, add it to **app_en.arb** and **app_pt.arb** and synchronize **app_localizations.dart** rather than writing inline fallback strings.
 
@@ -267,4 +267,17 @@ When the user explicitly instructs you to commit:
   - Each specific exception must provide standardized machine-readable error code constants (such as AuthException.invalidCredentials, ProfileException.profileNotFound) and an optional message.
   - Natural language or localized text (pt-BR or en-US) is strictly prohibited in exception codes and messages.
   - Frontend controllers catch these specific exceptions and map their machine codes strictly to localized messages via AppLocalizations.
+
+---
+
+## 22. Prohibition of Angle Brackets in Markdown Documentation
+
+- **Strict Prohibition of Angle Brackets in Prose, Tables, and Headings**:
+  - Never use raw angle brackets (&lt; and &gt;) or unclosed pseudo-tags (such as placeholders like &lt;name&gt;, &lt;slug&gt;, &lt;id&gt;, &lt;T&gt;, or arrows with angle brackets) in Markdown documentation files (.md).
+  - Markdown parsers and tools like Obsidian interpret angle brackets as raw HTML tags. An unclosed or unrecognized tag causes the parser to treat all subsequent document text as HTML children, breaking headers, bullet points, code blocks, bold text, and tables.
+  - **Permitted Substitutes**:
+    - For placeholders: Use square brackets **[Name]**, **[slug]**, **[id]**, or braces **{name}**, **{slug}**.
+    - For generic type parameters: Use square brackets (e.g., **serviceLocator[T]()**, **List[String]**, **Future[AuthResponseDto]**) or parentheses.
+    - For bidirectional relationships or comparisons: Use unicode arrows (e.g., **←→**, **⟷**) or dashes **---** instead of angle bracket arrows.
+    - Pure multi-line fenced code blocks (e.g., language code blocks) are the only acceptable context where programming language generics using angle brackets may appear, as fenced code blocks are not evaluated as HTML. In prose, tables, lists, and headings, angle brackets are strictly prohibited.
 

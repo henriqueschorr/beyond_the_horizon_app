@@ -95,11 +95,11 @@ The physical world of *Fallout* relies heavily on the tactile degradation of mid
 ```
 [ PRE-WAR ATOMIC LUXURY ]                   [ 200 YEARS OF ATOMIC ROT ]
 --------------------------------------------------------------------------
-Polished Chrome Tailfins & Bumpers   <--->   Flaking Lead Paint & Iron Rust
-Molded Bakelite & Smooth Formica     <--->   Fractured Dry Soil & Caliche
-Ribbed Vault-Tec Leather & Spandex   <--->   Torn, Oil-Stained Burlap & Twill
-Sleek Molded Bubble Glass Domes      <--->   Phosphor Ghosting & Cracked Lenses
-Cast Bronze Plaques & Aluminum Trim  <--->   Corroded Verdigris & Bullet Pits
+Polished Chrome Tailfins & Bumpers     ⟷    Flaking Lead Paint & Iron Rust
+Molded Bakelite & Smooth Formica       ⟷    Fractured Dry Soil & Caliche
+Ribbed Vault-Tec Leather & Spandex     ⟷    Torn, Oil-Stained Burlap & Twill
+Sleek Molded Bubble Glass Domes        ⟷    Phosphor Ghosting & Cracked Lenses
+Cast Bronze Plaques & Aluminum Trim    ⟷    Corroded Verdigris & Bullet Pits
 ```
 
 ### A. Material Taxonomy
