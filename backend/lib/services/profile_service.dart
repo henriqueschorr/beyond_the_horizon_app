@@ -1,5 +1,4 @@
 import 'package:shared/shared.dart';
-import '../dependency_injection/service_locator.dart';
 import '../repositories/profile_repository.dart';
 
 /// Domain service managing operative dossier profile operations and OWASP input boundaries.
@@ -7,8 +6,8 @@ class ProfileService {
   final ProfileRepository _profileRepository;
 
   ProfileService({
-    ProfileRepository? profileRepository,
-  }) : _profileRepository = profileRepository ?? serviceLocator<ProfileRepository>();
+    required ProfileRepository profileRepository,
+  }) : _profileRepository = profileRepository;
 
   Future<UserProfileResponseDto?> getProfile(String userId) async {
     if (userId.trim().isEmpty) return null;

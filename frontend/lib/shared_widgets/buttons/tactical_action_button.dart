@@ -54,25 +54,14 @@ class _TacticalActionButtonState extends State<TacticalActionButton> {
                 : 1.0;
 
     final backgroundColor = _isHovered && isEnabled
-        ? Color.alphaBlend(
-            AppColors.accentOrange.withValues(alpha: 0.16),
-            AppColors.darkBgSurfaceElevated,
-          )
-        : AppColors.darkBgSurfaceElevated;
+        ? AppColors.darkBgSurfaceElevated
+        : AppColors.darkBgSurface;
 
     final borderColor = isEnabled
         ? AppColors.accentOrange
         : AppColors.darkBorderSubtle;
 
-    final List<BoxShadow> shadows = _isHovered && isEnabled
-        ? [
-            BoxShadow(
-              color: AppColors.accentOrange.withValues(alpha: 0.28),
-              blurRadius: 10.0,
-              offset: const Offset(0, 2),
-            ),
-          ]
-        : [];
+    final List<BoxShadow> shadows = const [];
 
     return MouseRegion(
       cursor: isEnabled ? SystemMouseCursors.click : SystemMouseCursors.basic,

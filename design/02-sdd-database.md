@@ -5,8 +5,8 @@
 - **Project:** Beyond the Horizon - Digital Companion & Rules Platform ("Beyond the Horizon App")
 - **Author:** Henrique Schorr
 - **Status:** Active
-- **Version:** 0.3.1
-- **Last Updated:** 2026-10-10
+- **Version:** 0.4.0
+- **Last Updated:** 2026-10-14
 
 ---
 
@@ -23,7 +23,7 @@ The data architecture of *Beyond the Horizon App* is built on top of Supabase Po
    - **A03/A05 Search-Path Hijacking Defense:** All database functions executed as triggers or stored procedures are declared with SECURITY DEFINER SET search_path = public to prevent search path manipulation.
    - **A03 Data Sanitization:** Text attributes enforce length boundaries (CHECK (char_length(...) <= N)) and trimming constraints.
 6. **Decoupled Backend Boundary:** Frontend clients never execute raw SQL. All data interactions are brokered by the backend/ domain service layer over PostgREST or in-process repositories.
-7. **Dashboard-First Migration Execution:** Database migrations are versioned as raw SQL scripts within supabase/migrations/ and documented for direct manual execution inside the Supabase Dashboard SQL Editor (prohibiting Supabase CLI dependencies).
+7. **Automated Migration Execution via GitHub Integration:** Database migrations are versioned as raw SQL scripts within supabase/migrations/ and automatically executed against the Supabase database via the native Supabase and GitHub integration upon pushing to the repository.
 
 ---
 
@@ -39,16 +39,18 @@ beyond_the_horizon_app/
         └── 20261010000002_create_documentation_pages.sql
 ```
 
-### 3.1 Applying Migrations via Supabase Web Dashboard
-1. Open the [Supabase Web Dashboard](https://supabase.com/dashboard).
-2. Select the **Beyond the Horizon** project.
-3. In the left navigation bar, open the **SQL Editor**.
-4. Click **New query**.
-5. Paste the contents of the target migration file (e.g. [20261010000002_create_documentation_pages.sql](../supabase/migrations/20261010000002_create_documentation_pages.sql)).
-6. Click **Run** and verify successful execution in the results pane.
-7. Navigate to **Table Editor** to inspect created tables, columns, and constraints.
-8. Navigate to **Authentication > Policies** to verify active RLS policies.
-9. Navigate to **Storage** to confirm bucket provisioning and access policies.
+### 3.1 Automated Execution via Supabase & GitHub Integration
+Migrations are automated through Supabase's native GitHub integration:
+1. When migration SQL files are committed and pushed to the repository branch linked to Supabase, Supabase automatically executes the pending migrations against the database.
+2. Migrations execute in timestamp order and are tracked internally by Supabase's migration history table, ensuring idempotent and reliable schema evolution.
+3. Local manual execution or local CLI dependencies are eliminated in favor of automated CI/CD schema synchronization.
+
+### 3.2 Post-Deployment Verification in Supabase Dashboard
+After automated execution completes, schema health can be verified directly in the [Supabase Web Dashboard](https://supabase.com/dashboard):
+1. **Migration History:** Confirm the migration status and execution timestamp in the project settings / migrations view.
+2. **Table Editor:** Inspect created tables, column definitions, and constraint enforcement.
+3. **Authentication > Policies:** Verify that Row-Level Security (RLS) is active with expected policies.
+4. **Storage:** Confirm provisioning of storage buckets (such as `documentation`) and their associated access policies.
 
 ---
 
@@ -61,7 +63,6 @@ beyond_the_horizon_app/
 - **Deferred Concerns:** 
   - App settings (OP-09): Managed unauthenticated directly on the client machine and persisted in browser local storage via UserLocalStorageService, requiring zero database tables or backend persistence.
   - Broadcast system announcements and dashboard shortcut bookmarks are deferred to Phase 3.
-  - All visual theme styling and UI design tokens reside strictly in [04-sdd-frontend.md](./04-sdd-frontend.md).
 
 ### 4.2 Entity-Relationship Model
 
@@ -136,13 +137,13 @@ Row-Level Security is enabled on public.profiles. The active policies enforce st
 ## 5. Feature Module 2: Documentation Pages & Storage Catalog (OP-03)
 
 ### 5.1 Architectural Scope & Storage Strategy
-The documentation engine provides an interactive reference for all rules, species, equipment, and universe lore:
+The documentation engine provides an interactive reference for all Beyond the Horizon TTRPG rules and universe:
 - **Storage-Driven Markdown Architecture:** Markdown files are not stored as large text blobs in PostgreSQL rows. Instead, markdown files reside in a dedicated Supabase Storage bucket (documentation), organized under localized directory paths (e.g., pages/pt-BR/core_rules/game_core.md). This enables CDN edge caching, fast page delivery, and zero database bloat.
 - **Bilingual Translation Model (1:N):**
   - **Base Entity (public.documentation_pages):** Holds immutable routing (slug), category, layout mode, subcategory, sort sequence, and publication status.
   - **Translation Record (public.documentation_page_translations):** Holds locale-specific title, summary excerpt, and the storage path pointer to the localized markdown file.
   - **Phase 1 Execution:** All content is populated in pt-BR. When English content (en-US) is introduced in future phases, adding translation rows requires zero database migrations or table alterations.
-- **Specialized Page Layouts (public.documentation_layout):** Dictates how the Flutter client composes the screen (documentation, species, origin, path, abilities).
+- **Specialized Page Layouts (public.documentation_layout):** Dictates how the Flutter client composes the page (documentation, species, origin, path, abilities).
 
 ### 5.2 Entity-Relationship Model
 
@@ -177,19 +178,8 @@ erDiagram
 ### 5.3 Data Dictionaries: Documentation Catalog
 
 #### Custom Types
-- **public.documentation_category (ENUM):**
-  - 'presentation': Pitch, vision, design pillars, setting introduction.
-  - 'core_rules': Core resolution, step-dice, combat flow, damage, rest, death, countdowns.
-  - 'playable_characters': Species profiles, origins, attributes, progression.
-  - 'equipment': Weapons, properties, suits & apparel, consumable items.
-  - 'companions': Allies, symbionts, bio-drones, beasts, progression.
-  - 'worldbuilding': Universe setting, factions, corporations, locations, timeline.
-- **public.documentation_layout (ENUM):**
-  - 'documentation': Standard article reading view with table of contents.
-  - 'species': Species profile dossier layout.
-  - 'origin': Character origin provenance layout.
-  - 'path': Career and tactical progression layout.
-  - 'abilities': Ability cards catalog and tactical action showcase.
+- **public.documentation_category (ENUM):** 'presentation', 'core_rules', 'playable_characters', 'equipment', 'companions', 'worldbuilding'.
+- **public.documentation_layout (ENUM):** 'documentation', 'species', 'origin', 'path', 'abilities'.
 
 #### Table: public.documentation_pages
 
@@ -199,7 +189,7 @@ erDiagram
 | slug | TEXT | No | None | Canonical routing slug. Unique across catalog. CHECK (char_length(slug) >= 2 AND char_length(slug) <= 120). |
 | category | public.documentation_category | No | None | High-level compendium category enum. |
 | layout | public.documentation_layout | No | 'documentation' | Layout mode for Flutter presentation composition. |
-| subcategory | TEXT | Yes | NULL | Optional subcategory grouping (e.g. combat, weapons). |
+| subcategory | TEXT | Yes | NULL | Optional subcategory grouping for hierarchical navigation. |
 | sort_order | INTEGER | No | 0 | Sequence index for chapter navigation ordering. |
 | is_published | BOOLEAN | No | true | Visibility flag for draft vs live content. |
 | created_at | TIMESTAMPTZ | No | timezone('utc'::text, now()) | Record creation timestamp. |
@@ -259,17 +249,10 @@ JOIN public.documentation_page_translations dpt ON dpt.page_id = dp.id;
 - **Directory Structure Convention:**
   ```
   documentation/
-  ├── pages/
-  │   └── pt-BR/
-  │       ├── core_rules/
-  │       │   └── resolucao.md
-  │       ├── playable_characters/
-  │       │   └── evoraz.md
-  │       └── equipment/
-  │           └── armas.md
-  └── images/
-      ├── banners/
-      └── diagrams/
+  └── pages/
+      └── [locale]/
+          └── [category]/
+              └── [slug].md   # e.g., pages/pt-BR/core_rules/intro.md
   ```
 
 ### 5.7 Migration Reference
@@ -279,11 +262,9 @@ JOIN public.documentation_page_translations dpt ON dpt.page_id = dp.id;
 
 ## 6. Storage Tiers & Assets
 
-| Bucket | Access | Purpose | Lifecycle & Formats |
-| :--- | :--- | :--- | :--- |
-| documentation | Public Read | Rulebook Markdown chapters, diagrams, and banners | .md, .webp, .png, .svg |
-| portraits (Future) | Public Read | Character and operative dossier portraits | .webp, .png |
-| handouts (Future) | Restricted | Classified transmissions and facilitator handouts | .webp, .pdf, .mp3 |
+| Bucket        | Access      | Purpose                         | Lifecycle & Formats |
+| :------------ | :---------- | :------------------------------ | :------------------ |
+| documentation | Public Read | Rulebook Markdown content pages | .md                 |
 
 ---
 

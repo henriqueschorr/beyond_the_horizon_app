@@ -1,5 +1,4 @@
 import 'package:shared/shared.dart';
-import '../dependency_injection/service_locator.dart';
 import '../exceptions/auth_exception.dart';
 import '../repositories/auth_repository.dart';
 import '../repositories/profile_repository.dart';
@@ -10,10 +9,10 @@ class AuthService {
   final ProfileRepository _profileRepository;
 
   AuthService({
-    AuthRepository? authRepository,
-    ProfileRepository? profileRepository,
-  })  : _authRepository = authRepository ?? serviceLocator<AuthRepository>(),
-        _profileRepository = profileRepository ?? serviceLocator<ProfileRepository>();
+    required AuthRepository authRepository,
+    required ProfileRepository profileRepository,
+  })  : _authRepository = authRepository,
+        _profileRepository = profileRepository;
 
   Future<AuthResponseDto> signIn(SignInRequestDto request) async {
     final session = await _authRepository.signInWithPassword(

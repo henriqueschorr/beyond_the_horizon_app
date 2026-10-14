@@ -50,8 +50,8 @@ void setupBackendServiceLocator({GetIt? locator}) {
   if (!currentLocator.isRegistered<BackendService>()) {
     currentLocator.registerLazySingleton<BackendService>(
       () => BackendService(
-        authService: currentLocator<AuthService>(),
-        profileService: currentLocator<ProfileService>(),
+        auth: currentLocator<AuthService>(),
+        profile: currentLocator<ProfileService>(),
       ),
     );
   }

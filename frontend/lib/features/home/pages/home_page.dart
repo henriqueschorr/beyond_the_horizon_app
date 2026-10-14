@@ -164,16 +164,12 @@ class _CornerUtilityButtonState extends State<_CornerUtilityButton> {
 
   @override
   Widget build(BuildContext context) {
-    final Color normalColor =
-        widget.isDestructive ? AppColors.darkTextSecondary : AppColors.darkTextSecondary;
-    final Color activeColor =
-        widget.isDestructive ? const Color(0xFFEF4444) : AppColors.accentOrange;
+    final Color normalColor = AppColors.darkTextSecondary;
+    final Color activeColor = AppColors.accentOrange;
 
     final Color effectiveColor = _isHovered ? activeColor : normalColor;
     final Color effectiveBorder = _isHovered
-        ? (widget.isDestructive
-            ? const Color(0xFFEF4444).withAlpha(180)
-            : AppColors.accentOrange.withAlpha(180))
+        ? AppColors.accentOrange
         : AppColors.darkBorderSubtle;
 
     return MouseRegion(
@@ -189,18 +185,6 @@ class _CornerUtilityButtonState extends State<_CornerUtilityButton> {
             color: _isHovered ? AppColors.darkBgSurfaceElevated : AppColors.darkBgSurface,
             borderRadius: BorderRadius.circular(6.0),
             border: Border.all(color: effectiveBorder, width: 1.0),
-            boxShadow: _isHovered
-                ? [
-                    BoxShadow(
-                      color: (widget.isDestructive
-                              ? const Color(0xFFEF4444)
-                              : AppColors.accentOrange)
-                          .withAlpha(50),
-                      blurRadius: 10.0,
-                      spreadRadius: 1.0,
-                    ),
-                  ]
-                : null,
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,

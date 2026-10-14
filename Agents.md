@@ -120,7 +120,9 @@ When the user explicitly instructs you to commit:
 - **Dependency Injection & Service Locator (`get_it`)**:
   - Both frontend and backend utilize `get_it` as their centralized dependency injection / service locator container.
   - All services, controllers, repositories, and route handlers must register in their respective service locator configuration files.
-  - **Prohibited: Global `static final instance` singletons** on controllers, services, or repositories (e.g., `Service.instance`). All services, controllers, repositories, and route handlers must have public, injectable constructors with fallback to `serviceLocator[T]()` (e.g., `: _repo = repo ?? serviceLocator[Repo]()`), ensuring unit tests remain pure and mockable without locator initialization.
+  - **Strict Dependency Injection on Stateless Objects**: Every object that does not hold state (domain services, repositories, route controllers) MUST be registered in and fetched exclusively via dependency injection (`serviceLocator[T]()` or via `BackendService`). Direct constructor instantiation in application code (e.g., calling `AuthService()` directly) is strictly prohibited.
+  - **Pure Constructor Injection (Prohibited: Fallback Defaults on Stateless Classes)**: Domain services, repositories, and route controllers must declare explicit `required` constructor parameters for their dependencies. They must NOT provide fallback defaults to `serviceLocator[T]()` in their constructors (e.g., prohibited: `repo ?? serviceLocator[Repo]()`) and must not import `serviceLocator` internally. In unit tests, mocks or test doubles are passed directly into the required constructor parameters.
+  - **Prohibited: Global `static final instance` singletons** on controllers, services, or repositories (e.g., `Service.instance`).
 - **Pages & Shells are `StatelessWidget`s with Constructor Initializers**:
   - Screen and shell layouts MUST be `StatelessWidget`s.
   - Controllers MUST be resolved in **constructor initializer lists** (`: controller = controller ?? serviceLocator[T]()`), ensuring fields are non-nullable `final T controller;` resolved once upon creation.
@@ -153,6 +155,11 @@ When the user explicitly instructs you to commit:
   - All text must use dedicated semantic text widgets defined in the design system (e.g., `TitleText`, `BodyText`) rather than raw `Text(...)`.
   - **No ad-hoc sizing in text widgets**: Font sizes, weights, and letter spacing MUST come strictly from predefined styles. Widgets do not take arbitrary `fontSize`, `letterSpacing`, or `color` overrides.
   - **Highlight/Accent Texts**: For text that reflects or reacts to active theme/accent colors, use dedicated highlighted text widgets or primitives provided by the design system rather than wrapping widgets in local listeners or copying styles manually.
+- **Strict Color Token Immutability (Prohibited: `withAlpha`, `withOpacity`, `withValues`, `Color.alphaBlend`)**:
+  - The color palette defined in `AppColors` must be used strictly as-is across all application widgets, containers, borders, icons, and text.
+  - **Prohibited in UI code:** Calling `.withAlpha(...)`, `.withOpacity(...)`, `.withValues(...)`, `Color.alphaBlend(...)`, or any programmatic runtime opacity/alpha modification on `AppColors` tokens.
+  - Colors must be applied as pure, solid tokens. Blurry colored glow washes and low-alpha box shadows are prohibited in UI layouts, preserving the unyielding structural crispness of Minimalist Brutalism.
+  - **Shader & Structural Divider Exemption:** The ONLY components authorized to compute or attenuate colors via alpha or opacity are the procedural canvas shaders and painters (`StarSurface`, `GrainSurface`, `CrtSurface`, and `EventHorizonArc`), and the structural console seam divider (`VerticalSeamDivider` for its vertical edge fade gradient).
 
 ---
 
@@ -280,4 +287,18 @@ When the user explicitly instructs you to commit:
     - For generic type parameters: Use square brackets (e.g., **serviceLocator[T]()**, **List[String]**, **Future[AuthResponseDto]**) or parentheses.
     - For bidirectional relationships or comparisons: Use unicode arrows (e.g., **←→**, **⟷**) or dashes **---** instead of angle bracket arrows.
     - Pure multi-line fenced code blocks (e.g., language code blocks) are the only acceptable context where programming language generics using angle brackets may appear, as fenced code blocks are not evaluated as HTML. In prose, tables, lists, and headings, angle brackets are strictly prohibited.
+
+---
+
+## 23. Centered Image Embeds in Documentation
+
+- **Mandatory Centering for All Documentation Images**:
+  - All image embeds in Software Design Documents (SDDs) and auxiliary Markdown documentation (.md files) must be centered to ensure clean visual presentation across Obsidian reading mode, live preview, and GitHub.
+  - Standard Markdown image syntax `![alt](url)` aligns left by default, and `![alt|center](url)` is not supported across all renderers.
+  - **Required Centering Syntax**: Always wrap image embeds using standard HTML centering tags:
+    ```html
+    <p align="center">
+      <img src="./assets/filename.png" alt="Descriptive Alt Text" />
+    </p>
+    ```
 

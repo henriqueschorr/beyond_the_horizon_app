@@ -4,36 +4,37 @@
 - **Document Title:** System Design Document - Frontend Architecture & Visual Design System
 - **Project:** Beyond the Horizon - Digital Companion & Rules Platform ("Beyond the Horizon App")
 - **Author:** Henrique Schorr
-- **Status:** Approved Baseline / Active
-- **Version:** 0.2.1
-- **Last Updated:** 2026-10-11
+- **Status:** Active
+- **Version:** 0.3.0
+- **Last Updated:** 2026-10-14
 
 ---
 
 ## 2. General Aesthetic & Visual Foundation
 
 ### 2.1 Aesthetic Philosophy
-The visual identity of the Beyond the Horizon web client synthesizes three distinct design traditions:
-1. **Industrial Cassette Futurism:** Rooted in late 1970s and 1980s magnetic tape cartridges, avionics instrumentation, molded ABS hardware chassis textures, chamfered framing, and warm-toned technical typography.
-2. **Retro Telemetry Terminal:** Evoking deep-space observational monitoring stations, monospaced status readouts, blinking block carets, and tactile mechanical actuators.
-3. **Cosmic Void Minimalism:** Deep charcoal and titanium canvas depths, disciplined negative space, deterministic starfields, and stark event horizon curvature.
+The visual design of the Beyond the Horizon client application follows a **Minimalist Brutalism** philosophy with an **Industrial and Cosmic Sci-Fi Horror** aesthetic, synthesizing three foundational design pillars:
+1. **Minimalist Brutalism:** Inspired by Scandinavian minimal-brutalism (*Death in Space*, *Mothership*) and institutional monumentalism (Remedy Entertainment's *Control* and *Alan Wake 2*). Features stark structural geometry, monolithic uppercase typography, massive negative space balance, hard functional container framing, and utilitarian information density.
+2. **Industrial Sci-Fi & The Used Future:** Rooted in late 1970s and 1980s cassette futurism (*Alien*)—molded ABS hardware textures, chamfered framing, procedural analog stipple grain, mechanical actuators, and monospaced telemetry readouts.
+3. **Cosmic Sci-Fi Horror:** Deep charcoal void depths, disciplined negative space, deterministic sub-pixel starfields, and stark celestial horizon curvature.
+
+For extensive cross-universe comparative research across *Alien*, *Fallout*, *Mothership*, *Death in Space*, and *Remedy*, as well as studied layout alternatives and color moodboards, refer to the auxiliary reference document: [studied_designs.md](./studied_designs.md).
 
 ### 2.2 Canvas & Materiality Shaders
-The client architecture incorporates three specialized canvas shaders, adapting the high-performance canvas engine from the reference implementation in stories_app:
-- **StarSurface:** A deterministic sub-pixel starfield generating 160 stars via a fixed pseudo-random seed (seed 42). Features central reading corridor attenuation to guarantee zero interference with text legibility, complemented by a subtle radial nebula wash.
-- **GrainSurface:** A procedural analog risograph and photocopier toner stipple painter rendering 120 deterministic micro-pits and dust coordinates at fixed seed 64. Wrapped in a RepaintBoundary for zero per-frame repaint overhead.
-- **CrtSurface:** An atmospheric cathode-ray tube monitor surface shader. While intentionally **inactive on default landing page and player dashboard screens** (to preserve clean, high-contrast cosmic void clarity), CrtSurface is codified in the core design system for future terminal telemetry displays, diagnostic consoles, character sheets, and user-toggleable CRT simulation via Terminal Settings. Features:
-  - Horizontal cathode-ray scanlines at 4.0px spacing with calibrated alpha (0.18 in dark mode, 0.05 in light mode).
-  - Subtle central phosphor glow luminescence (0.35 alpha).
+The client architecture incorporates three specialized canvas shaders:
+- **StarSurface:** A deterministic sub-pixel starfield with central reading corridor attenuation to guarantee zero interference with text legibility, complemented by a subtle radial nebula wash. Wrapped in a RepaintBoundary for zero per-frame repaint overhead.
+- **GrainSurface:** A procedural analog risograph and photocopier toner stipple painter rendering deterministic micro-pits and dust coordinates. Wrapped in a RepaintBoundary for zero per-frame repaint overhead. Applied across all interactive containers, non-text buttons, and chassis panels.
+- **CrtSurface:** An atmospheric cathode-ray tube monitor surface shader. Features:
+  - Horizontal cathode-ray scanlines with configurable alpha.
   - Curved perimeter glass vignette darkening display edges and corners.
-  - 260ms cathode-ray warm-up flicker sequence respecting user animation preferences.
   - Wrapped in a RepaintBoundary for zero animation overhead when stationary.
+  - Currently inactive on the default landing page to preserve clean, high-contrast cosmic void clarity. Its activation on future screens and interfaces remains to be determined.
 
 ### 2.3 Target Platform Scope Boundary (Phase 1)
-To guarantee optimal visual density, tactile telemetry ergonomics, and uncompromised geometric fidelity for the event horizon arc and command deck:
+To guarantee optimal visual density, tactile telemetry ergonomics, and uncompromised geometric fidelity:
 - **Supported Platforms (Phase 1):**
-  1. **Web Desktop:** Viewports at or above 1024px width (standard 1080p, 1440p, and 4K displays).
-  2. **Web Tablet:** Viewports at or above 768px width (iPad and Android tablets in portrait and landscape orientations).
+  1. **Web Desktop:** Viewports at or above 1024px width.
+  2. **Web Tablet:** Viewports at or above 768px width (in both portrait and landscape orientations).
 - **Explicit Exclusion (Phase 1):**
   - **Smartphones / Mobile Viewports:** Strictly excluded from Phase 1 scope.
   - Viewports below 768px width display an atmospheric telemetry warning directing the operative to connect via a desktop or tablet station. Future smartphone views will be evaluated as dedicated companion views in subsequent phases.
@@ -42,47 +43,51 @@ To guarantee optimal visual density, tactile telemetry ergonomics, and uncomprom
 
 ## 3. Canonical Color Palette System
 
-### 3.1 Single Universal Accent Token
+The application interface is strictly and exclusively constrained to the Dark Mode Base Surfaces & Typography palette and the Single Universal Accent Token (#FE6403). No other chromatic hues or ad-hoc colors are permitted in the application UI. The only exceptions authorized to contain custom colors are the procedural canvas shaders and painters (such as starfield alpha attenuation, glass vignette gradients, and celestial arc glow).
+
+### 3.1 Strict Palette Immutability & Prohibition of Opacity Manipulation
+All color tokens in AppColors must be applied exactly as defined in the design token system without programmatic runtime alterations:
+- **Prohibited in UI Code:** withAlpha, withOpacity, withValues, Color.alphaBlend, and any other programmatic opacity or alpha attenuation methods on color tokens are strictly forbidden across application widgets, containers, borders, icons, and text.
+- **Pure Solid Colors:** All interactive borders, chassis containers, text fields, and icons must use the pure solid color values defined in AppColors.
+- **No Blurry Colored Washes:** Low-alpha box shadows and glowing halo washes are prohibited in UI layouts, preserving the unyielding structural crispness of Minimalist Brutalism.
+- **Shader & Structural Divider Exemption:** The ONLY components authorized to compute or attenuate colors via alpha or opacity are the procedural canvas shaders and painters (StarSurface, GrainSurface, CrtSurface, and EventHorizonArc), and the structural console seam (VerticalSeamDivider for its vertical edge fade gradient).
+
+### 3.2 Single Universal Accent Token
 The entire interface employs a single accent color across all interactive actuators, highlights, focus rims, and active states:
 
 | Theme Mode | Swatch | Token Identifier | HEX Code | Functional Role in Interface |
 | :---: | :--- | :--- | :--- | :--- |
-| **Dark Mode** | <span style="display:inline-block;width:24px;height:24px;background:#FE6403;border:1px solid #777;border-radius:3px;"></span> | **accentOrange** | \#FE6403 | Cassette 90 Vibrant Orange: CTA borders, CTA text, active caret, focused node outlines. |
-| **Light Mode** | <span style="display:inline-block;width:24px;height:24px;background:#C2410C;border:1px solid #777;border-radius:3px;"></span> | **accentOrangeLight** | \#C2410C | High-contrast Burnt Tape Orange calibrated for light cream surfaces (WCAG AAA compliant). |
+| **Dark Mode** | <span style="display:inline-block;width:24px;height:24px;background:#FE6403;border:1px solid #777;border-radius:3px;"></span> | **accentOrange** | #FE6403 | Cassette 90 Vibrant Orange: CTA borders, CTA text, active caret, focused node outlines, illuminated seams. |
+| **Light Mode (Reference)** | <span style="display:inline-block;width:24px;height:24px;background:#C2410C;border:1px solid #777;border-radius:3px;"></span> | **accentOrangeLight** | #C2410C | High-contrast Burnt Tape Orange calibrated for light cream surfaces (technical token reference only). |
 
-### 3.2 Character Resilience Isolation
-To prevent cognitive confusion between interface controls and narrative gameplay attributes:
-- **Blue, Red, Yellow, and Purple are strictly reserved for character resilience stats.**
-- These four chromatic hues are completely prohibited from being used as general UI accents, button highlights, or branding elements.
-- The selection of Cassette 90 Vibrant Orange (\#FE6403) carries zero conflict with all four resilience attributes.
-
-### 3.3 Dark Mode Base Surfaces & Typography (stories_app Reference)
+### 3.3 Dark Mode Base Surfaces & Typography
 
 | Swatch | Token Name | HEX Code | Functional Role in Beyond the Horizon App |
 | :---: | :--- | :--- | :--- |
-| <span style="display:inline-block;width:24px;height:24px;background:#101214;border:1px solid #777;border-radius:3px;"></span> | **darkBgCanvas** | \#101214 | Deep cosmic void canvas. Absorbs halation and prevents visual fatigue. |
-| <span style="display:inline-block;width:24px;height:24px;background:#16191D;border:1px solid #777;border-radius:3px;"></span> | **darkBgSurface** | \#16191D | Chassis surface, navigation rail, panel containers, utility buttons. |
-| <span style="display:inline-block;width:24px;height:24px;background:#20252C;border:1px solid #777;border-radius:3px;"></span> | **darkBgSurfaceElevated** | \#20252C | Elevated button chassis, popovers, modal dialogs, drawer panels. |
-| <span style="display:inline-block;width:24px;height:24px;background:#0C0E10;border:1px solid #777;border-radius:3px;"></span> | **darkBgWell** | \#0C0E10 | Recessed input wells, terminal readout insets, text field backgrounds. |
-| <span style="display:inline-block;width:24px;height:24px;background:#282E36;border:1px solid #777;border-radius:3px;"></span> | **darkBorderSubtle** | \#282E36 | 1px hairline perimeter seams, subtle cell dividers, input outlines. |
-| <span style="display:inline-block;width:24px;height:24px;background:#444D5A;border:1px solid #777;border-radius:3px;"></span> | **darkBorderProminent** | \#444D5A | Prominent container framing, active input borders, button rims. |
-| <span style="display:inline-block;width:24px;height:24px;background:#F0ECE1;border:1px solid #777;border-radius:3px;"></span> | **darkTextPrimary** | \#F0ECE1 | High-contrast titanium white display text, headers, brand mark. |
-| <span style="display:inline-block;width:24px;height:24px;background:#C8C4B8;border:1px solid #777;border-radius:3px;"></span> | **darkTextSecondary** | \#C8C4B8 | Balanced reading body copy, lore paragraphs, descriptive text (~85% luminance). |
-| <span style="display:inline-block;width:24px;height:24px;background:#7B8491;border:1px solid #777;border-radius:3px;"></span> | **darkTextMuted** | \#7B8491 | Muted telemetry metadata, timestamps, input placeholders, disabled states. |
+| <span style="display:inline-block;width:24px;height:24px;background:#101214;border:1px solid #777;border-radius:3px;"></span> | **darkBgCanvas** | #101214 | Deep cosmic void canvas. Absorbs halation and prevents visual fatigue. |
+| <span style="display:inline-block;width:24px;height:24px;background:#16191D;border:1px solid #777;border-radius:3px;"></span> | **darkBgSurface** | #16191D | Chassis surface, navigation rail, panel containers, utility buttons. |
+| <span style="display:inline-block;width:24px;height:24px;background:#20252C;border:1px solid #777;border-radius:3px;"></span> | **darkBgSurfaceElevated** | #20252C | Elevated button chassis, popovers, modal dialogs, drawer panels. |
+| <span style="display:inline-block;width:24px;height:24px;background:#0C0E10;border:1px solid #777;border-radius:3px;"></span> | **darkBgWell** | #0C0E10 | Recessed input wells, terminal readout insets, text field backgrounds. |
+| <span style="display:inline-block;width:24px;height:24px;background:#282E36;border:1px solid #777;border-radius:3px;"></span> | **darkBorderSubtle** | #282E36 | Hairline perimeter seams, subtle cell dividers, input outlines. |
+| <span style="display:inline-block;width:24px;height:24px;background:#444D5A;border:1px solid #777;border-radius:3px;"></span> | **darkBorderProminent** | #444D5A | Prominent container framing, active input borders, button rims. |
+| <span style="display:inline-block;width:24px;height:24px;background:#F0ECE1;border:1px solid #777;border-radius:3px;"></span> | **darkTextPrimary** | #F0ECE1 | High-contrast titanium white display text, headers, brand mark. |
+| <span style="display:inline-block;width:24px;height:24px;background:#C8C4B8;border:1px solid #777;border-radius:3px;"></span> | **darkTextSecondary** | #C8C4B8 | Balanced reading body copy, lore paragraphs, descriptive text. |
+| <span style="display:inline-block;width:24px;height:24px;background:#7B8491;border:1px solid #777;border-radius:3px;"></span> | **darkTextMuted** | #7B8491 | Muted telemetry metadata, timestamps, input placeholders, disabled states. |
 
-### 3.4 Light Mode Base Surfaces & Typography (stories_app Reference)
+### 3.4 Optional Technical Light Mode Tokens (Reference Only)
+While AppColors retains light mode definitions for future theme research, the active application interface is strictly bound to the dark mode palette.
 
-| Swatch | Token Name | HEX Code | Functional Role in Beyond the Horizon App |
+| Swatch | Token Name | HEX Code | Functional Role in Reference System |
 | :---: | :--- | :--- | :--- |
-| <span style="display:inline-block;width:24px;height:24px;background:#F5F3ED;border:1px solid #777;border-radius:3px;"></span> | **lightBgCanvas** | \#F5F3ED | Warm bone-titanium field canvas for light mode. |
-| <span style="display:inline-block;width:24px;height:24px;background:#FFFFFF;border:1px solid #777;border-radius:3px;"></span> | **lightBgSurface** | \#FFFFFF | Crisp ceramic surface for cards and panels. |
-| <span style="display:inline-block;width:24px;height:24px;background:#FAF8F5;border:1px solid #777;border-radius:3px;"></span> | **lightBgSurfaceElevated** | \#FAF8F5 | Elevated surface for popovers and dialogs. |
-| <span style="display:inline-block;width:24px;height:24px;background:#EAE5DA;border:1px solid #777;border-radius:3px;"></span> | **lightBgWell** | \#EAE5DA | Recessed bays, terminal readout wells, search insets. |
-| <span style="display:inline-block;width:24px;height:24px;background:#DCD6C8;border:1px solid #777;border-radius:3px;"></span> | **lightBorderSubtle** | \#DCD6C8 | Machined 1px hairline structural seams. |
-| <span style="display:inline-block;width:24px;height:24px;background:#B5AC9B;border:1px solid #777;border-radius:3px;"></span> | **lightBorderProminent** | \#B5AC9B | Anodized chassis framing and chamfered partitions. |
-| <span style="display:inline-block;width:24px;height:24px;background:#121518;border:1px solid #777;border-radius:3px;"></span> | **lightTextPrimary** | \#121518 | Deep obsidian carbon primary text (WCAG AAA). |
-| <span style="display:inline-block;width:24px;height:24px;background:#454C55;border:1px solid #777;border-radius:3px;"></span> | **lightTextSecondary** | \#454C55 | Slate carbon secondary prose and story synopses. |
-| <span style="display:inline-block;width:24px;height:24px;background:#6C7480;border:1px solid #777;border-radius:3px;"></span> | **lightTextMuted** | \#6C7480 | Calibrated graphite telemetry metadata and timestamps. |
+| <span style="display:inline-block;width:24px;height:24px;background:#F5F3ED;border:1px solid #777;border-radius:3px;"></span> | **lightBgCanvas** | #F5F3ED | Warm bone-titanium field canvas for light mode. |
+| <span style="display:inline-block;width:24px;height:24px;background:#FFFFFF;border:1px solid #777;border-radius:3px;"></span> | **lightBgSurface** | #FFFFFF | Crisp ceramic surface for cards and panels. |
+| <span style="display:inline-block;width:24px;height:24px;background:#FAF8F5;border:1px solid #777;border-radius:3px;"></span> | **lightBgSurfaceElevated** | #FAF8F5 | Elevated surface for popovers and dialogs. |
+| <span style="display:inline-block;width:24px;height:24px;background:#EAE5DA;border:1px solid #777;border-radius:3px;"></span> | **lightBgWell** | #EAE5DA | Recessed bays, terminal readout wells, search insets. |
+| <span style="display:inline-block;width:24px;height:24px;background:#DCD6C8;border:1px solid #777;border-radius:3px;"></span> | **lightBorderSubtle** | #DCD6C8 | Hairline structural seams. |
+| <span style="display:inline-block;width:24px;height:24px;background:#B5AC9B;border:1px solid #777;border-radius:3px;"></span> | **lightBorderProminent** | #B5AC9B | Anodized chassis framing and chamfered partitions. |
+| <span style="display:inline-block;width:24px;height:24px;background:#121518;border:1px solid #777;border-radius:3px;"></span> | **lightTextPrimary** | #121518 | Deep obsidian carbon primary text. |
+| <span style="display:inline-block;width:24px;height:24px;background:#454C55;border:1px solid #777;border-radius:3px;"></span> | **lightTextSecondary** | #454C55 | Slate carbon secondary prose and story synopses. |
+| <span style="display:inline-block;width:24px;height:24px;background:#6C7480;border:1px solid #777;border-radius:3px;"></span> | **lightTextMuted** | #6C7480 | Calibrated graphite telemetry metadata and timestamps. |
 
 ---
 
@@ -91,30 +96,34 @@ To prevent cognitive confusion between interface controls and narrative gameplay
 ### 4.1 The Three Typographic Voices
 The interface architecture establishes three distinct font voices, each serving a strict functional purpose:
 1. **The Monumental & Hero Voice (Space Grotesk):**
-   - Geometrically proportioned, retro-futuristic grotesque sans-serif with mechanical cadence.
-   - Employed for the crossword brand mark (BEYOND THE HORIZON), dashboard welcome headlines (Bem-vindo, [Nome]!), section headers, and major action labels.
+   - Geometrically proportioned, retro-futuristic grotesque sans-serif with monumental architectural cadence (inspired by Remedy's environmental lettering).
+   - Employed for the crossword brand mark (BEYOND THE HORIZON), monumental headlines, section headers, and major action labels.
 2. **The Machine & Tactical Voice (Space Mono):**
    - Fixed-pitch monospaced terminal typeface evoking telemetry data, status indicators, and mechanical data streams.
-   - Employed for tactical action button text, operational status badges, input field headers, blinking block carets, hover tooltips, and RPG stat counters.
+   - Employed for tactical action button text, operational status badges, input field headers, blinking block carets, hover tooltips, and selectable error displays.
 3. **The Editorial & Rules Lore Voice (Inter):**
    - High-legibility neutral grotesque engineered for extended reading comfort across all display pixel densities.
    - Employed for rules lore, compendium articles, descriptions, dialog bodies, and user communications.
 
-### 4.2 Canonical Typographic Scale & Metrics
+### 4.2 Typographic Scale & Metrics
 
 | Style Token | Font Family | Size | Weight | Tracking / Spacing | Line Height | Semantic Widget Name |
 | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
+| **monumentalTitle** | Space Grotesk | 64.0px | Bold (700) | +4.0px | 1.00 | MonumentalText |
+| **monumentalSmall** | Space Grotesk | 16.0px | Bold (700) | +4.0px | 1.00 | MonumentalSmallText |
 | **displayTitleLarge** | Space Grotesk | 32.0px | Bold (700) | -0.5px | 1.25 | DisplayTitleLargeText |
+| **displayTitleLargeHighlighted** | Space Grotesk | 32.0px | Bold (700) | -0.5px | 1.25 | DisplayTitleLargeHighlightedText |
 | **displayTitle** | Space Grotesk | 26.0px | Bold (700) | -0.2px | 1.15 | DisplayTitleText |
 | **sectionTitle** | Space Grotesk | 18.0px | Bold (700) | -0.1px | 1.20 | SectionTitleText |
 | **actionLabel** | Space Grotesk | 14.0px | Semi-Bold (600) | +0.5px | 1.10 | ActionLabelText |
 | **navAnchor** | Space Grotesk | 14.0px | Semi-Bold (600) | +1.2px | 1.20 | NavAnchorText |
+| **navAnchorHighlighted** | Space Grotesk | 14.0px | Semi-Bold (600) | +1.2px | 1.20 | NavAnchorHighlightedText |
 | **tacticalLabel** | Space Mono | 13.0px | Bold (700) | +1.2px | 1.20 | TacticalLabelText |
 | **tacticalLabelHighlighted** | Space Mono | 13.0px | Bold (700) | +1.2px | 1.20 | TacticalLabelHighlightedText |
 | **tacticalLabelSmall** | Space Mono | 11.5px | Bold (700) | +0.8px | 1.20 | TacticalLabelSmallText |
 | **tacticalLabelSmallHighlighted** | Space Mono | 11.5px | Bold (700) | +0.8px | 1.20 | TacticalLabelSmallHighlightedText |
 | **legend** / **telemetryMuted** | Space Mono | 11.5px | Regular (400) | +0.5px | 1.25 | LegendText |
-| **legendHighlighted** | Space Mono | 11.5px | Regular (400) | +0.5px | 1.25 | LegendHighlightedText |
+| **legendHighlighted** | Space Mono | 11.5px | Regular (400) | +0.5px | 1.25 | LegendHighlightedText / SelectableErrorText |
 | **bodyLarge** | Inter | 18.0px | Regular (400) | 0.0px | 1.75 | BodyLargeText |
 | **bodyMedium** | Inter | 16.0px | Regular (400) | 0.0px | 1.70 | BodyMediumText |
 | **bodyProse** | Inter | 14.0px | Regular (400) | 0.0px | 1.60 | BodyProseText |
@@ -123,45 +132,42 @@ The interface architecture establishes three distinct font voices, each serving 
 ### 4.3 Rule 11 Compliance: Semantic Typography Widgets
 In accordance with Rule 11 of AGENTS.md:
 - **Prohibited: Raw Text(...) and inline TextStyle(...)**.
-- All text in feature and shared code is instantiated strictly via dedicated semantic typography widgets (such as DisplayTitleText, TacticalLabelHighlightedText, BodyProseText).
+- All text in feature and shared code is instantiated strictly via dedicated semantic typography widgets (such as MonumentalText, DisplayTitleText, TacticalLabelHighlightedText, BodyProseText).
 - Ad-hoc sizing, arbitrary font size overrides, or custom letter spacing in widget calls are strictly prohibited.
-- Highlighted text reacts dynamically to the active accent color (\#FE6403) via dedicated highlighted semantic widgets (such as TacticalLabelSmallHighlightedText, TacticalLabelHighlightedText).
+- Highlighted text reacts dynamically to the active accent color (#FE6403) via dedicated highlighted semantic widgets (such as MonumentalText, NavAnchorHighlightedText, TacticalLabelHighlightedText, SelectableErrorText).
 
 ---
 
 ## 5. Interactive Button Primitives & Universal Noise Texture Architecture
 
-### 5.1 Universal Button Materiality Policy (Non-Text vs. Text Buttons)
-Following the core design system rule:
+### 5.1 Universal Button Materiality Policy
 1. **All Non-Text Buttons Incorporate GrainSurface:**
-   - Every interactive actuator featuring a container chassis, background fill, or perimeter border (CTA action buttons, rounded-square utility icon buttons, and dashboard feature launchers) MUST incorporate the procedural GrainSurface analog toner grain noise texture.
+   - Every interactive actuator featuring a container chassis, background fill, or perimeter border MUST incorporate the procedural GrainSurface analog toner grain noise texture.
    - Provides physical analog materiality reminiscent of molded ABS technical hardware and risograph-printed technical manuals.
 2. **Text-Only Buttons Remain Untextured:**
    - Flat text action buttons (such as the Registrar secondary action) and inline typographic links are strictly excluded from noise texture, preserving crisp, clean font rendering.
 
 ### 5.2 Tactical Action Button (CTA Button Specification)
-Standardized after stories_app TacticalActionButton:
-- **Chassis Background:** darkBgSurfaceElevated (\#20252C), tinting to accentOrange (\#FE6403) at 16% opacity on hover.
-- **Perimeter Seam:** 1px solid Cassette 90 Orange border (\#FE6403).
-- **Typography:** Space Mono Bold uppercase, highlighted in Cassette 90 Orange (TacticalLabelSmallHighlightedText).
+- **Chassis Background:** Elevated dark surface, subtly tinting toward accent orange on hover.
+- **Perimeter Seam:** Solid accent orange border.
+- **Typography:** Space Mono Bold uppercase, highlighted in accent orange (TacticalLabelSmallHighlightedText).
 - **Surface Texture:** Wrapped in GrainSurface with dynamic accent color response on hover.
-- **Glow Shadow:** BoxShadow(color: \#FE6403 at 0.25 alpha, blurRadius: 10, offset: Offset(0, 2)) on hover.
-- **Tactile Micro-Feedback:** Scale 1.02 on hover, 0.98 on press, with 140ms easeOutCubic curve.
+- **Visual Feedback:** Accent glow shadow on hover and tactile scale feedback on hover and press.
 
 ### 5.3 Rounded-Square Utility Icon Buttons
-Standardized for flanking landing page actions and dashboard feature badges:
-- **Dimensions:** 44px x 44px, with BorderRadius.circular(6.0).
-- **Perimeter Seam:** 1px subtle border (\#444D5A), illuminating to accentOrange (\#FE6403) on hover.
-- **Surface Texture:** Chassis fill darkBgSurface (\#16191D) wrapped in GrainSurface noise texture.
-- **Interaction:** Pure icon presentation with directional micro-scale (1.04 on hover) and monospaced hover tooltips.
+- **Chassis Background:** Dark surface container wrapped in GrainSurface noise texture.
+- **Perimeter Seam:** Subtle chassis border illuminating to accent orange on hover.
+- **Interaction:** Icon presentation with subtle tactile micro-scale feedback and monospaced hover tooltips.
 
 ---
 
-## 6. Canonical Logged-Out Landing Page Architecture
+## 6. Logged-Out Landing Page Architecture
 
-Below is the canonical structural design for the Logged-Out landing page:
+Below is the structural design for the Logged-Out landing page:
 
-![Canonical Logged-Out Sketch|center](./assets/canonical_logged_out_sketch.png)
+<p align="center">
+  <img src="./assets/logged_out_sketch.png" alt="Logged-Out Sketch" />
+</p>
 
 ### 6.1 Typographic Crossword Brand Mark & Apex Geometry
 The monumental brand mark is structured as an off-center crossword puzzle sharing the letter O:
@@ -177,203 +183,130 @@ The monumental brand mark is structured as an off-center crossword puzzle sharin
 ```
 
 - **Crossword Intersection:** Vertical B-E-Y-O-N-D intersects horizontal H-O-R-I-Z-O-N, sharing the first letter O of HORIZON.
-- **Scale of 'THE':** The particle THE is rendered approximately **4 font sizes smaller** than the monumental letters of BEYOND and HORIZON (e.g., 14px vs 32px), tucked compactly to the right of the letter Y.
-- **Horizon Apex Alignment:** The horizontal word HORIZON sits immediately above the top curvature apex of the black hole event horizon arc.
-- **Submerged Letters 'N' & 'D':** Because the horizon curve passes directly under the word HORIZON, the remaining letters N and D of BEYOND are visibly positioned **inside the black hole void**, creating a literal visual metaphor of crossing beyond the horizon.
+- **Scale of 'THE':** The particle THE is rendered approximately 4 font sizes smaller than the monumental letters of BEYOND and HORIZON (monumentalSmall vs monumentalTitle), tucked compactly to the right of the letter Y.
+- **Horizon Apex Alignment:** The horizontal word HORIZON sits immediately above the top curvature crest of the black hole event horizon arc.
+- **Submerged Letters 'N' & 'D':** Because the horizon curve passes directly under the word HORIZON, the remaining letters N and D of BEYOND are visibly positioned inside the black hole void, creating a literal visual metaphor of crossing beyond the horizon.
 
-### 6.2 Parabolic Event Horizon Arc & Lateral Exit Rule
-- The event horizon is rendered as a sweeping parabolic curve rising from the sides toward the central apex.
-- **Lateral Exit Rule:** The arc's side endpoints exit strictly through the **left and right lateral edges of the viewport** (at approximately 65% to 70% viewport height), never through the bottom edge.
+### 6.2 Spherical Event Horizon Arc & Viewport Trajectory
+- The event horizon is rendered as a sweeping circular celestial arc whose crest sits beneath the brand mark word HORIZON.
+- **Viewport Trajectory:** Both left and right trajectories extend downward, crossing through the lower and bottom viewport edges, creating a dramatic celestial dome that frames the access console within the singularity void. This reflects the exact circular arc geometry implemented in _EventHorizonArcPainter.
 
 ### 6.3 Access Console & Side-by-Side Utility Layout
 Positioned inside the black hole void beneath the submerged letters:
 
 ```
-+-----------------------+   |   [📖] COMPÊNDIO
++-----------------------+   |   [📖]
 |  [ Email / Callsign ] |   |
 +-----------------------+   |
 |  [ Password ]         |   |
-+-----------------------+   |   [⚙️] CONFIGURAÇÕES
-| [Registrar] [ENTRAR]  |   |
++-----------------------+   |   [⚙️]
+| [Registrar]  [ENTRAR] |   |
 +-----------------------+   |
 ```
 
 1. **Horizontal Layout Distribution (Side-by-Side):**
-   - **Login Block (Left):** Constrained to 320px width, containing the recessed email and password input fields, contextual error messages, and the balanced action row ([Registrar] and [ENTRAR]).
-   - **Vertical Divider Seam Line (Center):** A 1px wide vertical border line (darkBorderSubtle) with subtle edge fade gradients, stretching across the full intrinsic height of the login block with 36px horizontal margins.
-   - **Standalone Utility Menu Items (Right):** Compêndio and Configurações rendered vertically one below the other using NavigationMenu with isConnected set to false. Each item uses MenuItem with a 40x40 GrainSurface tactile node badge, animated hover glow, and sliding Space Grotesk action label without connecting circuit lines.
+   - **Login Block (Left):** Contains the recessed email and password input fields, selectable error display, and the balanced action row ([Registrar] secondary action and [ENTRAR] primary tactical button).
+   - **Vertical Divider Seam Line (Center):** A vertical hairline border line with subtle edge fade gradients, stretching across the intrinsic height of the login block.
+   - **Stacked Utility Icon Actions (Right):** Compêndio and Configurações rendered vertically one below the other as rounded-square tactile icon buttons wrapped in GrainSurface noise texture with illuminated borders and animated hover glow.
 2. **Input Fields Stack:**
-   - Recessed input well: Email / Callsign with 1px border (\#282E36) and dark well fill (\#0C0E10). Field labels use darkTextSecondary (\#C8C4B8), reserving titanium silver strictly for titles.
+   - Recessed input well: Email / Callsign with subtle border and dark well fill. Field labels use secondary titanium text.
    - Recessed input well: Password with matching styling.
-   - Text Caret: Blinking block caret (█) in accent orange (\#FE6403).
-3. **Side-by-Side Action Row:**
-   - Located directly beneath the password field as a balanced horizontal row:
-   - **Left / Secondary: [ Registrar / Create Account ]:**
-     - Flat text action button **without noise texture**, using subtle outline border and muted titanium typography (\#F0ECE1).
-   - **Right / Primary: [ Entrar / Sign In ] (CTA Button):**
-     - Full TacticalActionButton with GrainSurface noise texture, 1px orange border (\#FE6403), orange uppercase text, dark elevated background, hover glow, and 1.02 hover / 0.98 press micro-physics.
+   - Text Caret: Blinking block caret (█) in accent orange (#FE6403).
+   - Error States: Contextual authentication errors illuminate field borders in accent orange and display selectable error diagnostics in legend highlighted monospaced type.
+3. **Action Row:**
+   - Located directly beneath the password field:
+   - **Secondary: [ Registrar / Create Account ]:** Flat text action button without noise texture, using subtle outline border and muted titanium typography.
+   - **Primary: [ Entrar / Sign In ] (CTA Button):** TacticalActionButton with GrainSurface noise texture, accent orange border, orange uppercase text, dark elevated background, hover glow, and tactile micro-physics.
 
 ---
 
-## 7. Canonical Logged-In Player Dashboard Architecture
+## 7. State Management, Controllers & Architectural Boundaries
 
-Below is the canonical structural design for the Logged-In player dashboard:
-
-![Canonical Logged-In Sketch|center](./assets/canonical_logged_in_sketch.png)
-
-### 7.1 Spatial Left-Glide Continuity
-- Upon successful authentication, the centered crossword brand mark and black hole event horizon arc smoothly glide to the **Left Third of the screen**.
-- The black hole curvature settles into the bottom-left quadrant, maintaining brand and atmospheric continuity rather than abruptly vanishing.
-
-### 7.2 Player Command Deck (Right Side)
-- **Direct Welcome Header:** Rendered in Space Grotesk Bold: Bem-vindo, [Nome]! (pt-BR) or Welcome, [Name]! (en). **No secondary metadata or status tags.**
-- **The Five Features in Strict Priority Order:**
-  - Structured via NavigationMenu with isConnected set to true, using ConnectedMenuItem with top and bottom vertical conduit line segments, 40x40 GrainSurface tactile node badges, and sliding labels:
-  1. **[Icon] Jogar com Personagem (Play with Character):**
-     - Rendered with the bespoke top-down isometric D6 tabletop die icon.
-     - If no active character exists: Dimmed / greyed-out state (\#7B8491) with helper tag: [ Nenhum personagem ativo ]. Clicking gently directs attention to Criar Personagem.
-     - If an active character exists: Prominent active state with character callsign, species, and vitality meter, highlighted in Cassette 90 Orange (\#FE6403).
-  2. **[Icon] Criar Personagem (Create Character):**
-     - Always-active tactile launcher for the Step-by-Step Character Creation Wizard (OP-04).
-     - Displays person add outlined icon.
-  3. **[Icon] Compêndio (Compendium):**
-     - Full interactive rules browser indexing core mechanics, species profiles, career paths, and equipment.
-     - Displays book outlined icon.
-  4. **[Icon] Configurações (Settings):**
-     - Terminal preferences drawer (shaders, audio volume, themes).
-     - Displays gear outlined icon.
-  5. **[Icon] Sair (Log Out):**
-     - Session sign-out action with destructive hover highlight that smoothly glides the layout back to the centered logged-out state.
-
-### 7.3 Primary Minimalist Brutalism Architecture (Decoupled Landing & Home Pages)
-
-The platform architecture adopts the Minimalist Brutalism layout as its primary presentation. Landing Page and Home Page are fully decoupled into independent, self-contained feature pages without shared shell routing:
-
-1. **Public Landing Page (features/landing):**
-   - **Crossword Brand Mark:** Monumental typographic intersection of B-E-Y-O-N-D and H-O-R-I-Z-O-N sharing the letter O, positioned with submerged letters in the event horizon void.
-   - **Event Horizon Arc:** Spherical celestial halo sweeping across the viewport to form the void framing the credential access console.
-   - **Access Console:** Responsive authentication form with registration modal launcher and settings drawer trigger.
-2. **Authenticated Home Command Deck (features/home):**
-   - **Hero Greeting:** Space Grotesk Bold title **Welcome to Beyond the Horizon, [Name].** with the operative name highlighted in Cassette 90 Vibrant Orange (#FE6403).
-   - **Telemetry Subtitle:** Left-aligned technical tag **// BEGIN YOUR EXPLORATION** (**// INICIE SUA EXPLORAÇÃO**) positioned directly beneath the greeting.
-   - **Monumental 3-Card Portrait Triptych:**
-     - **Card 1 (Play with Character):** Features an isometric D6 icon in a carved-down recessed bay, GrainSurface toner noise texture, and reactive character presence checking. When an active character exists, the top-right rocker-switch lamp illuminates in vibrant orange with status **[ READY ]**. When uninitialized, the card dims, the rocker lamp de-energizes to dark slate (#444D5A), and status reads **[ UNINITIALIZED ]**.
-     - **Card 2 (Create Character):** Features an operative creation icon, active rocker-switch pill lamp, and tactical launch trigger.
-     - **Card 3 (Compendium):** Features a rulebook terminal icon, active rocker-switch pill lamp, and digital archive launch trigger.
-     - **Card Details:** Carved-down dark wells, top-left section stamping (// SEC-01, // SEC-02, // SEC-03), micro-barcode serials, and bottom hairline seams.
-   - **Corner Utility Sockets:**
-     - **Bottom-Left:** Standalone **CONFIGURAÇÕES** button opening the terminal settings drawer.
-     - **Bottom-Right:** Standalone **ENCERRAR SESSÃO // SAIR** button with exit icon and destructive hover state.
-3. **Transition Animation Phasing:**
-   - The complex in-shell gravitational swallowing transition between landing and home has been decoupled and noted in OP-11 for future dedicated re-engineering to achieve optimal cinematic fluidity.
-
----
-
-## 8. State Management, Controllers & Architectural Boundaries
-
-### 8.1 Presentation-Only StatelessWidgets (Rule 8 & 10)
+### 7.1 Presentation-Only StatelessWidgets (Rule 8 & 10)
 - Screen and shell layouts are strictly StatelessWidgets or stateful widgets without business logic.
-- Controllers are resolved in **constructor initializer lists** (e.g., : controller = controller ?? serviceLocator[T]()), ensuring fields are non-nullable final T controller resolved once upon creation.
+- Controllers are resolved via constructor dependency injection, ensuring fields are non-nullable final T controller resolved once upon creation.
 - Calling serviceLocator[T]() inside build() methods of pages and shell layouts is strictly prohibited.
 - Building pages as StatefulWidgets solely to hold a controller in initState or call dispose is prohibited.
 
-### 8.2 Controllers Hold State, Not Futures (Rule 10)
+### 7.2 Controllers Hold State, Not Futures (Rule 10)
 - Getters with lazy side-effects are prohibited.
-- Controllers extend ChangeNotifier and hold resolved domain models, granular loading booleans (e.g., isLoading), and nullable error strings (e.g., errorMessage).
-- Data fetching is triggered via explicit asynchronous methods (e.g., loadData(), refresh()).
+- Controllers extend ChangeNotifier and hold resolved domain models, granular loading booleans (such as isLoading), and nullable error strings (such as errorMessage).
+- Data fetching is triggered via explicit asynchronous methods (such as loadData(), refresh()).
 - Widgets observe state via ListenableBuilder or AnimatedBuilder instead of FutureBuilder.
 
-### 8.3 Backend-Only External Communication (Rule 14)
+### 7.3 Backend-Only External Communication (Rule 14)
 - Every external communication (Supabase database queries, Supabase Storage, third-party APIs) originates strictly and exclusively from the backend package.
 - The frontend package is strictly limited to UI presentation, layout composition, user input handling, reactive state management, routing, and local client storage (UserLocalStorageService).
 - Direct network calls from frontend to Supabase or external APIs are strictly prohibited. Frontend interacts with domain data exclusively via BackendService and shared DTOs.
 
-### 8.4 DTO Naming & Explicit Request/Response Contracts (Rule 19)
+### 7.4 DTO Naming & Explicit Request/Response Contracts (Rule 19)
 - All Data Transfer Objects are explicitly suffixed with RequestDto or ResponseDto.
 - Ambiguous, unqualified, or generic DTO names are prohibited.
 
-### 8.5 Declarative Routing & Navigation Architecture (go_router)
+### 7.5 Declarative Routing & Navigation Architecture (go_router)
 The client application adopts **go_router** as its official declarative routing and deep-linking solution on Flutter Web:
-1. **Canonical Route Map:**
+1. **Route Map:**
    - **/**: LoggedOutLandingScreen (Public zero-login landing portal).
-   - **/dashboard**: PlayerDashboardScreen (Guarded command deck for authenticated operatives).
-   - **/in-construction**: InConstructionScreen (Atmospheric terminal destination for modules under active construction, accepting **?module=...** query parameters).
+   - **/dashboard**: Guarded authenticated session destination placeholder.
+   - **/in-construction**: InConstructionScreen (Atmospheric terminal destination for modules under active construction, accepting ?module=... query parameters).
 2. **Reactive Authentication Redirect Guards:**
    - GoRouter is initialized with refreshListenable bound to AuthController.
    - When an operative session is invalidated or signed out, GoRouter redirects protected routes back to **/**.
-   - Deep-linking to protected views (such as **/dashboard**) while unauthenticated automatically redirects visitors to **/**.
+   - Deep-linking to protected views while unauthenticated automatically redirects visitors to **/**.
 3. **Decoupled Widget Callbacks (Rule 10):**
    - Sub-widgets do not directly invoke global navigation singletons.
    - Buttons receive plain callbacks (such as onTap) that invoke declarative routing in the parent scope.
 
-### 8.6 In-Construction Module Destination Pattern
-During early development phases, feature launchers whose underlying subsystem is still in progress (such as Compêndio, Jogar Personagem, and Criar Personagem) navigate to the dedicated atmospheric InConstructionScreen (*Módulo em Construção*). This screen presents terminal hazard styling, status telemetry codes (CODIGO_ESTADO_503_PLANNED), and a tactical return button to preserve interface coherence without dead-end clicks or broken layouts.
+### 7.6 In-Construction Module Destination Pattern
+During early development phases, feature launchers whose underlying subsystem is still in progress navigate to the dedicated atmospheric InConstructionScreen (*Módulo em Construção*). This screen presents terminal hazard styling, status telemetry codes (CODIGO_ESTADO_503_PLANNED), and a tactical return button to preserve interface coherence without dead-end clicks or broken layouts.
 
 ---
 
-## 9. Researched Alternatives & Studied Layouts Archive
+## 8. Alternative Designs
 
-This section preserves all earlier layout iterations, wireframe concepts, and color moodboard research for archival and historical reference:
+This section preserves earlier layout iterations and wireframe concepts explored during design discovery:
 
-### 9.1 Studied Wireframe Layout Concepts
+### Studied Alternative A: The Astrometric Constellation & Event Horizon
+- An off-center crossword brand mark on the left with a corner event horizon arc.
+- Floating authentication inputs in the screen center.
+- A vertical zigzag constellation conduit line connecting five circular interactive nodes on the right.
+- *Evaluation:* Visually striking, but the zigzag constellation line competed heavily with the crossword mark and lacked the functional density needed for compact desktop viewports.
 
-1. **Studied Alternative A: "The Astrometric Constellation & Event Horizon":**
-   - Off-center crossword on left with corner event horizon arc, floating inputs in center, and vertical zigzag constellation line connecting 5 circular nodes on the right.
-2. **Studied Alternative B: "The Centered Event Horizon Arc (Early Iteration)":**
-   - Arc with bottom exit and navigation nodes attached directly along the curved rim. Superseded by the lateral-exiting event horizon dome with flanking rounded-square buttons.
-3. **Studied Alternative C: "The Orbital Ellipsis Console":**
-   - Centered orbital ellipse with planetary nodes orbiting the perimeter and login inside the ellipse center.
-4. **Studied Alternative D: "The Modular Control Deck":**
-   - 4-card modular instrument rack for feature showcase.
-5. **Studied Alternative E: "The Classified Dossier & Archival Terminal":**
-   - Asymmetric layout with prominent tangible dossier sheet and redaction bars.
-6. **Studied Alternative F: "The Minimalist Rules Explorer & Live Radar":**
-   - Centered rules search bar with category pills and live dice breakdown.
-7. **Studied Alternative G: "The 2x2 Avionics Telemetry Grid":**
-   - 2x2 grid of equal-sized modular tiles with shared borders, top-right rocker switches, and bottom barcode telemetry. Explored during the cassette-futurism card iterations before settling on the 3-column monumental vertical triptych.
-8. **Studied Alternative H: "The Hi-Fi Tape Transport Deck (Linear Cassette Rack)":**
-   - Horizontal tape transport deck styling with mechanical push-down play/eject keys and analog VU needle meters.
+### Studied Alternative B: The Centered Event Horizon Arc (Early Iteration)
+- A centered arc with bottom exit points and navigation nodes attached directly along the curved rim.
+- *Evaluation:* Superseded by the downward-sweeping spherical event horizon dome with flanking rounded-square buttons, which provided superior geometric stability and cleaner spatial separation.
 
-### 9.2 Moodboard Color Spectrum & Alternative Orange Variants
+### Studied Alternative C: The Orbital Ellipsis Console
+- Centered orbital ellipse with planetary nodes orbiting the perimeter and authentication inputs positioned inside the ellipse center.
+- *Evaluation:* Overly decorative and gamified; conflicted with the austere brutalist aesthetic and felt closer to a mobile space game than an industrial companion tool.
 
-Extracted from reference moodboard (cassette_orange_moodboard.png):
+### Studied Alternative D: The Modular Control Deck
+- A 4-card modular instrument rack displaying system features in equal-sized grid blocks.
+- *Evaluation:* Clean and organized, but lacked the monumental visual impact of the black hole event horizon void.
 
-![Cassette Orange Moodboard|center](./assets/cassette_orange_moodboard.png)
+### Studied Alternative E: The Classified Dossier & Archival Terminal
+- An asymmetric layout with a tangible dossier folder, redaction bars, paperclip graphics, and typewriter typography.
+- *Evaluation:* Strongly evocative of Remedy's *Control*, but too document-centric for a primary public landing screen. Preserved as a strong candidate for future compendium and facilitator secret handout modules.
 
-| Swatch | Color Name | HEX Code | RGB | Location & Evaluation Notes |
-| :---: | :--- | :--- | :--- | :--- |
-| <span style="display:inline-block;width:24px;height:24px;background:#FE6403;border:1px solid #777;border-radius:3px;"></span> | **Cassette 90 Vibrant Orange** | \#FE6403 | 254, 100, 3 | **Selected Accent**: Dominant background of "90 HIGH QUALITY AUDIO CASSETTE". |
-| <span style="display:inline-block;width:24px;height:24px;background:#EA9103;border:1px solid #777;border-radius:3px;"></span> | **Agfa Golden Mango Orange** | \#EA9103 | 234, 145, 3 | **Alternative Variant 2**: Golden-cadmium spine of AGFA-GEVAERT C90. Warmer, amber-toned. |
-| <span style="display:inline-block;width:24px;height:24px;background:#E05624;border:1px solid #777;border-radius:3px;"></span> | **Terracotta / Burnt Tape Orange** | \#E05624 | 224, 86, 36 | **Alternative Variant 3**: Industrial chevron stripes on 2D Soul tape. Deeper rust/clay tone. |
-| <span style="display:inline-block;width:24px;height:24px;background:#EF5949;border:1px solid #777;border-radius:3px;"></span> | **Sunset Coral / Lo-Fi Orange** | \#EF5949 | 239, 89, 73 | Gradient stripes on Crosley tape and Dusk Retrowave cover. |
-| <span style="display:inline-block;width:24px;height:24px;background:#F1D0A2;border:1px solid #777;border-radius:3px;"></span> | **Manila Cardstock Cream** | \#F1D0A2 | 241, 208, 162 | Unbleached cardstock backing on Sakura Chroma T-70 and Crosley packaging. |
-| <span style="display:inline-block;width:24px;height:24px;background:#14171A;border:1px solid #777;border-radius:3px;"></span> | **Chassis Charcoal Black** | \#14171A | 20, 23, 26 | Molded ABS cassette shell on Crosley and Dusk bodies. |
-| <span style="display:inline-block;width:24px;height:24px;background:#008080;border:1px solid #777;border-radius:3px;"></span> | **VHS Tracking Teal** | \#008080 | 0, 128, 128 | Video cassette band on Sakura Chroma and Polaroid spines. |
-| <span style="display:inline-block;width:24px;height:24px;background:#E6332A;border:1px solid #777;border-radius:3px;"></span> | **Retro Signal Red** | \#E6332A | 230, 51, 42 | Title lettering on T-70 SUPER CASSETTE and Agfa diamond logo. |
-| <span style="display:inline-block;width:24px;height:24px;background:#F4C430;border:1px solid #777;border-radius:3px;"></span> | **Test Pattern Yellow** | \#F4C430 | 244, 196, 48 | Calibration stripe on Supercolor cassette. |
+### Studied Alternative F: The Minimalist Rules Explorer & Live Radar
+- Centered rules search bar with category pills and a live dice simulation radar.
+- *Evaluation:* Optimized for rules lookup, but lacked the thematic gravity needed for the primary landing gateway.
 
-### 9.3 Brutalist & Sci-Fi Industrial Case Studies
+### Studied Alternative G: The 2x2 Avionics Telemetry Grid
+- A 2x2 grid of equal-sized modular tiles with shared borders, top-right rocker switches, and bottom barcode telemetry.
+- *Evaluation:* Explored during cassette-futurism card studies before prioritizing the decoupled single-purpose architecture.
 
-To synthesize the brutalist aesthetic with cosmic horror and cassette retrofuturism, the team examined four primary case studies:
-
-1. **SL24 Brutalist Data Logistics Cyber Typography (Behance):**
-   - Reference: https://www.behance.net/gallery/247026671/SL24-Brutalist-Data-Logistics-Cyber-Typography
-   - Key Takeaways: High-contrast data logistics framing, monospaced section tags (// SEC-01), barcode serials, micro-grid demarcation, and utilitarian information density.
-2. **Kai Voss Portfolio Agency Website (Dribbble):**
-   - Reference: https://dribbble.com/shots/27665960-Kai-Voss-Portfolio-Agency-Website
-   - Key Takeaways: Minimalist brutalism, stark typography, massive negative space balance, and monolithic structural divisions.
-3. **Arc Raiders Sci-Fi Brutalist Landing Page (Dribbble):**
-   - Reference: https://dribbble.com/shots/27299185-Arc-Raiders-Sci-Fi-Brutalist-Landing-Page
-   - Key Takeaways: Weathered industrial sci-fi, hazard indicators, tactile switch hardware, metallic chassis tones with vibrant signal orange highlights.
-4. **Sci-Fi Gaming Landing Page Concept (Dribbble):**
-   - Reference: https://dribbble.com/shots/27299149-Sci-Fi-Gaming-Landing-Page-Concept
-   - Key Takeaways: Cosmic horror atmosphere, dark void immersion, stark high-contrast typography, and deep-space singularity framing.
+### Studied Alternative H: The Hi-Fi Tape Transport Deck (Linear Cassette Rack)
+- Horizontal tape transport deck styling with mechanical push-down play/eject keys and analog VU needle meters.
+- *Evaluation:* High tactile delight, but too literal of an audio cassette metaphor for a general sci-fi companion. Elements of its button materiality were adapted into the TacticalActionButton primitive.
 
 ---
 
-## 10. Document References
+## 9. Document References
 
+- [Open Points & Roadmap Register](./open_points.md) - Project roadmap and open points register
 - [01-sdd-overview.md](./01-sdd-overview.md) - System Design Document: Overview
 - [02-sdd-database.md](./02-sdd-database.md) - System Design Document: Database Architecture
 - [03-sdd-backend.md](./03-sdd-backend.md) - System Design Document: Backend Architecture
-- [open_points.md](./open_points.md) - Open Points & Decision Log
+- [studied_designs.md](./studied_designs.md) - Studied Designs, Comparative Research & Visual Archives
+

@@ -66,7 +66,7 @@ class _D6DiePainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
 
     final innerLinePaint = Paint()
-      ..color = color.withValues(alpha: 0.85)
+      ..color = color
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.1
       ..strokeCap = StrokeCap.round;

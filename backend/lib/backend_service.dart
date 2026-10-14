@@ -1,4 +1,3 @@
-import 'dependency_injection/service_locator.dart';
 import 'services/auth_service.dart';
 import 'services/profile_service.dart';
 
@@ -9,8 +8,7 @@ class BackendService {
   final ProfileService profile;
 
   BackendService({
-    AuthService? authService,
-    ProfileService? profileService,
-  })  : auth = authService ?? serviceLocator<AuthService>(),
-        profile = profileService ?? serviceLocator<ProfileService>();
+    required this.auth,
+    required this.profile,
+  });
 }

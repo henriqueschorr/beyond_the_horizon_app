@@ -47,13 +47,6 @@ class _MobileTelemetryWarningView extends StatelessWidget {
                 color: AppColors.darkBgSurface,
                 borderRadius: BorderRadius.circular(6.0),
                 border: Border.all(color: AppColors.accentOrange, width: 1.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.accentOrange.withValues(alpha: 0.15),
-                    blurRadius: 16.0,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,

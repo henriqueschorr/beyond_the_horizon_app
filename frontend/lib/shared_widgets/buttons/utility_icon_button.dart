@@ -68,15 +68,6 @@ class _UtilityIconButtonState extends State<UtilityIconButton> {
                 color: AppColors.darkBgSurface,
                 borderRadius: BorderRadius.circular(6.0),
                 border: Border.all(color: borderColor, width: 1.0),
-                boxShadow: _isHovered && isEnabled
-                    ? [
-                        BoxShadow(
-                          color: AppColors.accentOrange.withValues(alpha: 0.20),
-                          blurRadius: 8.0,
-                          offset: const Offset(0, 1),
-                        )
-                      ]
-                    : null,
               ),
               child: GrainSurface(
                 tintColor: _isHovered ? AppColors.accentOrange : null,

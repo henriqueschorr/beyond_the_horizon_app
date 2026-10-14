@@ -5,8 +5,8 @@
 - **Project:** Beyond the Horizon - Digital Companion & Rules Platform ("Beyond the Horizon App")
 - **Author:** Henrique Schorr
 - **Status:** Active
-- **Version:** 0.2.0
-- **Last Updated:** 2026-10-11
+- **Version:** 0.3.0
+- **Last Updated:** 2026-10-14
 
 ---
 
@@ -23,7 +23,7 @@ In production, to satisfy the strict $0.00/month zero-cost requirement without s
 3. **Frictionless Zero-Login Access:** Public rules compendium browsing, chapter searching, and Markdown content delivery are completely open to unauthenticated visitors without requiring registration or login.
 4. **App Settings Localized Boundary:** Application display and audio settings (OP-09) are client-side local preferences managed directly by the frontend UserLocalStorageService in browser local storage, requiring zero backend database tables, endpoints, or network overhead.
 5. **Decoupled Repositories Architecture:** Data access is strictly decoupled by domain into focused repository contracts (AuthRepository, ProfileRepository, DocumentationRepository, DocumentationStorageRepository). Domain services depend strictly on these abstract interfaces.
-6. **Mock-First Architecture for Phase 1:** During Phase 1 development, the application operates against comprehensive in-memory Mock Repositories pre-seeded with realistic operative dossiers and localized Portuguese (pt-BR) core rulebook chapters. This allows instant offline-first development with zero cloud credentials, while preserving abstract contracts for seamless future cloud integration.
+6. **Mock-First Architecture for Phase 1:** During Phase 1 development, the application operates against in-memory Mock Repositories pre-seeded with initial development data. This allows instant offline-first development with zero cloud credentials, while preserving abstract contracts for seamless future cloud integration.
 7. **Strict Request/Response DTO Suffixing:** All wire contracts in shared/ explicitly declare their role via RequestDto or ResponseDto suffixes, ensuring absolute clarity and preventing ambiguous data transfer models.
 8. **Security & OWASP Top 10 Compliance:** Enforces character boundary validation, input sanitization, role modification guards, timing-safe comparison, sanitized error masking, and storage path traversal defense across all layers.
 
@@ -35,8 +35,8 @@ In production, to satisfy the strict $0.00/month zero-cost requirement without s
 | :--- | :--- | :--- |
 | **Language & Runtime** | Dart (latest stable SDK) | High-performance, AOT/JIT compiled, shared strongly-typed models with Flutter frontend. |
 | **HTTP Pipeline** | shelf & shelf_router | Official, minimalist Dart ecosystem standard for HTTP routing and middleware. Zero unnecessary magic. |
-| **Dependency Injection** | get_it Service Locator | Centralized, pure Dart service locator for repositories, domain services, and route controllers with injectable constructor fallback standard. |
-| **Data Repositories** | Decoupled Abstract Contracts & Mock Repositories | Resource segregation, zero God-objects, offline-first development with realistic in-memory seeds. |
+| **Dependency Injection** | get_it Service Locator | Centralized service locator for pure dependency injection. Stateless services and repositories are strictly resolved via the locator and wired with constructor injection. |
+| **Data Repositories** | Decoupled Abstract Contracts & Mock Repositories | Resource segregation, zero God-objects, offline-first development with in-memory development seeds. |
 | **JSON Serialization** | Handcrafted pure Dart toMap() / fromMap() | Avoids slow build runners, heavy code generation, and complex build scripts. |
 | **Identifiers** | uuid package | RFC4122 compliant UUIDv4 generation for entities, sessions, and records. |
 | **Cryptography** | crypto package | Standard SHA-256 and HMAC cryptographic hashing for tokens and security validations. |
@@ -118,37 +118,30 @@ Defines raw Markdown chapter retrieval and asset URL generation:
 
 ### 4.2 Mock Repositories & In-Memory Seed Data Strategy
 
-In accordance with Phase 1 design, all repositories are implemented as in-memory Mock Repositories:
+In accordance with Phase 1 design, all repositories are implemented as in-memory Mock Repositories pre-seeded with development test data:
 
 1. **MockAuthRepository & MockProfileRepository:**
    - Stores accounts and profiles in thread-safe in-memory maps.
-   - Pre-seeded with a default active operative account:
-     - User ID: 00000000-0000-4000-8000-000000000001
-     - Email: operative.vance@beyondthehorizon.space
-     - Display Name: Vance "Specter"
-     - Role: UserRole.player
+   - Pre-seeded with development test user data to enable immediate testing of authenticated workflows.
    - Simulates token generation with cryptographically secure random session tokens.
-   - Supports runtime registration, signin, signout, and profile updates during local app execution.
+   - Supports runtime registration, signin, signout, and profile updates during local execution.
 
 2. **MockDocumentationRepository & MockDocumentationStorageRepository:**
-   - Pre-seeded with canonical Beyond the Horizon compendium chapters in Portuguese (pt-BR), matching the game design repository:
-     - **Regras Centrais:** Sistema de Resolução (resolucao), Fluxo de Combate (combate), Dano e Ferimentos (dano-ferimentos), Descanso e Sobrevivência (descanso).
-     - **Personagens Jogáveis:** Espécies: Evoraz (evoraz), Korth (korth); Origens (origens); Atributos e Testes (atributos).
-     - **Equipamento:** Armas de Fogo e Balística (armas-balisticas), Armas Brancas e Defesas (armas-brancas), Trajes e Blindagens (trajes).
-     - **Ambientação:** Linha do Tempo da Expansão (linha-do-tempo), Corporações e Megagrupos (corporacoes).
-   - Generates pre-grouped category structures (DocumentationCategoryGroupResponseDto) and collapsible sidebar trees (DocumentationNavigationNodeResponseDto) directly from seed collections.
-   - MockDocumentationStorageRepository delivers rich, atmospheric Markdown chapters formatted with headings, tables, block callouts, and keyword tags.
+   - Pre-seeded with initial compendium content and Markdown pages across supported categories.
+   - Generates pre-grouped category structures (DocumentationCategoryGroupResponseDto) and collapsible sidebar trees (DocumentationNavigationNodeResponseDto) directly from in-memory collections.
+   - Delivers structured Markdown chapters formatted with headings, tables, block callouts, and keyword tags for offline-first development.
 
 ---
 
-### 4.3 Centralized Service Locator & Constructor Injection Fallback
+### 4.3 Centralized Dependency Injection & Service Locator Architecture
 
 Dependency injection is managed centrally via get_it in backend/lib/dependency_injection/service_locator.dart:
 
-1. **Repository Registration:** Binds abstract repository interfaces to their mock implementations.
-2. **Domain Service Registration:** Binds business services as lazy singletons with their repository dependencies injected.
-3. **Route Handler Registration:** Binds route controller classes as lazy singletons with their respective services injected.
-4. **Constructor Fallback Standard:** All domain services and route controllers retain public constructor parameters with fallback defaults to serviceLocator[T]():
+1. **Strict Dependency Injection Lifecycle:** Every object that does not hold client state (domain services, repositories, route controllers) MUST be registered in and resolved through the service locator (serviceLocator[T]()) or accessed via the BackendService facade. Direct constructor instantiation in application code is strictly prohibited.
+2. **Repository Registration:** Binds abstract repository interfaces to their concrete implementations (mock repositories in Phase 1, cloud repositories in production).
+3. **Domain Service Registration:** Binds business services as lazy singletons, passing their required repository dependencies via constructor injection.
+4. **Route Handler Registration:** Binds standalone route controllers as lazy singletons, injecting their required domain services.
+5. **Pure Constructor Injection Pattern:** Domain services and controllers declare explicit, required constructor parameters for their dependencies. They do not reference serviceLocator internally, ensuring pure testability where unit tests can supply mock dependencies directly without service locator entanglement:
 
 ```dart
 class DocumentationService {
@@ -156,83 +149,108 @@ class DocumentationService {
   final DocumentationStorageService _documentationStorageService;
 
   DocumentationService({
-    DocumentationRepository? documentationRepository,
-    DocumentationStorageService? documentationStorageService,
-  })  : _documentationRepository = documentationRepository ?? serviceLocator<DocumentationRepository>(),
-        _documentationStorageService = documentationStorageService ?? serviceLocator<DocumentationStorageService>();
+    required DocumentationRepository documentationRepository,
+    required DocumentationStorageService documentationStorageService,
+  })  : _documentationRepository = documentationRepository,
+        _documentationStorageService = documentationStorageService;
 }
 ```
-
-This guarantees that unit tests remain 100% decoupled and can inject mocks directly without initializing the global service locator container.
 
 ---
 
 ## 5. Component Structure
 
-```tree
+The backend architecture is organized into six discrete, decoupled layers with strict unidirectional boundaries:
+
+```mermaid
+graph TD
+    Client["Flutter Web Frontend Client"] -->|"In-Process Invocations"| Facade["Unified Facade Layer (BackendService)"]
+    HttpConsumer["HTTP Clients / CI Automated Tests"] -->|"REST Requests"| Shelf["Shelf HTTP Pipeline (bin/server.dart)"]
+
+    subgraph BackendArchitecture ["Backend Domain Architecture"]
+        Shelf --> Middlewares["Middleware Pipeline (CORS, RateLimiter, ErrorHandler, Auth)"]
+        Middlewares --> Routes["Route Controllers (AuthRoutes, ProfileRoutes, DocumentationRoutes)"]
+        
+        Facade --> Services["Domain Services Layer (AuthService, ProfileService, DocumentationService)"]
+        Routes --> Services
+
+        Services --> Repos["Abstract Repository Contracts (AuthRepository, ProfileRepository, ...)"]
+        
+        Repos --> Mocks["In-Memory Mock Implementations (Phase 1 Development Seeds)"]
+        Repos -.-> Prod["Production Supabase / PostgreSQL Repositories (Phase 2+)"]
+
+        DI["Service Locator (GetIt in service_locator.dart)"] -.->|"Wires & Resolves Singletons"| Services
+        DI -.->|"Wires & Resolves Singletons"| Repos
+        DI -.->|"Wires & Resolves Singletons"| Facade
+    end
+
+    subgraph SharedPackage ["shared/ Package (Pure Dart Wire Contracts)"]
+        Services -.->|"Consumes & Returns"| DTOs["Immutable DTOs (*RequestDto, *ResponseDto)"]
+        Services -.->|"Utilizes"| Enums["Domain Enums (UserRole, DocumentationCategory, ...)"]
+    end
+```
+
+### 5.1 Layer Responsibilities
+
+1. **Unified Facade Layer (backend_service.dart):**
+   - The primary integration boundary for the Flutter Web client during in-process execution.
+   - Aggregates domain services into categorized namespaces (auth, profile, compendium).
+   - Guarantees zero-latency in-process class.method() execution with shared DTO wire contracts and zero HTTP overhead.
+
+2. **Domain Services Layer (lib/services/):**
+   - Coordinates business logic workflows, input sanitization, and security policies (e.g., privilege escalation guards).
+   - Completely stateless and pure: all dependencies are supplied via required constructor parameters.
+   - Assembles and returns typed shared DTOs (*ResponseDto).
+
+3. **Data Access & Repositories Layer (lib/repositories/):**
+   - Defines abstract repository interfaces isolating domain services from persistence infrastructure.
+   - In Phase 1, backed by lib/repositories/mock/ in-memory thread-safe maps pre-seeded with development test data.
+   - In Phase 2+, backed by Supabase PostgreSQL, Supabase Auth, and Supabase Storage without requiring modifications to domain services.
+
+4. **Standalone HTTP Pipeline & Middleware Layer (bin/server.dart, lib/routes/, lib/middleware/):**
+   - Shelf HTTP pipeline mounting dedicated route controllers (AuthRoutes, ProfileRoutes, DocumentationRoutes) backed by the same domain services.
+   - Provides REST endpoints for automated integration testing, CLI tooling, and external consumers.
+   - Protected by composable middleware: corsMiddleware, errorHandlerMiddleware, authMiddleware, and rateLimiterMiddleware.
+
+5. **Centralized Dependency Injection Layer (lib/dependency_injection/):**
+   - Configures the GetIt service locator in service_locator.dart.
+   - Acts as the sole authority for instantiating and wiring stateless services, repositories, and facades.
+   - Eliminates inline constructor instantiation across application code.
+
+6. **Shared Wire Contracts (shared/):**
+   - Independent pure Dart package shared between frontend and backend.
+   - Contains immutable request/response DTOs (*RequestDto, *ResponseDto) and domain enums with handcrafted JSON serialization.
+
+### 5.2 Package Directory Organization
+
+```
 beyond_the_horizon_app/
-├── shared/
+├── shared/                                 # Pure Dart wire contracts & domain models
 │   ├── lib/
-│   │   ├── enums/
-│   │   │   ├── documentation_category.dart
-│   │   │   ├── documentation_layout.dart
-│   │   │   └── user_role.dart
-│   │   ├── models/
-│   │   │   ├── auth/
-│   │   │   │   ├── auth_response_dto.dart
-│   │   │   │   ├── auth_session_response_dto.dart
-│   │   │   │   ├── password_reset_request_dto.dart
-│   │   │   │   ├── sign_in_request_dto.dart
-│   │   │   │   └── sign_up_request_dto.dart
-│   │   │   ├── documentation/
-│   │   │   │   ├── documentation_category_group_response_dto.dart
-│   │   │   │   ├── documentation_navigation_node_response_dto.dart
-│   │   │   │   ├── documentation_page_detail_response_dto.dart
-│   │   │   │   └── documentation_page_summary_response_dto.dart
-│   │   │   └── profiles/
-│   │   │       ├── update_profile_request_dto.dart
-│   │   │       └── user_profile_response_dto.dart
-│   │   └── shared.dart
+│   │   ├── enums/                          # Domain enumerations (UserRole, DocumentationCategory, ...)
+│   │   ├── models/                         # Request & Response DTOs
+│   │   │   ├── auth/                       # Sign in, sign up, password recovery DTOs
+│   │   │   ├── documentation/              # Compendium pages, categories, tree DTOs
+│   │   │   └── profiles/                   # User profile and update DTOs
+│   │   └── shared.dart                     # Main shared export barrel
 │   └── pubspec.yaml
-└── backend/
+└── backend/                                # In-process domain logic & Shelf HTTP server
     ├── bin/
-    │   └── server.dart
+    │   └── server.dart                     # Standalone Shelf HTTP server entry point
     ├── lib/
-    │   ├── backend.dart
-    │   ├── config/
-    │   │   └── server_config.dart
-    │   ├── dependency_injection/
+    │   ├── backend.dart                    # Main backend package exports
+    │   ├── backend_service.dart            # Unified facade for in-process frontend execution
+    │   ├── config/                         # Server environment and runtime configuration
+    │   ├── dependency_injection/           # GetIt service locator setup & wiring
     │   │   └── service_locator.dart
-    │   ├── domain/
+    │   ├── domain/                         # Database-backed entities
     │   │   └── entities/
-    │   │       ├── documentation_page.dart
-    │   │       ├── documentation_page_translation.dart
-    │   │       ├── documentation_page_view_item.dart
-    │   │       └── user_profile.dart
-    │   ├── middleware/
-    │   │   ├── auth_middleware.dart
-    │   │   ├── cors_middleware.dart
-    │   │   ├── error_handler_middleware.dart
-    │   │   └── rate_limiter_middleware.dart
-    │   ├── repositories/
-    │   │   ├── auth_repository.dart
-    │   │   ├── documentation_repository.dart
-    │   │   ├── documentation_storage_repository.dart
-    │   │   ├── profile_repository.dart
-    │   │   └── mock/
-    │   │       ├── mock_auth_repository.dart
-    │   │       ├── mock_documentation_repository.dart
-    │   │       ├── mock_documentation_storage_repository.dart
-    │   │       └── mock_profile_repository.dart
-    │   ├── routes/
-    │   │   ├── auth_routes.dart
-    │   │   ├── documentation_routes.dart
-    │   │   └── profile_routes.dart
-    │   └── services/
-    │       ├── auth_service.dart
-    │       ├── documentation_service.dart
-    │       ├── documentation_storage_service.dart
-    │       └── profile_service.dart
+    │   ├── exceptions/                     # Strongly-typed machine-readable domain exceptions
+    │   ├── middleware/                     # Shelf HTTP middlewares (auth, cors, error, rate limit)
+    │   ├── repositories/                   # Abstract repository interfaces
+    │   │   └── mock/                       # In-memory mock repositories with test seed data
+    │   ├── routes/                         # Standalone HTTP route controllers
+    │   └── services/                       # Stateless domain services with pure constructor injection
     └── pubspec.yaml
 ```
 
@@ -253,21 +271,12 @@ Matches the public.user_role PostgreSQL enum:
 
 #### 2. DocumentationCategory
 Matches the public.documentation_category PostgreSQL enum:
-- **presentation:** Vision, design pillars, setting introduction.
-- **coreRules:** Core resolution, step-dice, combat flow, damage, rest, death.
-- **playableCharacters:** Species profiles, origins, attributes, progression.
-- **equipment:** Weapons, armor, suits, consumable gear.
-- **companions:** Allies, symbionts, bio-drones, beasts.
-- **worldbuilding:** Universe setting, corporations, factions, timeline.
+- presentation, coreRules, playableCharacters, equipment, companions, worldbuilding.
 - Serialization methods: fromDbString(String value), toDbString(), and localized display names.
 
 #### 3. DocumentationLayout
 Matches the public.documentation_layout PostgreSQL enum:
-- **documentation:** Standard article reading view with table of contents.
-- **species:** Species profile dossier layout.
-- **origin:** Character origin provenance layout.
-- **path:** Tactical progression and career path layout.
-- **abilities:** Action and ability cards catalog.
+- documentation, species, origin, path, abilities.
 - Serialization methods: fromDbString(String value) and toDbString().
 
 ---
@@ -330,29 +339,7 @@ For testing, CLI automation, and standalone execution, the backend provides a Sh
 
 ### 8.1 API Endpoints Specification
 
-#### 8.1.1 Public Zero-Login Compendium Endpoints
-
-1. **List Compendium Pages**
-   - **GET /api/compendium/pages**
-   - Query Parameters: locale (default: pt-BR), category (optional).
-   - Response: 200 OK with JSON array of DocumentationPageSummaryResponseDto.
-
-2. **Get Compendium Page by Slug**
-   - **GET /api/compendium/pages/{slug}**
-   - Query Parameters: locale (default: pt-BR).
-   - Response: 200 OK with DocumentationPageDetailResponseDto, or 404 Not Found.
-
-3. **Get Compendium Category Groups (Hub View)**
-   - **GET /api/compendium/categories**
-   - Query Parameters: locale (default: pt-BR).
-   - Response: 200 OK with JSON array of DocumentationCategoryGroupResponseDto.
-
-4. **Get Compendium Navigation Tree (Sidebar View)**
-   - **GET /api/compendium/tree**
-   - Query Parameters: locale (default: pt-BR).
-   - Response: 200 OK with JSON array of DocumentationNavigationNodeResponseDto.
-
-#### 8.1.2 Authentication Endpoints
+#### 8.1.1 Authentication Endpoints
 
 1. **Operative Registration**
    - **POST /api/auth/signup**
@@ -379,7 +366,7 @@ For testing, CLI automation, and standalone execution, the backend provides a Sh
    - Headers: Authorization: Bearer [sessionToken]
    - Response: 200 OK with AuthSessionResponseDto.
 
-#### 8.1.3 Profile Endpoints (Authenticated)
+#### 8.1.2 Profile Endpoints (Authenticated)
 
 1. **Get Current Operative Profile**
    - **GET /api/profiles/me**
@@ -396,6 +383,28 @@ For testing, CLI automation, and standalone execution, the backend provides a Sh
    - **GET /api/profiles/{id}**
    - Headers: Authorization: Bearer [sessionToken]
    - Response: 200 OK with UserProfileResponseDto, or 404 Not Found.
+
+#### 8.1.3 Public Zero-Login Compendium Endpoints
+
+1. **List Compendium Pages**
+   - **GET /api/compendium/pages**
+   - Query Parameters: locale (default: pt-BR), category (optional).
+   - Response: 200 OK with JSON array of DocumentationPageSummaryResponseDto.
+
+2. **Get Compendium Page by Slug**
+   - **GET /api/compendium/pages/{slug}**
+   - Query Parameters: locale (default: pt-BR).
+   - Response: 200 OK with DocumentationPageDetailResponseDto, or 404 Not Found.
+
+3. **Get Compendium Category Groups (Hub View)**
+   - **GET /api/compendium/categories**
+   - Query Parameters: locale (default: pt-BR).
+   - Response: 200 OK with JSON array of DocumentationCategoryGroupResponseDto.
+
+4. **Get Compendium Navigation Tree (Sidebar View)**
+   - **GET /api/compendium/tree**
+   - Query Parameters: locale (default: pt-BR).
+   - Response: 200 OK with JSON array of DocumentationNavigationNodeResponseDto.
 
 ---
 
@@ -476,11 +485,9 @@ The backend architecture enforces the following security standards:
 
 ## 11. Document References
 
+- [Open Points & Roadmap Register](./open_points.md) - Project roadmap and open points register
 - [01-sdd-overview.md](./01-sdd-overview.md) - System Design Document: Overview & Vision
 - [02-sdd-database.md](./02-sdd-database.md) - System Design Document: Database Architecture
 - [04-sdd-frontend.md](./04-sdd-frontend.md) - System Design Document: Frontend Architecture
-- [open_points.md](./open_points.md) - Open Points & Roadmap Register (OP-01 & OP-03)
 - [compendium_keywords_plan.md](./compendium_keywords_plan.md) - Master Keyword Overlay Engine Plan (OP-03A)
 - [markdown_presentation_reference.md](./markdown_presentation_reference.md) - Markdown Presentation Engine & Layout Reference (OP-03B)
-- [20261010000001_create_profiles_table.sql](../supabase/migrations/20261010000001_create_profiles_table.sql) - Migration 1: User Profiles & Role Enum
-- [20261010000002_create_documentation_pages.sql](../supabase/migrations/20261010000002_create_documentation_pages.sql) - Migration 2: Documentation Pages & Storage Catalog

@@ -94,4 +94,4 @@ The goal of Phase 3 is to elevate the platform with specialized tactical depth, 
 - **In-Process Backend Services:** [03-sdd-backend.md](./03-sdd-backend.md)
 - **Frontend Architecture & Design Tokens:** [04-sdd-frontend.md](./04-sdd-frontend.md)
 - **Remedy Aesthetic Study (*Control* & *Alan Wake*):** [remedy_design_reference.md](./references/remedy_design_reference.md)
-- **Industrial Sci-Fi Comparative Report:** [shared_design_trends_comparative_report.md](./references/shared_design_trends_comparative_report.md)
+- **Studied Designs & Comparative Research Archive:** [studied_designs.md](./studied_designs.md)

@@ -140,7 +140,7 @@ class _TriptychCardState extends State<_TriptychCard> {
 
     final borderColor = _isHovered
         ? AppColors.accentOrange
-        : (widget.isEnabled ? AppColors.darkBorderSubtle : AppColors.darkBorderSubtle.withAlpha(80));
+        : (widget.isEnabled ? AppColors.darkBorderSubtle : AppColors.darkBorderSubtle);
 
     final cardBgColor = _isHovered
         ? AppColors.darkBgSurfaceElevated
@@ -168,21 +168,6 @@ class _TriptychCardState extends State<_TriptychCard> {
               color: borderColor,
               width: _isHovered ? 1.5 : 1.0,
             ),
-            boxShadow: _isHovered
-                ? [
-                    BoxShadow(
-                      color: AppColors.accentOrange.withAlpha(45),
-                      blurRadius: 18.0,
-                      spreadRadius: 2.0,
-                    ),
-                  ]
-                : [
-                    BoxShadow(
-                      color: Colors.black.withAlpha(90),
-                      blurRadius: 10.0,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(9.0),
@@ -282,13 +267,13 @@ class _CarvedIconBay extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         border: Border.all(
           color: isHovered
-              ? AppColors.accentOrange.withAlpha(180)
+              ? AppColors.accentOrange
               : AppColors.darkBorderSubtle,
           width: 1.0,
         ),
         boxShadow: const [
           BoxShadow(
-            color: Color(0xFF030304),
+            color: AppColors.darkBgWell,
             blurRadius: 8.0,
             spreadRadius: -2.0,
             offset: Offset(0, 3),
@@ -324,7 +309,7 @@ class _RockerSwitchLamp extends StatelessWidget {
     const double lampWidth = 26.0;
     const double lampHeight = 9.0;
 
-    final lampColor = isActive ? AppColors.accentOrange : const Color(0xFF444D5A);
+    final lampColor = isActive ? AppColors.accentOrange : AppColors.darkBorderProminent;
 
     return Container(
       width: lampWidth,
@@ -332,15 +317,6 @@ class _RockerSwitchLamp extends StatelessWidget {
       decoration: BoxDecoration(
         color: lampColor,
         borderRadius: BorderRadius.circular(4.5),
-        boxShadow: isActive
-            ? [
-                BoxShadow(
-                  color: AppColors.accentOrange.withAlpha(190),
-                  blurRadius: 8.0,
-                  spreadRadius: 1.5,
-                ),
-              ]
-            : null,
       ),
     );
   }
