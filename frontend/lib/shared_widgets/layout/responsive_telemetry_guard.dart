@@ -61,7 +61,7 @@ class _MobileTelemetryWarningView extends StatelessWidget {
                       ),
                       const SizedBox(width: 12.0),
                       Expanded(
-                        child: TacticalLabelHighlightedText(
+                        child: FieldLabelHighlightedText(
                           l10n.telemetry.resolutionTitle,
                         ),
                       ),

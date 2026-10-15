@@ -92,13 +92,13 @@ class AppLocalizations {
         'registrationSubmitAction': 'CONCLUIR REGISTRO',
 
         // --- LANDING ---
-        'landingCompendiumTooltip': 'Compêndio // Livro de Regras',
+        'landingCompendiumTooltip': 'Códice // Livro de Regras',
         'landingSettingsTooltip': 'Configurações',
 
         // --- DASHBOARD ---
         'featurePlayCharacterTitle': 'JOGAR COM PERSONAGEM',
         'featureCreateCharacterTitle': 'CRIAR PERSONAGEM',
-        'featureCompendiumTitle': 'COMPÊNDIO',
+        'featureCompendiumTitle': 'CÓDICE',
         'featureSettingsTitle': 'CONFIGURAÇÕES',
         'featureSignOutTitle': 'SAIR',
         'featureSignOutSessionAction': 'ENCERRAR SESSÃO // SAIR',
@@ -165,13 +165,13 @@ class AppLocalizations {
       'registrationSubmitAction': 'COMPLETE REGISTRATION',
 
       // --- LANDING ---
-      'landingCompendiumTooltip': 'Compendium // Rulebook',
+      'landingCompendiumTooltip': 'Codex // Rulebook',
       'landingSettingsTooltip': 'Settings',
 
       // --- DASHBOARD ---
       'featurePlayCharacterTitle': 'PLAY WITH CHARACTER',
       'featureCreateCharacterTitle': 'CREATE CHARACTER',
-      'featureCompendiumTitle': 'COMPENDIUM',
+      'featureCompendiumTitle': 'CODEX',
       'featureSettingsTitle': 'SETTINGS',
       'featureSignOutTitle': 'SIGN OUT',
       'featureSignOutSessionAction': 'SIGN OUT // TERMINATE SESSION',
@@ -349,6 +349,7 @@ class LandingL10n {
   final AppLocalizations _l10n;
   LandingL10n(this._l10n);
 
+  String get codexTooltip => _l10n.landingCompendiumTooltip;
   String get compendiumTooltip => _l10n.landingCompendiumTooltip;
   String get settingsTooltip => _l10n.landingSettingsTooltip;
 }
@@ -357,6 +358,7 @@ class HomeL10n {
   final AppLocalizations _l10n;
   HomeL10n(this._l10n);
 
+  String get codexTooltip => _l10n.landingCompendiumTooltip;
   String get compendiumTooltip => _l10n.landingCompendiumTooltip;
   String get settingsTooltip => _l10n.landingSettingsTooltip;
 }
@@ -368,6 +370,7 @@ class DashboardL10n {
   String welcome(String name) => _l10n.dashboardWelcome(name);
   String get playCharacterTitle => _l10n.featurePlayCharacterTitle;
   String get createCharacterTitle => _l10n.featureCreateCharacterTitle;
+  String get codexTitle => _l10n.featureCompendiumTitle;
   String get compendiumTitle => _l10n.featureCompendiumTitle;
   String get settingsTitle => _l10n.featureSettingsTitle;
   String get signOutTitle => _l10n.featureSignOutTitle;

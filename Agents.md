@@ -74,9 +74,10 @@ When the user explicitly instructs you to commit:
 
 ---
 
-## 5. Communication
+## 5. Communication & Documentation Language
 
 - **English Only**: Always communicate with the user in English.
+- **Strict English-Only Policy for Documentation & Artifacts**: All documentation, Software Design Documents (SDDs in `design/`), architecture notes, specifications, diagrams, roadmaps, task lists, and artifacts must be written strictly and exclusively in English.
 
 ---
 
@@ -155,6 +156,12 @@ When the user explicitly instructs you to commit:
   - All text must use dedicated semantic text widgets defined in the design system (e.g., `TitleText`, `BodyText`) rather than raw `Text(...)`.
   - **No ad-hoc sizing in text widgets**: Font sizes, weights, and letter spacing MUST come strictly from predefined styles. Widgets do not take arbitrary `fontSize`, `letterSpacing`, or `color` overrides.
   - **Highlight/Accent Texts**: For text that reflects or reacts to active theme/accent colors, use dedicated highlighted text widgets or primitives provided by the design system rather than wrapping widgets in local listeners or copying styles manually.
+- **Universal Button Action Typography Rule**:
+  - Every interactive button, actuator, clickable control, or menu action that the user can click MUST strictly use an Action typography token (`actionLabel*`, `navAnchor*`) and its corresponding semantic text widget.
+  - **Prohibited in clickable elements:** Using non-action tokens (such as `fieldLabel`, `legend`, `body`, or `sectionTitle`) inside interactive buttons, actuators, or clickable choices.
+- **Strict Prohibition of `.copyWith(...)` on Typography Tokens in UI Code**:
+  - Never call `.copyWith(...)` to override font size, color, letter spacing, or weight on `AppTypography` tokens in feature or shared UI code.
+  - If a specific state, color, or role is needed (such as `fieldLabelMuted` for placeholder hints, or `fieldInput` for typed form values), a dedicated style token and semantic widget must be explicitly declared in the design system.
 - **Strict Color Token Immutability (Prohibited: `withAlpha`, `withOpacity`, `withValues`, `Color.alphaBlend`)**:
   - The color palette defined in `AppColors` must be used strictly as-is across all application widgets, containers, borders, icons, and text.
   - **Prohibited in UI code:** Calling `.withAlpha(...)`, `.withOpacity(...)`, `.withValues(...)`, `Color.alphaBlend(...)`, or any programmatic runtime opacity/alpha modification on `AppColors` tokens.
@@ -197,6 +204,15 @@ When the user explicitly instructs you to commit:
 
 - **Mandatory SDD Synchronization**:
   - Always keep the Software Design Documents (located in the `design/` directory, including `01-sdd-overview.md`, `02-sdd-database.md`, `03-sdd-backend.md`, `04-sdd-frontend.md`, etc.) synchronized and updated whenever introducing architectural changes, renaming services, modifying data models, or altering system behavior.
+- **SDD Overview Scope Boundary (No UI Presentation Details in SDD 01)**:
+  - The Overview SDD (`01-sdd-overview.md`) is strictly high-level, architectural, and capability-focused.
+  - Never include UI presentation details, font tokens, CSS/styling rules, layout geometry, or specific micro-interactions (e.g., brand mark letter alignments, hover arrows, button colors, corner bracket glyphs) in `01-sdd-overview.md`.
+  - All visual design, layout composition, typography tokens, and interaction details belong exclusively in the Frontend SDD (`04-sdd-frontend.md`).
+- **Strict Prohibition of Non-English (pt-BR) Text in SDDs & Documentation**:
+  - All Software Design Documents (SDDs), architecture notes, specifications, roadmaps, and technical documentation must be written strictly and exclusively in English.
+  - Natural language Portuguese (pt-BR) text, UI labels, button names, section headers, and descriptions (e.g., prohibited in SDDs: `Códice`, `Configurações`, `[ JOGAR COM PERSONAGEM ]`, `[ SAIR ]`, `[ ENTRAR ]`, `Bem Vindo`, `Módulo em Construção`) are strictly prohibited in SDDs and documentation prose.
+  - Always use standard English terms (such as `Codex`, `Settings`, `[ PLAY WITH CHARACTER ]`, `[ CREATE CHARACTER ]`, `[ CODEX ]`, `[ SETTINGS ]`, `[ ⏻ SIGN OUT ]`, `Welcome, [Callsign]`) when specifying user interface components, buttons, menus, and layouts in SDDs.
+  - The ONLY context where `pt-BR` or other language codes may appear in documentation is when explicitly referencing localization files (e.g., `app_pt.arb`), documenting multi-language support (l10n architecture), or specifying database/API locale seed data parameters (e.g., `locale: 'pt-BR'`).
 
 ---
 

@@ -7,8 +7,8 @@
 ## 1. Architectural Philosophy: All Overlays are Keywords
 
 When users hover over any term across character sheets, equipment cards, rules pages, or audit feeds:
-- High-level concepts (*Condição*, *Habilidade de Arma*, *Dano*, *Terror*, *Vantagem*) are keywords.
-- Concrete instances (*Vulnerável*, *Estressar*, *Ácido*, *Fratura Estrutural*, *Corpo*) are keywords linked to their parent concept via parent_slug.
+- High-level concepts (*Condition*, *Weapon Skill*, *Damage*, *Dread*, *Advantage*) are keywords.
+- Concrete instances (*Vulnerable*, *Stress*, *Acid*, *Structural Fracture*, *Body*) are keywords linked to their parent concept via parent_slug.
 - Inflections and grammatical variations are captured in an aliases TEXT array.
 - The client caches the lightweight dictionary once on startup (~150 items, ~30 KB), enabling instant **0 ms hover resolution** without database round-trips.
 
@@ -86,5 +86,5 @@ CREATE TRIGGER on_compendium_keywords_updated
 2. **Backend**: KeywordService returns typed List[CompendiumKeywordDto] on startup.
 3. **Frontend In-Memory Registry**: KeywordRegistry indexes all entries by slug and normalized aliases into an in-memory map.
 4. **Interactive Hover**:
-   - KeywordTooltip with target slug (e.g. vulneravel).
-   - Displays keyword name, parent tag ([CONDIÇÃO]), description, and optional link to documentation page with 0 ms latency.
+   - KeywordTooltip with target slug (e.g. vulnerable).
+   - Displays keyword name, parent tag ([CONDITION]), description, and optional link to documentation page with 0 ms latency.

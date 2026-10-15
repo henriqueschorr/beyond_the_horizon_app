@@ -110,6 +110,40 @@ class SectionTitleText extends StatelessWidget {
   }
 }
 
+class ActionLabelLargeText extends StatelessWidget {
+  final String text;
+
+  const ActionLabelLargeText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.actionLabelLarge,
+    );
+  }
+}
+
+class ActionLabelLargeInvertedText extends StatelessWidget {
+  final String text;
+
+  const ActionLabelLargeInvertedText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.actionLabelLargeInverted,
+    );
+  }
+}
+
 class ActionLabelText extends StatelessWidget {
   final String text;
 
@@ -123,6 +157,74 @@ class ActionLabelText extends StatelessWidget {
     return Text(
       text,
       style: AppTypography.actionLabel,
+    );
+  }
+}
+
+class ActionLabelHighlightedText extends StatelessWidget {
+  final String text;
+
+  const ActionLabelHighlightedText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.actionLabelHighlighted,
+    );
+  }
+}
+
+class ActionLabelMutedText extends StatelessWidget {
+  final String text;
+
+  const ActionLabelMutedText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.actionLabelMuted,
+    );
+  }
+}
+
+class ActionLabelSmallText extends StatelessWidget {
+  final String text;
+
+  const ActionLabelSmallText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.actionLabelSmall,
+    );
+  }
+}
+
+class ActionLabelSmallHighlightedText extends StatelessWidget {
+  final String text;
+
+  const ActionLabelSmallHighlightedText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.actionLabelSmallHighlighted,
     );
   }
 }
@@ -161,10 +263,10 @@ class NavAnchorHighlightedText extends StatelessWidget {
   }
 }
 
-class TacticalLabelText extends StatelessWidget {
+class FieldLabelText extends StatelessWidget {
   final String text;
 
-  const TacticalLabelText(
+  const FieldLabelText(
     this.text, {
     super.key,
   });
@@ -173,15 +275,15 @@ class TacticalLabelText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: AppTypography.tacticalLabel,
+      style: AppTypography.fieldLabel,
     );
   }
 }
 
-class TacticalLabelHighlightedText extends StatelessWidget {
+class FieldLabelHighlightedText extends StatelessWidget {
   final String text;
 
-  const TacticalLabelHighlightedText(
+  const FieldLabelHighlightedText(
     this.text, {
     super.key,
   });
@@ -190,15 +292,15 @@ class TacticalLabelHighlightedText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: AppTypography.tacticalLabelHighlighted,
+      style: AppTypography.fieldLabelHighlighted,
     );
   }
 }
 
-class TacticalLabelSmallText extends StatelessWidget {
+class FieldLabelMutedText extends StatelessWidget {
   final String text;
 
-  const TacticalLabelSmallText(
+  const FieldLabelMutedText(
     this.text, {
     super.key,
   });
@@ -207,15 +309,15 @@ class TacticalLabelSmallText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: AppTypography.tacticalLabelSmall,
+      style: AppTypography.fieldLabelMuted,
     );
   }
 }
 
-class TacticalLabelSmallHighlightedText extends StatelessWidget {
+class FieldInputText extends StatelessWidget {
   final String text;
 
-  const TacticalLabelSmallHighlightedText(
+  const FieldInputText(
     this.text, {
     super.key,
   });
@@ -224,7 +326,7 @@ class TacticalLabelSmallHighlightedText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: AppTypography.tacticalLabelSmallHighlighted,
+      style: AppTypography.fieldInput,
     );
   }
 }
@@ -268,23 +370,6 @@ class LegendHighlightedText extends StatelessWidget {
   }
 }
 
-class BodyLargeText extends StatelessWidget {
-  final String text;
-
-  const BodyLargeText(
-    this.text, {
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: AppTypography.bodyLarge,
-    );
-  }
-}
-
 class BodyMediumText extends StatelessWidget {
   final String text;
 
@@ -315,23 +400,6 @@ class BodyProseText extends StatelessWidget {
     return Text(
       text,
       style: AppTypography.bodyProse,
-    );
-  }
-}
-
-class BodyProseSmallText extends StatelessWidget {
-  final String text;
-
-  const BodyProseSmallText(
-    this.text, {
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: AppTypography.bodyProseSmall,
     );
   }
 }

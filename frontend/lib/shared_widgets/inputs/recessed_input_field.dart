@@ -74,8 +74,8 @@ class _RecessedInputFieldState extends State<RecessedInputField> {
         Padding(
           padding: const EdgeInsets.only(bottom: 6.0),
           child: _isFocused
-              ? TacticalLabelSmallHighlightedText(widget.label.toUpperCase())
-              : TacticalLabelSmallText(widget.label.toUpperCase()),
+              ? FieldLabelHighlightedText(widget.label.toUpperCase())
+              : FieldLabelText(widget.label.toUpperCase()),
         ),
 
         // Recessed Input Well
@@ -99,17 +99,13 @@ class _RecessedInputFieldState extends State<RecessedInputField> {
                   cursorColor: AppColors.accentOrange,
                   cursorWidth: 3.0,
                   cursorRadius: const Radius.circular(1.0),
-                  style: AppTypography.tacticalLabel.copyWith(
-                    color: AppColors.darkTextPrimary,
-                  ),
+                  style: AppTypography.fieldInput,
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 12.0),
                     border: InputBorder.none,
                     isDense: true,
                     hintText: widget.placeholder,
-                    hintStyle: AppTypography.tacticalLabelSmall.copyWith(
-                      color: AppColors.darkTextMuted,
-                    ),
+                    hintStyle: AppTypography.fieldLabelMuted,
                   ),
                 ),
               ),

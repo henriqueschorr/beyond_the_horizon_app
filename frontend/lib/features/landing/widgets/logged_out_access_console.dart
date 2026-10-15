@@ -12,7 +12,7 @@ class LoggedOutAccessConsole extends StatelessWidget {
   final VoidCallback onSignIn;
   final VoidCallback onOpenRegistration;
   final VoidCallback onOpenSettings;
-  final VoidCallback? onOpenCompendium;
+  final VoidCallback? onOpenCodex;
 
   const LoggedOutAccessConsole({
     super.key,
@@ -20,7 +20,7 @@ class LoggedOutAccessConsole extends StatelessWidget {
     required this.onSignIn,
     required this.onOpenRegistration,
     required this.onOpenSettings,
-    this.onOpenCompendium,
+    this.onOpenCodex,
   });
 
   @override
@@ -46,11 +46,11 @@ class LoggedOutAccessConsole extends StatelessWidget {
                 // Vertical Divider Seam Line (Center)
                 const VerticalSeamDivider(),
 
-                // Logged-Out Menu (Right: Compendium & Settings)
+                // Logged-Out Menu (Right: Codex & Settings)
                 Center(
                   child: LoggedOutMenu(
                     onOpenSettings: onOpenSettings,
-                    onOpenCompendium: onOpenCompendium,
+                    onOpenCodex: onOpenCodex,
                   ),
                 ),
               ],

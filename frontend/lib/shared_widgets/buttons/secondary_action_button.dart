@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/color/app_colors.dart';
-import '../../theme/typograph/app_typography.dart';
+import '../../theme/typograph/semantic_text_widgets.dart';
 
 /// Flat secondary text action button without noise texture (SDD 04 Section 5.1 & 6.3).
 /// Excluded from GrainSurface to preserve ultra-crisp typography for secondary actions like Registrar.
@@ -33,10 +33,6 @@ class _SecondaryActionButtonState extends State<SecondaryActionButton> {
   Widget build(BuildContext context) {
     final isEnabled = widget.onPressed != null;
 
-    final textColor = _isHovered && isEnabled
-        ? AppColors.darkTextPrimary
-        : AppColors.darkTextSecondary;
-
     final borderColor = _isHovered && isEnabled
         ? AppColors.darkBorderProminent
         : AppColors.darkBorderSubtle;
@@ -56,14 +52,9 @@ class _SecondaryActionButtonState extends State<SecondaryActionButton> {
             border: Border.all(color: borderColor, width: 1.0),
           ),
           child: Center(
-            child: Text(
-              widget.label,
-              style: AppTypography.actionLabel.copyWith(
-                color: textColor,
-                decoration: _isHovered ? TextDecoration.underline : TextDecoration.none,
-                decorationColor: AppColors.darkTextSecondary,
-              ),
-            ),
+            child: _isHovered && isEnabled
+                ? ActionLabelText(widget.label)
+                : ActionLabelMutedText(widget.label),
           ),
         ),
       ),

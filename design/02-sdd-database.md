@@ -34,9 +34,12 @@ Migrations are stored in the project repository under supabase/migrations/ using
 ```
 beyond_the_horizon_app/
 └── supabase/
+    ├── functions/
+    │   └── get_random_lore_epigraph.sql
     └── migrations/
         ├── 20261010000001_create_profiles_table.sql
-        └── 20261010000002_create_documentation_pages.sql
+        ├── 20261010000002_create_lore_epigraphs_table.sql
+        └── 20261010000003_create_documentation_pages.sql
 ```
 
 ### 3.1 Automated Execution via Supabase & GitHub Integration
@@ -49,8 +52,8 @@ Migrations are automated through Supabase's native GitHub integration:
 After automated execution completes, schema health can be verified directly in the [Supabase Web Dashboard](https://supabase.com/dashboard):
 1. **Migration History:** Confirm the migration status and execution timestamp in the project settings / migrations view.
 2. **Table Editor:** Inspect created tables, column definitions, and constraint enforcement.
-3. **Authentication > Policies:** Verify that Row-Level Security (RLS) is active with expected policies.
-4. **Storage:** Confirm provisioning of storage buckets (such as `documentation`) and their associated access policies.
+3. **Authentication -> Policies:** Verify that Row-Level Security (RLS) is active with expected policies.
+4. **Storage:** Confirm provisioning of storage buckets (such as *documentation*) and their associated access policies.
 
 ---
 
@@ -134,9 +137,97 @@ Row-Level Security is enabled on public.profiles. The active policies enforce st
 
 ---
 
-## 5. Feature Module 2: Documentation Pages & Storage Catalog (OP-03)
+## 5. Feature Module 2: Lore Epigraphs & Archival Transmissions Catalog (OP-02A)
 
-### 5.1 Architectural Scope & Storage Strategy
+### 5.1 Architectural Scope & In-Database Storage Strategy
+The Lore Epigraphs catalog delivers evocative universe lore, narrative quotes, emergency distress calls, confidential dossiers, poems, and planetary news ticker bulletins directly to the Player Home Command Deck:
+- **Relational Markdown Architecture:** Rather than splitting brief text fragments (2 to 6 lines) across individual storage files—which would mandate two separate network requests per page load—all narrative content is stored directly in PostgreSQL TEXT columns. PostgreSQL handles raw Markdown syntax (line breaks, internal text alignments, and solid black [REDACTED] blocks) natively with zero latency and zero storage bucket network overhead.
+- **Bilingual Translation Model (1:N):**
+  - **Base Entity (public.lore_epigraphs):** Holds category type and timestamps.
+  - **Translation Record (public.lore_epigraph_translations):** Holds locale code (pt-BR, en-US), raw Markdown content, and attribution source.
+- **Domain Categorization (public.epigraph_type):** Classifies each entry into quote, transmission, document, poem, or news, driving the dynamic geometric framing on the frontend client.
+
+### 5.2 Entity-Relationship Model
+
+```mermaid
+erDiagram
+    LORE_EPIGRAPHS ||--o{ LORE_EPIGRAPH_TRANSLATIONS : "has translations (1:N)"
+
+    LORE_EPIGRAPHS {
+        uuid id PK
+        epigraph_type type "quote | transmission | document | poem | news"
+        timestamptz created_at
+        timestamptz updated_at
+    }
+
+    LORE_EPIGRAPH_TRANSLATIONS {
+        uuid id PK
+        uuid epigraph_id FK "references lore_epigraphs(id)"
+        string locale "pt-BR | en-US"
+        string content "markdown formatted prose, poem or transmission"
+        string source "author, origin, or institutional attribution"
+        timestamptz created_at
+        timestamptz updated_at
+    }
+```
+
+### 5.3 Data Dictionaries: Lore Epigraphs Catalog
+
+#### Custom Types
+- **public.epigraph_type (ENUM):** 'quote', 'transmission', 'document', 'poem', 'news'.
+
+#### Table: public.lore_epigraphs
+
+| Column | Data Type | Nullable | Default | Constraints & Description |
+| :--- | :--- | :--- | :--- | :--- |
+| id | UUID | No | gen_random_uuid() | Primary key. |
+| type | public.epigraph_type | No | 'quote' | Thematic classification driving client-side geometric framing. |
+| created_at | TIMESTAMPTZ | No | timezone('utc'::text, now()) | Record creation timestamp. |
+| updated_at | TIMESTAMPTZ | No | timezone('utc'::text, now()) | Record last modification timestamp. |
+
+#### Table: public.lore_epigraph_translations
+
+| Column | Data Type | Nullable | Default | Constraints & Description |
+| :--- | :--- | :--- | :--- | :--- |
+| id | UUID | No | gen_random_uuid() | Primary key. |
+| epigraph_id | UUID | No | None | References public.lore_epigraphs(id) ON DELETE CASCADE. |
+| locale | TEXT | No | 'pt-BR' | Language code. CHECK (locale IN ('pt-BR', 'en-US')). |
+| content | TEXT | No | None | Localized Markdown content with line breaks, alignment, and [REDACTED] markers. Enforces 5 to 1000 characters. |
+| source | TEXT | No | None | Source of the content. Enforces 1 to 150 characters. |
+| created_at | TIMESTAMPTZ | No | timezone('utc'::text, now()) | Record creation timestamp. |
+| updated_at | TIMESTAMPTZ | No | timezone('utc'::text, now()) | Record last modification timestamp. |
+
+*Unique Constraint:* UNIQUE(epigraph_id, locale).
+
+### 5.4 Native In-Database Random Function: public.get_random_lore_epigraph
+
+To achieve zero client-side payload bloat and avoid transferring the entire catalog over the wire, a dedicated PostgreSQL RPC function executes atomic random selection on the database. The canonical function is maintained under the database functions catalog:
+
+- Canonical Stored Function Script: [get_random_lore_epigraph.sql](../supabase/functions/get_random_lore_epigraph.sql)
+
+### 5.5 Row-Level Security (RLS) Policies
+
+Row-Level Security is active on both tables, granting public read access for gameplay and restricting write/management operations (insert, update, delete) to administrative sessions:
+
+| Policy Name | Table | Action | Target Role | Using / Check Expression |
+| :--- | :--- | :--- | :--- | :--- |
+| Public read for lore epigraphs | lore_epigraphs | SELECT | anon, authenticated | true |
+| Public read for epigraph translations | lore_epigraph_translations | SELECT | anon, authenticated | true |
+| Admin insert for lore epigraphs | lore_epigraphs | INSERT | service_role, authenticated | (auth.jwt() ->> 'role') = 'admin' |
+| Admin update for lore epigraphs | lore_epigraphs | UPDATE | service_role, authenticated | (auth.jwt() ->> 'role') = 'admin' |
+| Admin delete for lore epigraphs | lore_epigraphs | DELETE | service_role, authenticated | (auth.jwt() ->> 'role') = 'admin' |
+| Admin insert for epigraph translations | lore_epigraph_translations | INSERT | service_role, authenticated | (auth.jwt() ->> 'role') = 'admin' |
+| Admin update for epigraph translations | lore_epigraph_translations | UPDATE | service_role, authenticated | (auth.jwt() ->> 'role') = 'admin' |
+| Admin delete for epigraph translations | lore_epigraph_translations | DELETE | service_role, authenticated | (auth.jwt() ->> 'role') = 'admin' |
+
+### 5.6 Migration Reference
+- Planned SQL Migration File: [20261010000002_create_lore_epigraphs_table.sql](../supabase/migrations/20261010000002_create_lore_epigraphs_table.sql)
+
+---
+
+## 6. Feature Module 3: Documentation Pages & Storage Catalog (OP-03)
+
+### 6.1 Architectural Scope & Storage Strategy
 The documentation engine provides an interactive reference for all Beyond the Horizon TTRPG rules and universe:
 - **Storage-Driven Markdown Architecture:** Markdown files are not stored as large text blobs in PostgreSQL rows. Instead, markdown files reside in a dedicated Supabase Storage bucket (documentation), organized under localized directory paths (e.g., pages/pt-BR/core_rules/game_core.md). This enables CDN edge caching, fast page delivery, and zero database bloat.
 - **Bilingual Translation Model (1:N):**
@@ -145,7 +236,7 @@ The documentation engine provides an interactive reference for all Beyond the Ho
   - **Phase 1 Execution:** All content is populated in pt-BR. When English content (en-US) is introduced in future phases, adding translation rows requires zero database migrations or table alterations.
 - **Specialized Page Layouts (public.documentation_layout):** Dictates how the Flutter client composes the page (documentation, species, origin, path, abilities).
 
-### 5.2 Entity-Relationship Model
+### 6.2 Entity-Relationship Model
 
 ```mermaid
 erDiagram
@@ -175,7 +266,7 @@ erDiagram
     }
 ```
 
-### 5.3 Data Dictionaries: Documentation Catalog
+### 6.3 Data Dictionaries: Documentation Catalog
 
 #### Custom Types
 - **public.documentation_category (ENUM):** 'presentation', 'core_rules', 'playable_characters', 'equipment', 'companions', 'worldbuilding'.
@@ -210,7 +301,7 @@ erDiagram
 
 *Unique Constraint:* UNIQUE(page_id, locale).
 
-### 5.4 Unified Client Query View: public.documentation_pages_view
+### 6.4 Unified Client Query View: public.documentation_pages_view
 
 A convenient joined view resolving page metadata and localized translation copy in a single query:
 
@@ -234,7 +325,7 @@ FROM public.documentation_pages dp
 JOIN public.documentation_page_translations dpt ON dpt.page_id = dp.id;
 ```
 
-### 5.5 Row-Level Security (RLS) Policies
+### 6.5 Row-Level Security (RLS) Policies
 
 | Policy Name | Table | Action | Target Role | Using Expression |
 | :--- | :--- | :--- | :--- | :--- |
@@ -242,7 +333,7 @@ JOIN public.documentation_page_translations dpt ON dpt.page_id = dp.id;
 | Public read for published page translations | documentation_page_translations | SELECT | anon, authenticated | EXISTS (SELECT 1 FROM documentation_pages dp WHERE dp.id = page_id AND dp.is_published = true) |
 | Public read for documentation storage objects | storage.objects | SELECT | anon, authenticated | bucket_id = 'documentation' |
 
-### 5.6 Storage Bucket Provisioning
+### 6.6 Storage Bucket Provisioning
 
 - **Bucket Name:** documentation
 - **Access Level:** Public read enabled.
@@ -255,12 +346,12 @@ JOIN public.documentation_page_translations dpt ON dpt.page_id = dp.id;
               └── [slug].md   # e.g., pages/pt-BR/core_rules/intro.md
   ```
 
-### 5.7 Migration Reference
-- Canonical SQL Migration File: [20261010000002_create_documentation_pages.sql](../supabase/migrations/20261010000002_create_documentation_pages.sql)
+### 6.7 Migration Reference
+- Canonical SQL Migration File: [20261010000003_create_documentation_pages.sql](../supabase/migrations/20261010000003_create_documentation_pages.sql)
 
 ---
 
-## 6. Storage Tiers & Assets
+## 7. Storage Tiers & Assets
 
 | Bucket        | Access      | Purpose                         | Lifecycle & Formats |
 | :------------ | :---------- | :------------------------------ | :------------------ |
@@ -268,7 +359,7 @@ JOIN public.documentation_page_translations dpt ON dpt.page_id = dp.id;
 
 ---
 
-## 7. Document References
+## 8. Document References
 
 - [Open Points & Roadmap Register](./open_points.md) - Project roadmap and open points register
 - [01-sdd-overview.md](./01-sdd-overview.md) - System Design Document: Overview & Architecture
@@ -277,4 +368,6 @@ JOIN public.documentation_page_translations dpt ON dpt.page_id = dp.id;
 - [compendium_keywords_plan.md](./compendium_keywords_plan.md) - Master Keyword Overlay Engine Plan (OP-03A)
 - [markdown_presentation_reference.md](./markdown_presentation_reference.md) - Markdown Presentation Engine & Layout Reference (OP-03B)
 - [20261010000001_create_profiles_table.sql](../supabase/migrations/20261010000001_create_profiles_table.sql) - Migration 1: User Profiles & Role Enum
-- [20261010000002_create_documentation_pages.sql](../supabase/migrations/20261010000002_create_documentation_pages.sql) - Migration 2: Documentation Pages & Translations
+- [20261010000002_create_lore_epigraphs_table.sql](../supabase/migrations/20261010000002_create_lore_epigraphs_table.sql) - Migration 2: Lore Epigraphs & Translations
+- [20261010000003_create_documentation_pages.sql](../supabase/migrations/20261010000003_create_documentation_pages.sql) - Migration 3: Documentation Pages & Translations
+- [get_random_lore_epigraph.sql](../supabase/functions/get_random_lore_epigraph.sql) - Stored Function: Database-Level Lore Epigraph Randomizer

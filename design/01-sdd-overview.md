@@ -106,16 +106,17 @@ The application combines the utility of industry-standard digital companion plat
 1. **User Creation & Onboarding:** Frictionless account registration with email verification and direct transition to active play.
 2. **Authentication & Session Persistence:** Secure authentication with persistent sessions and password recovery.
 3. **Logged-Out Landing Page:** Public entry portal introducing the platform, providing zero-login access to public rules and settings, and offering direct sign-in and registration pathways.
-4. **Logged-In Player Dashboard:** Central operational hub for authenticated users to access their characters, launch character creation, browse the compendium, configure preferences, and jump into game sessions.
-5. **Rules Compendium:** Fast, filterable digital rulebook and content index—fully accessible without authentication.
-6. **Character Creation Wizard:** Guided step-by-step flow for creating and configuring player characters.
-7. **Interactive Character Play Sheet:** Live digital play sheet for managing character state, resources, actions, and status tracking during sessions.
-8. **App Settings:** Client-side application preferences persisted locally without requiring an account or login.
-9. **Game & Campaign Management:** Campaign and one-shot organization tools for Facilitators, including descriptions, rosters, and player invites.
-10. **Live Session Orchestration:** Real-time virtual session lobby coordinating connected participants, active game clock, and synchronized session state.
-11. **Tactical Encounter Management:** Tools for managing combat and hazard encounters, turn progression, and participant status.
-12. **Integrated Dice Roller Engine:** Digital dice roller supporting polyhedrals, custom roll formulas, modifiers, and public vs. GM-secret rolls.
-13. **Session Audit Log & Narrative History:** Chronological feed recording dice rolls, ability activations, damage, and GM announcements.
+4. **Logged-In Player Dashboard / Command Deck:** Central operational hub for authenticated users to access their characters, launch character creation, explore the compendium, configure preferences, and jump into game sessions.
+5. **Lore Epigraphs & Archival Transmissions:** Ambient in-universe narrative excerpts, transmissions, confidential documents, and planetary news bulletins delivered dynamically to the player command deck.
+6. **Rules Compendium:** Fast, filterable digital rulebook and content index—fully accessible without authentication.
+7. **Character Creation Wizard:** Guided step-by-step flow for creating and configuring player characters.
+8. **Interactive Character Play Sheet:** Live digital play sheet for managing character state, resources, actions, and status tracking during sessions.
+9. **App Settings:** Client-side application preferences persisted locally without requiring an account or login.
+10. **Game & Campaign Management:** Campaign and one-shot organization tools for Facilitators, including descriptions, rosters, and player invites.
+11. **Live Session Orchestration:** Real-time virtual session lobby coordinating connected participants, active game clock, and synchronized session state.
+12. **Tactical Encounter Management:** Tools for managing combat and hazard encounters, turn progression, and participant status.
+13. **Integrated Dice Roller Engine:** Digital dice roller supporting polyhedrals, custom roll formulas, modifiers, and public vs. GM-secret rolls.
+14. **Session Audit Log & Narrative History:** Chronological feed recording dice rolls, ability activations, damage, and GM announcements.
 
 ### 6.2 Extended Companion Platform Capabilities
 To achieve parity with and exceed modern TTRPG companions (*D&D Beyond*, *Demiplane*), the platform incorporates the following high-value extensions:

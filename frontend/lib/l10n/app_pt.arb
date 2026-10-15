@@ -22,7 +22,7 @@
   "registrationPasswordPlaceholder": "Digite sua senha",
   "registrationSubmitAction": "CONCLUIR REGISTRO",
 
-  "landingCompendiumTooltip": "Compêndio // Livro de Regras",
+  "landingCompendiumTooltip": "Códice // Livro de Regras",
   "landingSettingsTooltip": "Configurações",
 
   "dashboardWelcome": "Bem-vindo, {name}.",
@@ -35,7 +35,7 @@
   },
   "featurePlayCharacterTitle": "JOGAR COM PERSONAGEM",
   "featureCreateCharacterTitle": "CRIAR PERSONAGEM",
-  "featureCompendiumTitle": "COMPÊNDIO",
+  "featureCompendiumTitle": "CÓDICE",
   "featureSettingsTitle": "CONFIGURAÇÕES",
   "featureSignOutTitle": "SAIR",
   "featureSignOutSessionAction": "ENCERRAR SESSÃO // SAIR",

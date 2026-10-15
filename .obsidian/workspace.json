@@ -91,21 +91,6 @@
               "icon": "lucide-file",
               "title": "04-sdd-frontend"
             }
-          },
-          {
-            "id": "fd003ac361df1b3a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "design/studied_designs.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "studied_designs"
-            }
           }
         ],
         "currentTab": 4
@@ -165,8 +150,19 @@
               "icon": "lucide-bookmark",
               "title": "Bookmarks"
             }
+          },
+          {
+            "id": "798818c38559121f",
+            "type": "leaf",
+            "state": {
+              "type": "mk-path-view",
+              "state": {},
+              "icon": "layout-grid",
+              "title": "Navigator"
+            }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -278,26 +274,29 @@
   },
   "active": "94ea11d51150aedd",
   "lastOpenFiles": [
+    "frontend/build/3233c454",
+    "frontend/build/flutter_assets/fonts/e8a6a7b0",
+    "design/01-sdd-overview.md",
+    "design/03-sdd-backend.md",
+    "supabase/functions/get_random_lore_epigraph.sql",
+    "supabase/functions",
+    "design/assets/document_frame_sketch.png",
+    "design/assets/menu_arrow_hover_sketch.png",
+    "design/assets/player_home_sketch.png",
+    "design/04-sdd-frontend.md",
     "frontend/build/11d43ad3",
     "frontend/build/flutter_assets/fonts/4b1179c0",
     "design/studied_designs.md",
-    "design/04-sdd-frontend.md",
-    "design/03-sdd-backend.md",
     "design/assets/logged_out_sketch.png",
     "design/references/shared_design_trends_comparative_report.md",
     "design/02-sdd-database.md",
-    "design/01-sdd-overview.md",
     "frontend/lib/shared_widgets/navigation/menu_item.dart",
     "frontend/lib/shared_widgets/navigation",
     "frontend/lib/shared_widgets/layout/vertical_seam_divider.dart",
     "frontend/lib/features/landing/widgets/logged_out_menu.dart",
     "frontend/lib/features/landing/widgets/login_form.dart",
-    "frontend/lib/features/landing/widgets/event_horizon_arc.dart",
-    "frontend/lib/features/landing/widgets/crossword_brand_mark.dart",
     "Untitled.md",
     "design/open_points.md",
-    "frontend/lib/features/home/widgets/player_menu_cards.dart",
-    "frontend/lib/features/landing/widgets/portal/event_horizon_arc.dart",
     "Untitled.canvas",
     "design/compendium_keywords_plan.md",
     "design/assets/cassette_orange_moodboard.png",

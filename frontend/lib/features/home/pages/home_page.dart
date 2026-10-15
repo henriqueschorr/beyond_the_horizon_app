@@ -10,7 +10,6 @@ import '../../../theme/color/app_colors.dart';
 import '../../../theme/shaders/star_surface.dart';
 import '../../../theme/typograph/semantic_text_widgets.dart';
 import '../../../shared_widgets/layout/responsive_telemetry_guard.dart';
-import '../widgets/player_menu_cards.dart';
 
 /// Standalone Authenticated Home Page (Command Deck) implementing Minimalist Brutalism
 /// with a 3-card monumental triptych, left-aligned telemetry subtitle, bottom-left
@@ -70,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       // Top Greeting Headline
-                                      BodyLargeText(
+                                      DisplayTitleText(
                                         '${l10n.dashboard.welcomePrefix}$operativeName${l10n.dashboard.welcomeSuffix}',
                                       ),
 
@@ -82,18 +81,6 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ],
                                   ),
-                                ),
-
-                                const SizedBox(height: 36.0),
-
-                                // 3-Card Monumental Triptych
-                                PlayerMenuCards(
-                                  hasActiveCharacter: false, // OP-02 phase 1 baseline
-                                  onPlayFallback: () {
-                                    context.go(
-                                      '/in-construction?module=${Uri.encodeComponent(l10n.dashboard.createCharacterTitle)}',
-                                    );
-                                  },
                                 ),
                               ],
                             ),
@@ -195,16 +182,9 @@ class _CornerUtilityButtonState extends State<_CornerUtilityButton> {
                 color: effectiveColor,
               ),
               const SizedBox(width: 8.0),
-              Text(
-                widget.label,
-                style: TextStyle(
-                  fontFamily: 'SpaceMono',
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 1.2,
-                  color: effectiveColor,
-                ),
-              ),
+              _isHovered
+                  ? ActionLabelSmallHighlightedText(widget.label)
+                  : ActionLabelSmallText(widget.label),
             ],
           ),
         ),

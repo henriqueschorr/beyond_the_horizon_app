@@ -114,7 +114,7 @@ When technology communicates directly with operatives, text switches to fixed-pi
 #### Trend 4: Dense Information Chunking & Bracket Syntax
 All universes reject loose, airy formatting. They package data into tight, modular clusters:
 - Thin-line bordered boxes enclosing critical telemetry and diagnostics.
-- Bracketed interactive notation: [1d10], [EJECT], [OK], [V.A.T.S.], [REGISTRAR], [ENTRAR].
+- Bracketed interactive notation: [1d10], [EJECT], [OK], [V.A.T.S.], [REGISTER], [SIGN IN].
 - Flowcharts and decision matrices instead of sprawling explanatory prose.
 
 ---

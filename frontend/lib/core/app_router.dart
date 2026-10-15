@@ -5,7 +5,6 @@ import '../features/auth/controllers/auth_controller.dart';
 import '../features/settings/controllers/settings_controller.dart';
 import '../features/landing/pages/landing_page.dart';
 import '../features/home/pages/home_page.dart';
-import '../features/in_construction/pages/in_construction_page.dart';
 
 /// Configures GoRouter declarative routing and reactive auth redirect guards.
 GoRouter createAppRouter(
@@ -46,14 +45,6 @@ GoRouter createAppRouter(
           authController: authController,
           settingsController: resolvedSettingsController,
         ),
-      ),
-      GoRoute(
-        path: '/in-construction',
-        name: 'in-construction',
-        builder: (context, state) {
-          final module = state.uri.queryParameters['module'];
-          return InConstructionPage(moduleName: module);
-        },
       ),
     ],
   );

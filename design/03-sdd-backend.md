@@ -65,6 +65,16 @@ classDiagram
         +updateProfile(String id, String displayName) Future~UserProfileResponseDto~
     }
 
+    class LoreEpigraphRepository {
+        <<interface>>
+        +getRandomEpigraph(String locale) Future~LoreEpigraphDetailResponseDto?~
+        +listEpigraphs(String? type, String locale) Future~List~LoreEpigraphSummaryResponseDto~~
+        +getEpigraphById(String id, String locale) Future~LoreEpigraphDetailResponseDto?~
+        +createEpigraph(CreateLoreEpigraphRequestDto request) Future~LoreEpigraphDetailResponseDto~
+        +updateEpigraph(String id, UpdateLoreEpigraphRequestDto request) Future~LoreEpigraphDetailResponseDto~
+        +deleteEpigraph(String id) Future~void~
+    }
+
     class DocumentationRepository {
         <<interface>>
         +listPublishedPages(String locale, DocumentationCategory category) Future~List~DocumentationPageSummaryResponseDto~~
@@ -82,6 +92,7 @@ classDiagram
 
     AuthRepository <|.. MockAuthRepository
     ProfileRepository <|.. MockProfileRepository
+    LoreEpigraphRepository <|.. MockLoreEpigraphRepository
     DocumentationRepository <|.. MockDocumentationRepository
     DocumentationStorageRepository <|.. MockDocumentationStorageRepository
 ```
@@ -101,7 +112,16 @@ Defines operative dossier profile querying and updates:
 - **getProfileById:** Retrieves the operative profile by user identifier.
 - **updateProfile:** Updates display name, rejecting any direct role modification.
 
-#### 4.1.3 DocumentationRepository (Public Zero-Login)
+#### 4.1.3 LoreEpigraphRepository (Public Zero-Login & Admin Management)
+Defines randomized retrieval for atmospheric universe lore fragments as well as administrative catalog maintenance:
+- **getRandomEpigraph:** Resolves a single randomized lore epigraph detail payload by invoking the database RPC function get_random_lore_epigraph, returning a LoreEpigraphDetailResponseDto with zero client-side bandwidth waste.
+- **listEpigraphs:** Returns lightweight summary records (List[LoreEpigraphSummaryResponseDto]) filtered by optional type and locale for administration.
+- **getEpigraphById:** Retrieves a single detail record (LoreEpigraphDetailResponseDto?) by unique identifier and locale.
+- **createEpigraph:** Inserts a new base epigraph and its localized translation, returning a LoreEpigraphDetailResponseDto.
+- **updateEpigraph:** Modifies type or localized translation content/source, returning a LoreEpigraphDetailResponseDto.
+- **deleteEpigraph:** Removes the epigraph and all cascade translations.
+
+#### 4.1.4 DocumentationRepository (Public Zero-Login)
 Defines catalog querying and hierarchical structure generation for compendium rules:
 - **listPublishedPages:** Lists all published rulebook pages matching locale and optional category filter.
 - **getPageBySlug:** Resolves a single page detail and its localized translation by route slug.
@@ -109,7 +129,7 @@ Defines catalog querying and hierarchical structure generation for compendium ru
 - **getCategoryGroups:** Returns published pages pre-partitioned into category groups for the Compendium Hub dashboard.
 - **getNavigationTree:** Returns a recursive chapter navigation tree for the compendium reading sidebar.
 
-#### 4.1.4 DocumentationStorageRepository (Public Zero-Login)
+#### 4.1.5 DocumentationStorageRepository (Public Zero-Login)
 Defines raw Markdown chapter retrieval and asset URL generation:
 - **fetchMarkdownContent:** Downloads the UTF-8 Markdown text content from the specified storage path.
 - **getPublicStorageUrl:** Constructs the canonical public edge URL for images and diagrams.
@@ -126,7 +146,11 @@ In accordance with Phase 1 design, all repositories are implemented as in-memory
    - Simulates token generation with cryptographically secure random session tokens.
    - Supports runtime registration, signin, signout, and profile updates during local execution.
 
-2. **MockDocumentationRepository & MockDocumentationStorageRepository:**
+2. **MockLoreEpigraphRepository:**
+   - Pre-seeded with development entries covering all five domain types (quotes, distress transmissions, confidential dossier memos, poems, and planetary news bulletins) in Portuguese (pt-BR) only.
+   - Implements in-memory CRUD operations to allow admin workflows and offline-first development, perfectly replicating the production database RPC function and table operations.
+
+3. **MockDocumentationRepository & MockDocumentationStorageRepository:**
    - Pre-seeded with initial compendium content and Markdown pages across supported categories.
    - Generates pre-grouped category structures (DocumentationCategoryGroupResponseDto) and collapsible sidebar trees (DocumentationNavigationNodeResponseDto) directly from in-memory collections.
    - Delivers structured Markdown chapters formatted with headings, tables, block callouts, and keyword tags for offline-first development.
@@ -227,9 +251,10 @@ graph TD
 beyond_the_horizon_app/
 ├── shared/                                 # Pure Dart wire contracts & domain models
 │   ├── lib/
-│   │   ├── enums/                          # Domain enumerations (UserRole, DocumentationCategory, ...)
+│   │   ├── enums/                          # Domain enumerations (UserRole, EpigraphType, DocumentationCategory, ...)
 │   │   ├── models/                         # Request & Response DTOs
 │   │   │   ├── auth/                       # Sign in, sign up, password recovery DTOs
+│   │   │   ├── lore_epigraphs/             # Lore epigraph randomized response DTOs
 │   │   │   ├── documentation/              # Compendium pages, categories, tree DTOs
 │   │   │   └── profiles/                   # User profile and update DTOs
 │   │   └── shared.dart                     # Main shared export barrel
@@ -294,7 +319,13 @@ Matches the public.documentation_layout PostgreSQL enum:
 - **UserProfileResponseDto:** Encapsulates id, displayName, role, createdAt, and updatedAt.
 - **UpdateProfileRequestDto:** Encapsulates displayName. Enforces character length boundaries (display name 1 to 50 characters).
 
-#### 6.2.3 Documentation DTOs (Option A Wire Contracts)
+#### 6.2.3 Lore Epigraph DTOs
+- **CreateLoreEpigraphRequestDto:** Encapsulates type, content, source, and locale (default 'pt-BR').
+- **UpdateLoreEpigraphRequestDto:** Encapsulates optional type, optional content, optional source, and locale.
+- **LoreEpigraphSummaryResponseDto:** Lightweight catalog item carrying id, type, preview (truncated first 120 characters of content), source, locale, and updatedAt.
+- **LoreEpigraphDetailResponseDto:** Full article payload containing id, type, content (full Markdown), source, locale, createdAt, and updatedAt.
+
+#### 6.2.4 Documentation DTOs (Option A Wire Contracts)
 - **DocumentationPageSummaryResponseDto:** Lightweight catalog item carrying id, slug, category, layout, subcategory, sortOrder, locale, title, summary, storagePath, and updatedAt.
 - **DocumentationPageDetailResponseDto:** Full article payload containing all summary fields plus the resolved UTF-8 markdownContent, createdAt, and updatedAt.
 - **DocumentationCategoryGroupResponseDto:** Hub dashboard partition carrying category, localized category title, localized category description, and a list of DocumentationPageSummaryResponseDto articles.
@@ -320,13 +351,21 @@ Domain services encapsulate business logic, coordinate repository queries, perfo
   - Enforces role protection: clients cannot modify account role (rejection in domain logic matching database trigger).
   - Calls ProfileRepository.updateProfile and returns UserProfileResponseDto.
 
-### 7.3 DocumentationService (Public Zero-Login)
+### 7.3 LoreEpigraphService (Public & Admin Domain Service)
+- **getRandomEpigraph({String locale = 'pt-BR'}):** Public zero-login call returning Future[LoreEpigraphDetailResponseDto?] for the Player Command Deck.
+- **listEpigraphs({String? type, String locale = 'pt-BR'}):** Admin call returning Future[List[LoreEpigraphSummaryResponseDto]].
+- **getEpigraphById(String id, {String locale = 'pt-BR'}):** Admin call returning Future[LoreEpigraphDetailResponseDto?].
+- **createEpigraph(CreateLoreEpigraphRequestDto request):** Admin call returning Future[LoreEpigraphDetailResponseDto].
+- **updateEpigraph(String id, UpdateLoreEpigraphRequestDto request):** Admin call returning Future[LoreEpigraphDetailResponseDto].
+- **deleteEpigraph(String id):** Admin call removing epigraph by id.
+
+### 7.4 DocumentationService (Public Zero-Login)
 - **listPages({String locale = 'pt-BR', DocumentationCategory? category}):** Returns published article summaries filtered by locale and optional category.
 - **getPageBySlug(String slug, {String locale = 'pt-BR'}):** Resolves page metadata from DocumentationRepository, fetches raw Markdown content via DocumentationStorageService, and returns a consolidated DocumentationPageDetailResponseDto.
 - **getCategoryGroups({String locale = 'pt-BR'}):** Calls DocumentationRepository.getCategoryGroups to return pre-partitioned category sections for the Compendium Hub dashboard.
 - **getNavigationTree({String locale = 'pt-BR'}):** Calls DocumentationRepository.getNavigationTree to return the recursive chapter navigation tree for the reading sidebar.
 
-### 7.4 DocumentationStorageService (Public Zero-Login)
+### 7.5 DocumentationStorageService (Public Zero-Login)
 - **getMarkdown(String storagePath):** Resolves Markdown chapter text via DocumentationStorageRepository with in-memory caching.
 - **In-Memory Cache:** Maintains an in-memory map of storagePath to cached content with a configurable time-to-live (TTL: 10 minutes) and maximum capacity (100 items), eliminating repeated storage lookups during reading sessions.
 - **invalidateCache(String? storagePath):** Clears the cache for a specific path or flushes the entire cache.
@@ -384,7 +423,43 @@ For testing, CLI automation, and standalone execution, the backend provides a Sh
    - Headers: Authorization: Bearer [sessionToken]
    - Response: 200 OK with UserProfileResponseDto, or 404 Not Found.
 
-#### 8.1.3 Public Zero-Login Compendium Endpoints
+#### 8.1.3 Lore Epigraphs Endpoints
+
+1. **Get Random Lore Epigraph (Public Zero-Login)**
+   - **GET /api/lore-epigraphs/random**
+   - Query Parameters: locale (default: pt-BR).
+   - Response: 200 OK with LoreEpigraphDetailResponseDto, or 404 Not Found.
+
+2. **List Lore Epigraphs (Admin Catalog)**
+   - **GET /api/lore-epigraphs**
+   - Query Parameters: locale (default: pt-BR), type (optional).
+   - Headers: Authorization: Bearer [sessionToken] (admin role required).
+   - Response: 200 OK with JSON array of LoreEpigraphSummaryResponseDto.
+
+3. **Get Lore Epigraph by ID (Admin)**
+   - **GET /api/lore-epigraphs/{id}**
+   - Query Parameters: locale (default: pt-BR).
+   - Headers: Authorization: Bearer [sessionToken] (admin role required).
+   - Response: 200 OK with LoreEpigraphDetailResponseDto, or 404 Not Found.
+
+4. **Create Lore Epigraph (Admin)**
+   - **POST /api/lore-epigraphs**
+   - Headers: Authorization: Bearer [sessionToken] (admin role required).
+   - Payload: CreateLoreEpigraphRequestDto JSON.
+   - Response: 201 Created with LoreEpigraphDetailResponseDto.
+
+5. **Update Lore Epigraph (Admin)**
+   - **PUT /api/lore-epigraphs/{id}**
+   - Headers: Authorization: Bearer [sessionToken] (admin role required).
+   - Payload: UpdateLoreEpigraphRequestDto JSON.
+   - Response: 200 OK with LoreEpigraphDetailResponseDto.
+
+6. **Delete Lore Epigraph (Admin)**
+   - **DELETE /api/lore-epigraphs/{id}**
+   - Headers: Authorization: Bearer [sessionToken] (admin role required).
+   - Response: 204 No Content.
+
+#### 8.1.4 Public Zero-Login Compendium Endpoints
 
 1. **List Compendium Pages**
    - **GET /api/compendium/pages**
@@ -452,6 +527,8 @@ graph TD
 - **backendService.auth.signOut():** In-process call invalidating current session.
 - **backendService.profile.getProfile(String id):** In-process call returning Future[UserProfileResponseDto?].
 - **backendService.profile.updateProfile(UpdateProfileRequestDto):** In-process call returning Future[UserProfileResponseDto].
+- **backendService.loreEpigraphs.getRandomEpigraph({String locale}):** Zero-login in-process call returning Future[LoreEpigraphDetailResponseDto?].
+- **backendService.loreEpigraphs.listEpigraphs({String? type, String locale}):** In-process call returning Future[List[LoreEpigraphSummaryResponseDto]].
 - **backendService.compendium.getPages({String locale, DocumentationCategory? category}):** Zero-login in-process call returning Future[List[DocumentationPageSummaryResponseDto]].
 - **backendService.compendium.getPageBySlug(String slug, {String locale}):** Zero-login in-process call returning Future[DocumentationPageDetailResponseDto?].
 - **backendService.compendium.getCategoryGroups({String locale}):** Zero-login in-process call returning Future[List[DocumentationCategoryGroupResponseDto]].

@@ -44,7 +44,7 @@ class _UtilityIconButtonState extends State<UtilityIconButton> {
 
     return Tooltip(
       message: widget.tooltip,
-      textStyle: AppTypography.tacticalLabelSmall,
+      textStyle: AppTypography.fieldLabel,
       decoration: BoxDecoration(
         color: AppColors.darkBgSurfaceElevated,
         border: Border.all(color: AppColors.accentOrange, width: 1.0),

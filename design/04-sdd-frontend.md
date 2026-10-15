@@ -103,38 +103,41 @@ The interface architecture establishes three distinct font voices, each serving 
    - Employed for tactical action button text, operational status badges, input field headers, blinking block carets, hover tooltips, and selectable error displays.
 3. **The Editorial & Rules Lore Voice (Inter):**
    - High-legibility neutral grotesque engineered for extended reading comfort across all display pixel densities.
-   - Employed for rules lore, compendium articles, descriptions, dialog bodies, and user communications.
+   - Employed for rules lore, codex articles, descriptions, dialog bodies, and user communications.
 
 ### 4.2 Typographic Scale & Metrics
 
-| Style Token | Font Family | Size | Weight | Tracking / Spacing | Line Height | Semantic Widget Name |
-| :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| **monumentalTitle** | Space Grotesk | 64.0px | Bold (700) | +4.0px | 1.00 | MonumentalText |
-| **monumentalSmall** | Space Grotesk | 16.0px | Bold (700) | +4.0px | 1.00 | MonumentalSmallText |
-| **displayTitleLarge** | Space Grotesk | 32.0px | Bold (700) | -0.5px | 1.25 | DisplayTitleLargeText |
-| **displayTitleLargeHighlighted** | Space Grotesk | 32.0px | Bold (700) | -0.5px | 1.25 | DisplayTitleLargeHighlightedText |
-| **displayTitle** | Space Grotesk | 26.0px | Bold (700) | -0.2px | 1.15 | DisplayTitleText |
-| **sectionTitle** | Space Grotesk | 18.0px | Bold (700) | -0.1px | 1.20 | SectionTitleText |
-| **actionLabel** | Space Grotesk | 14.0px | Semi-Bold (600) | +0.5px | 1.10 | ActionLabelText |
-| **navAnchor** | Space Grotesk | 14.0px | Semi-Bold (600) | +1.2px | 1.20 | NavAnchorText |
-| **navAnchorHighlighted** | Space Grotesk | 14.0px | Semi-Bold (600) | +1.2px | 1.20 | NavAnchorHighlightedText |
-| **tacticalLabel** | Space Mono | 13.0px | Bold (700) | +1.2px | 1.20 | TacticalLabelText |
-| **tacticalLabelHighlighted** | Space Mono | 13.0px | Bold (700) | +1.2px | 1.20 | TacticalLabelHighlightedText |
-| **tacticalLabelSmall** | Space Mono | 11.5px | Bold (700) | +0.8px | 1.20 | TacticalLabelSmallText |
-| **tacticalLabelSmallHighlighted** | Space Mono | 11.5px | Bold (700) | +0.8px | 1.20 | TacticalLabelSmallHighlightedText |
-| **legend** / **telemetryMuted** | Space Mono | 11.5px | Regular (400) | +0.5px | 1.25 | LegendText |
-| **legendHighlighted** | Space Mono | 11.5px | Regular (400) | +0.5px | 1.25 | LegendHighlightedText / SelectableErrorText |
-| **bodyLarge** | Inter | 18.0px | Regular (400) | 0.0px | 1.75 | BodyLargeText |
-| **bodyMedium** | Inter | 16.0px | Regular (400) | 0.0px | 1.70 | BodyMediumText |
-| **bodyProse** | Inter | 14.0px | Regular (400) | 0.0px | 1.60 | BodyProseText |
-| **bodyProseSmall** | Inter | 11.5px | Regular (400) | 0.0px | 1.40 | BodyProseSmallText |
+| Style Token | Font Family | Size | Weight | Tracking / Spacing | Line Height | Default Color Token | Semantic Widget Name |
+| :--- | :--- | :---: | :---: | :---: | :---: | :--- | :--- |
+| **monumentalTitle** | Space Grotesk | 64.0px | Bold (700) | +4.0px | 1.00 | AppColors.darkTextPrimary | MonumentalText |
+| **monumentalSmall** | Space Grotesk | 16.0px | Bold (700) | +4.0px | 1.00 | AppColors.darkTextPrimary | MonumentalSmallText |
+| **displayTitleLarge** | Space Grotesk | 32.0px | Bold (700) | -0.5px | 1.25 | AppColors.darkTextPrimary | DisplayTitleLargeText |
+| **displayTitle** | Space Grotesk | 26.0px | Bold (700) | -0.2px | 1.15 | AppColors.darkTextPrimary | DisplayTitleText |
+| **sectionTitle** | Space Grotesk | 18.0px | Bold (700) | -0.1px | 1.20 | AppColors.darkTextPrimary | SectionTitleText |
+| **actionLabelLarge** | Space Grotesk | 18.0px | Bold (700) | +0.5px | 1.20 | AppColors.darkTextPrimary | ActionLabelLargeText |
+| **actionLabelLargeInverted** | Space Grotesk | 18.0px | Bold (700) | +0.5px | 1.20 | AppColors.darkBgCanvas | ActionLabelLargeInvertedText |
+| **actionLabel** | Space Grotesk | 14.0px | Semi-Bold (600) | +0.5px | 1.10 | AppColors.darkTextPrimary | ActionLabelText |
+| **actionLabelHighlighted** | Space Grotesk | 14.0px | Semi-Bold (600) | +0.5px | 1.10 | AppColors.accentOrange | ActionLabelHighlightedText |
+| **actionLabelMuted** | Space Grotesk | 14.0px | Semi-Bold (600) | +0.5px | 1.10 | AppColors.darkTextSecondary | ActionLabelMutedText |
+| **actionLabelSmall** | Space Grotesk | 12.0px | Semi-Bold (600) | +0.8px | 1.20 | AppColors.darkTextSecondary | ActionLabelSmallText |
+| **actionLabelSmallHighlighted** | Space Grotesk | 12.0px | Semi-Bold (600) | +0.8px | 1.20 | AppColors.accentOrange | ActionLabelSmallHighlightedText |
+| **navAnchor** | Space Grotesk | 14.0px | Semi-Bold (600) | +1.2px | 1.20 | AppColors.darkTextSecondary | NavAnchorText |
+| **navAnchorHighlighted** | Space Grotesk | 14.0px | Semi-Bold (600) | +1.2px | 1.20 | AppColors.accentOrange | NavAnchorHighlightedText |
+| **fieldLabel** | Space Mono | 11.5px | Bold (700) | +0.8px | 1.20 | AppColors.darkTextSecondary | FieldLabelText |
+| **fieldLabelHighlighted** | Space Mono | 11.5px | Bold (700) | +0.8px | 1.20 | AppColors.accentOrange | FieldLabelHighlightedText |
+| **fieldLabelMuted** | Space Mono | 11.5px | Bold (700) | +0.8px | 1.20 | AppColors.darkTextMuted | FieldLabelMutedText |
+| **fieldInput** | Space Mono | 12.0px | Bold (700) | +0.8px | 1.20 | AppColors.darkTextSecondary | FieldInputText |
+| **legend** / **telemetryMuted** | Space Mono | 11.5px | Regular (400) | +0.5px | 1.25 | AppColors.darkTextMuted | LegendText |
+| **legendHighlighted** | Space Mono | 11.5px | Regular (400) | +0.5px | 1.25 | AppColors.accentOrange | LegendHighlightedText / SelectableErrorText |
+| **bodyMedium** | Inter | 16.0px | Regular (400) | 0.0px | 1.70 | AppColors.darkTextSecondary | BodyMediumText |
+| **bodyProse** | Inter | 14.0px | Regular (400) | 0.0px | 1.60 | AppColors.darkTextSecondary | BodyProseText |
 
 ### 4.3 Rule 11 Compliance: Semantic Typography Widgets
 In accordance with Rule 11 of AGENTS.md:
 - **Prohibited: Raw Text(...) and inline TextStyle(...)**.
-- All text in feature and shared code is instantiated strictly via dedicated semantic typography widgets (such as MonumentalText, DisplayTitleText, TacticalLabelHighlightedText, BodyProseText).
+- All text in feature and shared code is instantiated strictly via dedicated semantic typography widgets (such as MonumentalText, DisplayTitleText, ActionLabelLargeText, ActionLabelHighlightedText, ActionLabelSmallText, FieldLabelHighlightedText, BodyProseText).
 - Ad-hoc sizing, arbitrary font size overrides, or custom letter spacing in widget calls are strictly prohibited.
-- Highlighted text reacts dynamically to the active accent color (#FE6403) via dedicated highlighted semantic widgets (such as MonumentalText, NavAnchorHighlightedText, TacticalLabelHighlightedText, SelectableErrorText).
+- Highlighted text reacts dynamically to the active accent color (#FE6403) via dedicated highlighted semantic widgets (such as ActionLabelHighlightedText, ActionLabelSmallHighlightedText, NavAnchorHighlightedText, FieldLabelHighlightedText, SelectableErrorText).
 
 ---
 
@@ -145,12 +148,12 @@ In accordance with Rule 11 of AGENTS.md:
    - Every interactive actuator featuring a container chassis, background fill, or perimeter border MUST incorporate the procedural GrainSurface analog toner grain noise texture.
    - Provides physical analog materiality reminiscent of molded ABS technical hardware and risograph-printed technical manuals.
 2. **Text-Only Buttons Remain Untextured:**
-   - Flat text action buttons (such as the Registrar secondary action) and inline typographic links are strictly excluded from noise texture, preserving crisp, clean font rendering.
+   - Flat text action buttons (such as the Register secondary action) and inline typographic links are strictly excluded from noise texture, preserving crisp, clean font rendering.
 
 ### 5.2 Tactical Action Button (CTA Button Specification)
 - **Chassis Background:** Elevated dark surface, subtly tinting toward accent orange on hover.
 - **Perimeter Seam:** Solid accent orange border.
-- **Typography:** Space Mono Bold uppercase, highlighted in accent orange (TacticalLabelSmallHighlightedText).
+- **Typography:** Space Grotesk Semi-Bold uppercase, highlighted in accent orange (ActionLabelHighlightedText).
 - **Surface Texture:** Wrapped in GrainSurface with dynamic accent color response on hover.
 - **Visual Feedback:** Accent glow shadow on hover and tactile scale feedback on hover and press.
 
@@ -200,14 +203,14 @@ Positioned inside the black hole void beneath the submerged letters:
 +-----------------------+   |
 |  [ Password ]         |   |
 +-----------------------+   |   [⚙️]
-| [Registrar]  [ENTRAR] |   |
+| [Register]  [SIGN IN] |   |
 +-----------------------+   |
 ```
 
 1. **Horizontal Layout Distribution (Side-by-Side):**
-   - **Login Block (Left):** Contains the recessed email and password input fields, selectable error display, and the balanced action row ([Registrar] secondary action and [ENTRAR] primary tactical button).
+   - **Login Block (Left):** Contains the recessed email and password input fields, selectable error display, and the balanced action row ([Register] secondary action and [SIGN IN] primary tactical button).
    - **Vertical Divider Seam Line (Center):** A vertical hairline border line with subtle edge fade gradients, stretching across the intrinsic height of the login block.
-   - **Stacked Utility Icon Actions (Right):** Compêndio and Configurações rendered vertically one below the other as rounded-square tactile icon buttons wrapped in GrainSurface noise texture with illuminated borders and animated hover glow.
+   - **Stacked Utility Icon Actions (Right):** Codex and Settings rendered vertically one below the other as rounded-square tactile icon buttons wrapped in GrainSurface noise texture with illuminated borders and animated hover glow.
 2. **Input Fields Stack:**
    - Recessed input well: Email / Callsign with subtle border and dark well fill. Field labels use secondary titanium text.
    - Recessed input well: Password with matching styling.
@@ -215,35 +218,117 @@ Positioned inside the black hole void beneath the submerged letters:
    - Error States: Contextual authentication errors illuminate field borders in accent orange and display selectable error diagnostics in legend highlighted monospaced type.
 3. **Action Row:**
    - Located directly beneath the password field:
-   - **Secondary: [ Registrar / Create Account ]:** Flat text action button without noise texture, using subtle outline border and muted titanium typography.
-   - **Primary: [ Entrar / Sign In ] (CTA Button):** TacticalActionButton with GrainSurface noise texture, accent orange border, orange uppercase text, dark elevated background, hover glow, and tactile micro-physics.
+   - **Secondary: [ Register / Create Account ]:** Flat text action button without noise texture, using subtle outline border and muted titanium typography.
+   - **Primary: [ Sign In ] (CTA Button):** TacticalActionButton with GrainSurface noise texture, accent orange border, orange uppercase text, dark elevated background, hover glow, and tactile micro-physics.
 
 ---
 
-## 7. State Management, Controllers & Architectural Boundaries
+## 7. Authenticated Player Home Page Architecture (Command Deck)
 
-### 7.1 Presentation-Only StatelessWidgets (Rule 8 & 10)
+Below is the canonical structural design for the Authenticated Player Home Page (Command Deck):
+
+<p align="center">
+  <img src="./assets/player_home_sketch.png" alt="Player Home Command Deck Sketch" />
+</p>
+
+### 7.1 Typographic Brand Mark & Vertical O-Alignment Geometry
+The brand mark on the Command Deck is structured as two horizontal lines with mathematical alignment:
+
+```
+Column:    [0]     [1]     [2]     [3]     [4]     [5]     [6]     [7]     [8]
+Row 1:      B       E       Y       O       N       D             THE
+Row 2:   [    B T H    ]    H       O       R       I       Z       O       N
+                                    |
+                            (Vertical Alignment)
+```
+
+- **Vertical O-Alignment:** The single letter O in BEYOND (column 3, 4th letter) and the first letter O in HORIZON (column 3, 2nd letter) align on the exact vertical axis.
+- **[BTH] Telemetry Badge:** Placed to the left of H on Row 2, rendered in Space Mono Bold uppercase in accent orange (#FE6403).
+- **Particle THE:** Rendered in monumentalSmall type tucked compactly alongside BEYOND above HORIZON.
+- **Typography:** Space Grotesk Bold uppercase using AppTypography.monumentalTitle (MonumentalText) wrapped in a responsive scaler preserving proportions down to tablet viewports.
+
+### 7.2 Tactical Navigation Menu with Hand-Drawn Accent Arrow
+Positioned on the middle-left under the tactical telemetry subtitle // BEGIN YOUR JOURNEY (resolved via AppLocalizations, AppTypography.fieldLabelHighlighted / FieldLabelHighlightedText in #FE6403):
+
+<p align="center">
+  <img src="./assets/menu_arrow_hover_sketch.png" alt="Menu Arrow Hover Interaction Sketch" />
+</p>
+
+1. **Rest State:**
+   - Items: [ PLAY WITH CHARACTER ], [ CREATE CHARACTER ], [ CODEX ], [ SETTINGS ].
+   - Enclosed by solid brackets in AppColors.darkBorderProminent.
+   - Text uses Space Grotesk Bold 18px (AppTypography.actionLabelLarge / ActionLabelLargeText) in titanium white (#F0ECE1).
+2. **Hover State:**
+   - The trailing bracket ] vanishes.
+   - An organic, hand-drawn styled accent orange arrow (#FE6403) emerges behind the text from the opening bracket [.
+   - The arrow shaft covers approximately 90% of the text width, terminating in a sharp, stylized right-facing arrowhead just past the final letter.
+   - Text color inverts to AppColors.darkBgCanvas (#101214) over the orange arrow (AppTypography.actionLabelLargeInverted / ActionLabelLargeInvertedText), producing electrifying brutalist contrast and crisp readability.
+   - Surface texture: The arrow body incorporates procedural GrainSurface analog toner stipple for a tangible risograph / felt-tip marker materiality.
+
+### 7.3 Randomized Lore Epigraph Box & Pure Geometric Framing
+Positioned in the middle-right quadrant. The widget executes a single-row random query directly in PostgreSQL via the database RPC function get_random_lore_epigraph upon page load.
+
+#### Universal Epigraph Specifications (Identical for All Types)
+- **Content Typography:** Inter Regular 16px (AppTypography.bodyMedium / BodyMediumText in #C8C4B8).
+- **Attribution Source:** Strictly right-aligned directly beneath the frame in Space Mono Regular 11.5px (AppTypography.legend / LegendText in #7B8491) prefixed by an em-dash (—).
+- **Rich Markdown Formatting:** Uniformly supports multi-line breaks, internal text alignments, and solid black [REDACTED] blocks (rendered as solid dark rectangles masking classified text) across all five domain types.
+- **Zero Text in Frames:** Frames contain zero text labels. The geometric frame shape and the attribution source uniquely identify the domain type.
+
+#### Type-Specific Geometric Framing
+The only differentiator across domain types is the geometric framing silhouette:
+
+1. **Type: quote / poem (Literary Epigraph Framing):**
+   - Asymmetric diagonal corner brackets: Top-Left ┌ and Bottom-Right ┘ in AppColors.accentOrange (#FE6403).
+
+2. **Type: document (Vertical Folio Sheet Framing):**
+   - Derived directly from the institutional case file design:
+   - Top cap: 3-sided inverted-U bar (┌────────────┐) with side flanges extending downward.
+   - Bottom cap: 3-sided upright-U bar (└────────────┘) with side flanges extending upward.
+   - Middle sides are completely open, evoking a physical dossier page.
+
+3. **Type: transmission (Deep Space Radio Interception):**
+   - Four-corner reticle marks (┌ ┐ top and └ ┘ bottom) with open perimeter edges in AppColors.accentOrange (#FE6403).
+
+4. **Type: news (Corporate Ticker Double Horizontal Bars):**
+   - Solid double horizontal bars across top and bottom (═════════════). Open on left and right edges.
+
+### 7.4 Operative Greeting & Session Termination ([ ⏻ SIGN OUT ])
+1. **Operative Greeting (Top-Right):**
+   - Prefix: "Welcome, " using AppTypography.displayTitle (DisplayTitleText, 26px, titanium white #F0ECE1, resolved via AppLocalizations).
+   - Operative Callsign / Name: "[Callsign]" using AppTypography.displayTitleLarge tinted in AppColors.accentOrange (#FE6403).
+2. **Session Termination (Bottom-Left Corner):**
+   - Anchored at the bottom-left coordinate of the viewport.
+   - Styled as a low-profile bracketed utility actuator: [ ⏻ SIGN OUT ].
+   - Uses Space Grotesk Semi-Bold 12.0px (AppTypography.actionLabelSmall / ActionLabelSmallText in rest state, illuminating to ActionLabelSmallHighlightedText on hover).
+   - Border in AppColors.darkBorderSubtle, illuminating to AppColors.accentOrange on hover with tactile micro-physics.
+   - Completely decoupled from primary game navigation to prevent accidental session termination while keeping the bottom-right quadrant open for upcoming character and creature artwork (OP-02B).
+
+---
+
+## 8. State Management, Controllers & Architectural Boundaries
+
+### 8.1 Presentation-Only StatelessWidgets (Rule 8 & 10)
 - Screen and shell layouts are strictly StatelessWidgets or stateful widgets without business logic.
 - Controllers are resolved via constructor dependency injection, ensuring fields are non-nullable final T controller resolved once upon creation.
 - Calling serviceLocator[T]() inside build() methods of pages and shell layouts is strictly prohibited.
 - Building pages as StatefulWidgets solely to hold a controller in initState or call dispose is prohibited.
 
-### 7.2 Controllers Hold State, Not Futures (Rule 10)
+### 8.2 Controllers Hold State, Not Futures (Rule 10)
 - Getters with lazy side-effects are prohibited.
 - Controllers extend ChangeNotifier and hold resolved domain models, granular loading booleans (such as isLoading), and nullable error strings (such as errorMessage).
 - Data fetching is triggered via explicit asynchronous methods (such as loadData(), refresh()).
 - Widgets observe state via ListenableBuilder or AnimatedBuilder instead of FutureBuilder.
 
-### 7.3 Backend-Only External Communication (Rule 14)
+### 8.3 Backend-Only External Communication (Rule 14)
 - Every external communication (Supabase database queries, Supabase Storage, third-party APIs) originates strictly and exclusively from the backend package.
 - The frontend package is strictly limited to UI presentation, layout composition, user input handling, reactive state management, routing, and local client storage (UserLocalStorageService).
 - Direct network calls from frontend to Supabase or external APIs are strictly prohibited. Frontend interacts with domain data exclusively via BackendService and shared DTOs.
 
-### 7.4 DTO Naming & Explicit Request/Response Contracts (Rule 19)
+### 8.4 DTO Naming & Explicit Request/Response Contracts (Rule 19)
 - All Data Transfer Objects are explicitly suffixed with RequestDto or ResponseDto.
 - Ambiguous, unqualified, or generic DTO names are prohibited.
 
-### 7.5 Declarative Routing & Navigation Architecture (go_router)
+### 8.5 Declarative Routing & Navigation Architecture (go_router)
 The client application adopts **go_router** as its official declarative routing and deep-linking solution on Flutter Web:
 1. **Route Map:**
    - **/**: LoggedOutLandingScreen (Public zero-login landing portal).
@@ -257,12 +342,12 @@ The client application adopts **go_router** as its official declarative routing 
    - Sub-widgets do not directly invoke global navigation singletons.
    - Buttons receive plain callbacks (such as onTap) that invoke declarative routing in the parent scope.
 
-### 7.6 In-Construction Module Destination Pattern
-During early development phases, feature launchers whose underlying subsystem is still in progress navigate to the dedicated atmospheric InConstructionScreen (*Módulo em Construção*). This screen presents terminal hazard styling, status telemetry codes (CODIGO_ESTADO_503_PLANNED), and a tactical return button to preserve interface coherence without dead-end clicks or broken layouts.
+### 8.6 In-Construction Module Destination Pattern
+During early development phases, feature launchers whose underlying subsystem is still in progress navigate to the dedicated atmospheric InConstructionScreen (*Module in Construction*). This screen presents terminal hazard styling, status telemetry codes (STATUS_CODE_503_PLANNED), and a tactical return button to preserve interface coherence without dead-end clicks or broken layouts.
 
 ---
 
-## 8. Alternative Designs
+## 9. Alternative Designs
 
 This section preserves earlier layout iterations and wireframe concepts explored during design discovery:
 
@@ -286,7 +371,7 @@ This section preserves earlier layout iterations and wireframe concepts explored
 
 ### Studied Alternative E: The Classified Dossier & Archival Terminal
 - An asymmetric layout with a tangible dossier folder, redaction bars, paperclip graphics, and typewriter typography.
-- *Evaluation:* Strongly evocative of Remedy's *Control*, but too document-centric for a primary public landing screen. Preserved as a strong candidate for future compendium and facilitator secret handout modules.
+- *Evaluation:* Strongly evocative of Remedy's *Control*, but too document-centric for a primary public landing screen. Preserved as a strong candidate for future codex and facilitator secret handout modules.
 
 ### Studied Alternative F: The Minimalist Rules Explorer & Live Radar
 - Centered rules search bar with category pills and a live dice simulation radar.
@@ -302,7 +387,7 @@ This section preserves earlier layout iterations and wireframe concepts explored
 
 ---
 
-## 9. Document References
+## 10. Document References
 
 - [Open Points & Roadmap Register](./open_points.md) - Project roadmap and open points register
 - [01-sdd-overview.md](./01-sdd-overview.md) - System Design Document: Overview

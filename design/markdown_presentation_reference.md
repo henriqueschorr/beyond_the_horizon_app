@@ -24,8 +24,8 @@ Authors can define specialized section styling directly in Markdown using Obsidi
 
 ```markdown
 > [!SECTION|surface=dark_concrete|border=glow]
-> ## Protocolo de Ressonância: Alerta Vermelho
-> Durante um combate tático, os monitores de telemetria entram em alerta de alta voltagem.
+> ## Resonance Protocol: Red Alert
+> During tactical combat, telemetry monitors enter high-voltage alert.
 ```
 
 The Flutter markdown renderer ElementBuilder extracts the callout parameters and wraps the section in the corresponding design system surface and container.

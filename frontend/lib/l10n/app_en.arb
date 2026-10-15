@@ -22,7 +22,7 @@
   "registrationPasswordPlaceholder": "Enter your password",
   "registrationSubmitAction": "COMPLETE REGISTRATION",
 
-  "landingCompendiumTooltip": "Compendium // Rulebook",
+  "landingCompendiumTooltip": "Codex // Rulebook",
   "landingSettingsTooltip": "Settings",
 
   "dashboardWelcome": "Welcome, {name}.",
@@ -35,7 +35,7 @@
   },
   "featurePlayCharacterTitle": "PLAY WITH CHARACTER",
   "featureCreateCharacterTitle": "CREATE CHARACTER",
-  "featureCompendiumTitle": "COMPENDIUM",
+  "featureCompendiumTitle": "CODEX",
   "featureSettingsTitle": "SETTINGS",
   "featureSignOutTitle": "SIGN OUT",
   "featureSignOutSessionAction": "SIGN OUT // TERMINATE SESSION",

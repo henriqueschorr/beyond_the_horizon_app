@@ -102,7 +102,7 @@ class _TacticalActionButtonState extends State<TacticalActionButton> {
                             valueColor: AlwaysStoppedAnimation<Color>(AppColors.accentOrange),
                           ),
                         )
-                      : TacticalLabelSmallHighlightedText(widget.label),
+                      : ActionLabelHighlightedText(widget.label),
                 ),
               ),
             ),
