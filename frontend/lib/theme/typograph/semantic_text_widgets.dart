@@ -93,6 +93,24 @@ class DisplayTitleText extends StatelessWidget {
   }
 }
 
+class DisplayTitleHighlightedText extends StatelessWidget {
+  final String text;
+
+  const DisplayTitleHighlightedText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.displayTitleHighlighted,
+    );
+  }
+}
+
+
 class SectionTitleText extends StatelessWidget {
   final String text;
 
@@ -387,10 +405,10 @@ class BodyMediumText extends StatelessWidget {
   }
 }
 
-class BodyProseText extends StatelessWidget {
+class ActionLabelSmallMutedText extends StatelessWidget {
   final String text;
 
-  const BodyProseText(
+  const ActionLabelSmallMutedText(
     this.text, {
     super.key,
   });
@@ -399,7 +417,43 @@ class BodyProseText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: AppTypography.bodyProse,
+      style: AppTypography.actionLabelSmallMuted,
     );
   }
 }
+
+class BodyText extends StatelessWidget {
+  final String text;
+
+  const BodyText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.body,
+    );
+  }
+}
+
+class BodyMonoText extends StatelessWidget {
+  final String text;
+
+  const BodyMonoText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.bodyMono,
+    );
+  }
+}
+
+

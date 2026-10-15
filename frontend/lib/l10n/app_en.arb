@@ -4,7 +4,6 @@
   "commonAppTitle": "Beyond the Horizon",
   "commonClose": "Close",
   "commonBack": "Back",
-  "commonOperative": "Operative",
 
   "authEmailLabel": "Email",
   "authEmailPlaceholder": "Enter your email",
@@ -25,35 +24,18 @@
   "landingCompendiumTooltip": "Codex // Rulebook",
   "landingSettingsTooltip": "Settings",
 
-  "dashboardWelcome": "Welcome, {name}.",
-  "@dashboardWelcome": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "featurePlayCharacterTitle": "PLAY WITH CHARACTER",
   "featureCreateCharacterTitle": "CREATE CHARACTER",
   "featureCompendiumTitle": "CODEX",
   "featureSettingsTitle": "SETTINGS",
   "featureSignOutTitle": "SIGN OUT",
-  "featureSignOutSessionAction": "SIGN OUT // TERMINATE SESSION",
-  "dashboardWelcomePrefix": "Welcome to Beyond the Horizon, ",
-  "dashboardWelcomeSuffix": ".",
-  "dashboardSubtitleExplore": "// BEGIN YOUR EXPLORATION",
-  "dashboardNoActiveCharacter": "NO ACTIVE CHARACTER",
-  "dashboardStatusReady": "READY",
-  "dashboardStatusUninitialized": "UNINITIALIZED",
+  "dashboardWelcomePrefix": "Welcome, ",
+  "dashboardSubtitleExplore": "// BEGIN YOUR JOURNEY",
+
+  "loreDecryptingTransmission": "// DECRYPTING TRANSMISSION...",
 
   "settingsTitle": "SETTINGS",
   "settingsNoOptionsNotice": "No configuration options currently available.",
-
-  "inConstructionHeader": "TACTICAL SUBSYSTEM // STATUS TRANSMISSION",
-  "inConstructionNotice": "This module is actively being compiled and calibrated in the event horizon. Telemetry records and the corresponding database will be declassified in upcoming transmissions.",
-  "inConstructionStatusCode": "STATUS: MODULO_EM_DESENVOLVIMENTO // CODIGO_ESTADO_503_PLANNED",
-  "inConstructionProtocol": "LOCATION: SECTOR_TERMINAL_SUBROUTINE\nPROTOCOL: AWAITING_DATA_SYNCHRONIZATION",
-  "inConstructionReturnAction": "RETURN TO TERMINAL",
 
   "telemetrySignalWarning": "UNSUPPORTED SCREEN SIZE",
   "telemetryResolutionTitle": "INSUFFICIENT SCREEN WIDTH",

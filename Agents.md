@@ -318,3 +318,13 @@ When the user explicitly instructs you to commit:
     </p>
     ```
 
+---
+
+## 24. Prohibition of Barrel Export Files
+
+- **Strict Prohibition of Barrel Files**:
+  - Never create barrel or re-export files that simply bundle and re-export other files within a directory (such as dynamic_text.dart re-exporting widgets/dynamic_text.dart, frames.dart, components.dart, widgets.dart).
+  - The only acceptable library export files are the canonical package-level entrypoints explicitly required by Dart (such as lib/shared.dart, lib/backend.dart).
+  - Everywhere else across feature modules and shared directories, consumers must import the specific file where a class, widget, or function is declared directly.
+
+

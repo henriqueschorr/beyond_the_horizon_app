@@ -107,30 +107,30 @@ The interface architecture establishes three distinct font voices, each serving 
 
 ### 4.2 Typographic Scale & Metrics
 
-| Style Token | Font Family | Size | Weight | Tracking / Spacing | Line Height | Default Color Token | Semantic Widget Name |
-| :--- | :--- | :---: | :---: | :---: | :---: | :--- | :--- |
-| **monumentalTitle** | Space Grotesk | 64.0px | Bold (700) | +4.0px | 1.00 | AppColors.darkTextPrimary | MonumentalText |
-| **monumentalSmall** | Space Grotesk | 16.0px | Bold (700) | +4.0px | 1.00 | AppColors.darkTextPrimary | MonumentalSmallText |
-| **displayTitleLarge** | Space Grotesk | 32.0px | Bold (700) | -0.5px | 1.25 | AppColors.darkTextPrimary | DisplayTitleLargeText |
-| **displayTitle** | Space Grotesk | 26.0px | Bold (700) | -0.2px | 1.15 | AppColors.darkTextPrimary | DisplayTitleText |
-| **sectionTitle** | Space Grotesk | 18.0px | Bold (700) | -0.1px | 1.20 | AppColors.darkTextPrimary | SectionTitleText |
-| **actionLabelLarge** | Space Grotesk | 18.0px | Bold (700) | +0.5px | 1.20 | AppColors.darkTextPrimary | ActionLabelLargeText |
-| **actionLabelLargeInverted** | Space Grotesk | 18.0px | Bold (700) | +0.5px | 1.20 | AppColors.darkBgCanvas | ActionLabelLargeInvertedText |
-| **actionLabel** | Space Grotesk | 14.0px | Semi-Bold (600) | +0.5px | 1.10 | AppColors.darkTextPrimary | ActionLabelText |
-| **actionLabelHighlighted** | Space Grotesk | 14.0px | Semi-Bold (600) | +0.5px | 1.10 | AppColors.accentOrange | ActionLabelHighlightedText |
-| **actionLabelMuted** | Space Grotesk | 14.0px | Semi-Bold (600) | +0.5px | 1.10 | AppColors.darkTextSecondary | ActionLabelMutedText |
-| **actionLabelSmall** | Space Grotesk | 12.0px | Semi-Bold (600) | +0.8px | 1.20 | AppColors.darkTextSecondary | ActionLabelSmallText |
-| **actionLabelSmallHighlighted** | Space Grotesk | 12.0px | Semi-Bold (600) | +0.8px | 1.20 | AppColors.accentOrange | ActionLabelSmallHighlightedText |
-| **navAnchor** | Space Grotesk | 14.0px | Semi-Bold (600) | +1.2px | 1.20 | AppColors.darkTextSecondary | NavAnchorText |
-| **navAnchorHighlighted** | Space Grotesk | 14.0px | Semi-Bold (600) | +1.2px | 1.20 | AppColors.accentOrange | NavAnchorHighlightedText |
-| **fieldLabel** | Space Mono | 11.5px | Bold (700) | +0.8px | 1.20 | AppColors.darkTextSecondary | FieldLabelText |
-| **fieldLabelHighlighted** | Space Mono | 11.5px | Bold (700) | +0.8px | 1.20 | AppColors.accentOrange | FieldLabelHighlightedText |
-| **fieldLabelMuted** | Space Mono | 11.5px | Bold (700) | +0.8px | 1.20 | AppColors.darkTextMuted | FieldLabelMutedText |
-| **fieldInput** | Space Mono | 12.0px | Bold (700) | +0.8px | 1.20 | AppColors.darkTextSecondary | FieldInputText |
-| **legend** / **telemetryMuted** | Space Mono | 11.5px | Regular (400) | +0.5px | 1.25 | AppColors.darkTextMuted | LegendText |
-| **legendHighlighted** | Space Mono | 11.5px | Regular (400) | +0.5px | 1.25 | AppColors.accentOrange | LegendHighlightedText / SelectableErrorText |
-| **bodyMedium** | Inter | 16.0px | Regular (400) | 0.0px | 1.70 | AppColors.darkTextSecondary | BodyMediumText |
-| **bodyProse** | Inter | 14.0px | Regular (400) | 0.0px | 1.60 | AppColors.darkTextSecondary | BodyProseText |
+| Style Token                     | Font Family   |  Size  |     Weight      | Tracking / Spacing | Line Height | Default Color Token         | Semantic Widget Name                        |
+| :------------------------------ | :------------ | :----: | :-------------: | :----------------: | :---------: | :-------------------------- | :------------------------------------------ |
+| **monumentalTitle**             | Space Grotesk | 64.0px |   Bold (700)    |       +4.0px       |    1.00     | AppColors.darkTextPrimary   | MonumentalText                              |
+| **monumentalSmall**             | Space Grotesk | 16.0px |   Bold (700)    |       +4.0px       |    1.00     | AppColors.darkTextPrimary   | MonumentalSmallText                         |
+| **displayTitleLarge**           | Space Grotesk | 32.0px |   Bold (700)    |       -0.5px       |    1.25     | AppColors.darkTextPrimary   | DisplayTitleLargeText                       |
+| **displayTitle**                | Space Grotesk | 26.0px |   Bold (700)    |       -0.2px       |    1.15     | AppColors.darkTextPrimary   | DisplayTitleText                            |
+| **sectionTitle**                | Space Grotesk | 18.0px |   Bold (700)    |       -0.1px       |    1.20     | AppColors.darkTextPrimary   | SectionTitleText                            |
+| **actionLabelLarge**            | Space Grotesk | 18.0px |   Bold (700)    |       +0.5px       |    1.20     | AppColors.darkTextPrimary   | ActionLabelLargeText                        |
+| **actionLabelLargeInverted**    | Space Grotesk | 18.0px |   Bold (700)    |       +0.5px       |    1.20     | AppColors.darkBgCanvas      | ActionLabelLargeInvertedText                |
+| **actionLabel**                 | Space Grotesk | 14.0px | Semi-Bold (600) |       +0.5px       |    1.10     | AppColors.darkTextPrimary   | ActionLabelText                             |
+| **actionLabelHighlighted**      | Space Grotesk | 14.0px | Semi-Bold (600) |       +0.5px       |    1.10     | AppColors.accentOrange      | ActionLabelHighlightedText                  |
+| **actionLabelMuted**            | Space Grotesk | 14.0px | Semi-Bold (600) |       +0.5px       |    1.10     | AppColors.darkTextSecondary | ActionLabelMutedText                        |
+| **actionLabelSmall**            | Space Grotesk | 12.0px | Semi-Bold (600) |       +0.8px       |    1.20     | AppColors.darkTextSecondary | ActionLabelSmallText                        |
+| **actionLabelSmallHighlighted** | Space Grotesk | 12.0px | Semi-Bold (600) |       +0.8px       |    1.20     | AppColors.accentOrange      | ActionLabelSmallHighlightedText             |
+| **navAnchor**                   | Space Grotesk | 14.0px | Semi-Bold (600) |       +1.2px       |    1.20     | AppColors.darkTextSecondary | NavAnchorText                               |
+| **navAnchorHighlighted**        | Space Grotesk | 14.0px | Semi-Bold (600) |       +1.2px       |    1.20     | AppColors.accentOrange      | NavAnchorHighlightedText                    |
+| **fieldLabel**                  | Space Mono    | 11.5px |   Bold (700)    |       +0.8px       |    1.20     | AppColors.darkTextSecondary | FieldLabelText                              |
+| **fieldLabelHighlighted**       | Space Mono    | 11.5px |   Bold (700)    |       +0.8px       |    1.20     | AppColors.accentOrange      | FieldLabelHighlightedText                   |
+| **fieldLabelMuted**             | Space Mono    | 11.5px |   Bold (700)    |       +0.8px       |    1.20     | AppColors.darkTextMuted     | FieldLabelMutedText                         |
+| **fieldInput**                  | Space Mono    | 12.0px |   Bold (700)    |       +0.8px       |    1.20     | AppColors.darkTextSecondary | FieldInputText                              |
+| **legend** / **telemetryMuted** | Space Mono    | 11.5px |  Regular (400)  |       +0.5px       |    1.25     | AppColors.darkTextMuted     | LegendText                                  |
+| **legendHighlighted**           | Space Mono    | 11.5px |  Regular (400)  |       +0.5px       |    1.25     | AppColors.accentOrange      | LegendHighlightedText / SelectableErrorText |
+| **bodyMedium**                  | Inter         | 16.0px |  Regular (400)  |       0.0px        |    1.70     | AppColors.darkTextSecondary | BodyMediumText                              |
+| **bodyProse**                   | Inter         | 14.0px |  Regular (400)  |       0.0px        |    1.60     | AppColors.darkTextSecondary | BodyProseText                               |
 
 ### 4.3 Rule 11 Compliance: Semantic Typography Widgets
 In accordance with Rule 11 of AGENTS.md:
@@ -225,14 +225,14 @@ Positioned inside the black hole void beneath the submerged letters:
 
 ## 7. Authenticated Player Home Page Architecture (Command Deck)
 
-Below is the canonical structural design for the Authenticated Player Home Page (Command Deck):
+Below is the canonical structural design for the Authenticated Player Home Page (PlayerHomePage in frontend/lib/features/home/player/pages/player_home_page.dart):
 
 <p align="center">
   <img src="./assets/player_home_sketch.png" alt="Player Home Command Deck Sketch" />
 </p>
 
 ### 7.1 Typographic Brand Mark & Vertical O-Alignment Geometry
-The brand mark on the Command Deck is structured as two horizontal lines with mathematical alignment:
+The brand mark on the Command Deck (HomeBrandMark in frontend/lib/features/home/widgets/home_brand_mark.dart) is structured as two horizontal lines with mathematical alignment:
 
 ```
 Column:    [0]     [1]     [2]     [3]     [4]     [5]     [6]     [7]     [8]
@@ -247,18 +247,21 @@ Row 2:   [    B T H    ]    H       O       R       I       Z       O       N
 - **Particle THE:** Rendered in monumentalSmall type tucked compactly alongside BEYOND above HORIZON.
 - **Typography:** Space Grotesk Bold uppercase using AppTypography.monumentalTitle (MonumentalText) wrapped in a responsive scaler preserving proportions down to tablet viewports.
 
-### 7.2 Tactical Navigation Menu with Hand-Drawn Accent Arrow
-Positioned on the middle-left under the tactical telemetry subtitle // BEGIN YOUR JOURNEY (resolved via AppLocalizations, AppTypography.fieldLabelHighlighted / FieldLabelHighlightedText in #FE6403):
+### 7.2 Tactical Player Menu & Reusable HomeMenuItem
+Positioned on the middle-left under the tactical telemetry subtitle // BEGIN YOUR JOURNEY (resolved via AppLocalizations, AppTypography.fieldLabelHighlighted / FieldLabelHighlightedText in #FE6403), with the interactive menu items indented 24.0px to the right beneath the telemetry subtitle:
 
 <p align="center">
   <img src="./assets/menu_arrow_hover_sketch.png" alt="Menu Arrow Hover Interaction Sketch" />
 </p>
 
-1. **Rest State:**
+1. **PlayerMenu Architecture:**
+   - Composes HomeMenuItem instances (frontend/lib/features/home/widgets/home_menu_item.dart) for cross-role reusability across Player, Facilitator, and Admin decks.
    - Items: [ PLAY WITH CHARACTER ], [ CREATE CHARACTER ], [ CODEX ], [ SETTINGS ].
+   - All four options are fully active, interactive, and clickable, deferring character presence gating to future character creation and play milestones (OP-04 and OP-05).
+2. **Rest State:**
    - Enclosed by solid brackets in AppColors.darkBorderProminent.
-   - Text uses Space Grotesk Bold 18px (AppTypography.actionLabelLarge / ActionLabelLargeText) in titanium white (#F0ECE1).
-2. **Hover State:**
+   - Text uses Space Grotesk Bold 22px (AppTypography.actionLabelLarge / ActionLabelLargeText) in titanium white (#F0ECE1).
+3. **Hover State:**
    - The trailing bracket ] vanishes.
    - An organic, hand-drawn styled accent orange arrow (#FE6403) emerges behind the text from the opening bracket [.
    - The arrow shaft covers approximately 90% of the text width, terminating in a sharp, stylized right-facing arrowhead just past the final letter.
@@ -266,40 +269,42 @@ Positioned on the middle-left under the tactical telemetry subtitle // BEGIN YOU
    - Surface texture: The arrow body incorporates procedural GrainSurface analog toner stipple for a tangible risograph / felt-tip marker materiality.
 
 ### 7.3 Randomized Lore Epigraph Box & Pure Geometric Framing
-Positioned in the middle-right quadrant. The widget executes a single-row random query directly in PostgreSQL via the database RPC function get_random_lore_epigraph upon page load.
+Positioned in the middle-right quadrant (LoreEpigraphBox in frontend/lib/features/home/player/widgets/lore_epigraph_box.dart). The widget executes a single-row random query directly in PostgreSQL via the database RPC function get_random_lore_epigraph upon page load, delegating framing geometry to the dedicated EpigraphFramePainterResolver (frontend/lib/shared_widgets/frames/epigraph_frame_painter_resolver.dart).
 
 #### Universal Epigraph Specifications (Identical for All Types)
-- **Content Typography:** Inter Regular 16px (AppTypography.bodyMedium / BodyMediumText in #C8C4B8).
-- **Attribution Source:** Strictly right-aligned directly beneath the frame in Space Mono Regular 11.5px (AppTypography.legend / LegendText in #7B8491) prefixed by an em-dash (—).
-- **Rich Markdown Formatting:** Uniformly supports multi-line breaks, internal text alignments, and solid black [REDACTED] blocks (rendered as solid dark rectangles masking classified text) across all five domain types.
+- **Content Typography:** Space Mono Regular 14px (AppTypography.bodyMono / DynamicText in #C8C4B8).
+- **Attribution Source:** Strictly right-aligned directly beneath the frame in Space Mono Regular 14px (AppTypography.bodyMono / BodyMonoText in #C8C4B8) prefixed by an em-dash (—).
+- **Rich Markdown Formatting:** Uniformly supports multi-line breaks, internal text alignments, and natural narrative classification markers (preserving [REDACTED] in English and [OMITIDO] in pt-BR as inline text via DynamicText from frontend/lib/features/dynamic_text/) across all five domain types.
 - **Zero Text in Frames:** Frames contain zero text labels. The geometric frame shape and the attribution source uniquely identify the domain type.
 
-#### Type-Specific Geometric Framing
+#### Type-Specific Geometric Framing (Alphabetical Order)
 The only differentiator across domain types is the geometric framing silhouette:
 
-1. **Type: quote / poem (Literary Epigraph Framing):**
-   - Asymmetric diagonal corner brackets: Top-Left ┌ and Bottom-Right ┘ in AppColors.accentOrange (#FE6403).
-
-2. **Type: document (Vertical Folio Sheet Framing):**
+1. **Type: document (Vertical Folio Sheet Framing):**
    - Derived directly from the institutional case file design:
    - Top cap: 3-sided inverted-U bar (┌────────────┐) with side flanges extending downward.
    - Bottom cap: 3-sided upright-U bar (└────────────┘) with side flanges extending upward.
    - Middle sides are completely open, evoking a physical dossier page.
 
-3. **Type: transmission (Deep Space Radio Interception):**
-   - Four-corner reticle marks (┌ ┐ top and └ ┘ bottom) with open perimeter edges in AppColors.accentOrange (#FE6403).
-
-4. **Type: news (Corporate Ticker Double Horizontal Bars):**
+2. **Type: news (Corporate Ticker Double Horizontal Bars):**
    - Solid double horizontal bars across top and bottom (═════════════). Open on left and right edges.
 
-### 7.4 Operative Greeting & Session Termination ([ ⏻ SIGN OUT ])
-1. **Operative Greeting (Top-Right):**
+3. **Type: poem / quote (Literary Epigraph Framing):**
+   - Asymmetric diagonal corner brackets: Top-Left ┌ and Bottom-Right ┘ in AppColors.accentOrange (#FE6403).
+
+4. **Type: transmission (Deep Space Radio Interception):**
+   - Four-corner reticle marks (┌ ┐ top and └ ┘ bottom) with open perimeter edges in AppColors.accentOrange (#FE6403).
+
+### 7.4 Player Greeting & Session Termination (⏻ SIGN OUT)
+1. **Player Greeting (Top-Right):**
+   - Widget: PlayerGreeting (frontend/lib/features/home/player/widgets/player_greeting.dart).
    - Prefix: "Welcome, " using AppTypography.displayTitle (DisplayTitleText, 26px, titanium white #F0ECE1, resolved via AppLocalizations).
-   - Operative Callsign / Name: "[Callsign]" using AppTypography.displayTitleLarge tinted in AppColors.accentOrange (#FE6403).
+   - Player Callsign / Name: "[Callsign]" using AppTypography.displayTitleHighlighted (DisplayTitleHighlightedText tinted in AppColors.accentOrange #FE6403).
 2. **Session Termination (Bottom-Left Corner):**
    - Anchored at the bottom-left coordinate of the viewport.
-   - Styled as a low-profile bracketed utility actuator: [ ⏻ SIGN OUT ].
-   - Uses Space Grotesk Semi-Bold 12.0px (AppTypography.actionLabelSmall / ActionLabelSmallText in rest state, illuminating to ActionLabelSmallHighlightedText on hover).
+   - Widget: IconButton (frontend/lib/shared_widgets/buttons/icon_button.dart).
+   - Styled as a muted tactile utility actuator: ⏻ SIGN OUT (no brackets).
+   - Uses Space Grotesk Semi-Bold 12.0px with AppColors.darkTextMuted (AppTypography.actionLabelSmallMuted / ActionLabelSmallMutedText in rest state, illuminating to ActionLabelSmallHighlightedText on hover).
    - Border in AppColors.darkBorderSubtle, illuminating to AppColors.accentOrange on hover with tactile micro-physics.
    - Completely decoupled from primary game navigation to prevent accidental session termination while keeping the bottom-right quadrant open for upcoming character and creature artwork (OP-02B).
 
@@ -329,21 +334,22 @@ The only differentiator across domain types is the geometric framing silhouette:
 - Ambiguous, unqualified, or generic DTO names are prohibited.
 
 ### 8.5 Declarative Routing & Navigation Architecture (go_router)
-The client application adopts **go_router** as its official declarative routing and deep-linking solution on Flutter Web:
+The client application adopts go_router as its official declarative routing and deep-linking solution on Flutter Web:
 1. **Route Map:**
-   - **/**: LoggedOutLandingScreen (Public zero-login landing portal).
-   - **/dashboard**: Guarded authenticated session destination placeholder.
-   - **/in-construction**: InConstructionScreen (Atmospheric terminal destination for modules under active construction, accepting ?module=... query parameters).
+   - **/**: LandingPage (Public zero-login landing portal).
+   - **/home**: PlayerHomePage (Authenticated Player Command Deck).
+   - **/blank**: BlankPage (Temporary screen displaying a centered BLANK title).
 2. **Reactive Authentication Redirect Guards:**
    - GoRouter is initialized with refreshListenable bound to AuthController.
    - When an operative session is invalidated or signed out, GoRouter redirects protected routes back to **/**.
    - Deep-linking to protected views while unauthenticated automatically redirects visitors to **/**.
+
 3. **Decoupled Widget Callbacks (Rule 10):**
    - Sub-widgets do not directly invoke global navigation singletons.
    - Buttons receive plain callbacks (such as onTap) that invoke declarative routing in the parent scope.
 
-### 8.6 In-Construction Module Destination Pattern
-During early development phases, feature launchers whose underlying subsystem is still in progress navigate to the dedicated atmospheric InConstructionScreen (*Module in Construction*). This screen presents terminal hazard styling, status telemetry codes (STATUS_CODE_503_PLANNED), and a tactical return button to preserve interface coherence without dead-end clicks or broken layouts.
+### 8.6 Temporary Blank Page Destination Pattern
+During early development phases, feature launchers whose underlying subsystem is still pending implementation navigate to the dedicated temporary BlankPage screen displaying a centered BLANK title to preserve interface coherence without dead-end clicks or broken layouts.
 
 ---
 

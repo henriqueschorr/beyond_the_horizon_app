@@ -37,6 +37,15 @@ abstract final class AppTypography {
         color: AppColors.darkTextPrimary,
       );
 
+  static TextStyle get displayTitleHighlighted => GoogleFonts.spaceGrotesk(
+        fontSize: 26.0,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.2,
+        height: 1.15,
+        color: AppColors.accentOrange,
+      );
+
+
   static TextStyle get sectionTitle => GoogleFonts.spaceGrotesk(
         fontSize: 18.0,
         fontWeight: FontWeight.w700,
@@ -46,15 +55,15 @@ abstract final class AppTypography {
       );
 
   static TextStyle get actionLabelLarge => GoogleFonts.spaceGrotesk(
-        fontSize: 18.0,
+        fontSize: 22.0,
         fontWeight: FontWeight.w700,
         letterSpacing: 0.5,
         height: 1.20,
-        color: AppColors.darkTextPrimary,
+        color: AppColors.darkTextSecondary,
       );
 
   static TextStyle get actionLabelLargeInverted => GoogleFonts.spaceGrotesk(
-        fontSize: 18.0,
+        fontSize: 22.0,
         fontWeight: FontWeight.w700,
         letterSpacing: 0.5,
         height: 1.20,
@@ -66,7 +75,7 @@ abstract final class AppTypography {
         fontWeight: FontWeight.w600,
         letterSpacing: 0.5,
         height: 1.10,
-        color: AppColors.darkTextPrimary,
+        color: AppColors.darkTextSecondary,
       );
 
   static TextStyle get actionLabelHighlighted => GoogleFonts.spaceGrotesk(
@@ -99,6 +108,14 @@ abstract final class AppTypography {
         letterSpacing: 0.8,
         height: 1.20,
         color: AppColors.accentOrange,
+      );
+
+  static TextStyle get actionLabelSmallMuted => GoogleFonts.spaceGrotesk(
+        fontSize: 12.0,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.8,
+        height: 1.20,
+        color: AppColors.darkTextMuted,
       );
 
   static TextStyle get navAnchor => GoogleFonts.spaceGrotesk(
@@ -173,7 +190,15 @@ abstract final class AppTypography {
         color: AppColors.darkTextSecondary,
       );
 
-  static TextStyle get bodyProse => GoogleFonts.inter(
+  static TextStyle get body => GoogleFonts.inter(
+        fontSize: 14.0,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 0.0,
+        height: 1.60,
+        color: AppColors.darkTextSecondary,
+      );
+
+  static TextStyle get bodyMono => GoogleFonts.spaceMono(
         fontSize: 14.0,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.0,

@@ -15,11 +15,15 @@ export 'exceptions/profile_exception.dart';
 
 // Repositories
 export 'repositories/auth_repository.dart';
+export 'repositories/lore_epigraph_repository.dart';
 export 'repositories/profile_repository.dart';
 export 'repositories/mock/mock_auth_repository.dart';
+export 'repositories/mock/mock_lore_epigraph_repository.dart';
 export 'repositories/mock/mock_profile_repository.dart';
 export 'repositories/mock/mock_seeds.dart';
 
 // Services
 export 'services/auth_service.dart';
+export 'services/lore_epigraph_service.dart';
 export 'services/profile_service.dart';
+

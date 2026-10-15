@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 
 import '../features/auth/controllers/auth_controller.dart';
 import '../features/auth/validators/auth_validator.dart';
+import '../features/home/player/controllers/lore_epigraph_controller.dart';
 import '../features/settings/controllers/settings_controller.dart';
 import '../services/user_local_storage_service.dart';
 
@@ -41,4 +42,13 @@ void setupFrontendServiceLocator({GetIt? locator}) {
       () => SettingsController(storage: currentLocator<UserLocalStorageService>()),
     );
   }
+
+  if (!currentLocator.isRegistered<LoreEpigraphController>()) {
+    currentLocator.registerLazySingleton<LoreEpigraphController>(
+      () => LoreEpigraphController(
+        backendService: currentLocator<BackendService>(),
+      ),
+    );
+  }
 }
+

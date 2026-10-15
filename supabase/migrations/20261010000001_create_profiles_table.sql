@@ -97,11 +97,18 @@ CREATE TRIGGER on_profiles_role_check
 -- Automatic profile creation on auth.users registration
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER AS $$
+DECLARE
+    v_display_name TEXT;
 BEGIN
+    v_display_name := TRIM(NEW.raw_user_meta_data->>'display_name');
+    IF v_display_name IS NULL OR char_length(v_display_name) = 0 THEN
+        RAISE EXCEPTION 'Display name is required for profile registration.';
+    END IF;
+
     INSERT INTO public.profiles (id, display_name, role)
     VALUES (
         NEW.id,
-        COALESCE(NULLIF(TRIM(NEW.raw_user_meta_data->>'display_name'), ''), 'Operative'),
+        v_display_name,
         'player'::public.user_role
     )
     ON CONFLICT (id) DO NOTHING;

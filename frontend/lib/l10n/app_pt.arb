@@ -4,7 +4,6 @@
   "commonAppTitle": "Beyond the Horizon",
   "commonClose": "Fechar",
   "commonBack": "Voltar",
-  "commonOperative": "Operativo",
 
   "authEmailLabel": "Email",
   "authEmailPlaceholder": "Digite seu email",
@@ -25,35 +24,18 @@
   "landingCompendiumTooltip": "Códice // Livro de Regras",
   "landingSettingsTooltip": "Configurações",
 
-  "dashboardWelcome": "Bem-vindo, {name}.",
-  "@dashboardWelcome": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "featurePlayCharacterTitle": "JOGAR COM PERSONAGEM",
   "featureCreateCharacterTitle": "CRIAR PERSONAGEM",
   "featureCompendiumTitle": "CÓDICE",
   "featureSettingsTitle": "CONFIGURAÇÕES",
   "featureSignOutTitle": "SAIR",
-  "featureSignOutSessionAction": "ENCERRAR SESSÃO // SAIR",
-  "dashboardWelcomePrefix": "Bem-vindo a Beyond the Horizon, ",
-  "dashboardWelcomeSuffix": ".",
-  "dashboardSubtitleExplore": "// INICIE SUA EXPLORAÇÃO",
-  "dashboardNoActiveCharacter": "NENHUM PERSONAGEM ATIVO",
-  "dashboardStatusReady": "PRONTO",
-  "dashboardStatusUninitialized": "NÃO INICIALIZADO",
+  "dashboardWelcomePrefix": "Bem-vindo, ",
+  "dashboardSubtitleExplore": "// INICIE SUA JORNADA",
+
+  "loreDecryptingTransmission": "// DESCRIPTOGRAFANDO TRANSMISSÃO...",
 
   "settingsTitle": "CONFIGURAÇÕES",
   "settingsNoOptionsNotice": "Nenhuma opção de configuração disponível no momento.",
-
-  "inConstructionHeader": "SUBSISTEMA TÁTICO // TRANSMISSÃO DE STATUS",
-  "inConstructionNotice": "Este módulo está sendo ativamente compilado e calibrado no horizonte de eventos. Os registros de telemetria e o banco de dados correspondente serão desclassificados em próximas transmissões.",
-  "inConstructionStatusCode": "STATUS: MODULO_EM_DESENVOLVIMENTO // CODIGO_ESTADO_503_PLANNED",
-  "inConstructionProtocol": "LOCALIZAÇÃO: SUB-ROTINA_TERMINAL_DE_SETOR\nPROTOCOLO: AGUARDANDO_SINCRONIZACAO_DE_DADOS",
-  "inConstructionReturnAction": "RETORNAR AO TERMINAL",
 
   "telemetrySignalWarning": "TAMANHO DE TELA NÃO SUPORTADO",
   "telemetryResolutionTitle": "LARGURA DE TELA INSUFICIENTE",

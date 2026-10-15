@@ -68,7 +68,7 @@ class _MobileTelemetryWarningView extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 16.0),
-                  BodyProseText(
+                  BodyText(
                     l10n.telemetry.resolutionMessage,
                   ),
                   const SizedBox(height: 16.0),

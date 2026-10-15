@@ -2,9 +2,10 @@ import 'package:go_router/go_router.dart';
 
 import 'service_locator.dart';
 import '../features/auth/controllers/auth_controller.dart';
-import '../features/settings/controllers/settings_controller.dart';
+import '../features/blank/pages/blank_page.dart';
+import '../features/home/player/pages/player_home_page.dart';
 import '../features/landing/pages/landing_page.dart';
-import '../features/home/pages/home_page.dart';
+import '../features/settings/controllers/settings_controller.dart';
 
 /// Configures GoRouter declarative routing and reactive auth redirect guards.
 GoRouter createAppRouter(
@@ -19,7 +20,9 @@ GoRouter createAppRouter(
     refreshListenable: authController,
     redirect: (context, state) {
       final isAuthenticated = authController.isAuthenticated;
-      final isProtected = state.matchedLocation == '/home' || state.matchedLocation == '/dashboard';
+      final isProtected = state.matchedLocation == '/home' ||
+          state.matchedLocation == '/dashboard' ||
+          state.matchedLocation == '/blank';
 
       if (isProtected && !isAuthenticated) {
         return '/';
@@ -41,10 +44,15 @@ GoRouter createAppRouter(
       GoRoute(
         path: '/home',
         name: 'home',
-        builder: (context, state) => HomePage(
+        builder: (context, state) => PlayerHomePage(
           authController: authController,
           settingsController: resolvedSettingsController,
         ),
+      ),
+      GoRoute(
+        path: '/blank',
+        name: 'blank',
+        builder: (context, state) => const BlankPage(),
       ),
     ],
   );

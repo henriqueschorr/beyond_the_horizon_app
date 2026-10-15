@@ -141,7 +141,7 @@ Row-Level Security is enabled on public.profiles. The active policies enforce st
 
 ### 5.1 Architectural Scope & In-Database Storage Strategy
 The Lore Epigraphs catalog delivers evocative universe lore, narrative quotes, emergency distress calls, confidential dossiers, poems, and planetary news ticker bulletins directly to the Player Home Command Deck:
-- **Relational Markdown Architecture:** Rather than splitting brief text fragments (2 to 6 lines) across individual storage files—which would mandate two separate network requests per page load—all narrative content is stored directly in PostgreSQL TEXT columns. PostgreSQL handles raw Markdown syntax (line breaks, internal text alignments, and solid black [REDACTED] blocks) natively with zero latency and zero storage bucket network overhead.
+- **Relational Markdown Architecture:** Rather than splitting brief text fragments (2 to 6 lines) across individual storage files—which would mandate two separate network requests per page load—all narrative content is stored directly in PostgreSQL TEXT columns. PostgreSQL handles raw Markdown syntax (line breaks, internal text alignments, and inline classification markers like [REDACTED] or [OMITIDO]) natively with zero latency and zero storage bucket network overhead.
 - **Bilingual Translation Model (1:N):**
   - **Base Entity (public.lore_epigraphs):** Holds category type and timestamps.
   - **Translation Record (public.lore_epigraph_translations):** Holds locale code (pt-BR, en-US), raw Markdown content, and attribution source.
@@ -174,7 +174,8 @@ erDiagram
 ### 5.3 Data Dictionaries: Lore Epigraphs Catalog
 
 #### Custom Types
-- **public.epigraph_type (ENUM):** 'quote', 'transmission', 'document', 'poem', 'news'.
+- **public.epigraph_type (ENUM):** 'document', 'news', 'poem', 'quote', 'transmission'.
+
 
 #### Table: public.lore_epigraphs
 

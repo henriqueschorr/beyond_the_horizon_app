@@ -8,8 +8,8 @@ import 'package:flutter/widgets.dart';
 /// - [registration] (Operative recruitment / sign up modal)
 /// - [landing] (Landing portal copy and tooltips)
 /// - [dashboard] (Command deck greetings and feature launchers)
+/// - [lore] (Archival lore epigraph telemetry strings)
 /// - [settings] (CRT shader, theme, volume preferences)
-/// - [inConstruction] (Diagnostic lore and status codes)
 /// - [telemetry] (Signal warnings and responsive viewport checks)
 /// - [errors] (Validation and backend error responses)
 ///
@@ -44,8 +44,8 @@ class AppLocalizations {
   late final LandingL10n landing;
   late final HomeL10n home;
   late final DashboardL10n dashboard;
+  late final LoreL10n lore;
   late final SettingsL10n settings;
-  late final InConstructionL10n inConstruction;
   late final TelemetryL10n telemetry;
   late final ErrorL10n errors;
 
@@ -56,8 +56,8 @@ class AppLocalizations {
     landing = LandingL10n(this);
     home = HomeL10n(this);
     dashboard = DashboardL10n(this);
+    lore = LoreL10n(this);
     settings = SettingsL10n(this);
-    inConstruction = InConstructionL10n(this);
     telemetry = TelemetryL10n(this);
     errors = ErrorL10n(this);
   }
@@ -71,7 +71,6 @@ class AppLocalizations {
         'commonAppTitle': 'Beyond the Horizon',
         'commonClose': 'Fechar',
         'commonBack': 'Voltar',
-        'commonOperative': 'Operativo',
 
         // --- AUTH ---
         'authEmailLabel': 'Email',
@@ -101,24 +100,15 @@ class AppLocalizations {
         'featureCompendiumTitle': 'CÓDICE',
         'featureSettingsTitle': 'CONFIGURAÇÕES',
         'featureSignOutTitle': 'SAIR',
-        'featureSignOutSessionAction': 'ENCERRAR SESSÃO // SAIR',
-        'dashboardWelcomePrefix': 'Bem-vindo a Beyond the Horizon, ',
-        'dashboardWelcomeSuffix': '.',
-        'dashboardSubtitleExplore': '// INICIE SUA EXPLORAÇÃO',
-        'dashboardNoActiveCharacter': 'NENHUM PERSONAGEM ATIVO',
-        'dashboardStatusReady': 'PRONTO',
-        'dashboardStatusUninitialized': 'NÃO INICIALIZADO',
+        'dashboardWelcomePrefix': 'Bem-vindo, ',
+        'dashboardSubtitleExplore': '// INICIE SUA JORNADA',
+
+        // --- LORE ---
+        'loreDecryptingTransmission': '// DESCRIPTOGRAFANDO TRANSMISSÃO...',
 
         // --- SETTINGS ---
         'settingsTitle': 'CONFIGURAÇÕES',
         'settingsNoOptionsNotice': 'Nenhuma opção de configuração disponível no momento.',
-
-        // --- IN-CONSTRUCTION ---
-        'inConstructionHeader': 'SUBSISTEMA TÁTICO // TRANSMISSÃO DE STATUS',
-        'inConstructionNotice': 'Este módulo está sendo ativamente compilado e calibrado no horizonte de eventos. Os registros de telemetria e o banco de dados correspondente serão liberados nas próximas transmissões.',
-        'inConstructionStatusCode': 'STATUS: MODULO_EM_DESENVOLVIMENTO // CODIGO_ESTADO_503_PLANNED',
-        'inConstructionProtocol': 'LOCALIZAÇÃO: SECTOR_TERMINAL_SUBROUTINE\nPROTOCOLO: ESPERANDO_SINCRONIZACAO_DE_DADOS',
-        'inConstructionReturnAction': 'VOLTAR AO TERMINAL',
 
         // --- RESPONSIVE TELEMETRY ---
         'telemetrySignalWarning': 'TAMANHO DE TELA NÃO SUPORTADO',
@@ -128,14 +118,14 @@ class AppLocalizations {
         'telemetryConnectInstruction': 'USE UM DISPOSITIVO DESKTOP OU TABLET PARA CONTINUAR.',
 
         // --- ERRORS ---
-        'errorEmptyEmail': 'O email ou indicativo não pode ficar em branco.',
+        'errorEmptyEmail': 'Email ou indicativo não pode ficar em branco.',
         'errorInvalidEmail': 'Formato de email inválido.',
-        'errorEmptyPassword': 'A senha não pode ficar em branco.',
-        'errorPasswordTooShort': 'A senha deve conter pelo menos 8 caracteres.',
+        'errorEmptyPassword': 'Senha não pode ficar em branco.',
+        'errorPasswordTooShort': 'Senha deve possuir pelo menos 8 caracteres.',
         'errorEmptyCallsign': 'Nome de exibição não pode ficar em branco.',
         'errorCallsignTooLong': 'Nome de exibição deve ter no máximo 50 caracteres.',
         'errorInvalidCredentials': 'Credenciais inválidas: Email ou senha incorretos.',
-        'errorEmailAlreadyExists': 'Este email já está registrado na base de dados.',
+        'errorEmailAlreadyExists': 'Este email já se encontra registrado no banco de dados.',
       };
     }
 
@@ -144,7 +134,6 @@ class AppLocalizations {
       'commonAppTitle': 'Beyond the Horizon',
       'commonClose': 'Close',
       'commonBack': 'Back',
-      'commonOperative': 'Operative',
 
       // --- AUTH ---
       'authEmailLabel': 'Email',
@@ -174,24 +163,15 @@ class AppLocalizations {
       'featureCompendiumTitle': 'CODEX',
       'featureSettingsTitle': 'SETTINGS',
       'featureSignOutTitle': 'SIGN OUT',
-      'featureSignOutSessionAction': 'SIGN OUT // TERMINATE SESSION',
-      'dashboardWelcomePrefix': 'Welcome to Beyond the Horizon, ',
-      'dashboardWelcomeSuffix': '.',
-      'dashboardSubtitleExplore': '// BEGIN YOUR EXPLORATION',
-      'dashboardNoActiveCharacter': 'NO ACTIVE CHARACTER',
-      'dashboardStatusReady': 'READY',
-      'dashboardStatusUninitialized': 'UNINITIALIZED',
+      'dashboardWelcomePrefix': 'Welcome, ',
+      'dashboardSubtitleExplore': '// BEGIN YOUR JOURNEY',
+
+      // --- LORE ---
+      'loreDecryptingTransmission': '// DECRYPTING TRANSMISSION...',
 
       // --- SETTINGS ---
       'settingsTitle': 'SETTINGS',
       'settingsNoOptionsNotice': 'No configuration options currently available.',
-
-      // --- IN-CONSTRUCTION ---
-      'inConstructionHeader': 'TACTICAL SUBSYSTEM // STATUS TRANSMISSION',
-      'inConstructionNotice': 'This module is actively being compiled and calibrated in the event horizon. Telemetry records and the corresponding database will be declassified in upcoming transmissions.',
-      'inConstructionStatusCode': 'STATUS: MODULO_EM_DESENVOLVIMENTO // CODIGO_ESTADO_503_PLANNED',
-      'inConstructionProtocol': 'LOCATION: SECTOR_TERMINAL_SUBROUTINE\nPROTOCOL: AWAITING_DATA_SYNCHRONIZATION',
-      'inConstructionReturnAction': 'RETURN TO TERMINAL',
 
       // --- RESPONSIVE TELEMETRY ---
       'telemetrySignalWarning': 'UNSUPPORTED SCREEN SIZE',
@@ -218,7 +198,6 @@ class AppLocalizations {
   String get commonAppTitle => _localizedStrings['commonAppTitle']!;
   String get commonClose => _localizedStrings['commonClose']!;
   String get commonBack => _localizedStrings['commonBack']!;
-  String get commonOperative => _localizedStrings['commonOperative']!;
 
   // ===========================================================================
   // AUTHENTICATION GETTERS
@@ -251,35 +230,24 @@ class AppLocalizations {
   // ===========================================================================
   // PLAYER DASHBOARD GETTERS
   // ===========================================================================
-  String dashboardWelcome(String name) =>
-      locale.languageCode == 'pt' ? 'Bem-vindo, $name.' : 'Welcome, $name.';
   String get featurePlayCharacterTitle => _localizedStrings['featurePlayCharacterTitle']!;
   String get featureCreateCharacterTitle => _localizedStrings['featureCreateCharacterTitle']!;
   String get featureCompendiumTitle => _localizedStrings['featureCompendiumTitle']!;
   String get featureSettingsTitle => _localizedStrings['featureSettingsTitle']!;
   String get featureSignOutTitle => _localizedStrings['featureSignOutTitle']!;
-  String get featureSignOutSessionAction => _localizedStrings['featureSignOutSessionAction']!;
   String get dashboardWelcomePrefix => _localizedStrings['dashboardWelcomePrefix']!;
-  String get dashboardWelcomeSuffix => _localizedStrings['dashboardWelcomeSuffix']!;
   String get dashboardSubtitleExplore => _localizedStrings['dashboardSubtitleExplore']!;
-  String get dashboardNoActiveCharacter => _localizedStrings['dashboardNoActiveCharacter']!;
-  String get dashboardStatusReady => _localizedStrings['dashboardStatusReady']!;
-  String get dashboardStatusUninitialized => _localizedStrings['dashboardStatusUninitialized']!;
+
+  // ===========================================================================
+  // LORE GETTERS
+  // ===========================================================================
+  String get loreDecryptingTransmission => _localizedStrings['loreDecryptingTransmission']!;
 
   // ===========================================================================
   // TERMINAL SETTINGS GETTERS
   // ===========================================================================
   String get settingsTitle => _localizedStrings['settingsTitle']!;
   String get settingsNoOptionsNotice => _localizedStrings['settingsNoOptionsNotice']!;
-
-  // ===========================================================================
-  // IN CONSTRUCTION DESTINATION GETTERS
-  // ===========================================================================
-  String get inConstructionHeader => _localizedStrings['inConstructionHeader']!;
-  String get inConstructionNotice => _localizedStrings['inConstructionNotice']!;
-  String get inConstructionStatusCode => _localizedStrings['inConstructionStatusCode']!;
-  String get inConstructionProtocol => _localizedStrings['inConstructionProtocol']!;
-  String get inConstructionReturnAction => _localizedStrings['inConstructionReturnAction']!;
 
   // ===========================================================================
   // RESPONSIVE TELEMETRY BARRIER GETTERS
@@ -314,7 +282,6 @@ class CommonL10n {
   String get appTitle => _l10n.commonAppTitle;
   String get close => _l10n.commonClose;
   String get back => _l10n.commonBack;
-  String get operative => _l10n.commonOperative;
 }
 
 class AuthL10n {
@@ -367,20 +334,21 @@ class DashboardL10n {
   final AppLocalizations _l10n;
   DashboardL10n(this._l10n);
 
-  String welcome(String name) => _l10n.dashboardWelcome(name);
   String get playCharacterTitle => _l10n.featurePlayCharacterTitle;
   String get createCharacterTitle => _l10n.featureCreateCharacterTitle;
   String get codexTitle => _l10n.featureCompendiumTitle;
   String get compendiumTitle => _l10n.featureCompendiumTitle;
   String get settingsTitle => _l10n.featureSettingsTitle;
   String get signOutTitle => _l10n.featureSignOutTitle;
-  String get signOutSessionAction => _l10n.featureSignOutSessionAction;
   String get welcomePrefix => _l10n.dashboardWelcomePrefix;
-  String get welcomeSuffix => _l10n.dashboardWelcomeSuffix;
   String get subtitleExplore => _l10n.dashboardSubtitleExplore;
-  String get noActiveCharacter => _l10n.dashboardNoActiveCharacter;
-  String get statusReady => _l10n.dashboardStatusReady;
-  String get statusUninitialized => _l10n.dashboardStatusUninitialized;
+}
+
+class LoreL10n {
+  final AppLocalizations _l10n;
+  LoreL10n(this._l10n);
+
+  String get decryptingTransmission => _l10n.loreDecryptingTransmission;
 }
 
 class SettingsL10n {
@@ -389,17 +357,6 @@ class SettingsL10n {
 
   String get title => _l10n.settingsTitle;
   String get noOptionsNotice => _l10n.settingsNoOptionsNotice;
-}
-
-class InConstructionL10n {
-  final AppLocalizations _l10n;
-  InConstructionL10n(this._l10n);
-
-  String get header => _l10n.inConstructionHeader;
-  String get notice => _l10n.inConstructionNotice;
-  String get statusCode => _l10n.inConstructionStatusCode;
-  String get protocol => _l10n.inConstructionProtocol;
-  String get returnAction => _l10n.inConstructionReturnAction;
 }
 
 class TelemetryL10n {

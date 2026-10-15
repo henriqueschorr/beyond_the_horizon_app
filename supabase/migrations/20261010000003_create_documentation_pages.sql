@@ -1,6 +1,6 @@
 -- ==============================================================================
--- Migration: 20261010000002_create_documentation_pages.sql
--- Feature: Documentation Pages & Storage Catalog (TODO-03)
+-- Migration: 20261010000003_create_documentation_pages.sql
+-- Feature: Documentation Pages & Storage Catalog (OP-03)
 -- Description: Establishes documentation_category and documentation_layout enums,
 --              public.documentation_pages base table, bilingual translation child table
 --              public.documentation_page_translations, public.documentation_pages_view,

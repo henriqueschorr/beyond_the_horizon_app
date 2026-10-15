@@ -2,10 +2,13 @@ import 'package:get_it/get_it.dart';
 
 import '../backend_service.dart';
 import '../repositories/auth_repository.dart';
+import '../repositories/lore_epigraph_repository.dart';
 import '../repositories/mock/mock_auth_repository.dart';
+import '../repositories/mock/mock_lore_epigraph_repository.dart';
 import '../repositories/mock/mock_profile_repository.dart';
 import '../repositories/profile_repository.dart';
 import '../services/auth_service.dart';
+import '../services/lore_epigraph_service.dart';
 import '../services/profile_service.dart';
 
 /// Global GetIt service locator instance for backend domain services and repositories.
@@ -30,6 +33,12 @@ void setupBackendServiceLocator({GetIt? locator}) {
     currentLocator.registerSingleton<AuthRepository>(mockAuthRepo);
   }
 
+  if (!currentLocator.isRegistered<MockLoreEpigraphRepository>()) {
+    final mockLoreEpigraphRepo = MockLoreEpigraphRepository();
+    currentLocator.registerSingleton<MockLoreEpigraphRepository>(mockLoreEpigraphRepo);
+    currentLocator.registerSingleton<LoreEpigraphRepository>(mockLoreEpigraphRepo);
+  }
+
   // Domain Services
   if (!currentLocator.isRegistered<ProfileService>()) {
     currentLocator.registerLazySingleton<ProfileService>(
@@ -46,13 +55,23 @@ void setupBackendServiceLocator({GetIt? locator}) {
     );
   }
 
+  if (!currentLocator.isRegistered<LoreEpigraphService>()) {
+    currentLocator.registerLazySingleton<LoreEpigraphService>(
+      () => LoreEpigraphService(
+        loreEpigraphRepository: currentLocator<LoreEpigraphRepository>(),
+      ),
+    );
+  }
+
   // Unified Facade
   if (!currentLocator.isRegistered<BackendService>()) {
     currentLocator.registerLazySingleton<BackendService>(
       () => BackendService(
         auth: currentLocator<AuthService>(),
         profile: currentLocator<ProfileService>(),
+        loreEpigraph: currentLocator<LoreEpigraphService>(),
       ),
     );
   }
 }
+

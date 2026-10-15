@@ -92,8 +92,7 @@
               "title": "04-sdd-frontend"
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "vertical"
@@ -272,31 +271,31 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "94ea11d51150aedd",
+  "active": "90a662f9a555cd50",
   "lastOpenFiles": [
-    "frontend/build/3233c454",
-    "frontend/build/flutter_assets/fonts/e8a6a7b0",
+    "supabase/seed.sql",
+    "frontend/lib/shared_widgets/frames/epigraph_frame_painter_resolver.dart",
+    "frontend/lib/features/dynamic_text/dynamic_text.dart",
+    "frontend/lib/features/dynamic_text/widgets/dynamic_text.dart",
+    "frontend/lib/features/dynamic_text/widgets/redacted_block.dart",
+    "frontend/lib/features/dynamic_text/widgets",
+    "frontend/lib/features/dynamic_text",
+    "design/04-sdd-frontend.md",
+    "frontend/lib/features/blank/pages/blank_page.dart",
+    "frontend/lib/features/blank/pages",
+    "frontend/lib/features/blank",
+    "frontend/lib/shared_widgets/buttons/icon_button.dart",
+    "design/open_points.md",
     "design/01-sdd-overview.md",
     "design/03-sdd-backend.md",
-    "supabase/functions/get_random_lore_epigraph.sql",
-    "supabase/functions",
     "design/assets/document_frame_sketch.png",
     "design/assets/menu_arrow_hover_sketch.png",
     "design/assets/player_home_sketch.png",
-    "design/04-sdd-frontend.md",
-    "frontend/build/11d43ad3",
-    "frontend/build/flutter_assets/fonts/4b1179c0",
     "design/studied_designs.md",
     "design/assets/logged_out_sketch.png",
     "design/references/shared_design_trends_comparative_report.md",
     "design/02-sdd-database.md",
-    "frontend/lib/shared_widgets/navigation/menu_item.dart",
-    "frontend/lib/shared_widgets/navigation",
-    "frontend/lib/shared_widgets/layout/vertical_seam_divider.dart",
-    "frontend/lib/features/landing/widgets/logged_out_menu.dart",
-    "frontend/lib/features/landing/widgets/login_form.dart",
     "Untitled.md",
-    "design/open_points.md",
     "Untitled.canvas",
     "design/compendium_keywords_plan.md",
     "design/assets/cassette_orange_moodboard.png",
