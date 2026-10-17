@@ -22,8 +22,8 @@ For extensive cross-universe comparative research across *Alien*, *Fallout*, *Mo
 
 ### 2.2 Canvas & Materiality Shaders
 The client architecture incorporates three specialized canvas shaders:
-- **StarSurface:** A deterministic sub-pixel starfield with central reading corridor attenuation to guarantee zero interference with text legibility, complemented by a subtle radial nebula wash. Wrapped in a RepaintBoundary for zero per-frame repaint overhead.
-- **GrainSurface:** A procedural analog risograph and photocopier toner stipple painter rendering deterministic micro-pits and dust coordinates. Wrapped in a RepaintBoundary for zero per-frame repaint overhead. Applied across all interactive containers, non-text buttons, and chassis panels.
+- **StarSurface:** A deterministic sub-pixel starfield with central reading corridor attenuation to guarantee zero interference with text legibility, complemented by a subtle radial nebula wash. Wrapped in a RepaintBoundary for zero per-frame repaint overhead. Employed exclusively on the public landing page.
+- **GrainSurface:** A continuous hardware-accelerated seamless Gaussian noise texture surface (assets/textures/noise.png) inspired by brutalist data-logistics and cyber-typography (SL24). Replaces CPU-bound vector point loops with GPU texture sampling for a locked 60/120 FPS, providing authentic analog 35mm film grain, risograph toner stipple, and tactile print materiality across all interactive containers, non-text buttons, and as a continuous film grain pass over the landing and player command deck viewports. Interactive controls (input fields, primary CTA, secondary actions, and utility docks) employ prominent borders in AppColors.darkBorderProminent, solid chassis fills, and high-contrast typography to pop out decisively against the textured canvas. Includes an interactive user toggle preference managed via SettingsController and TerminalSettingsDrawer, backed by browser local storage persistence (pref_noise_enabled). When disabled, GrainConfiguration propagates the deactivated state down the widget hierarchy, completely removing the raster noise pass and providing 100% vector-sharp void surfaces with zero GPU texture overhead.
 - **CrtSurface:** An atmospheric cathode-ray tube monitor surface shader. Features:
   - Horizontal cathode-ray scanlines with configurable alpha.
   - Curved perimeter glass vignette darkening display edges and corners.
@@ -162,6 +162,13 @@ In accordance with Rule 11 of AGENTS.md:
 - **Perimeter Seam:** Subtle chassis border illuminating to accent orange on hover.
 - **Interaction:** Icon presentation with subtle tactile micro-scale feedback and monospaced hover tooltips.
 
+### 5.4 Brutalist Segmented Toggle Selector
+- **Chassis Background:** Raised chassis container with 1px darkBorderProminent perimeter framing.
+- **Dual-State Rocker Architecture:** Features tactile segments for binary states (such as ON and OFF).
+- **Active State Illumination:** Selected state is illuminated with solid accentOrange fill and inverted void black text (ActionLabelSmallInvertedText).
+- **Deactivated State:** Unselected state displays in transparent background with darkTextMuted typography.
+- **Rule Compliance:** Enforces Universal Button Action Typography Rule and Rule 10 with pure StatelessWidget construction and callback dispatch.
+
 ---
 
 ## 6. Logged-Out Landing Page Architecture
@@ -220,6 +227,11 @@ Positioned inside the black hole void beneath the submerged letters:
    - Located directly beneath the password field:
    - **Secondary: [ Register / Create Account ]:** Flat text action button without noise texture, using subtle outline border and muted titanium typography.
    - **Primary: [ Sign In ] (CTA Button):** TacticalActionButton with GrainSurface noise texture, accent orange border, orange uppercase text, dark elevated background, hover glow, and tactile micro-physics.
+4. **Terminal Settings Drawer & Client Preference Panel:**
+   - Slid into view from the right viewport boundary when the Settings actuator is clicked (from either the Landing Access Console utility icon dock or Command Deck Row 04).
+   - Composed as an industrial monolithic drawer (TerminalSettingsDrawer) with darkBgSurface background, 1px darkBorderProminent left rim, telemetry header // SYS.CFG // PREFERENCES, and section // 01 DISPLAY & MATERIALITY.
+   - Hosts a recessed preference card containing the Film Grain / Noise setting and a dual-segment industrial rocker switch (BrutalistSegmentedToggle) with active state illumination in accent orange.
+   - State and client persistence: Owned by SettingsController via ChangeNotifier and stored in browser local storage under pref_noise_enabled via UserLocalStorageService, requiring zero backend round-trips.
 
 ---
 
@@ -248,25 +260,27 @@ Row 2:   [    B T H    ]    H       O       R       I       Z       O       N
 - **Typography:** Space Grotesk Bold uppercase using AppTypography.monumentalTitle (MonumentalText) wrapped in a responsive scaler preserving proportions down to tablet viewports.
 
 ### 7.2 Tactical Player Menu & Reusable HomeMenuItem
-Positioned on the middle-left under the tactical telemetry subtitle // BEGIN YOUR JOURNEY (resolved via AppLocalizations, AppTypography.fieldLabelHighlighted / FieldLabelHighlightedText in #FE6403), with the interactive menu items indented 24.0px to the right beneath the telemetry subtitle:
-
-<p align="center">
-  <img src="./assets/menu_arrow_hover_sketch.png" alt="Menu Arrow Hover Interaction Sketch" />
-</p>
+Positioned on the middle-left under the tactical telemetry subtitle // BEGIN YOUR JOURNEY (resolved via AppLocalizations, AppTypography.fieldLabelHighlighted / FieldLabelHighlightedText in #FE6403), with the interactive menu items aligned flush on the left with the telemetry subtitle:
 
 1. **PlayerMenu Architecture:**
    - Composes HomeMenuItem instances (frontend/lib/features/home/widgets/home_menu_item.dart) for cross-role reusability across Player, Facilitator, and Admin decks.
-   - Items: [ PLAY WITH CHARACTER ], [ CREATE CHARACTER ], [ CODEX ], [ SETTINGS ].
+   - Structured as four vertically stacked uncluttered action items separated by 8px vertical gaps:
+     - PLAY WITH CHARACTER
+     - CREATE CHARACTER
+     - CODEX
+     - SETTINGS
    - All four options are fully active, interactive, and clickable, deferring character presence gating to future character creation and play milestones (OP-04 and OP-05).
-2. **Rest State:**
-   - Enclosed by solid brackets in AppColors.darkBorderProminent.
-   - Text uses Space Grotesk Bold 22px (AppTypography.actionLabelLarge / ActionLabelLargeText) in titanium white (#F0ECE1).
-3. **Hover State:**
-   - The trailing bracket ] vanishes.
-   - An organic, hand-drawn styled accent orange arrow (#FE6403) emerges behind the text from the opening bracket [.
-   - The arrow shaft covers approximately 90% of the text width, terminating in a sharp, stylized right-facing arrowhead just past the final letter.
-   - Text color inverts to AppColors.darkBgCanvas (#101214) over the orange arrow (AppTypography.actionLabelLargeInverted / ActionLabelLargeInvertedText), producing electrifying brutalist contrast and crisp readability.
-   - Surface texture: The arrow body incorporates procedural GrainSurface analog toner stipple for a tangible risograph / felt-tip marker materiality.
+2. **Rest State (Minimalist Brutalist Typography):**
+   - Zero clutter: Free from numeric prefixes, telemetry status tags, and horizontal divider lines.
+   - Primary action label: Space Grotesk Bold 22px (AppTypography.actionLabelLarge / ActionLabelLargeText) in titanium white (#F0ECE1).
+   - Alignment: Left edge of resting label aligns flush with the telemetry subtitle.
+   - Background is completely transparent with 14px horizontal and 10px vertical padding.
+3. **Hover State (Uniform Carrier Block & Kinetic Leading Arrow):**
+   - Horizontal Bounding Box: Standardized across all menu items to the exact width of the largest menu item via IntrinsicWidth with CrossAxisAlignment.stretch and ghost reference dimensioning.
+   - Background fills with a compact solid Signal Orange (AppColors.accentOrange, #FE6403) carrier block with 4px border radius.
+   - Surface texture: The orange carrier block incorporates procedural GrainSurface analog toner stipple for a tangible risograph print materiality.
+   - Kinetic Leading Arrow: An animated arrowhead symbol (➤) slides in from the left (+40px width expansion with 16px breathing gap before the label and opacity fade-in over 140ms with Curves.easeOutCubic) rendered in solid void black.
+   - Typographic Inversion: The label cleanly inverts to solid void black (AppColors.darkBgCanvas, #101214) via ActionLabelLargeInvertedText, producing electrifying brutalist contrast and 100% vector legibility.
 
 ### 7.3 Randomized Lore Epigraph Box & Pure Geometric Framing
 Positioned in the middle-right quadrant (LoreEpigraphBox in frontend/lib/features/home/player/widgets/lore_epigraph_box.dart). The widget executes a single-row random query directly in PostgreSQL via the database RPC function get_random_lore_epigraph upon page load, delegating framing geometry to the dedicated EpigraphFramePainterResolver (frontend/lib/shared_widgets/frames/epigraph_frame_painter_resolver.dart).

@@ -108,6 +108,12 @@ class AppLocalizations {
 
         // --- SETTINGS ---
         'settingsTitle': 'CONFIGURAÇÕES',
+        'settingsTelemetryHeader': '// CFG.SIS // PREFERÊNCIAS',
+        'settingsDisplaySection': '// 01   EXIBIÇÃO & MATERIALIDADE',
+        'settingsNoiseTitle': 'GRANULAÇÃO / RUÍDO',
+        'settingsNoiseDescription': 'Textura analógica CRT & profundidade de toner',
+        'settingsToggleOn': 'LIGADO',
+        'settingsToggleOff': 'DESLIGADO',
         'settingsNoOptionsNotice': 'Nenhuma opção de configuração disponível no momento.',
 
         // --- RESPONSIVE TELEMETRY ---
@@ -171,6 +177,12 @@ class AppLocalizations {
 
       // --- SETTINGS ---
       'settingsTitle': 'SETTINGS',
+      'settingsTelemetryHeader': '// SYS.CFG // PREFERENCES',
+      'settingsDisplaySection': '// 01   DISPLAY & MATERIALITY',
+      'settingsNoiseTitle': 'FILM GRAIN / NOISE',
+      'settingsNoiseDescription': 'Analog raster texture & toner depth',
+      'settingsToggleOn': 'ON',
+      'settingsToggleOff': 'OFF',
       'settingsNoOptionsNotice': 'No configuration options currently available.',
 
       // --- RESPONSIVE TELEMETRY ---
@@ -247,6 +259,12 @@ class AppLocalizations {
   // TERMINAL SETTINGS GETTERS
   // ===========================================================================
   String get settingsTitle => _localizedStrings['settingsTitle']!;
+  String get settingsTelemetryHeader => _localizedStrings['settingsTelemetryHeader']!;
+  String get settingsDisplaySection => _localizedStrings['settingsDisplaySection']!;
+  String get settingsNoiseTitle => _localizedStrings['settingsNoiseTitle']!;
+  String get settingsNoiseDescription => _localizedStrings['settingsNoiseDescription']!;
+  String get settingsToggleOn => _localizedStrings['settingsToggleOn']!;
+  String get settingsToggleOff => _localizedStrings['settingsToggleOff']!;
   String get settingsNoOptionsNotice => _localizedStrings['settingsNoOptionsNotice']!;
 
   // ===========================================================================
@@ -356,6 +374,12 @@ class SettingsL10n {
   SettingsL10n(this._l10n);
 
   String get title => _l10n.settingsTitle;
+  String get telemetryHeader => _l10n.settingsTelemetryHeader;
+  String get displaySection => _l10n.settingsDisplaySection;
+  String get noiseTitle => _l10n.settingsNoiseTitle;
+  String get noiseDescription => _l10n.settingsNoiseDescription;
+  String get toggleOn => _l10n.settingsToggleOn;
+  String get toggleOff => _l10n.settingsToggleOff;
   String get noOptionsNotice => _l10n.settingsNoOptionsNotice;
 }
 

@@ -35,7 +35,7 @@ class _MenuItemState extends State<MenuItem> {
   @override
   Widget build(BuildContext context) {
     final highlightColor = AppColors.accentOrange;
-    final nodeBorderColor = _isHovered ? highlightColor : AppColors.darkBorderSubtle;
+    final nodeBorderColor = _isHovered ? highlightColor : AppColors.darkBorderProminent;
 
     const double nodeSize = 40.0;
 
@@ -62,6 +62,7 @@ class _MenuItemState extends State<MenuItem> {
               ),
               child: GrainSurface(
                 intensity: 0.6,
+                isForeground: true,
                 child: Center(
                   child: IconTheme(
                     data: IconThemeData(

@@ -35,6 +35,12 @@
   "loreDecryptingTransmission": "// DECRYPTING TRANSMISSION...",
 
   "settingsTitle": "SETTINGS",
+  "settingsTelemetryHeader": "// SYS.CFG // PREFERENCES",
+  "settingsDisplaySection": "// 01   DISPLAY & MATERIALITY",
+  "settingsNoiseTitle": "FILM GRAIN / NOISE",
+  "settingsNoiseDescription": "Analog raster texture & toner depth",
+  "settingsToggleOn": "ON",
+  "settingsToggleOff": "OFF",
   "settingsNoOptionsNotice": "No configuration options currently available.",
 
   "telemetrySignalWarning": "UNSUPPORTED SCREEN SIZE",

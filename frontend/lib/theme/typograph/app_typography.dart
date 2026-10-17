@@ -118,6 +118,14 @@ abstract final class AppTypography {
         color: AppColors.darkTextMuted,
       );
 
+  static TextStyle get actionLabelSmallInverted => GoogleFonts.spaceGrotesk(
+        fontSize: 12.0,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.8,
+        height: 1.20,
+        color: AppColors.darkBgCanvas,
+      );
+
   static TextStyle get navAnchor => GoogleFonts.spaceGrotesk(
         fontSize: 14.0,
         fontWeight: FontWeight.w600,
@@ -156,6 +164,14 @@ abstract final class AppTypography {
         letterSpacing: 0.8,
         height: 1.20,
         color: AppColors.darkTextMuted,
+      );
+
+  static TextStyle get fieldLabelInverted => GoogleFonts.spaceMono(
+        fontSize: 11.5,
+        fontWeight: FontWeight.w700,
+        letterSpacing: 0.8,
+        height: 1.20,
+        color: AppColors.darkBgCanvas,
       );
 
   static TextStyle get fieldInput => GoogleFonts.spaceMono(

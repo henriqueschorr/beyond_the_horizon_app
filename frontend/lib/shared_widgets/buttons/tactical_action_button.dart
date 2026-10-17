@@ -84,12 +84,13 @@ class _TacticalActionButtonState extends State<TacticalActionButton> {
             decoration: BoxDecoration(
               color: backgroundColor,
               borderRadius: BorderRadius.circular(4.0),
-              border: Border.all(color: borderColor, width: 1.0),
+              border: Border.all(color: borderColor, width: 1.5),
               boxShadow: shadows,
             ),
             child: GrainSurface(
               tintColor: _isHovered ? AppColors.accentOrange : null,
-              intensity: _isHovered ? 1.4 : 1.0,
+              intensity: _isHovered ? 1.0 : 0.6,
+              isForeground: true,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                 child: Center(

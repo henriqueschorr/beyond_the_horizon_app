@@ -42,7 +42,7 @@ class _IconButtonState extends State<IconButton> {
         ? AppColors.accentOrange
         : (widget.isHighlighted
             ? AppColors.accentOrange
-            : (widget.isMuted ? AppColors.darkBorderSubtle : AppColors.darkBorderProminent));
+            : AppColors.darkBorderProminent);
 
     final effectiveBackground = _isHovered && isEnabled
         ? AppColors.darkBgSurfaceElevated
@@ -52,7 +52,7 @@ class _IconButtonState extends State<IconButton> {
         ? AppColors.accentOrange
         : (widget.isHighlighted
             ? AppColors.accentOrange
-            : (widget.isMuted ? AppColors.darkTextMuted : AppColors.darkTextSecondary));
+            : (widget.isMuted ? AppColors.darkTextSecondary : AppColors.darkTextPrimary));
 
     final padding = widget.label != null
         ? const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0)
@@ -85,9 +85,7 @@ class _IconButtonState extends State<IconButton> {
                 const SizedBox(width: 8.0),
                 _isHovered && isEnabled
                     ? ActionLabelSmallHighlightedText(widget.label!)
-                    : (widget.isMuted
-                        ? ActionLabelSmallMutedText(widget.label!)
-                        : ActionLabelSmallText(widget.label!)),
+                    : ActionLabelSmallText(widget.label!),
               ],
             ],
           ),

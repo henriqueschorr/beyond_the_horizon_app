@@ -6,7 +6,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared_widgets/buttons/icon_button.dart';
 import '../../../../shared_widgets/layout/responsive_telemetry_guard.dart';
 import '../../../../theme/color/app_colors.dart';
-import '../../../../theme/shaders/star_surface.dart';
+import '../../../../theme/shaders/grain_surface.dart';
 import '../../../auth/controllers/auth_controller.dart';
 import '../../../settings/controllers/settings_controller.dart';
 import '../../../settings/widgets/terminal_settings_drawer.dart';
@@ -58,7 +58,8 @@ class PlayerHomePage extends StatelessWidget {
             endDrawer: TerminalSettingsDrawer(
               settingsController: settingsController,
             ),
-            body: StarSurface(
+            body: GrainSurface(
+              enabled: settingsController.isNoiseEnabled,
               child: Builder(
                 builder: (scaffoldContext) {
                   return ListenableBuilder(

@@ -1,110 +1,85 @@
-import 'dart:math';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
-/// Procedural analog risograph and photocopier toner stipple painter codified in SDD 04 Section 2.2 & 5.1.
-/// Renders 120 deterministic micro-stipple points at fixed seed 64.
+/// Inherited scope propagating film grain / noise configuration through the widget hierarchy.
+class GrainConfiguration extends InheritedWidget {
+  final bool enabled;
+
+  const GrainConfiguration({
+    super.key,
+    required this.enabled,
+    required super.child,
+  });
+
+  static bool isEnabled(BuildContext context) {
+    final config = context.dependOnInheritedWidgetOfExactType<GrainConfiguration>();
+    return config?.enabled ?? true;
+  }
+
+  @override
+  bool updateShouldNotify(GrainConfiguration oldWidget) => enabled != oldWidget.enabled;
+}
+
+/// Brutalist cyber-typography analog film grain texture surface.
+/// Uses a continuous hardware-accelerated seamless repeating 256x256 Gaussian
+/// noise texture asset (assets/textures/noise.png) inspired by SL24 Brutalism.
+/// Eliminates CPU-bound vector point loops to achieve a locked 60/120 FPS
+/// with true analog film grain and photocopier toner depth.
 class GrainSurface extends StatelessWidget {
   final Widget? child;
   final Color? tintColor;
   final double intensity;
+  final bool isForeground;
+  final bool? enabled;
 
   const GrainSurface({
     super.key,
     this.child,
     this.tintColor,
     this.intensity = 1.0,
+    this.isForeground = true,
+    this.enabled,
   });
 
   @override
   Widget build(BuildContext context) {
-    return RepaintBoundary(
-      child: CustomPaint(
-        painter: _GrainSurfacePainter(
-          tintColor: tintColor,
-          intensity: intensity,
+    final isLocallyEnabled = enabled ?? GrainConfiguration.isEnabled(context);
+
+    if (!isLocallyEnabled || intensity <= 0.0) {
+      final safeChild = child ?? const SizedBox.shrink();
+      return GrainConfiguration(
+        enabled: false,
+        child: safeChild,
+      );
+    }
+
+    final noiseWidget = IgnorePointer(
+      child: Opacity(
+        opacity: (0.16 * intensity).clamp(0.0, 1.0),
+        child: Image.asset(
+          'assets/textures/noise.png',
+          repeat: ImageRepeat.repeat,
+          color: tintColor,
+          colorBlendMode: tintColor != null ? BlendMode.srcATop : null,
+          filterQuality: FilterQuality.low,
+          alignment: Alignment.topLeft,
         ),
-        child: child,
       ),
     );
-  }
-}
 
-class _GrainPoint {
-  final double xRatio;
-  final double yRatio;
-  final bool isDark;
-
-  const _GrainPoint({
-    required this.xRatio,
-    required this.yRatio,
-    required this.isDark,
-  });
-}
-
-class _GrainSurfacePainter extends CustomPainter {
-  static const int _pointCount = 120;
-  static const int _seed = 64;
-
-  final Color? tintColor;
-  final double intensity;
-
-  static final List<_GrainPoint> _cachedPoints = _generatePoints();
-
-  const _GrainSurfacePainter({
-    this.tintColor,
-    this.intensity = 1.0,
-  });
-
-  static List<_GrainPoint> _generatePoints() {
-    final random = Random(_seed);
-    final list = <_GrainPoint>[];
-    for (int i = 0; i < _pointCount; i++) {
-      final x = random.nextDouble();
-      final y = random.nextDouble();
-      final isDark = random.nextDouble() < 0.45;
-      list.add(_GrainPoint(xRatio: x, yRatio: y, isDark: isDark));
-    }
-    return list;
-  }
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    if (size.width <= 0 || size.height <= 0) return;
-
-    final lightColor = tintColor ?? const Color(0xFFF5F3ED);
-    final lightPaint = Paint()
-      ..strokeWidth = 1.0
-      ..strokeCap = StrokeCap.square
-      ..color = lightColor.withValues(alpha: (0.045 * intensity).clamp(0.0, 1.0));
-
-    final darkPaint = Paint()
-      ..strokeWidth = 1.0
-      ..strokeCap = StrokeCap.square
-      ..color = const Color(0xFF000000).withValues(alpha: (0.12 * intensity).clamp(0.0, 1.0));
-
-    final lightOffsets = <Offset>[];
-    final darkOffsets = <Offset>[];
-
-    for (final pt in _cachedPoints) {
-      final offset = Offset(pt.xRatio * size.width, pt.yRatio * size.height);
-      if (pt.isDark) {
-        darkOffsets.add(offset);
-      } else {
-        lightOffsets.add(offset);
-      }
+    if (child == null) {
+      return noiseWidget;
     }
 
-    if (darkOffsets.isNotEmpty) {
-      canvas.drawPoints(PointMode.points, darkOffsets, darkPaint);
-    }
-    if (lightOffsets.isNotEmpty) {
-      canvas.drawPoints(PointMode.points, lightOffsets, lightPaint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant _GrainSurfacePainter oldDelegate) {
-    return oldDelegate.tintColor != tintColor || oldDelegate.intensity != intensity;
+    return GrainConfiguration(
+      enabled: isLocallyEnabled,
+      child: Stack(
+        fit: StackFit.passthrough,
+        children: [
+          if (!isForeground) Positioned.fill(child: noiseWidget),
+          child!,
+          if (isForeground) Positioned.fill(child: noiseWidget),
+        ],
+      ),
+    );
   }
 }

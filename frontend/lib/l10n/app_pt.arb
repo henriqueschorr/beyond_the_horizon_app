@@ -35,6 +35,12 @@
   "loreDecryptingTransmission": "// DESCRIPTOGRAFANDO TRANSMISSÃO...",
 
   "settingsTitle": "CONFIGURAÇÕES",
+  "settingsTelemetryHeader": "// CFG.SIS // PREFERÊNCIAS",
+  "settingsDisplaySection": "// 01   EXIBIÇÃO & MATERIALIDADE",
+  "settingsNoiseTitle": "GRANULAÇÃO / RUÍDO",
+  "settingsNoiseDescription": "Textura analógica CRT & profundidade de toner",
+  "settingsToggleOn": "LIGADO",
+  "settingsToggleOff": "DESLIGADO",
   "settingsNoOptionsNotice": "Nenhuma opção de configuração disponível no momento.",
 
   "telemetrySignalWarning": "TAMANHO DE TELA NÃO SUPORTADO",

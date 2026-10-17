@@ -247,6 +247,23 @@ class ActionLabelSmallHighlightedText extends StatelessWidget {
   }
 }
 
+class ActionLabelSmallInvertedText extends StatelessWidget {
+  final String text;
+
+  const ActionLabelSmallInvertedText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.actionLabelSmallInverted,
+    );
+  }
+}
+
 class NavAnchorText extends StatelessWidget {
   final String text;
 
@@ -328,6 +345,23 @@ class FieldLabelMutedText extends StatelessWidget {
     return Text(
       text,
       style: AppTypography.fieldLabelMuted,
+    );
+  }
+}
+
+class FieldLabelInvertedText extends StatelessWidget {
+  final String text;
+
+  const FieldLabelInvertedText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.fieldLabelInverted,
     );
   }
 }

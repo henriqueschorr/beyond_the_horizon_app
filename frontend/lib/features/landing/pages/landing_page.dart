@@ -6,6 +6,7 @@ import '../../../core/service_locator.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared_widgets/layout/responsive_telemetry_guard.dart';
 import '../../../theme/color/app_colors.dart';
+import '../../../theme/shaders/grain_surface.dart';
 import '../../../theme/shaders/star_surface.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../../auth/widgets/registration_dialog.dart';
@@ -35,11 +36,16 @@ class LandingPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return ResponsiveTelemetryGuard(
-      child: Scaffold(
-        backgroundColor: AppColors.darkBgCanvas,
-        endDrawer: TerminalSettingsDrawer(settingsController: settingsController),
-        body: StarSurface(
-          child: LayoutBuilder(
+      child: ListenableBuilder(
+        listenable: settingsController,
+        builder: (context, _) {
+          return Scaffold(
+            backgroundColor: AppColors.darkBgCanvas,
+            endDrawer: TerminalSettingsDrawer(settingsController: settingsController),
+            body: GrainSurface(
+              enabled: settingsController.isNoiseEnabled,
+              child: StarSurface(
+            child: LayoutBuilder(
             builder: (context, constraints) {
               final double width = constraints.maxWidth;
               final double height = constraints.maxHeight;
@@ -112,5 +118,8 @@ class LandingPage extends StatelessWidget {
         ),
       ),
     );
+  },
+),
+);
   }
 }

@@ -62,9 +62,11 @@ class _RecessedInputFieldState extends State<RecessedInputField> {
 
   @override
   Widget build(BuildContext context) {
-    final borderColor = (widget.errorText != null || _isFocused)
+    final isAlertOrFocused = widget.errorText != null || _isFocused;
+    final borderColor = isAlertOrFocused
         ? AppColors.accentOrange
-        : AppColors.darkBorderSubtle;
+        : AppColors.darkBorderProminent;
+    final borderWidth = isAlertOrFocused ? 1.5 : 1.2;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,9 +84,9 @@ class _RecessedInputFieldState extends State<RecessedInputField> {
         Container(
           height: 44.0,
           decoration: BoxDecoration(
-            color: AppColors.darkBgWell,
+            color: AppColors.darkBgSurface,
             borderRadius: BorderRadius.circular(4.0),
-            border: Border.all(color: borderColor, width: 1.0),
+            border: Border.all(color: borderColor, width: borderWidth),
           ),
           child: Row(
             children: [

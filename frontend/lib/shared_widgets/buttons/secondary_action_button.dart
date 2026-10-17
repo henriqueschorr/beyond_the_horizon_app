@@ -34,8 +34,8 @@ class _SecondaryActionButtonState extends State<SecondaryActionButton> {
     final isEnabled = widget.onPressed != null;
 
     final borderColor = _isHovered && isEnabled
-        ? AppColors.darkBorderProminent
-        : AppColors.darkBorderSubtle;
+        ? AppColors.accentOrange
+        : AppColors.darkBorderProminent;
 
     return MouseRegion(
       cursor: isEnabled ? SystemMouseCursors.click : SystemMouseCursors.basic,
@@ -47,14 +47,14 @@ class _SecondaryActionButtonState extends State<SecondaryActionButton> {
           height: widget.height,
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           decoration: BoxDecoration(
-            color: _isHovered ? AppColors.darkBgSurface : Colors.transparent,
+            color: _isHovered ? AppColors.darkBgSurfaceElevated : AppColors.darkBgSurface,
             borderRadius: BorderRadius.circular(4.0),
             border: Border.all(color: borderColor, width: 1.0),
           ),
           child: Center(
             child: _isHovered && isEnabled
-                ? ActionLabelText(widget.label)
-                : ActionLabelMutedText(widget.label),
+                ? ActionLabelHighlightedText(widget.label)
+                : ActionLabelText(widget.label),
           ),
         ),
       ),
