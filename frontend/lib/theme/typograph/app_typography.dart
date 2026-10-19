@@ -21,12 +21,36 @@ abstract final class AppTypography {
         color: AppColors.darkTextPrimary,
       );
 
-  static TextStyle get displayTitleLarge => GoogleFonts.spaceGrotesk(
+  static TextStyle get sectionTitleLarge => GoogleFonts.spaceGrotesk(
         fontSize: 32.0,
         fontWeight: FontWeight.w700,
         letterSpacing: -0.5,
         height: 1.25,
         color: AppColors.darkTextPrimary,
+      );
+
+  static TextStyle get sectionTitleLargeHighlighted => GoogleFonts.spaceGrotesk(
+        fontSize: 32.0,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.5,
+        height: 1.25,
+        color: AppColors.accentOrange,
+      );
+
+  static TextStyle get sectionTitleMedium => GoogleFonts.spaceGrotesk(
+        fontSize: 26.0,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.2,
+        height: 1.15,
+        color: AppColors.darkTextPrimary,
+      );
+
+  static TextStyle get sectionTitleMediumHighlighted => GoogleFonts.spaceGrotesk(
+        fontSize: 26.0,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.2,
+        height: 1.15,
+        color: AppColors.accentOrange,
       );
 
   static TextStyle get displayTitle => GoogleFonts.spaceGrotesk(
@@ -45,13 +69,20 @@ abstract final class AppTypography {
         color: AppColors.accentOrange,
       );
 
-
-  static TextStyle get sectionTitle => GoogleFonts.spaceGrotesk(
+  static TextStyle get sectionTitleSmall => GoogleFonts.spaceGrotesk(
         fontSize: 18.0,
         fontWeight: FontWeight.w700,
         letterSpacing: -0.1,
         height: 1.20,
         color: AppColors.darkTextPrimary,
+      );
+
+  static TextStyle get sectionTitleSmallHighlighted => GoogleFonts.spaceGrotesk(
+        fontSize: 18.0,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.1,
+        height: 1.20,
+        color: AppColors.accentOrange,
       );
 
   static TextStyle get actionLabelLarge => GoogleFonts.spaceGrotesk(

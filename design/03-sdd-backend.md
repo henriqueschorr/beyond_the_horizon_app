@@ -567,4 +567,4 @@ The backend architecture enforces the following security standards:
 - [02-sdd-database.md](./02-sdd-database.md) - System Design Document: Database Architecture
 - [04-sdd-frontend.md](./04-sdd-frontend.md) - System Design Document: Frontend Architecture
 - [compendium_keywords_plan.md](./compendium_keywords_plan.md) - Master Keyword Overlay Engine Plan (OP-03A)
-- [markdown_presentation_reference.md](./markdown_presentation_reference.md) - Markdown Presentation Engine & Layout Reference (OP-03B)
+- [text_engine_syntax_specification.md](./text_engine_syntax_specification.md) - Text Engine Syntax & Document Presentation Specification (OP-03B)

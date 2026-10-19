@@ -21,11 +21,11 @@ While spanning distinct genres—cosmic body horror (*Alien*), atomic retro-apoc
 Together, they represent the absolute antithesis of sterile, utopian "clean sci-fi" (such as *Star Trek* or contemporary Cupertino-style consumer minimalism). Instead, they champion **The Used Future**, **Entropic Industrial Decay**, **The Bureaucratic Uncanny**, and **Monolithic Institutional Authority**.
 
 Each universe is examined in depth in its dedicated reference study:
-- [Alien Aesthetic Reference](./references/alien_design_reference.md)
-- [Death in Space Aesthetic Reference](./references/death_in_space_design_reference.md)
-- [Fallout Aesthetic Reference](./references/fallout_design_reference.md)
-- [Mothership Aesthetic Reference](./references/mothership_design_reference.md)
-- [Remedy Aesthetic Reference](./references/remedy_design_reference.md)
+- [Alien Aesthetic Reference](./references/aesthetic/alien_design_reference.md)
+- [Death in Space Aesthetic Reference](./references/aesthetic/death_in_space_design_reference.md)
+- [Fallout Aesthetic Reference](./references/aesthetic/fallout_design_reference.md)
+- [Mothership Aesthetic Reference](./references/aesthetic/mothership_design_reference.md)
+- [Remedy Aesthetic Reference](./references/aesthetic/remedy_design_reference.md)
 
 ```mermaid
 graph TD
@@ -46,7 +46,7 @@ graph TD
 
 ### 2.2 Comparative Design Matrix
 
-| Axis | [*Alien* Franchise](./references/alien_design_reference.md) | [*Fallout* Series](./references/fallout_design_reference.md) | [*Mothership RPG*](./references/mothership_design_reference.md) | [*Death in Space RPG*](./references/death_in_space_design_reference.md) | [*Remedy Entertainment*](./references/remedy_design_reference.md) |
+| Axis | [*Alien* Franchise](./references/aesthetic/alien_design_reference.md) | [*Fallout* Series](./references/aesthetic/fallout_design_reference.md) | [*Mothership RPG*](./references/aesthetic/mothership_design_reference.md) | [*Death in Space RPG*](./references/aesthetic/death_in_space_design_reference.md) | [*Remedy Entertainment*](./references/aesthetic/remedy_design_reference.md) |
 |---|---|---|---|---|---|
 | **Sub-Genre** | Cassette Futurism & Biomechanical Horror | Atompunk Retro-Futurism & Nuclear Decay | Brutalist Space Survival & Cosmic Panic | Scandinavian Minimal-Brutalism & Junk-Tech | The Bureaucratic Uncanny & Institutional Brutalism |
 | **Institutional Antagonist** | Weyland-Yutani (*"Building Better Worlds"*) | Vault-Tec, RobCo, Nuka-Cola Corp | Generic Megacorps & Indentured Charters | Dying Mining Consortiums & Wreck Salvagers | Federal Bureau of Control (The Oldest House) |
@@ -62,11 +62,11 @@ graph TD
 
 #### Trend 1: The Rejection of Pure Black (#000000)
 None of these properties use flat digital #000000 for primary backgrounds. Pure black creates visual halation (glowing and vibrating text edges) on OLED/LCD screens and muddy over-saturation in physical CMYK printing. Instead, all five employ rich, textured off-blacks:
-- *Alien:* Sub-Level Cast Iron (#2B3238) and Xenomorph Chitin Black (#0C0D0E). Detailed in [alien_design_reference.md](./references/alien_design_reference.md).
-- *Fallout:* Cathode Tube Glass Black (#14171A) and T-60 Armor Steel (#384148). Detailed in [fallout_design_reference.md](./references/fallout_design_reference.md).
-- *Mothership:* Matte Carbon Off-Black (#111215). Detailed in [mothership_design_reference.md](./references/mothership_design_reference.md).
-- *Death in Space:* Tenebris Void Rich Black (#231F20). Detailed in [death_in_space_design_reference.md](./references/death_in_space_design_reference.md).
-- *Remedy (Control / Alan Wake):* Institutional Midnight Concrete (#101214) and Shadow Realm Obsidian (#0A0C0E). Detailed in [remedy_design_reference.md](./references/remedy_design_reference.md).
+- *Alien:* Sub-Level Cast Iron (#2B3238) and Xenomorph Chitin Black (#0C0D0E). Detailed in [alien_design_reference.md](./references/aesthetic/alien_design_reference.md).
+- *Fallout:* Cathode Tube Glass Black (#14171A) and T-60 Armor Steel (#384148). Detailed in [fallout_design_reference.md](./references/aesthetic/fallout_design_reference.md).
+- *Mothership:* Matte Carbon Off-Black (#111215). Detailed in [mothership_design_reference.md](./references/aesthetic/mothership_design_reference.md).
+- *Death in Space:* Tenebris Void Rich Black (#231F20). Detailed in [death_in_space_design_reference.md](./references/aesthetic/death_in_space_design_reference.md).
+- *Remedy (Control / Alan Wake):* Institutional Midnight Concrete (#101214) and Shadow Realm Obsidian (#0A0C0E). Detailed in [remedy_design_reference.md](./references/aesthetic/remedy_design_reference.md).
 - *Beyond the Horizon:* Adopted deep cosmic void canvas (#101214) and recessed well (#0C0E10).
 
 #### Trend 2: The Softening of Pure White (#FFFFFF)
@@ -99,7 +99,7 @@ Across all universes, the human institutional or corporate apparatus speaks thro
 - **Neue Haas Grotesk / Univers** commands *Death in Space* titles and *Alien* interior bulkhead markings.
 
 #### Trend 2: Monumental Environmental Typography (The Remedy Influence)
-In Remedy Entertainment's *Control*, typography ceases to be a passive user-interface overlay and becomes an unyielding architectural presence (explored in [remedy_design_reference.md](./references/remedy_design_reference.md)):
+In Remedy Entertainment's *Control*, typography ceases to be a passive user-interface overlay and becomes an unyielding architectural presence (explored in [remedy_design_reference.md](./references/aesthetic/remedy_design_reference.md)):
 - **Monumental Scale:** Sector names, quarantine directives, and alert states are stamped across the architectural concrete geometry in massive, uppercase sans-serif letterforms.
 - **Visual Authority:** The sheer scale of the typography establishes institutional permanence and psychological weight.
 - *Beyond the Horizon Application:* Directly informs the Monumental Voice (Space Grotesk 64px Bold with wide tracking), used for the crossword brand mark and monumental headings.
@@ -193,8 +193,20 @@ To synthesize the brutalist aesthetic with cosmic horror and cassette retrofutur
 ## 5. Document References
 - [01-sdd-overview.md](./01-sdd-overview.md) - System Design Document: Overview
 - [04-sdd-frontend.md](./04-sdd-frontend.md) - System Design Document: Frontend Architecture & Design System
-- [alien_design_reference.md](./references/alien_design_reference.md) - Deep-Dive Aesthetic Study: *Alien* Franchise
-- [death_in_space_design_reference.md](./references/death_in_space_design_reference.md) - Deep-Dive Aesthetic Study: *Death in Space RPG*
-- [fallout_design_reference.md](./references/fallout_design_reference.md) - Deep-Dive Aesthetic Study: *Fallout* Series
-- [mothership_design_reference.md](./references/mothership_design_reference.md) - Deep-Dive Aesthetic Study: *Mothership RPG*
-- [remedy_design_reference.md](./references/remedy_design_reference.md) - Deep-Dive Aesthetic Study: Remedy's *Control* and *Alan Wake*
+- [alien_design_reference.md](./references/aesthetic/alien_design_reference.md) - Deep-Dive Aesthetic Study: *Alien* Franchise
+- [death_in_space_design_reference.md](./references/aesthetic/death_in_space_design_reference.md) - Deep-Dive Aesthetic Study: *Death in Space RPG*
+- [fallout_design_reference.md](./references/aesthetic/fallout_design_reference.md) - Deep-Dive Aesthetic Study: *Fallout* Series
+- [mothership_design_reference.md](./references/aesthetic/mothership_design_reference.md) - Deep-Dive Aesthetic Study: *Mothership RPG*
+- [remedy_design_reference.md](./references/aesthetic/remedy_design_reference.md) - Deep-Dive Aesthetic Study: Remedy's *Control* and *Alan Wake*
+
+### 5.1 Documentation & Codex Architecture References (2024–2026 Award Winners)
+- [master_documentation_codex_strategies.md](./references/documentation/master_documentation_codex_strategies.md) - Master Synthesis: The 7 Universal Codex Design Strategies
+- [break_rpg_documentation_reference.md](./references/documentation/break_rpg_documentation_reference.md) - Deep-Dive Codex Study: *Break!! RPG* (Video-Game HUD, Pop Neon, Edge Navigation)
+- [daggerheart_documentation_reference.md](./references/documentation/daggerheart_documentation_reference.md) - Deep-Dive Codex Study: *Daggerheart* (Editorial Card-Hybrid, Hope & Fear Duality, Dossier Spreads)
+- [mythic_bastionland_documentation_reference.md](./references/documentation/mythic_bastionland_documentation_reference.md) - Deep-Dive Codex Study: *Mythic Bastionland* (2-Page Oddpoch Spreads, Illuminated Foliage, Micro-Tables)
+- [shadowdark_documentation_reference.md](./references/documentation/shadowdark_documentation_reference.md) - Deep-Dive Codex Study: *Shadowdark RPG* (Digest Size, Zero-Turn Spread Mandate, Monochromatic Contrast)
+- [warhammer_fantasy_documentation_reference.md](./references/documentation/warhammer_fantasy_documentation_reference.md) - Deep-Dive Codex Study: *Warhammer Fantasy 4e* (Living Diegetic Artifact, Career Grids, Historical Lore)
+
+### 5.2 Web Application & Digital Platform References
+- [dndbeyond_design_reference.md](./references/site/dndbeyond_design_reference.md) - Deep-Dive Web Platform Study: *D&D Beyond* (Non-Destructive Slide-Over Drawers, Entity Tooltip Engine, Multi-Tab Character Sheet, TTUI/Lexicon Design Tokens)
+

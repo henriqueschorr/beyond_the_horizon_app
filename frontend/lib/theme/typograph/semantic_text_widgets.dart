@@ -59,10 +59,10 @@ class SelectableErrorText extends StatelessWidget {
   }
 }
 
-class DisplayTitleLargeText extends StatelessWidget {
+class SectionTitleLargeText extends StatelessWidget {
   final String text;
 
-  const DisplayTitleLargeText(
+  const SectionTitleLargeText(
     this.text, {
     super.key,
   });
@@ -71,7 +71,58 @@ class DisplayTitleLargeText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: AppTypography.displayTitleLarge,
+      style: AppTypography.sectionTitleLarge,
+    );
+  }
+}
+
+class SectionTitleLargeHighlightedText extends StatelessWidget {
+  final String text;
+
+  const SectionTitleLargeHighlightedText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.sectionTitleLargeHighlighted,
+    );
+  }
+}
+
+class SectionTitleMediumText extends StatelessWidget {
+  final String text;
+
+  const SectionTitleMediumText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.sectionTitleMedium,
+    );
+  }
+}
+
+class SectionTitleMediumHighlightedText extends StatelessWidget {
+  final String text;
+
+  const SectionTitleMediumHighlightedText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.sectionTitleMediumHighlighted,
     );
   }
 }
@@ -110,11 +161,10 @@ class DisplayTitleHighlightedText extends StatelessWidget {
   }
 }
 
-
-class SectionTitleText extends StatelessWidget {
+class SectionTitleSmallText extends StatelessWidget {
   final String text;
 
-  const SectionTitleText(
+  const SectionTitleSmallText(
     this.text, {
     super.key,
   });
@@ -123,7 +173,24 @@ class SectionTitleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: AppTypography.sectionTitle,
+      style: AppTypography.sectionTitleSmall,
+    );
+  }
+}
+
+class SectionTitleSmallHighlightedText extends StatelessWidget {
+  final String text;
+
+  const SectionTitleSmallHighlightedText(
+    this.text, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTypography.sectionTitleSmallHighlighted,
     );
   }
 }

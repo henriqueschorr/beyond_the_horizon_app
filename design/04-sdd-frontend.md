@@ -5,8 +5,8 @@
 - **Project:** Beyond the Horizon - Digital Companion & Rules Platform ("Beyond the Horizon App")
 - **Author:** Henrique Schorr
 - **Status:** Active
-- **Version:** 0.3.0
-- **Last Updated:** 2026-10-14
+- **Version:** 0.3.1
+- **Last Updated:** 2026-10-18
 
 ---
 
@@ -38,6 +38,31 @@ To guarantee optimal visual density, tactile telemetry ergonomics, and uncomprom
 - **Explicit Exclusion (Phase 1):**
   - **Smartphones / Mobile Viewports:** Strictly excluded from Phase 1 scope.
   - Viewports below 768px width display an atmospheric telemetry warning directing the operative to connect via a desktop or tablet station. Future smartphone views will be evaluated as dedicated companion views in subsequent phases.
+
+### 2.4 Graphic Brand Mark & Emblem Explorations (Logo Candidates)
+Alongside the typographic wordmarks employed across the Landing and Command Deck viewports (Sections 6.1 and 7.1), the system explores standalone graphic emblems for application icons, favicons, telemetry badges, and companion headers. These candidates translate the core pillars of **Minimalist Brutalism**, **Cassette Futurism**, and **Cosmic Sci-Fi** into pure 2D vector geometry, strictly adhering to the canonical palette (void canvas #101214, titanium white #F0ECE1, and spot accent orange #FE6403):
+
+#### Candidate A: The Gravitational Singularity / Accretion Horizon (Concept H2)
+A pure astronomical event horizon representing a cosmic singularity:
+
+<p align="center">
+  <img src="./assets/logo_concept_h2_singularity.jpg" alt="Concept H2: The Gravitational Singularity / Accretion Horizon" width="300" />
+</p>
+
+- **Geometric Anatomy:** A solid cosmic void disk (#101214) framed by a glowing Cassette 90 vibrant orange (#FE6403) accretion halo ring, cleanly sliced horizontally by a razor-sharp titanium white (#F0ECE1) datum line extending into the void.
+- **Design Rationale & Metaphor:** Represents the literal astronomical event horizon of a black hole. Symmetrical, monumental, and completely devoid of organic or humanoid silhouette pareidolia; delivers clean, uncompromising geometric authority.
+- **Application Roles:** High-density circular favicons, desktop launcher icons, and compact HUD radar cores down to 16px.
+
+#### Candidate B: The Horizon Arc & 4-Point Star Flare (Concept H3)
+A sweeping celestial horizon arc crowned by a navigational 4-pointed diamond star:
+
+<p align="center">
+  <img src="./assets/logo_concept_h3_star_flare.jpg" alt="Concept H3: The Horizon Arc & 4-Point Star Flare" width="300" />
+</p>
+
+- **Geometric Anatomy:** A wide, expansive celestial horizon arc rendered in a fine titanium white (#F0ECE1) curve, intersected at its crest by a razor-sharp 4-pointed diamond needle star (quadrant astrogator compass star) radiating with a solid Cassette Orange (#FE6403) core.
+- **Design Rationale & Metaphor:** Synthesizes the celestial horizon curvature with long-range interstellar navigation symbology. Replaces curved dome shapes with an acute needle starburst to maintain strict angular discipline.
+- **Application Roles:** Wide-format header banners, telemetry headers, mission patch insignias, and splash screen emblems.
 
 ---
 
@@ -111,9 +136,10 @@ The interface architecture establishes three distinct font voices, each serving 
 | :------------------------------ | :------------ | :----: | :-------------: | :----------------: | :---------: | :-------------------------- | :------------------------------------------ |
 | **monumentalTitle**             | Space Grotesk | 64.0px |   Bold (700)    |       +4.0px       |    1.00     | AppColors.darkTextPrimary   | MonumentalText                              |
 | **monumentalSmall**             | Space Grotesk | 16.0px |   Bold (700)    |       +4.0px       |    1.00     | AppColors.darkTextPrimary   | MonumentalSmallText                         |
-| **displayTitleLarge**           | Space Grotesk | 32.0px |   Bold (700)    |       -0.5px       |    1.25     | AppColors.darkTextPrimary   | DisplayTitleLargeText                       |
+| **sectionTitleLarge**           | Space Grotesk | 32.0px |   Bold (700)    |       -0.5px       |    1.25     | AppColors.darkTextPrimary   | SectionTitleLargeText                       |
+| **sectionTitleMedium**          | Space Grotesk | 26.0px |   Bold (700)    |       -0.2px       |    1.15     | AppColors.darkTextPrimary   | SectionTitleMediumText                      |
 | **displayTitle**                | Space Grotesk | 26.0px |   Bold (700)    |       -0.2px       |    1.15     | AppColors.darkTextPrimary   | DisplayTitleText                            |
-| **sectionTitle**                | Space Grotesk | 18.0px |   Bold (700)    |       -0.1px       |    1.20     | AppColors.darkTextPrimary   | SectionTitleText                            |
+| **sectionTitleSmall**           | Space Grotesk | 18.0px |   Bold (700)    |       -0.1px       |    1.20     | AppColors.darkTextPrimary   | SectionTitleSmallText                       |
 | **actionLabelLarge**            | Space Grotesk | 18.0px |   Bold (700)    |       +0.5px       |    1.20     | AppColors.darkTextPrimary   | ActionLabelLargeText                        |
 | **actionLabelLargeInverted**    | Space Grotesk | 18.0px |   Bold (700)    |       +0.5px       |    1.20     | AppColors.darkBgCanvas      | ActionLabelLargeInvertedText                |
 | **actionLabel**                 | Space Grotesk | 14.0px | Semi-Bold (600) |       +0.5px       |    1.10     | AppColors.darkTextPrimary   | ActionLabelText                             |
