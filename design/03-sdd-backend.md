@@ -12,9 +12,9 @@
 
 ## 2. Role & Architectural Philosophy
 
-The backend package is situated within the Beyond the Horizon App repository under beyond_the_horizon_app/backend/, supported by wire contracts in beyond_the_horizon_app/shared/. It acts as the business logic coordinator, repository manager, security validator, and guardian of rules compendium delivery.
+The backend package is situated within the Beyond the Horizon App repository under beyond_the_horizon_app/src/backend/, supported by wire contracts in beyond_the_horizon_app/src/shared/. It acts as the business logic coordinator, repository manager, security validator, and guardian of rules compendium delivery.
 
-In production, to satisfy the strict $0.00/month zero-cost requirement without server cold starts or container infrastructure costs, the backend operates as an **in-process backend package**: the Flutter Web client imports backend/ directly as a pure Dart package and calls its domain services via direct class.method() invocations passing typed shared DTOs. In this mode, no HTTP network hops occur. The standalone Shelf HTTP pipeline (bin/server.dart) is fully retained for automated testing, API validation, and CLI automation.
+In production, to satisfy the strict $0.00/month zero-cost requirement without server cold starts or container infrastructure costs, the backend operates as an **in-process backend package**: the Flutter Web client imports backend (from src/backend) directly as a pure Dart package and calls its domain services via direct class.method() invocations passing typed shared DTOs. In this mode, no HTTP network hops occur. The standalone Shelf HTTP pipeline (bin/server.dart) is fully retained for automated testing, API validation, and CLI automation.
 
 ### 2.1 Core Architectural Principles
 
@@ -249,34 +249,35 @@ graph TD
 
 ```
 beyond_the_horizon_app/
-├── shared/                                 # Pure Dart wire contracts & domain models
-│   ├── lib/
-│   │   ├── enums/                          # Domain enumerations (UserRole, EpigraphType, DocumentationCategory, ...)
-│   │   ├── models/                         # Request & Response DTOs
-│   │   │   ├── auth/                       # Sign in, sign up, password recovery DTOs
-│   │   │   ├── lore_epigraphs/             # Lore epigraph randomized response DTOs
-│   │   │   ├── documentation/              # Compendium pages, categories, tree DTOs
-│   │   │   └── profiles/                   # User profile and update DTOs
-│   │   └── shared.dart                     # Main shared export barrel
-│   └── pubspec.yaml
-└── backend/                                # In-process domain logic & Shelf HTTP server
-    ├── bin/
-    │   └── server.dart                     # Standalone Shelf HTTP server entry point
-    ├── lib/
-    │   ├── backend.dart                    # Main backend package exports
-    │   ├── backend_service.dart            # Unified facade for in-process frontend execution
-    │   ├── config/                         # Server environment and runtime configuration
-    │   ├── dependency_injection/           # GetIt service locator setup & wiring
-    │   │   └── service_locator.dart
-    │   ├── domain/                         # Database-backed entities
-    │   │   └── entities/
-    │   ├── exceptions/                     # Strongly-typed machine-readable domain exceptions
-    │   ├── middleware/                     # Shelf HTTP middlewares (auth, cors, error, rate limit)
-    │   ├── repositories/                   # Abstract repository interfaces
-    │   │   └── mock/                       # In-memory mock repositories with test seed data
-    │   ├── routes/                         # Standalone HTTP route controllers
-    │   └── services/                       # Stateless domain services with pure constructor injection
-    └── pubspec.yaml
+└── src/
+    ├── shared/                             # Pure Dart wire contracts & domain models
+    │   ├── lib/
+    │   │   ├── enums/                      # Domain enumerations (UserRole, EpigraphType, DocumentationCategory, ...)
+    │   │   ├── models/                     # Request & Response DTOs
+    │   │   │   ├── auth/                   # Sign in, sign up, password recovery DTOs
+    │   │   │   ├── lore_epigraphs/         # Lore epigraph randomized response DTOs
+    │   │   │   ├── documentation/          # Compendium pages, categories, tree DTOs
+    │   │   │   └── profiles/               # User profile and update DTOs
+    │   │   └── shared.dart                 # Main shared export barrel
+    │   └── pubspec.yaml
+    └── backend/                            # In-process domain logic & Shelf HTTP server
+        ├── bin/
+        │   └── server.dart                 # Standalone Shelf HTTP server entry point
+        ├── lib/
+        │   ├── backend.dart                # Main backend package exports
+        │   ├── backend_service.dart        # Unified facade for in-process frontend execution
+        │   ├── config/                     # Server environment and runtime configuration
+        │   ├── dependency_injection/       # GetIt service locator setup & wiring
+        │   │   └── service_locator.dart
+        │   ├── domain/                     # Database-backed entities
+        │   │   └── entities/
+        │   ├── exceptions/                 # Strongly-typed machine-readable domain exceptions
+        │   ├── middleware/                 # Shelf HTTP middlewares (auth, cors, error, rate limit)
+        │   ├── repositories/               # Abstract repository interfaces
+        │   │   └── mock/                   # In-memory mock repositories with test seed data
+        │   ├── routes/                     # Standalone HTTP route controllers
+        │   └── services/                   # Stateless domain services with pure constructor injection
+        └── pubspec.yaml
 ```
 
 ---
@@ -562,7 +563,7 @@ The backend architecture enforces the following security standards:
 
 ## 11. Document References
 
-- [Open Points & Roadmap Register](./open_points.md) - Project roadmap and open points register
+- [Project Planner & Roadmap Register](./project_planner.md) - Project roadmap and open points register
 - [01-sdd-overview.md](./01-sdd-overview.md) - System Design Document: Overview & Vision
 - [02-sdd-database.md](./02-sdd-database.md) - System Design Document: Database Architecture
 - [04-sdd-frontend.md](./04-sdd-frontend.md) - System Design Document: Frontend Architecture

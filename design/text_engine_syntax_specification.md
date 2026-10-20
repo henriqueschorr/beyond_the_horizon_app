@@ -5,7 +5,7 @@
 - **Module Identifier:** OP-03B
 - **Author:** Henrique Schorr
 - **Last Updated:** 2026-10-18
-- **Canonical Architecture References:** [01-sdd-overview.md](./01-sdd-overview.md), [02-sdd-database.md](./02-sdd-database.md), [03-sdd-backend.md](./03-sdd-backend.md), [04-sdd-frontend.md](./04-sdd-frontend.md), [compendium_keywords_plan.md](./compendium_keywords_plan.md), [open_points.md](./open_points.md)
+- **Canonical Architecture References:** [01-sdd-overview.md](./01-sdd-overview.md), [02-sdd-database.md](./02-sdd-database.md), [03-sdd-backend.md](./03-sdd-backend.md), [04-sdd-frontend.md](./04-sdd-frontend.md), [compendium_keywords_plan.md](./compendium_keywords_plan.md), [project_planner.md](./project_planner.md)
 
 ---
 

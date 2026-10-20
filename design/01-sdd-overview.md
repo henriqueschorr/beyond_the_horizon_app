@@ -18,7 +18,7 @@ The **Beyond the Horizon App** is a digital platform and companion application f
 1. **Interactive Rules & Compendium:** Provide fast, accessible search and exploration of the game rules, setting lore, and content compendium.
 2. **Character & Play Management:** Support interactive character creation, sheet tracking, action resolution, and session management.
 3. **Immersive Atmosphere & Thematic Experience:** Deliver an atmospheric experience following a Minimalist Brutalism aesthetic with Industrial and Cosmic Sci-Fi Horror sensibilities.
-4. **Modular Monorepo Architecture:** Structure the project as a clean, modular monorepo (frontend/, backend/, shared/, design/), ensuring clear separation of concerns, high maintainability, and streamlined local development.
+4. **Modular Monorepo Architecture:** Structure the project as a clean, modular monorepo (`src/frontend/`, `src/backend/`, `src/shared/`, `design/`), ensuring clear separation of concerns, high maintainability, and streamlined local development.
 5. **Zero-Cost Operation & Sustainability:** Run indefinitely at $0.00/month utilizing static hosting (e.g., Cloudflare Pages) and managed BaaS (e.g., Supabase free tier).
 
 ### 2.2 Target Platform Scope (Phase 1)
@@ -36,18 +36,27 @@ The repository is structured as a clean, self-contained monorepo:
 
 ```
 beyond_the_horizon_app/
-├── backend/                  # In-process Dart domain services / Shelf server
-│   ├── bin/                  # CLI and standalone server entry point
-│   ├── lib/                  # Services, entities, repositories, routes
-│   └── pubspec.yaml
-├── frontend/                 # Flutter Web client application
-│   ├── lib/                  # Screens, controllers, design system, widgets
-│   ├── web/                  # HTML shell, icons, web manifest
-│   └── pubspec.yaml
-├── shared/                   # Shared pure Dart wire contracts
-│   ├── lib/                  # Request/Response DTOs, enums, constants
-│   └── pubspec.yaml
+├── .agents/                  # Agent configurations and skill discovery (skills.json)
+├── skills/                   # Modular agent skills & playbooks
+│   ├── design/               # grill-with-docs architectural design skill
+│   └── planner/              # to-tickets tracer-bullet breakdown skill
+├── src/
+│   ├── backend/              # In-process Dart domain services / Shelf server
+│   │   ├── bin/              # CLI and standalone server entry point
+│   │   ├── lib/              # Services, entities, repositories, routes
+│   │   └── pubspec.yaml
+│   ├── frontend/             # Flutter Web client application
+│   │   ├── lib/              # Screens, controllers, design system, widgets
+│   │   ├── web/              # HTML shell, icons, web manifest
+│   │   └── pubspec.yaml
+│   └── shared/               # Shared pure Dart wire contracts
+│       ├── lib/              # Request/Response DTOs, enums, constants
+│       └── pubspec.yaml
 ├── design/                   # Software Design Documents (SDDs)
+│   ├── GLOSSARY.md           # Live domain dictionary & ubiquitous language
+│   ├── decisions/            # Architecture Decision Records (ADRs)
+│   ├── tickets/              # Modular tracer-bullet ticket files (0001-0030)
+│   ├── project_planner.md    # Central project planner & roadmap register
 │   ├── 01-sdd-overview.md    # System overview & high-level vision
 │   ├── 02-sdd-database.md    # Relational schema & persistence
 │   ├── 03-sdd-backend.md     # In-process backend services & logic
@@ -59,8 +68,8 @@ beyond_the_horizon_app/
 ```mermaid
 graph TD
     subgraph Repo ["beyond_the_horizon_app Monorepo"]
-        Client["frontend/ (Flutter Web)"] -->|"In-Process class.method() Calls"| Backend["backend/ (In-Process Domain Services Layer)"]
-        Client -.->|"Import DTOs"| Shared["shared/ (Request/Response DTOs & Enums)"]
+        Client["src/frontend/ (Flutter Web)"] -->|"In-Process class.method() Calls"| Backend["src/backend/ (In-Process Domain Services Layer)"]
+        Client -.->|"Import DTOs"| Shared["src/shared/ (Request/Response DTOs & Enums)"]
         Backend -.->|"Import DTOs"| Shared
         Backend --> Domain["domain/entities/ (Database-backed Entities)"]
     end
@@ -140,7 +149,7 @@ The application visual design follows a **Minimalist Brutalism** philosophy with
 
 ## 8. Document Roadmap
 
-- [Open Points & Roadmap Register](./open_points.md) - Prioritized feature roadmap across Phase 1, Phase 2, and Phase 3
+- [Project Planner & Roadmap Register](./project_planner.md) - Prioritized feature roadmap across Phase 1, Phase 2, and Phase 3
 - [01-sdd-overview.md](./01-sdd-overview.md) - System overview, vision, and companion ecosystem *(This Document)*
 - [02-sdd-database.md](./02-sdd-database.md) - Relational schema, realtime session subscriptions, and Supabase data architecture
 - [03-sdd-backend.md](./03-sdd-backend.md) - In-process domain services, dice formula engine, and session orchestration

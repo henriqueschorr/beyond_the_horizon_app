@@ -362,7 +362,7 @@ JOIN public.documentation_page_translations dpt ON dpt.page_id = dp.id;
 
 ## 8. Document References
 
-- [Open Points & Roadmap Register](./open_points.md) - Project roadmap and open points register
+- [Project Planner & Roadmap Register](./project_planner.md) - Project roadmap and open points register
 - [01-sdd-overview.md](./01-sdd-overview.md) - System Design Document: Overview & Architecture
 - [03-sdd-backend.md](./03-sdd-backend.md) - System Design Document: Backend Architecture
 - [04-sdd-frontend.md](./04-sdd-frontend.md) - System Design Document: Frontend Architecture

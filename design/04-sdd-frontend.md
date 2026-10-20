@@ -263,14 +263,14 @@ Positioned inside the black hole void beneath the submerged letters:
 
 ## 7. Authenticated Player Home Page Architecture (Command Deck)
 
-Below is the canonical structural design for the Authenticated Player Home Page (PlayerHomePage in frontend/lib/features/home/player/pages/player_home_page.dart):
+Below is the canonical structural design for the Authenticated Player Home Page (PlayerHomePage in src/frontend/lib/features/home/player/pages/player_home_page.dart):
 
 <p align="center">
   <img src="./assets/player_home_sketch.png" alt="Player Home Command Deck Sketch" />
 </p>
 
 ### 7.1 Typographic Brand Mark & Vertical O-Alignment Geometry
-The brand mark on the Command Deck (HomeBrandMark in frontend/lib/features/home/widgets/home_brand_mark.dart) is structured as two horizontal lines with mathematical alignment:
+The brand mark on the Command Deck (HomeBrandMark in src/frontend/lib/features/home/widgets/home_brand_mark.dart) is structured as two horizontal lines with mathematical alignment:
 
 ```
 Column:    [0]     [1]     [2]     [3]     [4]     [5]     [6]     [7]     [8]
@@ -289,7 +289,7 @@ Row 2:   [    B T H    ]    H       O       R       I       Z       O       N
 Positioned on the middle-left under the tactical telemetry subtitle // BEGIN YOUR JOURNEY (resolved via AppLocalizations, AppTypography.fieldLabelHighlighted / FieldLabelHighlightedText in #FE6403), with the interactive menu items aligned flush on the left with the telemetry subtitle:
 
 1. **PlayerMenu Architecture:**
-   - Composes HomeMenuItem instances (frontend/lib/features/home/widgets/home_menu_item.dart) for cross-role reusability across Player, Facilitator, and Admin decks.
+   - Composes HomeMenuItem instances (src/frontend/lib/features/home/widgets/home_menu_item.dart) for cross-role reusability across Player, Facilitator, and Admin decks.
    - Structured as four vertically stacked uncluttered action items separated by 8px vertical gaps:
      - PLAY WITH CHARACTER
      - CREATE CHARACTER
@@ -309,12 +309,12 @@ Positioned on the middle-left under the tactical telemetry subtitle // BEGIN YOU
    - Typographic Inversion: The label cleanly inverts to solid void black (AppColors.darkBgCanvas, #101214) via ActionLabelLargeInvertedText, producing electrifying brutalist contrast and 100% vector legibility.
 
 ### 7.3 Randomized Lore Epigraph Box & Pure Geometric Framing
-Positioned in the middle-right quadrant (LoreEpigraphBox in frontend/lib/features/home/player/widgets/lore_epigraph_box.dart). The widget executes a single-row random query directly in PostgreSQL via the database RPC function get_random_lore_epigraph upon page load, delegating framing geometry to the dedicated EpigraphFramePainterResolver (frontend/lib/shared_widgets/frames/epigraph_frame_painter_resolver.dart).
+Positioned in the middle-right quadrant (LoreEpigraphBox in src/frontend/lib/features/home/player/widgets/lore_epigraph_box.dart). The widget executes a single-row random query directly in PostgreSQL via the database RPC function get_random_lore_epigraph upon page load, delegating framing geometry to the dedicated EpigraphFramePainterResolver (src/frontend/lib/shared_widgets/frames/epigraph_frame_painter_resolver.dart).
 
 #### Universal Epigraph Specifications (Identical for All Types)
 - **Content Typography:** Space Mono Regular 14px (AppTypography.bodyMono / DynamicText in #C8C4B8).
 - **Attribution Source:** Strictly right-aligned directly beneath the frame in Space Mono Regular 14px (AppTypography.bodyMono / BodyMonoText in #C8C4B8) prefixed by an em-dash (—).
-- **Rich Markdown Formatting:** Uniformly supports multi-line breaks, internal text alignments, and natural narrative classification markers (preserving [REDACTED] in English and [OMITIDO] in pt-BR as inline text via DynamicText from frontend/lib/features/dynamic_text/) across all five domain types.
+- **Rich Markdown Formatting:** Uniformly supports multi-line breaks, internal text alignments, and natural narrative classification markers (preserving [REDACTED] in English and [OMITIDO] in pt-BR as inline text via DynamicText from src/frontend/lib/features/dynamic_text/) across all five domain types.
 - **Zero Text in Frames:** Frames contain zero text labels. The geometric frame shape and the attribution source uniquely identify the domain type.
 
 #### Type-Specific Geometric Framing (Alphabetical Order)
@@ -337,12 +337,12 @@ The only differentiator across domain types is the geometric framing silhouette:
 
 ### 7.4 Player Greeting & Session Termination (⏻ SIGN OUT)
 1. **Player Greeting (Top-Right):**
-   - Widget: PlayerGreeting (frontend/lib/features/home/player/widgets/player_greeting.dart).
+   - Widget: PlayerGreeting (src/frontend/lib/features/home/player/widgets/player_greeting.dart).
    - Prefix: "Welcome, " using AppTypography.displayTitle (DisplayTitleText, 26px, titanium white #F0ECE1, resolved via AppLocalizations).
    - Player Callsign / Name: "[Callsign]" using AppTypography.displayTitleHighlighted (DisplayTitleHighlightedText tinted in AppColors.accentOrange #FE6403).
 2. **Session Termination (Bottom-Left Corner):**
    - Anchored at the bottom-left coordinate of the viewport.
-   - Widget: IconButton (frontend/lib/shared_widgets/buttons/icon_button.dart).
+   - Widget: IconButton (src/frontend/lib/shared_widgets/buttons/icon_button.dart).
    - Styled as a muted tactile utility actuator: ⏻ SIGN OUT (no brackets).
    - Uses Space Grotesk Semi-Bold 12.0px with AppColors.darkTextMuted (AppTypography.actionLabelSmallMuted / ActionLabelSmallMutedText in rest state, illuminating to ActionLabelSmallHighlightedText on hover).
    - Border in AppColors.darkBorderSubtle, illuminating to AppColors.accentOrange on hover with tactile micro-physics.
@@ -435,7 +435,7 @@ This section preserves earlier layout iterations and wireframe concepts explored
 
 ## 10. Document References
 
-- [Open Points & Roadmap Register](./open_points.md) - Project roadmap and open points register
+- [Project Planner & Roadmap Register](./project_planner.md) - Project roadmap and open points register
 - [01-sdd-overview.md](./01-sdd-overview.md) - System Design Document: Overview
 - [02-sdd-database.md](./02-sdd-database.md) - System Design Document: Database Architecture
 - [03-sdd-backend.md](./03-sdd-backend.md) - System Design Document: Backend Architecture

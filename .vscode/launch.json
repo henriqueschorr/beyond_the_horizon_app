@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "Frontend (Chrome)",
-      "cwd": "frontend",
+      "cwd": "src/frontend",
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart",
@@ -15,7 +15,7 @@
     },
     {
       "name": "Frontend (Edge)",
-      "cwd": "frontend",
+      "cwd": "src/frontend",
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart",
@@ -26,7 +26,7 @@
     },
     {
       "name": "Backend Server",
-      "cwd": "backend",
+      "cwd": "src/backend",
       "request": "launch",
       "type": "dart",
       "program": "bin/server.dart"
