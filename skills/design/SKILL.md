@@ -9,27 +9,15 @@ description: >-
 
 Interview the user relentlessly until you reach a shared understanding. Map this as a **design tree**: every decision branches into the decisions that hang off it.
 
-Work the tree in **rounds**. The **frontier** is every decision whose prerequisites are already settled: the questions you can ask *now* without guessing at answers you have not heard yet. Ask the whole frontier in one round: number each question and give your recommended answer. Then wait for the user's answers before the next round.
+Work the tree in **rounds**. The **frontier** is every decision whose prerequisites are already settled: the questions you can ask *now* without guessing at answers you have not heard yet.
 
-Format a round like so:
-
-```
-❓ **Q1** - **[question title]**: [question body, might be multiple paragraphs, including multiple choices]
-
-➡️ [your recommended answer]
-
----
-
-❓ **Q2** - **[question title]**: [question body, might be multiple paragraphs, including multiple choices]
-
-➡️ [your recommended answer]
-```
-
-Word each question so "yes" accepts your recommended answer.
+### Rules for the Interview:
+1. **The User Makes Every Decision**: Never make decisions on behalf of the user, and never answer your own questions. Present the question with clear options, rationale, and your recommendation clearly labeled as `(Recommended)`.
+2. **Interactive Questioning**: Use the interactive `ask_question` tool to present the round's frontier directly to the user as a modal with clear selectable options and a write-in response.
+3. **If formatting in text**: Always present numbered questions with distinct selectable options (e.g., Option A, Option B) and clearly designate `(Recommended Option)` so the user can easily select or provide their own direction. Never print an answer that appears as if the agent already settled the decision.
+4. **Facts vs Decisions**: When a question turns on a **fact** you can look up in the codebase, do not ask it. Look it up. When a question turns on a **decision**, do not decide it. Ask the user, giving options and your recommendation.
 
 Each round the user answers reshapes the tree: settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round.
-
-When a question turns on a **fact** you can look up in the codebase, do not ask it. Look it up. When a question turns on a **decision**, do not decide it. Ask it, with your recommendation.
 
 ---
 

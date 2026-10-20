@@ -366,8 +366,8 @@ JOIN public.documentation_page_translations dpt ON dpt.page_id = dp.id;
 - [01-sdd-overview.md](./01-sdd-overview.md) - System Design Document: Overview & Architecture
 - [03-sdd-backend.md](./03-sdd-backend.md) - System Design Document: Backend Architecture
 - [04-sdd-frontend.md](./04-sdd-frontend.md) - System Design Document: Frontend Architecture
-- [compendium_keywords_plan.md](./compendium_keywords_plan.md) - Master Keyword Overlay Engine Plan (OP-03A)
-- [text_engine_syntax_specification.md](./text_engine_syntax_specification.md) - Text Engine Syntax & Document Presentation Specification (OP-03B)
+- [compendium_keywords_plan.md](./specs/compendium_keywords_plan.md) - Master Keyword Overlay Engine Plan (OP-03A)
+- [text_engine_syntax_specification.md](./specs/text_engine_syntax_specification.md) - Text Engine Syntax & Document Presentation Specification (OP-03B)
 - [20261010000001_create_profiles_table.sql](../supabase/migrations/20261010000001_create_profiles_table.sql) - Migration 1: User Profiles & Role Enum
 - [20261010000002_create_lore_epigraphs_table.sql](../supabase/migrations/20261010000002_create_lore_epigraphs_table.sql) - Migration 2: Lore Epigraphs & Translations
 - [20261010000003_create_documentation_pages.sql](../supabase/migrations/20261010000003_create_documentation_pages.sql) - Migration 3: Documentation Pages & Translations

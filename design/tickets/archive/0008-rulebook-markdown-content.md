@@ -1,4 +1,4 @@
-﻿# 0008: Documentation Markdowns Creation from bth_game
+# 0008: Documentation Markdowns Creation from bth_game
 
 - **Status:** open
 - **Priority:** P1
@@ -23,11 +23,11 @@ Extract, convert, and author official rulebook Markdown chapters from the Beyond
 ---
 
 ## 3. Tracer-Bullet Scope & Acceptance Criteria
-- [ ] **Database / Schema**: Initial database seed migration inserting core chapter records and category links.
-- [ ] **Backend Services**: Automated markdown ingestion script or migration seed loader.
-- [ ] **Shared Contracts**: Content seed verification DTOs.
-- [ ] **Frontend Presentation**: Verification of rendered rulebook pages across all chapters using the renderer.
-- [ ] **Localization (l10n)**: pt-BR canonical source text and initial English structure scaffolds.
+- [ ] **Curated Content**: Manually copied and normalized official rulebook Markdown chapters from bth_game into content/manuscript/ (pt-BR canonical source).
+- [ ] **Database / Schema**: Database seed migration in supabase/seeds/ inserting core chapter records and category links into public.documentation_pages.
+- [ ] **Shared Contracts**: Pure wire contracts for documentation page retrieval.
+- [ ] **Frontend Presentation**: Verification of rendered rulebook pages across all chapters using the markdown presentation renderer.
+- [ ] **Localization (l10n)**: pt-BR canonical source text verification and English catalog scaffolding.
 
 ---
 

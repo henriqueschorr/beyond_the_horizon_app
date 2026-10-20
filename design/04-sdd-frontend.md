@@ -5,8 +5,8 @@
 - **Project:** Beyond the Horizon - Digital Companion & Rules Platform ("Beyond the Horizon App")
 - **Author:** Henrique Schorr
 - **Status:** Active
-- **Version:** 0.3.1
-- **Last Updated:** 2026-10-18
+- **Version:** 0.4.0
+- **Last Updated:** 2026-10-20
 
 ---
 
@@ -378,11 +378,15 @@ The client application adopts go_router as its official declarative routing and 
 1. **Route Map:**
    - **/**: LandingPage (Public zero-login landing portal).
    - **/home**: PlayerHomePage (Authenticated Player Command Deck).
+   - **/codex**: CodexSourcesReaderPage (Public Rules Compendium and Sources Book Reader).
+   - **/codex/sources/:slug**: CodexSourcesReaderPage (Specific chapter manuscript view with sticky TOC).
+   - **/codex/rules/:category**: CodexCompendiumDatabasePage (Filterable database views for Paths, Species, Origins, Abilities, Equipment, Hazards).
    - **/blank**: BlankPage (Temporary screen displaying a centered BLANK title).
 2. **Reactive Authentication Redirect Guards:**
    - GoRouter is initialized with refreshListenable bound to AuthController.
    - When an operative session is invalidated or signed out, GoRouter redirects protected routes back to **/**.
    - Deep-linking to protected views while unauthenticated automatically redirects visitors to **/**.
+   - The entire /codex route hierarchy is strictly public and bypasses authentication guards.
 
 3. **Decoupled Widget Callbacks (Rule 10):**
    - Sub-widgets do not directly invoke global navigation singletons.
@@ -390,6 +394,25 @@ The client application adopts go_router as its official declarative routing and 
 
 ### 8.6 Temporary Blank Page Destination Pattern
 During early development phases, feature launchers whose underlying subsystem is still pending implementation navigate to the dedicated temporary BlankPage screen displaying a centered BLANK title to preserve interface coherence without dead-end clicks or broken layouts.
+
+### 8.7 Dual Browsing Codex Architecture (Phase 1 MVP)
+The Rules Compendium frontend incorporates the Dual Browsing Information Architecture:
+1. **Sources Mode (Book Reader):**
+   - Fixed left-hand Table of Contents accordion (width ~280px) displaying nested chapter sections.
+   - Constrained reading column (65-75 character optimal measure) centered in the viewport with titanium white typography (#F0ECE1) and dark void canvas (#101214).
+   - Persistent top breadcrumbs and dynamic scrollspy section tracking.
+   - Sequential previous and next chapter pagination footers.
+2. **Game Rules Mode (Compendium Databases):**
+   - High-density filterable grid/table views across three core domains:
+     - Character Foundation: Paths, Species, Origins, Abilities.
+     - Equipment Catalog: Weapons, Armor, Tools and Gear, Cybernetics, Consumables.
+     - Hazard and Survival Tables: Physical Injuries, Psychological Traumas, Panic Reactions, Environmental Conditions.
+   - Interactive filtering by category, properties, damage types, and search queries.
+3. **Non-Destructive Slide-Over Drawer:**
+   - A dedicated right-hand drawer widget that slides out to present full entity dossiers (such as Path progression trees, weapon stat cards, or injury rules).
+   - Preserves active reading scroll position and compendium filter states with zero disruption.
+4. **Global Quick-Jump Omnibar (Cmd/Ctrl + K):**
+   - Keyboard-friendly modal overlay providing instant live autocomplete across all chapters, rules, and compendium entities.
 
 ---
 

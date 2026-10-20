@@ -5,8 +5,8 @@
 - **Project:** Beyond the Horizon - Digital Companion & Rules Platform ("Beyond the Horizon App")
 - **Author:** Henrique Schorr
 - **Status:** Active
-- **Version:** 0.3.0
-- **Last Updated:** 2026-10-14
+- **Version:** 0.4.0
+- **Last Updated:** 2026-10-20
 
 ---
 
@@ -121,18 +121,18 @@ Defines randomized retrieval for atmospheric universe lore fragments as well as 
 - **updateEpigraph:** Modifies type or localized translation content/source, returning a LoreEpigraphDetailResponseDto.
 - **deleteEpigraph:** Removes the epigraph and all cascade translations.
 
-#### 4.1.4 DocumentationRepository (Public Zero-Login)
-Defines catalog querying and hierarchical structure generation for compendium rules:
-- **listPublishedPages:** Lists all published rulebook pages matching locale and optional category filter.
-- **getPageBySlug:** Resolves a single page detail and its localized translation by route slug.
-- **getPageById:** Resolves a single page detail and its localized translation by UUID.
-- **getCategoryGroups:** Returns published pages pre-partitioned into category groups for the Compendium Hub dashboard.
-- **getNavigationTree:** Returns a recursive chapter navigation tree for the compendium reading sidebar.
+#### 4.1.4 CodexContentRepository (Bundled Local Assets & Zero-Login)
+Defines raw content retrieval, Obsidian-native YAML frontmatter extraction, and hierarchical navigation generation for the Rules Compendium:
+- **listChapters:** Returns the ordered chapter catalog from content/manuscript/ for the Sources book reader sidebar.
+- **getChapterBySlug:** Loads and parses a manuscript Markdown chapter by slug, resolving section anchors and headings.
+- **listCompendiumEntities:** Queries structured entity dossiers from content/compendium/ filtered by category (Paths, Species, Origins, Abilities, Equipment, Injuries, Traumas, Panic, Conditions).
+- **getEntityDetail:** Loads an individual entity Markdown dossier by category and slug, extracting mechanical attributes from YAML frontmatter and lore description from Markdown body.
+- **getNavigationTree:** Generates the recursive Table of Contents hierarchy for the sticky reader sidebar.
 
-#### 4.1.5 DocumentationStorageRepository (Public Zero-Login)
-Defines raw Markdown chapter retrieval and asset URL generation:
-- **fetchMarkdownContent:** Downloads the UTF-8 Markdown text content from the specified storage path.
-- **getPublicStorageUrl:** Constructs the canonical public edge URL for images and diagrams.
+#### 4.1.5 CodexSearchService (In-Memory Inverted Index & Fuzzy Omnibar)
+Defines zero-latency keyword indexing and fuzzy search across all manuscript chapters and compendium entities:
+- **search:** Executes a multi-token fuzzy search query against indexed entity titles, categories, mechanical traits, and keyword definitions, returning grouped SearchResultDto payloads under 10ms.
+- **rebuildIndex:** Compiles the in-memory inverted search index from all bundled manuscript chapters and compendium entity files upon application launch.
 
 ---
 
@@ -567,5 +567,5 @@ The backend architecture enforces the following security standards:
 - [01-sdd-overview.md](./01-sdd-overview.md) - System Design Document: Overview & Vision
 - [02-sdd-database.md](./02-sdd-database.md) - System Design Document: Database Architecture
 - [04-sdd-frontend.md](./04-sdd-frontend.md) - System Design Document: Frontend Architecture
-- [compendium_keywords_plan.md](./compendium_keywords_plan.md) - Master Keyword Overlay Engine Plan (OP-03A)
-- [text_engine_syntax_specification.md](./text_engine_syntax_specification.md) - Text Engine Syntax & Document Presentation Specification (OP-03B)
+- [compendium_keywords_plan.md](./specs/compendium_keywords_plan.md) - Master Keyword Overlay Engine Plan (OP-03A)
+- [text_engine_syntax_specification.md](./specs/text_engine_syntax_specification.md) - Text Engine Syntax & Document Presentation Specification (OP-03B)

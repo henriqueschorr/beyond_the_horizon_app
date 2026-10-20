@@ -22,11 +22,21 @@ Skills operate strictly within the guardrails defined in `Agents.md`. A skill do
 All skills in this repository assume the standard monorepo folder structure:
 
 ```
-├── .agents/                  # Agent configurations and skill discovery (skills.json)
-├── Agents.md                 # Universal agent constitution & coding rules
+├── .agents/                  # Agent configurations and modular rulebooks
+│   ├── skills.json           # Skill discovery configuration (points to skills/)
+│   └── rules/                # Modular domain rulebooks (01 to 05)
+├── Agents.md                 # Master agent constitution & rule index
+├── content/                  # Curated Game Content from bth_game
+│   └── manuscript/           # Official rulebook chapters (pt-BR / en)
+├── supabase/                 # Supabase persistence & seed data
+│   └── seeds/                # Database seed SQL & data (keywords, epigraphs)
 ├── design/                   # Software Design Documents (SDDs) and Architecture Decisions
 │   ├── GLOSSARY.md           # Ubiquitous domain language and terminology
 │   ├── decisions/            # Architecture Decision Records (ADRs)
+│   ├── specs/                # Auxiliary Subsystem Specifications
+│   ├── references/           # Aesthetic, documentation & site reference studies
+│   ├── tickets/              # Modular tracer-bullet ticket files (0001-0030)
+│   ├── project_planner.md    # Central project planner & roadmap register
 │   ├── 01-sdd-overview.md
 │   ├── 02-sdd-database.md
 │   ├── 03-sdd-backend.md
