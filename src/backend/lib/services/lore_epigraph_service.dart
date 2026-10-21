@@ -10,8 +10,10 @@ class LoreEpigraphService {
   }) : _loreEpigraphRepository = loreEpigraphRepository;
 
   /// Resolves a single randomized lore epigraph detail record for the Command Deck.
-  Future<LoreEpigraphDetailResponseDto?> getRandomEpigraph({String locale = 'pt-BR'}) async {
-    return await _loreEpigraphRepository.getRandomEpigraph(locale);
+  Future<LoreEpigraphDetailResponseDto?> getRandomEpigraph([
+    GetRandomLoreEpigraphRequestDto request = const GetRandomLoreEpigraphRequestDto(),
+  ]) async {
+    return await _loreEpigraphRepository.getRandomEpigraph(request);
   }
 
   /// Lists lightweight epigraph summaries filtered by optional type and locale for administration.

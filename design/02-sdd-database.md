@@ -61,7 +61,7 @@ After automated execution completes, schema health can be verified directly in t
 
 ### 4.1 Scope & Design Boundaries
 - **User Role Domain (public.user_role):** The system establishes an explicit PostgreSQL enum public.user_role containing 'player', 'facilitator', and 'admin'. In Phase 1, all newly registered accounts default to 'player'. Facilitator and Admin functional capabilities remain locked to future release phases. Direct role modification from client sessions is prohibited by database triggers.
-- **Email-Based Authentication:** User registration, password resets, and session tokens are managed via Supabase Auth (auth.users). A separate unique username handle is unnecessary; users specify an in-universe or personalized display_name (e.g., callsign or operative name).
+- **Email-Based Authentication:** User registration, password resets, and session tokens are managed via Supabase Auth (auth.users). A separate unique username handle is unnecessary; users specify an in-universe or personalized display_name (e.g., player callsign or name).
 - **Strictly Private Profiles:** Each player's dossier profile is private to that user (auth.uid() = id). Public profile directory browsing and Facilitator campaign-wide inspection are deferred to subsequent phases.
 - **Deferred Concerns:** 
   - App settings (OP-09): Managed unauthenticated directly on the client machine and persisted in browser local storage via UserLocalStorageService, requiring zero database tables or backend persistence.
@@ -81,7 +81,7 @@ erDiagram
 
     PROFILES {
         uuid id PK,FK "references auth.users(id)"
-        string display_name "player operative callsign or name"
+        string display_name "player callsign or name"
         user_role role "player | facilitator | admin"
         timestamptz created_at "creation timestamp"
         timestamptz updated_at "last update timestamp"
@@ -129,7 +129,7 @@ Row-Level Security is enabled on public.profiles. The active policies enforce st
 3. **Automated Profile Provisioning (public.handle_new_user):**
    - Trigger: AFTER INSERT ON auth.users FOR EACH ROW.
    - Function: Automatically inserts a row into public.profiles upon user registration in Supabase Auth, setting role to 'player'::public.user_role.
-   - Fallback Logic: Reads raw_user_meta_data->>'display_name' from signup payload; if omitted or blank, defaults to 'Operative'. Includes ON CONFLICT (id) DO NOTHING for idempotency.
+   - Fallback Logic: Reads raw_user_meta_data->>'display_name' from signup payload; if omitted or blank, defaults to 'Player'. Includes ON CONFLICT (id) DO NOTHING for idempotency.
    - Security: Configured as SECURITY DEFINER SET search_path = public.
 
 ### 4.6 Migration Reference
@@ -193,7 +193,7 @@ erDiagram
 | id | UUID | No | gen_random_uuid() | Primary key. |
 | epigraph_id | UUID | No | None | References public.lore_epigraphs(id) ON DELETE CASCADE. |
 | locale | TEXT | No | 'pt-BR' | Language code. CHECK (locale IN ('pt-BR', 'en-US')). |
-| content | TEXT | No | None | Localized Markdown content with line breaks, alignment, and [REDACTED] markers. Enforces 5 to 1000 characters. |
+| content | TEXT | No | None | Localized Markdown content with line breaks, alignment, and [REDACTED] markers. Enforces 5 to 1200 characters to accommodate rich institutional folios without text bloat. |
 | source | TEXT | No | None | Source of the content. Enforces 1 to 150 characters. |
 | created_at | TIMESTAMPTZ | No | timezone('utc'::text, now()) | Record creation timestamp. |
 | updated_at | TIMESTAMPTZ | No | timezone('utc'::text, now()) | Record last modification timestamp. |
@@ -202,7 +202,7 @@ erDiagram
 
 ### 5.4 Native In-Database Random Function: public.get_random_lore_epigraph
 
-To achieve zero client-side payload bloat and avoid transferring the entire catalog over the wire, a dedicated PostgreSQL RPC function executes atomic random selection on the database. The canonical function is maintained under the database functions catalog:
+To achieve zero client-side payload bloat and avoid transferring the entire catalog over the wire, a dedicated PostgreSQL RPC function executes atomic random selection directly on the database. It accepts an optional locale (p_locale TEXT DEFAULT 'pt-BR') and optional type filter (p_type public.epigraph_type DEFAULT NULL). If the requested locale contains zero translations, the function automatically falls back to pt-BR seed data to guarantee uninterrupted client telemetry. The canonical function is maintained under the database functions catalog:
 
 - Canonical Stored Function Script: [get_random_lore_epigraph.sql](../supabase/functions/get_random_lore_epigraph.sql)
 

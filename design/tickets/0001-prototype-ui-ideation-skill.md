@@ -4,7 +4,7 @@
 - **Priority:** P1 (Prerequisite)
 - **Domain:** Tooling / Workflow
 - **Blocked By:** None
-- **Blocks:** 0004-codex-markdown-presentation-engine.md, 0005-codex-chapter-reader-and-sticky-toc.md, 0006-codex-compendium-filterable-databases.md, 0007-codex-slide-over-drawer-and-hover-tooltips.md
+- **Blocks:** 0002-landing-page-auth-and-guest-access.md, 0007-codex-reader-ui-prototyping.md
 
 ---
 
@@ -18,6 +18,8 @@ Establish a specialized agent skill (skills/prototype/SKILL.md) that facilitates
 - Frontend Design System: design/04-sdd-frontend.md
 - Domain Glossary: design/GLOSSARY.md
 - Studied Designs Reference: design/studied_designs.md
+- Architecture Decision Record: design/decisions/0004-rapid-ui-wireframing-and-progressive-prototyping.md
+- Prototype Format Specification: skills/prototype/PROTOTYPE-FORMAT.md
 
 ---
 
@@ -30,5 +32,5 @@ Establish a specialized agent skill (skills/prototype/SKILL.md) that facilitates
 ---
 
 ## 4. Verification & Done Definition
-- [ ] Static analysis passes with 0 errors and 0 diagnostics.
-- [ ] Skill file passes validation and is discoverable by the agent environment.
+- [x] Static analysis passes with 0 errors and 0 diagnostics.
+- [x] Skill file passes validation and is discoverable by the agent environment.

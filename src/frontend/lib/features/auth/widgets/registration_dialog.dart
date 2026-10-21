@@ -7,7 +7,7 @@ import '../../../shared_widgets/inputs/recessed_input_field.dart';
 import '../controllers/auth_controller.dart';
 import '../../../l10n/app_localizations.dart';
 
-/// Modal dialog allowing new operative registration.
+/// Modal dialog allowing new player registration.
 class RegistrationDialog extends StatefulWidget {
   final AuthController authController;
 
@@ -32,7 +32,7 @@ class _RegistrationDialogState extends State<RegistrationDialog> {
     super.dispose();
   }
 
-  Future<void> _handleEnlistment(BuildContext context, AppLocalizations l10n) async {
+  Future<void> _handleRegistration(BuildContext context, AppLocalizations l10n) async {
     final success = await widget.authController.register(
       displayName: _nameController.text,
       email: _emailController.text,
@@ -42,7 +42,7 @@ class _RegistrationDialogState extends State<RegistrationDialog> {
 
     if (success && context.mounted) {
       Navigator.of(context).pop();
-      context.go('/dashboard');
+      context.go('/home');
     }
   }
 
@@ -96,7 +96,7 @@ class _RegistrationDialogState extends State<RegistrationDialog> {
               placeholder: l10n.registration.passwordPlaceholder,
               controller: _passwordController,
               isPassword: true,
-              onSubmitted: (_) => _handleEnlistment(context, l10n),
+              onSubmitted: (_) => _handleRegistration(context, l10n),
             ),
 
             ListenableBuilder(
@@ -125,7 +125,7 @@ class _RegistrationDialogState extends State<RegistrationDialog> {
                     return TacticalActionButton(
                       label: l10n.registration.submitAction,
                       isLoading: widget.authController.isLoading,
-                      onPressed: () => _handleEnlistment(context, l10n),
+                      onPressed: () => _handleRegistration(context, l10n),
                     );
                   },
                 ),

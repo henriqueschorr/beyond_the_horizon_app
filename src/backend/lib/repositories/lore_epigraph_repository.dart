@@ -2,8 +2,8 @@ import 'package:shared/shared.dart';
 
 /// Repository interface managing universe lore epigraphs and translations.
 abstract class LoreEpigraphRepository {
-  /// Resolves a single randomized lore epigraph matching the requested locale.
-  Future<LoreEpigraphDetailResponseDto?> getRandomEpigraph(String locale);
+  /// Resolves a single randomized lore epigraph matching the requested query parameters.
+  Future<LoreEpigraphDetailResponseDto?> getRandomEpigraph(GetRandomLoreEpigraphRequestDto request);
 
   /// Lists lightweight epigraph summaries filtered by optional type and locale.
   Future<List<LoreEpigraphSummaryResponseDto>> listEpigraphs(String? type, String locale);

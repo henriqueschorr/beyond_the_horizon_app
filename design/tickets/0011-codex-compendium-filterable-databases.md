@@ -1,10 +1,10 @@
-# 0008: Codex Compendium Filterable Databases and Drawer
+# 0011: Codex Compendium Filterable Databases and Drawer
 
 - **Status:** open
 - **Priority:** P1
 - **Domain:** Frontend / Compendium
-- **Blocked By:** 0006-database-structured-content-and-catalogs.md, 0007-universal-keyword-hover-tooltip-engine.md
-- **Blocks:** 0009-codex-omnibar-and-local-preferences.md
+- **Blocked By:** 0009-database-structured-content-and-catalogs.md, 0010-universal-keyword-hover-tooltip-engine.md
+- **Blocks:** 0012-codex-omnibar-and-local-preferences.md
 
 ---
 

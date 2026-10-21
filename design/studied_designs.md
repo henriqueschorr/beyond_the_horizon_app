@@ -105,7 +105,7 @@ In Remedy Entertainment's *Control*, typography ceases to be a passive user-inte
 - *Beyond the Horizon Application:* Directly informs the Monumental Voice (Space Grotesk 64px Bold with wide tracking), used for the crossword brand mark and monumental headings.
 
 #### Trend 3: Machine-Readable Monospace (The Terminal Dialect)
-When technology communicates directly with operatives, text switches to fixed-pitch, optical-character recognition fonts:
+When technology communicates directly with players, text switches to fixed-pitch, optical-character recognition fonts:
 - **Moore Computer & Dot-Matrix:** *Alien*'s MU/TH/UR 6000 interface.
 - **Monofonto:** *Fallout*'s RobCo terminals and Pip-Boy system dialog.
 - **OCR-A / OCR-B:** *Mothership*'s system telemetry and *Alien RPG*'s company dossiers.

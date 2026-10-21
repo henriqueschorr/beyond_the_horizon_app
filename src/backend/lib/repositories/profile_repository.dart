@@ -1,8 +1,8 @@
 import 'package:shared/shared.dart';
 
-/// Abstract contract for operative dossier profile querying and updates.
+/// Abstract contract for player profile querying and updates.
 abstract class ProfileRepository {
-  /// Retrieves operative profile by user identifier.
+  /// Retrieves player profile by user identifier.
   Future<UserProfileResponseDto?> getProfileById(String id);
 
   /// Updates profile metadata, strictly protecting role assignment.

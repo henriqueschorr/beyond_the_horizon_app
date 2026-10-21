@@ -20,38 +20,28 @@ class CrosswordBrandMark extends StatelessWidget {
   Widget build(BuildContext context) {
     const double cellSize = baseCellSize;
 
-    Widget buildLetter(String char) {
-      return SizedBox(
-        width: cellSize,
-        height: cellSize,
-        child: Center(
-          child: MonumentalText(char),
-        ),
-      );
-    }
-
     final content = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Upper section: B, E, Y + THE
         // Offset horizontally to align with the 'O' in HORIZON (column 1)
-        Padding(
-          padding: const EdgeInsets.only(left: cellSize),
+        const Padding(
+          padding: EdgeInsets.only(left: cellSize),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              buildLetter('B'),
-              buildLetter('E'),
+              _CrosswordLetterTile(char: 'B'),
+              _CrosswordLetterTile(char: 'E'),
               SizedBox(
                 height: cellSize,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    buildLetter('Y'),
-                    const Padding(
+                    _CrosswordLetterTile(char: 'Y'),
+                    Padding(
                       padding: EdgeInsets.only(
                         left: 8.0,
                         bottom: 12.0,
@@ -66,28 +56,28 @@ class CrosswordBrandMark extends StatelessWidget {
         ),
 
         // Intersection row: H - O - R - I - Z - O - N
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            buildLetter('H'),
-            buildLetter('O'), // Shared with BEYOND, same uniform color
-            buildLetter('R'),
-            buildLetter('I'),
-            buildLetter('Z'),
-            buildLetter('O'),
-            buildLetter('N'),
+            _CrosswordLetterTile(char: 'H'),
+            _CrosswordLetterTile(char: 'O'), // Shared with BEYOND, same uniform color
+            _CrosswordLetterTile(char: 'R'),
+            _CrosswordLetterTile(char: 'I'),
+            _CrosswordLetterTile(char: 'Z'),
+            _CrosswordLetterTile(char: 'O'),
+            _CrosswordLetterTile(char: 'N'),
           ],
         ),
 
         // Submerged lower section: N, D
-        Padding(
-          padding: const EdgeInsets.only(left: cellSize),
+        const Padding(
+          padding: EdgeInsets.only(left: cellSize),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              buildLetter('N'),
-              buildLetter('D'),
+              _CrosswordLetterTile(char: 'N'),
+              _CrosswordLetterTile(char: 'D'),
             ],
           ),
         ),
@@ -97,7 +87,7 @@ class CrosswordBrandMark extends StatelessWidget {
     if (scale != 1.0) {
       return Transform.scale(
         scale: scale,
-        alignment: Alignment.topLeft,
+        alignment: Alignment.topCenter,
         child: content,
       );
     }
@@ -105,3 +95,26 @@ class CrosswordBrandMark extends StatelessWidget {
     return content;
   }
 }
+
+/// Dedicated private letter tile widget adhering strictly to Rule 7 and Rule 10 of Agents.md.
+class _CrosswordLetterTile extends StatelessWidget {
+  final String char;
+  final double cellSize;
+
+  const _CrosswordLetterTile({
+    required this.char,
+    this.cellSize = CrosswordBrandMark.baseCellSize,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: cellSize,
+      height: cellSize,
+      child: Center(
+        child: MonumentalText(char),
+      ),
+    );
+  }
+}
+

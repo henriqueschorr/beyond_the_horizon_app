@@ -50,19 +50,25 @@ class LandingPage extends StatelessWidget {
               final double width = constraints.maxWidth;
               final double height = constraints.maxHeight;
 
-              const double cellSize = CrosswordBrandMark.baseCellSize; // 76.0
-              const double contentHeight = 658.0;
-              final double centeredTop = (height - contentHeight) / 2;
-              final double topPadding = math.max(24.0, centeredTop - cellSize);
+              // Asymmetric responsive scaling: fluidly scale monumental typography
+              // on viewport heights below 920px while preserving ergonomic login well dimensions.
+              final double brandScale = (height / 920.0).clamp(0.68, 1.0);
+              final double effectiveCellSize = CrosswordBrandMark.baseCellSize * brandScale;
+              final double effectiveBrandHeight = 456.0 * brandScale;
 
-              final double apexY = topPadding + (4 * cellSize);
-              final double brandMarkTop = topPadding + 8.0;
+              const double consoleHeight = 200.0;
+              final double totalStackHeight =
+                  effectiveBrandHeight + consoleHeight + (48.0 * brandScale);
+              final double brandMarkTop =
+                  math.max(16.0, (height - totalStackHeight) / 2);
+
+              final double apexY = brandMarkTop + (4 * effectiveCellSize);
+              final double consoleTop =
+                  brandMarkTop + effectiveBrandHeight + (24.0 * brandScale);
 
               const double brandMarkWidth = 532.0;
               final double centeredBrandX = (width - brandMarkWidth) / 2;
               final double singularityX = width / 2.0;
-
-              final double consoleTop = brandMarkTop + 456.0 + 108.0;
 
               return Stack(
                 children: [
@@ -78,7 +84,7 @@ class LandingPage extends StatelessWidget {
                   Positioned(
                     left: centeredBrandX,
                     top: brandMarkTop,
-                    child: const CrosswordBrandMark(),
+                    child: CrosswordBrandMark(scale: brandScale),
                   ),
 
                   // LAYER 3: Landing Access Console
@@ -103,6 +109,9 @@ class LandingPage extends StatelessWidget {
                                 authController: authController,
                               ),
                             );
+                          },
+                          onOpenCodex: () {
+                            scaffoldContext.go('/blank');
                           },
                           onOpenSettings: () {
                             Scaffold.of(scaffoldContext).openEndDrawer();

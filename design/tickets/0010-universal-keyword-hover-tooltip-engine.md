@@ -1,10 +1,10 @@
-# 0007: Universal Keyword Hover Tooltip Engine
+# 0010: Universal Keyword Hover Tooltip Engine
 
 - **Status:** open
 - **Priority:** P1
 - **Domain:** Frontend / UI Primitives
-- **Blocked By:** 0006-database-structured-content-and-catalogs.md
-- **Blocks:** 0008-codex-compendium-filterable-databases.md, 0009-codex-omnibar-and-local-preferences.md
+- **Blocked By:** 0009-database-structured-content-and-catalogs.md
+- **Blocks:** 0011-codex-compendium-filterable-databases.md, 0012-codex-omnibar-and-local-preferences.md
 
 ---
 

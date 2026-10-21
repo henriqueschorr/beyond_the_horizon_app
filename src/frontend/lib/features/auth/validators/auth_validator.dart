@@ -1,6 +1,6 @@
 import '../../../l10n/app_localizations.dart';
 
-/// Specialized validation service for operative credentials and enlistment boundaries.
+/// Specialized validation service for player credentials and registration boundaries.
 /// Strictly complies with Rule 12: all error messages originate from AppLocalizations.
 class AuthValidator {
   const AuthValidator();
@@ -31,7 +31,7 @@ class AuthValidator {
     return null;
   }
 
-  /// Validates operative callsign / name.
+  /// Validates player callsign / name.
   String? validateCallsign(String? value, AppLocalizations l10n) {
     final callsign = value?.trim() ?? '';
     if (callsign.isEmpty) {
@@ -58,7 +58,7 @@ class AuthValidator {
     return null;
   }
 
-  /// Validates registration/enlistment inputs before submission.
+  /// Validates registration inputs before submission.
   String? validateSignUp({
     required String email,
     required String password,

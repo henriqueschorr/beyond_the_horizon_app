@@ -1,4 +1,4 @@
-/// Request DTO for updating an operative's dossier.
+/// Request DTO for updating a player's profile.
 class UpdateProfileRequestDto {
   final String? displayName;
 

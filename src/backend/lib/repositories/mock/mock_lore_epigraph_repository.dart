@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'package:shared/shared.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../exceptions/lore_epigraph_exception.dart';
 import '../lore_epigraph_repository.dart';
 
 /// In-memory mock repository implementing LoreEpigraphRepository with pt-BR seed data.
@@ -93,13 +94,34 @@ class MockLoreEpigraphRepository implements LoreEpigraphRepository {
   }
 
   @override
-  Future<LoreEpigraphDetailResponseDto?> getRandomEpigraph(String locale) async {
-    final matching = _entries.values
-        .where((entry) => entry.locale.toLowerCase() == locale.toLowerCase())
-        .toList();
+  Future<LoreEpigraphDetailResponseDto?> getRandomEpigraph(GetRandomLoreEpigraphRequestDto request) async {
+    if (_entries.isEmpty) {
+      throw const LoreEpigraphException(
+        LoreEpigraphException.catalogEmpty,
+        'Lore epigraph catalog is empty.',
+      );
+    }
+
+    var matching = _entries.values.where((entry) {
+      final matchesLocale = entry.locale.toLowerCase() == request.locale.toLowerCase();
+      final matchesType = request.type == null || entry.type == request.type;
+      return matchesLocale && matchesType;
+    }).toList();
+
+    // Automatic backend fallback: if requested locale yields no records, fallback to pt-BR
+    if (matching.isEmpty && request.locale.toLowerCase() != 'pt-br') {
+      matching = _entries.values.where((entry) {
+        final matchesLocale = entry.locale.toLowerCase() == 'pt-br';
+        final matchesType = request.type == null || entry.type == request.type;
+        return matchesLocale && matchesType;
+      }).toList();
+    }
 
     if (matching.isEmpty) {
-      return null;
+      throw const LoreEpigraphException(
+        LoreEpigraphException.notFound,
+        'No matching lore epigraph found.',
+      );
     }
 
     final chosen = matching[_random.nextInt(matching.length)];
@@ -188,7 +210,10 @@ class MockLoreEpigraphRepository implements LoreEpigraphRepository {
   ) async {
     final existing = _entries[id];
     if (existing == null) {
-      throw ArgumentError('Lore epigraph not found with id: $id');
+      throw const LoreEpigraphException(
+        LoreEpigraphException.notFound,
+        'Lore epigraph not found.',
+      );
     }
 
     final updated = existing.copyWith(

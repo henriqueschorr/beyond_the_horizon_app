@@ -4,6 +4,10 @@ This document defines canonical domain terminology for the project. When discuss
 
 ## 1. App Domain (Platform & Architecture)
 
+**Admin**:
+A user account possessing system-wide maintenance privileges and configuration authority across platform instances.
+_Avoid_: Superuser, root, operator
+
 **Codex**:
 The digital rules and reference compendium platform for Beyond the Horizon, accessible with zero authentication.
 _Avoid_: Wiki, docs, manual
@@ -12,13 +16,25 @@ _Avoid_: Wiki, docs, manual
 A structured tactical record summarizing the mechanical attributes, traits, and lore of a specific game entity or hazard.
 _Avoid_: Card, item page, statblock
 
+**Facilitator**:
+The narrative director and game master who facilitates session play, mediates rules disputes, and orchestrates scenario hazards.
+_Avoid_: Game master, GM, dungeon master, DM, host
+
 **Game Rules**:
 The filterable, sortable compendium databases categorized by entity type for quick tactical lookup during active play.
 _Avoid_: Database, tables, list view
 
+**Geometric Frame Silhouette**:
+The pure vector CustomPainter framing style (document, news, poem, quote, transmission) that uniquely identifies an epigraph narrative type without text labels.
+_Avoid_: Border style, card outline, frame label
+
 **Omnibar**:
 The global quick-jump search bar (activated via keyboard shortcut or header) providing instant autocomplete across all chapters, rules, and compendium entities.
 _Avoid_: Search box, finder, spotlight
+
+**Player**:
+An authenticated participant who creates characters, manages inventory, and takes part in game sessions.
+_Avoid_: Operative, user, agent, account holder
 
 **Slide-Over Drawer**:
 A non-destructive side panel that slides out from the right viewport to display an entity dossier or rule definition without displacing the active reading position.
@@ -27,6 +43,10 @@ _Avoid_: Modal, popup, dialog
 **Sources**:
 The linear, chapter-by-chapter rulebook reader mirroring physical manuscript reading, complete with a sticky table of contents and section anchors.
 _Avoid_: Book mode, reader, chapters
+
+**UI Wireframe Prototype**:
+A pure UI/UX structural layout specification and hand-drawn black-and-white visual wireframe persisted in design/prototypes/ prior to implementing frontend code.
+_Avoid_: Mockup, widget draft, screen stub
 
 ## 2. Game Domain (In-Universe & System Mechanics)
 
@@ -41,6 +61,10 @@ _Avoid_: Status, debuff, affliction
 **Injury**:
 A severe physical trauma or bodily impairment sustained when damage exceeds a character's protective threshold.
 _Avoid_: Wound, critical damage
+
+**Lore Epigraph**:
+An evocative in-universe narrative excerpt, distress signal, classified government folio, or news bulletin rendered on the Command Deck with specialized geometric framing.
+_Avoid_: Lore snippet, quote card, transmission box
 
 **Origin**:
 The cultural, planetary, or environmental background that established a character's initial proficiencies and worldview.

@@ -1,7 +1,7 @@
 import '../profiles/user_profile_response_dto.dart';
 import 'auth_session_response_dto.dart';
 
-/// Response DTO containing an authenticated operative session and profile.
+/// Response DTO containing an authenticated user session and player profile.
 class AuthResponseDto {
   final AuthSessionResponseDto session;
   final UserProfileResponseDto profile;

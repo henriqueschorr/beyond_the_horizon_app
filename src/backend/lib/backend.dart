@@ -11,6 +11,7 @@ export 'domain/entities/user_profile.dart';
 
 // Exceptions
 export 'exceptions/auth_exception.dart';
+export 'exceptions/lore_epigraph_exception.dart';
 export 'exceptions/profile_exception.dart';
 
 // Repositories

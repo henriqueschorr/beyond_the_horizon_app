@@ -1,10 +1,10 @@
-# 0009: Global Omnibar and Local Display Preferences
+# 0012: Global Omnibar and Local Display Preferences
 
 - **Status:** open
 - **Priority:** P1
 - **Domain:** Frontend / Navigation
-- **Blocked By:** 0005-codex-presentation-engine-and-reader.md, 0008-codex-compendium-filterable-databases.md
-- **Blocks:** 0010-existing-features-alignment-and-wiring.md
+- **Blocked By:** 0008-codex-presentation-engine-and-reader.md, 0011-codex-compendium-filterable-databases.md
+- **Blocks:** 0013-codex-integration-and-e2e-routing.md
 
 ---
 

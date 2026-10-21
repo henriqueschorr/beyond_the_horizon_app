@@ -542,16 +542,19 @@ class BodyText extends StatelessWidget {
 
 class BodyMonoText extends StatelessWidget {
   final String text;
+  final TextAlign? textAlign;
 
   const BodyMonoText(
     this.text, {
     super.key,
+    this.textAlign,
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: AppTypography.bodyMono,
     );
   }

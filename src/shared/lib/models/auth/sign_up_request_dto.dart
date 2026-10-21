@@ -1,4 +1,4 @@
-/// Request DTO for new operative registration.
+/// Request DTO for new player registration.
 class SignUpRequestDto {
   final String email;
   final String password;

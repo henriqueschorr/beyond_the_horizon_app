@@ -1,7 +1,7 @@
 import 'package:shared/shared.dart';
 import '../repositories/profile_repository.dart';
 
-/// Domain service managing operative dossier profile operations and OWASP input boundaries.
+/// Domain service managing player profile operations and OWASP input boundaries.
 class ProfileService {
   final ProfileRepository _profileRepository;
 

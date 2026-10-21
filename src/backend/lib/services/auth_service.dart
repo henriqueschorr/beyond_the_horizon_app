@@ -3,7 +3,7 @@ import '../exceptions/auth_exception.dart';
 import '../repositories/auth_repository.dart';
 import '../repositories/profile_repository.dart';
 
-/// Domain service coordinating operative authentication, session lifecycle, and profile resolution.
+/// Domain service coordinating user authentication, session lifecycle, and profile resolution.
 class AuthService {
   final AuthRepository _authRepository;
   final ProfileRepository _profileRepository;

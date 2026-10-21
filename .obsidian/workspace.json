@@ -88,18 +88,18 @@
             }
           },
           {
-            "id": "ade8af8877f1dba9",
+            "id": "09f5334aa5d04034",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Agents.md",
+                "file": "design/project_planner.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Agents"
+              "title": "project_planner"
             }
           }
         ],
@@ -162,7 +162,7 @@
             }
           },
           {
-            "id": "003dfa39871850df",
+            "id": "6b2a298026dafbad",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -282,8 +282,10 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "ade8af8877f1dba9",
+  "active": "09f5334aa5d04034",
   "lastOpenFiles": [
+    "design/04-sdd-frontend.md",
+    "Agents.md",
     "design/tickets/0010-existing-features-alignment-and-wiring.md",
     "design/tickets/0009-codex-omnibar-and-local-preferences.md",
     "design/tickets/0008-codex-compendium-filterable-databases.md",
@@ -316,8 +318,6 @@
     "design/tickets/0003-codex-backend-service-and-search-engine.md",
     "design/tickets/0002-codex-content-structure-and-local-store.md",
     "design/tickets/0001-prototype-ui-ideation-skill.md",
-    "design/tickets/archive/0030-pwa-offline-caching.md",
-    "design/tickets/archive/0029-character-sheet-offline-export.md",
     "design/tickets/archive",
     "content/compendium/conditions",
     "design/assets/document_frame_sketch.png",

@@ -1,10 +1,10 @@
-# 0006: Database Structured Content and YAML Catalogs
+# 0009: Database Structured Content and YAML Catalogs
 
 - **Status:** open
 - **Priority:** P1
 - **Domain:** Database / Architecture
-- **Blocked By:** 0005-codex-presentation-engine-and-reader.md
-- **Blocks:** 0007-universal-keyword-hover-tooltip-engine.md, 0008-codex-compendium-filterable-databases.md
+- **Blocked By:** 0008-codex-presentation-engine-and-reader.md
+- **Blocks:** 0010-universal-keyword-hover-tooltip-engine.md, 0011-codex-compendium-filterable-databases.md
 
 ---
 

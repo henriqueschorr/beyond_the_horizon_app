@@ -1,10 +1,10 @@
-# 0003: Codex Guidebook Content and Seed Ingestion
+# 0006: Codex Guidebook Content and Seed Ingestion
 
 - **Status:** open
 - **Priority:** P1
 - **Domain:** Content / Database / Codex
-- **Blocked By:** 0002-codex-database-schema-and-toc.md
-- **Blocks:** 0004-codex-reader-ui-prototyping.md, 0005-codex-presentation-engine-and-reader.md
+- **Blocked By:** 0005-codex-database-schema-and-toc.md
+- **Blocks:** 0007-codex-reader-ui-prototyping.md, 0008-codex-presentation-engine-and-reader.md
 
 ---
 

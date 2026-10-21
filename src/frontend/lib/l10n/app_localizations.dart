@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 /// Organized into distinct functional domain blocks:
 /// - [common] (Global tokens, buttons, app title)
 /// - [auth] (Authentication and credentials)
-/// - [registration] (Operative recruitment / sign up modal)
+/// - [registration] (Player recruitment / sign up modal)
 /// - [landing] (Landing portal copy and tooltips)
 /// - [dashboard] (Command deck greetings and feature launchers)
 /// - [lore] (Archival lore epigraph telemetry strings)
@@ -105,6 +105,9 @@ class AppLocalizations {
 
         // --- LORE ---
         'loreDecryptingTransmission': '// DESCRIPTOGRAFANDO TRANSMISSÃO...',
+        'loreRescanTooltip': 'REVERIFICAR TRANSMISSÃO',
+        'loreSignalInterrupted': '// SINAL INTERROMPIDO // FREQUÊNCIA PERDIDA',
+        'loreRetryAction': 'TENTAR NOVAMENTE',
 
         // --- SETTINGS ---
         'settingsTitle': 'CONFIGURAÇÕES',
@@ -174,6 +177,9 @@ class AppLocalizations {
 
       // --- LORE ---
       'loreDecryptingTransmission': '// DECRYPTING TRANSMISSION...',
+      'loreRescanTooltip': 'RE-SCAN TRANSMISSION',
+      'loreSignalInterrupted': '// SIGNAL INTERRUPTED // FREQUENCY LOST',
+      'loreRetryAction': 'RETRY SCAN',
 
       // --- SETTINGS ---
       'settingsTitle': 'SETTINGS',
@@ -254,6 +260,9 @@ class AppLocalizations {
   // LORE GETTERS
   // ===========================================================================
   String get loreDecryptingTransmission => _localizedStrings['loreDecryptingTransmission']!;
+  String get loreRescanTooltip => _localizedStrings['loreRescanTooltip']!;
+  String get loreSignalInterrupted => _localizedStrings['loreSignalInterrupted']!;
+  String get loreRetryAction => _localizedStrings['loreRetryAction']!;
 
   // ===========================================================================
   // TERMINAL SETTINGS GETTERS
@@ -367,6 +376,9 @@ class LoreL10n {
   LoreL10n(this._l10n);
 
   String get decryptingTransmission => _l10n.loreDecryptingTransmission;
+  String get rescanTooltip => _l10n.loreRescanTooltip;
+  String get signalInterrupted => _l10n.loreSignalInterrupted;
+  String get retryAction => _l10n.loreRetryAction;
 }
 
 class SettingsL10n {

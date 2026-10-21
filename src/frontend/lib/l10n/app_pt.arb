@@ -33,6 +33,9 @@
   "dashboardSubtitleExplore": "// INICIE SUA JORNADA",
 
   "loreDecryptingTransmission": "// DESCRIPTOGRAFANDO TRANSMISSÃO...",
+  "loreRescanTooltip": "REVERIFICAR TRANSMISSÃO",
+  "loreSignalInterrupted": "// SINAL INTERROMPIDO // FREQUÊNCIA PERDIDA",
+  "loreRetryAction": "TENTAR NOVAMENTE",
 
   "settingsTitle": "CONFIGURAÇÕES",
   "settingsTelemetryHeader": "// CFG.SIS // PREFERÊNCIAS",

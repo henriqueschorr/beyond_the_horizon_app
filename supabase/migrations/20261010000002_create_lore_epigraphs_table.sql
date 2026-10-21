@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS public.lore_epigraph_translations (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     epigraph_id UUID NOT NULL REFERENCES public.lore_epigraphs(id) ON DELETE CASCADE,
     locale TEXT NOT NULL CHECK (locale IN ('pt-BR', 'en-US')) DEFAULT 'pt-BR',
-    content TEXT NOT NULL CHECK (char_length(content) >= 5 AND char_length(content) <= 1000),
+    content TEXT NOT NULL CHECK (char_length(content) >= 5 AND char_length(content) <= 1200),
     source TEXT NOT NULL CHECK (char_length(source) >= 1 AND char_length(source) <= 150),
     created_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now()),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now()),
@@ -102,7 +102,10 @@ CREATE POLICY "Admin delete for epigraph translations"
     USING ((auth.jwt() ->> 'role') = 'admin' OR auth.role() = 'service_role');
 
 -- 6. Stored Function: Atomic Random Lore Epigraph Selection
-CREATE OR REPLACE FUNCTION public.get_random_lore_epigraph(p_locale TEXT DEFAULT 'pt-BR')
+CREATE OR REPLACE FUNCTION public.get_random_lore_epigraph(
+    p_locale TEXT DEFAULT 'pt-BR',
+    p_type public.epigraph_type DEFAULT NULL
+)
 RETURNS TABLE (
     id UUID,
     type public.epigraph_type,
@@ -110,11 +113,27 @@ RETURNS TABLE (
     source TEXT,
     locale TEXT
 )
-LANGUAGE sql
+LANGUAGE plpgsql
 STABLE
 SECURITY DEFINER
 SET search_path = public
 AS $$
+DECLARE
+    v_target_locale TEXT := p_locale;
+BEGIN
+    -- Check if translations exist for the requested locale (and optional type)
+    IF NOT EXISTS (
+        SELECT 1 
+        FROM public.lore_epigraphs e
+        JOIN public.lore_epigraph_translations t ON t.epigraph_id = e.id
+        WHERE t.locale = p_locale
+          AND (p_type IS NULL OR e.type = p_type)
+    ) THEN
+        -- Fallback to pt-BR if requested locale has zero matches
+        v_target_locale := 'pt-BR';
+    END IF;
+
+    RETURN QUERY
     SELECT 
         e.id,
         e.type,
@@ -123,7 +142,9 @@ AS $$
         t.locale
     FROM public.lore_epigraphs e
     JOIN public.lore_epigraph_translations t ON t.epigraph_id = e.id
-    WHERE t.locale = p_locale
+    WHERE t.locale = v_target_locale
+      AND (p_type IS NULL OR e.type = p_type)
     ORDER BY random()
     LIMIT 1;
+END;
 $$;

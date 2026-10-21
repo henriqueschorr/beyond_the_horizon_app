@@ -1,6 +1,6 @@
 import '../../enums/user_role.dart';
 
-/// Response DTO representing an operative's personnel dossier profile.
+/// Response DTO representing a player's personnel dossier profile.
 class UserProfileResponseDto {
   final String id;
   final String displayName;

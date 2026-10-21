@@ -1,10 +1,10 @@
-# 0004: Codex Reader Layout Prototyping
+# 0007: Codex Reader Layout Prototyping
 
 - **Status:** open
 - **Priority:** P1
 - **Domain:** UI Prototyping / Design
-- **Blocked By:** 0001-prototype-ui-ideation-skill.md, 0003-codex-guidebook-content-and-seeds.md
-- **Blocks:** 0005-codex-presentation-engine-and-reader.md
+- **Blocked By:** 0001-prototype-ui-ideation-skill.md, 0006-codex-guidebook-content-and-seeds.md
+- **Blocks:** 0008-codex-presentation-engine-and-reader.md
 
 ---
 
@@ -25,7 +25,7 @@ Use the prototype skill to interactively design and align on the visual wirefram
 - [ ] **Interactive Wireframing**: Produce detailed ASCII wireframes illustrating the desktop reading layout (top bar, sticky TOC accordion, central reading column, section headers).
 - [ ] **Visual Mockup Iteration**: Generate and review 16:9 high-fidelity mockups capturing brutalist Swiss typography (#F0ECE1), dark void canvas (#101214), and high-voltage orange accents (#FE6403).
 - [ ] **Ergonomic Alignment**: Solicit user confirmation via ask_question on TOC drawer behavior, heading anchor styles, and callout container formatting.
-- [ ] **Component Blueprint**: Document the agreed widget breakdown and controller state contracts for Ticket 0005.
+- [ ] **Component Blueprint**: Document the agreed widget breakdown and controller state contracts for Ticket 0008.
 
 ---
 

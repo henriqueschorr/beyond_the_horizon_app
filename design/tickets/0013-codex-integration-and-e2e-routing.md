@@ -1,15 +1,15 @@
-# 0010: Existing Features Alignment and Routing
+# 0013: Codex Integration and End-to-End Routing
 
 - **Status:** open
 - **Priority:** P1
 - **Domain:** Frontend / Routing
-- **Blocked By:** 0005-codex-presentation-engine-and-reader.md, 0009-codex-omnibar-and-local-preferences.md
+- **Blocked By:** 0008-codex-presentation-engine-and-reader.md, 0012-codex-omnibar-and-local-preferences.md
 - **Blocks:** None
 
 ---
 
 ## 1. Context & Objective
-Wire the existing CODEX buttons on the Landing Page access console and Player Home menu to navigate directly to the new /codex reader route, while verifying that Authentication and Lore Epigraph features remain intact and non-blocking.
+Wire the existing CODEX buttons on the revisited Landing Page access console and Player Home menu to navigate directly to the new /codex reader route, while verifying that Authentication and Lore Epigraph features remain intact and non-blocking.
 
 ---
 

@@ -1,4 +1,4 @@
-/// Request DTO for operative authentication.
+/// Request DTO for user authentication.
 class SignInRequestDto {
   final String email;
   final String password;

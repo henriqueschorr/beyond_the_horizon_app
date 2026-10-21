@@ -476,7 +476,7 @@ The documentation engine provides native hyperlinking to enable seamless navigat
 
 ### 12.1 Same-Page Anchor Links (Intra-Document Jumps)
 
-To navigate operatives to a specific section or heading within the currently loaded document, authors use standard anchor hash syntax:
+To navigate readers to a specific section or heading within the currently loaded document, authors use standard anchor hash syntax:
 
 ```markdown
 Para detalhes sobre penalidades circunstanciais, consulte os [Modificadores de Tensão](#21-modificadores-circunstanciais).
@@ -550,7 +550,7 @@ Hyperlinks pointing outside the Beyond the Horizon platform use standard absolut
 [Repositório de Dados Externos](https://beyondthehorizon.app)
 ```
 
-External links open in the operative's external system browser and display an external arrow glyph (↗) to clearly distinguish them from internal documentation routes.
+External links open in the user's external system browser and display an external arrow glyph (↗) to clearly distinguish them from internal documentation routes.
 
 ### 12.4 Link Visual Materiality & Interactive States
 

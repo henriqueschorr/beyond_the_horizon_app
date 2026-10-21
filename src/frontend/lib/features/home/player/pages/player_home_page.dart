@@ -65,7 +65,7 @@ class PlayerHomePage extends StatelessWidget {
                   return ListenableBuilder(
                     listenable: authController,
                     builder: (context, _) {
-                      final operativeName =
+                      final playerName =
                           authController.currentUser?.displayName ?? '';
 
                       return Padding(
@@ -131,7 +131,7 @@ class PlayerHomePage extends StatelessWidget {
                                     child: Align(
                                       alignment: Alignment.bottomLeft,
                                       child: PlayerGreeting(
-                                          callsign: operativeName),
+                                          callsign: playerName),
                                     ),
                                   ),
 

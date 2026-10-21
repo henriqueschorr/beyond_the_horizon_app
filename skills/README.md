@@ -43,7 +43,9 @@ All skills in this repository assume the standard monorepo folder structure:
 │   └── 04-sdd-frontend.md
 ├── skills/                   # Modular agent skills
 │   ├── design/               # Interactive design grilling & live documentation sync
-│   └── planner/              # to-tickets tracer-bullet breakdown & project planning skill
+│   ├── planner/              # to-tickets tracer-bullet breakdown & project planning skill
+│   ├── prototype/            # Interactive UI wireframing and visual ideation skill
+│   └── wait-what/            # Instant re-pitch & comprehension recovery playbook
 └── src/                      # Source code packages
     ├── backend/              # Domain services, server routes, database persistence
     ├── frontend/             # Client UI, reactive controllers, design system
@@ -66,6 +68,14 @@ All skills in this repository assume the standard monorepo folder structure:
 - **Workflow**: Tracer-bullet vertical slice decomposition (to-tickets) evaluating prefactoring, cutting across all layers, declaring explicit blocking dependencies, and publishing sequentially numbered local Markdown tickets in design/tickets/. Requires authoring an implementation plan artifact for user approval before writing any ticket files to disk.
 - **References**:
   - skills/planner/TICKET-FORMAT.md
+
+### prototype (skills/prototype/SKILL.md)
+- **Trigger**: When ideating, wireframing, or visually prototyping companion views and UI components before implementing widgets.
+- **Workflow**: Iterative ASCII wireframing followed by optional high-fidelity UI mockup generation using the brutalist sci-fi design system.
+
+### wait-what (skills/wait-what/SKILL.md)
+- **Trigger**: When the agent's explanation fails to land, causes confusion, or requires simplification.
+- **Workflow**: Freezes all other flows and questions, re-pitches the concept in 4 parts using ASD-STE100 Simplified Technical English and canonical GLOSSARY terms, and verifies understanding before resuming.
 
 ---
 

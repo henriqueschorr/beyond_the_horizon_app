@@ -1,10 +1,10 @@
-# 0005: Codex Presentation Engine and Chapter Reader
+# 0008: Codex Presentation Engine and Chapter Reader
 
 - **Status:** open
 - **Priority:** P1
 - **Domain:** Frontend / Codex
-- **Blocked By:** 0004-codex-reader-ui-prototyping.md
-- **Blocks:** 0006-database-structured-content-and-catalogs.md, 0009-codex-omnibar-and-local-preferences.md, 0010-existing-features-alignment-and-wiring.md
+- **Blocked By:** 0007-codex-reader-ui-prototyping.md
+- **Blocks:** 0009-database-structured-content-and-catalogs.md, 0012-codex-omnibar-and-local-preferences.md, 0013-codex-integration-and-e2e-routing.md
 
 ---
 

@@ -37,7 +37,7 @@ To guarantee optimal visual density, tactile telemetry ergonomics, and uncomprom
   2. **Web Tablet:** Viewports at or above 768px width (in both portrait and landscape orientations).
 - **Explicit Exclusion (Phase 1):**
   - **Smartphones / Mobile Viewports:** Strictly excluded from Phase 1 scope.
-  - Viewports below 768px width display an atmospheric telemetry warning directing the operative to connect via a desktop or tablet station. Future smartphone views will be evaluated as dedicated companion views in subsequent phases.
+  - Viewports below 768px width display an atmospheric telemetry warning directing the user to connect via a desktop or tablet station. Future smartphone views will be evaluated as dedicated companion views in subsequent phases.
 
 ### 2.4 Graphic Brand Mark & Emblem Explorations (Logo Candidates)
 Alongside the typographic wordmarks employed across the Landing and Command Deck viewports (Sections 6.1 and 7.1), the system explores standalone graphic emblems for application icons, favicons, telemetry badges, and companion headers. These candidates translate the core pillars of **Minimalist Brutalism**, **Cassette Futurism**, and **Cosmic Sci-Fi** into pure 2D vector geometry, strictly adhering to the canonical palette (void canvas #101214, titanium white #F0ECE1, and spot accent orange #FE6403):
@@ -231,11 +231,11 @@ The monumental brand mark is structured as an off-center crossword puzzle sharin
 Positioned inside the black hole void beneath the submerged letters:
 
 ```
-+-----------------------+   |   [📖]
++-----------------------+   |   [📖] CODEX // RULEBOOK
 |  [ Email / Callsign ] |   |
 +-----------------------+   |
 |  [ Password ]         |   |
-+-----------------------+   |   [⚙️]
++-----------------------+   |   [⚙️] SETTINGS
 | [Register]  [SIGN IN] |   |
 +-----------------------+   |
 ```
@@ -243,17 +243,19 @@ Positioned inside the black hole void beneath the submerged letters:
 1. **Horizontal Layout Distribution (Side-by-Side):**
    - **Login Block (Left):** Contains the recessed email and password input fields, selectable error display, and the balanced action row ([Register] secondary action and [SIGN IN] primary tactical button).
    - **Vertical Divider Seam Line (Center):** A vertical hairline border line with subtle edge fade gradients, stretching across the intrinsic height of the login block.
-   - **Stacked Utility Icon Actions (Right):** Codex and Settings rendered vertically one below the other as rounded-square tactile icon buttons wrapped in GrainSurface noise texture with illuminated borders and animated hover glow.
-2. **Input Fields Stack:**
+   - **Side-by-Side Utility Actions (Right):** Codex and Settings rendered as expanded MenuItem rows with tactile node badges and typography anchors, positioned flush to the right of the vertical seam. Unauthenticated clicks on CODEX route immediately to /blank, while SETTINGS opens the TerminalSettingsDrawer.
+2. **Asymmetric Responsive Scaling:**
+   - On viewport heights below 920px (down to 768px), the composition applies an asymmetric scaling factor where the monumental CrosswordBrandMark and EventHorizonArc scale down fluidly to fit the vertical bounds without clipping, while the login form input wells and action buttons retain fixed standard touch dimensions (320px width, 48px height) for uncompromised typing ergonomics.
+3. **Input Fields Stack:**
    - Recessed input well: Email / Callsign with subtle border and dark well fill. Field labels use secondary titanium text.
    - Recessed input well: Password with matching styling.
    - Text Caret: Blinking block caret (█) in accent orange (#FE6403).
    - Error States: Contextual authentication errors illuminate field borders in accent orange and display selectable error diagnostics in legend highlighted monospaced type.
-3. **Action Row:**
+4. **Action Row:**
    - Located directly beneath the password field:
-   - **Secondary: [ Register / Create Account ]:** Flat text action button without noise texture, using subtle outline border and muted titanium typography.
+   - **Secondary: [ Register / Create Account ]:** Flat text action button without noise texture, using subtle outline border and muted titanium typography. Triggers the RegistrationDialog modal; upon successful account submission, the active session is provisioned and the client navigates directly to /home.
    - **Primary: [ Sign In ] (CTA Button):** TacticalActionButton with GrainSurface noise texture, accent orange border, orange uppercase text, dark elevated background, hover glow, and tactile micro-physics.
-4. **Terminal Settings Drawer & Client Preference Panel:**
+5. **Terminal Settings Drawer & Client Preference Panel:**
    - Slid into view from the right viewport boundary when the Settings actuator is clicked (from either the Landing Access Console utility icon dock or Command Deck Row 04).
    - Composed as an industrial monolithic drawer (TerminalSettingsDrawer) with darkBgSurface background, 1px darkBorderProminent left rim, telemetry header // SYS.CFG // PREFERENCES, and section // 01 DISPLAY & MATERIALITY.
    - Hosts a recessed preference card containing the Film Grain / Noise setting and a dual-segment industrial rocker switch (BrutalistSegmentedToggle) with active state illumination in accent orange.
@@ -312,27 +314,34 @@ Positioned on the middle-left under the tactical telemetry subtitle // BEGIN YOU
 Positioned in the middle-right quadrant (LoreEpigraphBox in src/frontend/lib/features/home/player/widgets/lore_epigraph_box.dart). The widget executes a single-row random query directly in PostgreSQL via the database RPC function get_random_lore_epigraph upon page load, delegating framing geometry to the dedicated EpigraphFramePainterResolver (src/frontend/lib/shared_widgets/frames/epigraph_frame_painter_resolver.dart).
 
 #### Universal Epigraph Specifications (Identical for All Types)
+- **Dynamic Width Tailoring:** EpigraphType.document resolves to 360px width to produce an authentic vertical A4 folio silhouette (evoking classified government memos in Remedy's Control). All other types (news, transmission, poem, quote) resolve to standard 420px width.
 - **Content Typography:** Space Mono Regular 14px (AppTypography.bodyMono / DynamicText in #C8C4B8).
 - **Attribution Source:** Strictly right-aligned directly beneath the frame in Space Mono Regular 14px (AppTypography.bodyMono / BodyMonoText in #C8C4B8) prefixed by an em-dash (—).
+- **Top-Right Minimal Refresh Actuator:** Anchored in the upper-right corner outside the frame. Features a minimalist rotating icon actuator that smoothly spins during decryption (over 700ms) with an in-universe localized tooltip (e.g., // RE-SCAN TRANSMISSION).
 - **Rich Markdown Formatting:** Uniformly supports multi-line breaks, internal text alignments, and natural narrative classification markers (preserving [REDACTED] in English and [OMITIDO] in pt-BR as inline text via DynamicText from src/frontend/lib/features/dynamic_text/) across all five domain types.
 - **Zero Text in Frames:** Frames contain zero text labels. The geometric frame shape and the attribution source uniquely identify the domain type.
+- **In-Universe Error Boundary:** If retrieval fails or returns empty, the widget renders an in-universe signal interruption panel featuring a telemetry error code (// SIGNAL INTERRUPTED // ERROR: machine_error_code) and a tactile RETRY SCAN actuator.
 
 #### Type-Specific Geometric Framing (Alphabetical Order)
 The only differentiator across domain types is the geometric framing silhouette:
 
 1. **Type: document (Vertical Folio Sheet Framing):**
    - Derived directly from the institutional case file design:
+   - Width: 360px (vertical A4 folio ratio).
    - Top cap: 3-sided inverted-U bar (┌────────────┐) with side flanges extending downward.
    - Bottom cap: 3-sided upright-U bar (└────────────┘) with side flanges extending upward.
    - Middle sides are completely open, evoking a physical dossier page.
 
 2. **Type: news (Corporate Ticker Double Horizontal Bars):**
+   - Width: 420px.
    - Solid double horizontal bars across top and bottom (═════════════). Open on left and right edges.
 
 3. **Type: poem / quote (Literary Epigraph Framing):**
+   - Width: 420px.
    - Asymmetric diagonal corner brackets: Top-Left ┌ and Bottom-Right ┘ in AppColors.accentOrange (#FE6403).
 
 4. **Type: transmission (Deep Space Radio Interception):**
+   - Width: 420px.
    - Four-corner reticle marks (┌ ┐ top and └ ┘ bottom) with open perimeter edges in AppColors.accentOrange (#FE6403).
 
 ### 7.4 Player Greeting & Session Termination (⏻ SIGN OUT)
@@ -384,7 +393,7 @@ The client application adopts go_router as its official declarative routing and 
    - **/blank**: BlankPage (Temporary screen displaying a centered BLANK title).
 2. **Reactive Authentication Redirect Guards:**
    - GoRouter is initialized with refreshListenable bound to AuthController.
-   - When an operative session is invalidated or signed out, GoRouter redirects protected routes back to **/**.
+   - When a player session is invalidated or signed out, GoRouter redirects protected routes back to **/**.
    - Deep-linking to protected views while unauthenticated automatically redirects visitors to **/**.
    - The entire /codex route hierarchy is strictly public and bypasses authentication guards.
 

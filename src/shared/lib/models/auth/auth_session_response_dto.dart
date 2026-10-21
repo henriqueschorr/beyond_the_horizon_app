@@ -1,4 +1,4 @@
-/// Response DTO representing an authenticated operative session.
+/// Response DTO representing an authenticated user session.
 class AuthSessionResponseDto {
   final String userId;
   final String email;

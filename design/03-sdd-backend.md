@@ -67,7 +67,7 @@ classDiagram
 
     class LoreEpigraphRepository {
         <<interface>>
-        +getRandomEpigraph(String locale) Future~LoreEpigraphDetailResponseDto?~
+        +getRandomEpigraph(GetRandomLoreEpigraphRequestDto request) Future~LoreEpigraphDetailResponseDto?~
         +listEpigraphs(String? type, String locale) Future~List~LoreEpigraphSummaryResponseDto~~
         +getEpigraphById(String id, String locale) Future~LoreEpigraphDetailResponseDto?~
         +createEpigraph(CreateLoreEpigraphRequestDto request) Future~LoreEpigraphDetailResponseDto~
@@ -102,19 +102,19 @@ classDiagram
 #### 4.1.1 AuthRepository
 Defines authentication workflows and session state management:
 - **signInWithPassword:** Authenticates user credentials and returns an active AuthSessionResponseDto.
-- **signUp:** Registers a new account, provisions an operative profile, and returns an AuthSessionResponseDto.
+- **signUp:** Registers a new account, provisions a player profile, and returns an AuthSessionResponseDto.
 - **signOut:** Invalidates the provided session token.
 - **resetPasswordForEmail:** Initiates password recovery workflow for the specified email address.
 - **getUserSession:** Validates and resolves the session corresponding to an active session token.
 
 #### 4.1.2 ProfileRepository
-Defines operative dossier profile querying and updates:
-- **getProfileById:** Retrieves the operative profile by user identifier.
+Defines player dossier profile querying and updates:
+- **getProfileById:** Retrieves the player profile by user identifier.
 - **updateProfile:** Updates display name, rejecting any direct role modification.
 
 #### 4.1.3 LoreEpigraphRepository (Public Zero-Login & Admin Management)
 Defines randomized retrieval for atmospheric universe lore fragments as well as administrative catalog maintenance:
-- **getRandomEpigraph:** Resolves a single randomized lore epigraph detail payload by invoking the database RPC function get_random_lore_epigraph, returning a LoreEpigraphDetailResponseDto with zero client-side bandwidth waste.
+- **getRandomEpigraph:** Resolves a single randomized lore epigraph detail payload matching GetRandomLoreEpigraphRequestDto by invoking the database RPC function get_random_lore_epigraph with automatic pt-BR locale fallback, returning a LoreEpigraphDetailResponseDto with zero client-side bandwidth waste. Throws typed LoreEpigraphException on persistent catalog failures.
 - **listEpigraphs:** Returns lightweight summary records (List[LoreEpigraphSummaryResponseDto]) filtered by optional type and locale for administration.
 - **getEpigraphById:** Retrieves a single detail record (LoreEpigraphDetailResponseDto?) by unique identifier and locale.
 - **createEpigraph:** Inserts a new base epigraph and its localized translation, returning a LoreEpigraphDetailResponseDto.
@@ -290,7 +290,7 @@ All wire contracts, DTOs, and domain enums reside in shared/ and enforce complet
 
 #### 1. UserRole
 Matches the public.user_role PostgreSQL enum:
-- **player:** Standard operative player account.
+- **player:** Standard player account.
 - **facilitator:** Game master orchestrating campaigns and encounters.
 - **admin:** Platform and rules curator.
 - Serialization methods: fromDbString(String value) and toDbString().
@@ -313,7 +313,7 @@ Matches the public.documentation_layout PostgreSQL enum:
 - **SignUpRequestDto:** Encapsulates email, password, and optional displayName. Validates email format and minimum password length (8 characters).
 - **SignInRequestDto:** Encapsulates email and password.
 - **AuthSessionResponseDto:** Encapsulates userId, email, accessToken, refreshToken, and expiresAt timestamp.
-- **AuthResponseDto:** Encapsulates active session (AuthSessionResponseDto) and operative profile (UserProfileResponseDto).
+- **AuthResponseDto:** Encapsulates active session (AuthSessionResponseDto) and player profile (UserProfileResponseDto).
 - **PasswordResetRequestDto:** Encapsulates email address for password recovery.
 
 #### 6.2.2 Profile DTOs
@@ -346,7 +346,7 @@ Domain services encapsulate business logic, coordinate repository queries, perfo
 - **validateSession(String sessionToken):** Validates token expiry and returns session state.
 
 ### 7.2 ProfileService
-- **getProfile(String userId):** Retrieves operative profile via ProfileRepository.getProfileById. Returns null if not found.
+- **getProfile(String userId):** Retrieves player profile via ProfileRepository.getProfileById. Returns null if not found.
 - **updateProfile(String userId, UpdateProfileRequestDto request):**
   - Sanitizes and trims display name; enforces length between 1 and 50 characters.
   - Enforces role protection: clients cannot modify account role (rejection in domain logic matching database trigger).
@@ -381,17 +381,17 @@ For testing, CLI automation, and standalone execution, the backend provides a Sh
 
 #### 8.1.1 Authentication Endpoints
 
-1. **Operative Registration**
+1. **Player Registration**
    - **POST /api/auth/signup**
    - Payload: SignUpRequestDto JSON.
    - Response: 201 Created with AuthResponseDto.
 
-2. **Operative Sign In**
+2. **Player Sign In**
    - **POST /api/auth/signin**
    - Payload: SignInRequestDto JSON.
    - Response: 200 OK with AuthResponseDto.
 
-3. **Operative Sign Out**
+3. **Player Sign Out**
    - **POST /api/auth/signout**
    - Headers: Authorization: Bearer [sessionToken]
    - Response: 204 No Content.
@@ -408,18 +408,18 @@ For testing, CLI automation, and standalone execution, the backend provides a Sh
 
 #### 8.1.2 Profile Endpoints (Authenticated)
 
-1. **Get Current Operative Profile**
+1. **Get Current Player Profile**
    - **GET /api/profiles/me**
    - Headers: Authorization: Bearer [sessionToken]
    - Response: 200 OK with UserProfileResponseDto.
 
-2. **Update Current Operative Profile**
+2. **Update Current Player Profile**
    - **PUT /api/profiles/me**
    - Headers: Authorization: Bearer [sessionToken]
    - Payload: UpdateProfileRequestDto JSON.
    - Response: 200 OK with updated UserProfileResponseDto.
 
-3. **Get Operative Profile by ID**
+3. **Get Player Profile by ID**
    - **GET /api/profiles/{id}**
    - Headers: Authorization: Bearer [sessionToken]
    - Response: 200 OK with UserProfileResponseDto, or 404 Not Found.
@@ -528,7 +528,7 @@ graph TD
 - **backendService.auth.signOut():** In-process call invalidating current session.
 - **backendService.profile.getProfile(String id):** In-process call returning Future[UserProfileResponseDto?].
 - **backendService.profile.updateProfile(UpdateProfileRequestDto):** In-process call returning Future[UserProfileResponseDto].
-- **backendService.loreEpigraphs.getRandomEpigraph({String locale}):** Zero-login in-process call returning Future[LoreEpigraphDetailResponseDto?].
+- **backendService.loreEpigraph.getRandomEpigraph(GetRandomLoreEpigraphRequestDto request):** Zero-login in-process call returning Future[LoreEpigraphDetailResponseDto?].
 - **backendService.loreEpigraphs.listEpigraphs({String? type, String locale}):** In-process call returning Future[List[LoreEpigraphSummaryResponseDto]].
 - **backendService.compendium.getPages({String locale, DocumentationCategory? category}):** Zero-login in-process call returning Future[List[DocumentationPageSummaryResponseDto]].
 - **backendService.compendium.getPageBySlug(String slug, {String locale}):** Zero-login in-process call returning Future[DocumentationPageDetailResponseDto?].

@@ -17,6 +17,7 @@ export 'models/profiles/user_profile_response_dto.dart';
 
 // Lore Epigraph Models
 export 'models/lore_epigraphs/create_lore_epigraph_request_dto.dart';
+export 'models/lore_epigraphs/get_random_lore_epigraph_request_dto.dart';
 export 'models/lore_epigraphs/lore_epigraph_detail_response_dto.dart';
 export 'models/lore_epigraphs/lore_epigraph_summary_response_dto.dart';
 export 'models/lore_epigraphs/update_lore_epigraph_request_dto.dart';

@@ -58,12 +58,12 @@ class MockAuthRepository implements AuthRepository {
     final normalizedEmail = email.trim().toLowerCase();
     var account = _accountsByEmail[normalizedEmail];
 
-    // In mock mode, allow any credentials to pass by auto-provisioning an operative account
+    // In mock mode, allow any credentials to pass by auto-provisioning a player account
     if (account == null) {
       final userId = _uuid.v4();
       final displayName = normalizedEmail.contains('@')
           ? normalizedEmail.split('@').first
-          : (normalizedEmail.isNotEmpty ? normalizedEmail : 'Operative');
+          : (normalizedEmail.isNotEmpty ? normalizedEmail : 'Player');
 
       account = _MockAccount(
         userId: userId,

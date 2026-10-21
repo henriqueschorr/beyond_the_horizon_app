@@ -33,6 +33,9 @@
   "dashboardSubtitleExplore": "// BEGIN YOUR JOURNEY",
 
   "loreDecryptingTransmission": "// DECRYPTING TRANSMISSION...",
+  "loreRescanTooltip": "RE-SCAN TRANSMISSION",
+  "loreSignalInterrupted": "// SIGNAL INTERRUPTED // FREQUENCY LOST",
+  "loreRetryAction": "RETRY SCAN",
 
   "settingsTitle": "SETTINGS",
   "settingsTelemetryHeader": "// SYS.CFG // PREFERENCES",

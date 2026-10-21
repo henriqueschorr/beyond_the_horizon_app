@@ -1,10 +1,10 @@
-# 0002: Codex Database Schema and TOC Architecture
+# 0005: Codex Database Schema and TOC Architecture
 
 - **Status:** open
 - **Priority:** P1 (Highest)
 - **Domain:** Database / Supabase
-- **Blocked By:** 0001-prototype-ui-ideation-skill.md
-- **Blocks:** 0003-codex-guidebook-content-and-seeds.md
+- **Blocked By:** 0004-player-home-command-deck.md
+- **Blocks:** 0006-codex-guidebook-content-and-seeds.md
 
 ---
 

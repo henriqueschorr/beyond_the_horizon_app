@@ -16,29 +16,29 @@ class MockAccountSeed {
 /// Seed data definitions for local and mock development environments.
 /// Decoupled from repository logic to allow independent fixture configuration.
 class MockSeeds {
-  static const String defaultOperativeId =
+  static const String defaultPlayerId =
       '00000000-0000-4000-8000-000000000001';
   static const String defaultEmail = 'test@test.com';
   static const String defaultCallsign = 'Henrique';
   static const String defaultPassword = 'test';
 
-  /// Generates pre-seeded operative accounts.
+  /// Generates pre-seeded player accounts.
   static List<MockAccountSeed> createInitialAccounts() {
     return const [
       MockAccountSeed(
-        userId: defaultOperativeId,
+        userId: defaultPlayerId,
         email: defaultEmail,
         password: defaultPassword,
       ),
     ];
   }
 
-  /// Generates pre-seeded operative profiles.
+  /// Generates pre-seeded player profiles.
   static Map<String, UserProfile> createInitialProfiles() {
     final now = DateTime.now().toUtc();
     return {
-      defaultOperativeId: UserProfile(
-        id: defaultOperativeId,
+      defaultPlayerId: UserProfile(
+        id: defaultPlayerId,
         displayName: defaultCallsign,
         role: UserRole.player,
         createdAt: now.subtract(const Duration(days: 30)),

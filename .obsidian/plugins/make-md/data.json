@@ -39,7 +39,8 @@
   "deleteFileOption": "trash",
   "expandedSpaces": [
     "/",
-    "//design/design/references/design/references/site"
+    "//design",
+    "//design/design/references"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Tags",

@@ -6,7 +6,7 @@ import '../../../core/service_locator.dart';
 import '../validators/auth_validator.dart';
 import '../../../l10n/app_localizations.dart';
 
-/// State management controller for operative authentication and session lifecycle.
+/// State management controller for user authentication and session lifecycle.
 /// Strictly complies with Rule 10 of Agents.md: Holds state, not futures.
 class AuthController extends ChangeNotifier {
   final BackendService _backendService;

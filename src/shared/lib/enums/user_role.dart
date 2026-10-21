@@ -1,4 +1,4 @@
-/// Represents the operative access role across Beyond the Horizon App.
+/// Represents the user access role across Beyond the Horizon App.
 /// Matches the public.user_role PostgreSQL enum.
 enum UserRole {
   player,

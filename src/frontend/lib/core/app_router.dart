@@ -21,8 +21,7 @@ GoRouter createAppRouter(
     redirect: (context, state) {
       final isAuthenticated = authController.isAuthenticated;
       final isProtected = state.matchedLocation == '/home' ||
-          state.matchedLocation == '/dashboard' ||
-          state.matchedLocation == '/blank';
+          state.matchedLocation == '/dashboard';
 
       if (isProtected && !isAuthenticated) {
         return '/';
