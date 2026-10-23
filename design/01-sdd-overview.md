@@ -44,8 +44,8 @@ beyond_the_horizon_app/
 │   ├── planner/              # to-tickets tracer-bullet breakdown skill
 │   └── prototype/            # UI wireframing and ideation skill
 ├── content/                  # Curated Game Content from bth_game
-│   ├── manuscript/           # Official rulebook chapters (Markdown)
-│   └── compendium/           # Structured entity folders (Markdown + YAML frontmatter)
+│   ├── codex/                # Canonical rulebook chapters (Markdown + YAML frontmatter)
+│   └── database/             # Structured entity YAML dictionaries (mechanics, catalogs)
 ├── supabase/                 # Supabase configuration & persistence
 │   └── seeds/                # Database seed SQL & data (keywords, epigraphs)
 ├── src/
@@ -65,7 +65,7 @@ beyond_the_horizon_app/
 │   ├── decisions/            # Architecture Decision Records (ADRs)
 │   ├── specs/                # Auxiliary Subsystem Specifications
 │   ├── references/           # Aesthetic, documentation & site reference studies
-│   ├── tickets/              # Active tracer-bullet ticket files (0001-0009)
+│   ├── tickets/              # Active tracer-bullet ticket files (0001-0020)
 │   ├── project_planner.md    # Central project planner & roadmap register
 │   ├── 01-sdd-overview.md    # System overview & high-level vision
 │   ├── 02-sdd-database.md    # Relational schema & persistence
@@ -109,7 +109,7 @@ graph TD
 
 The platform progresses through five distinct, focused phases:
 
-1. **Phase 1: Rules Compendium & Universe Codex MVP (Active Focus):** Frictionless public reading, Dual Browsing architecture (Sources chapter reader and Game Rules filterable compendium databases), non-destructive slide-over drawers, global omnibar search, survival tables, and local asset store.
+1. **Phase 1: Rules Compendium & Universe Codex MVP (Active Focus):** Executed across four iterative milestones: Milestone 1A (Core Rules End-to-End), Milestone 1B (Evo'raz Character Foundation & Specialized Page Presentations), Milestone 1C (Full Codex Content Expansion), and Milestone 1D (Interactive Overlays, Compendium Databases & Global Search).
 2. **Phase 2: Character Creation & Interactive Play Sheet:** Step-by-step character wizard, tactile personnel dossier sheet, integrated dice roller engine, and local/cloud character persistence.
 3. **Phase 3: Atmospheric Polish, Transitions & Micro-Animations:** Tactile CRT scanlines, CRT flicker and bloom, classified dossier wipes, chromatic alert shifts, analog terminal audio cues, and multi-device ergonomics.
 4. **Phase 4: Facilitator & Campaign Operations:** Campaign management, live session lobbies, tactical encounter runner, secret player transmissions, and facilitator live party cockpit.

@@ -16,7 +16,7 @@ import '../widgets/lore_epigraph_box.dart';
 import '../widgets/player_greeting.dart';
 import '../widgets/player_menu.dart';
 
-/// Authenticated Player Home (Command Deck) implementing Minimalist Brutalism.
+/// Authenticated Player Home Page implementing Minimalist Brutalism.
 /// Adheres strictly to SDD 04 Section 7 and Rules 8, 10, 11 of Agents.md.
 /// Structured into two balanced vertical columns:
 /// - Left column: Monumental brand mark, tactical menu, and bottom-left session termination.
@@ -60,8 +60,11 @@ class PlayerHomePage extends StatelessWidget {
             ),
             body: GrainSurface(
               enabled: settingsController.isNoiseEnabled,
-              child: Builder(
-                builder: (scaffoldContext) {
+              child: LayoutBuilder(
+                builder: (scaffoldContext, constraints) {
+                  final isTablet = constraints.maxWidth < 1024.0;
+                  final horizontalPadding = isTablet ? 24.0 : 48.0;
+
                   return ListenableBuilder(
                     listenable: authController,
                     builder: (context, _) {
@@ -69,8 +72,8 @@ class PlayerHomePage extends StatelessWidget {
                           authController.currentUser?.displayName ?? '';
 
                       return Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 48.0,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: horizontalPadding,
                           vertical: 40.0,
                         ),
                         child: Row(
@@ -83,7 +86,17 @@ class PlayerHomePage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   // Top: Home Brand Mark (Height: 90.0)
-                                  const HomeBrandMark(),
+                                  const SizedBox(
+                                    height: 90.0,
+                                    child: Align(
+                                      alignment: Alignment.topLeft,
+                                      child: FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        alignment: Alignment.topLeft,
+                                        child: HomeBrandMark(),
+                                      ),
+                                    ),
+                                  ),
 
                                   // Middle: PlayerMenu vertically centered in the left column
                                   Expanded(
@@ -130,16 +143,25 @@ class PlayerHomePage extends StatelessWidget {
                                     height: 90.0,
                                     child: Align(
                                       alignment: Alignment.bottomLeft,
-                                      child: PlayerGreeting(
-                                          callsign: playerName),
+                                      child: FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        alignment: Alignment.bottomLeft,
+                                        child: PlayerGreeting(
+                                          callsign: playerName,
+                                        ),
+                                      ),
                                     ),
                                   ),
 
                                   // Middle: Lore Epigraph Box vertically centered in remaining space
                                   Expanded(
                                     child: Center(
-                                      child: LoreEpigraphBox(
-                                        controller: loreEpigraphController,
+                                      child: FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        alignment: Alignment.center,
+                                        child: LoreEpigraphBox(
+                                          controller: loreEpigraphController,
+                                        ),
                                       ),
                                     ),
                                   ),

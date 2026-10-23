@@ -12,6 +12,10 @@ _Avoid_: Superuser, root, operator
 The digital rules and reference compendium platform for Beyond the Horizon, accessible with zero authentication.
 _Avoid_: Wiki, docs, manual
 
+**Content-First Schema Derivation**:
+The architectural practice of authoring, formatting, and calibrating manuscript chapters in modular Markdown files prior to designing relational database tables, ensuring the schema accurately reflects document hierarchies and navigation nodes.
+_Avoid_: Schema-first authoring, speculative modeling, hardcoded seeds
+
 **Entity Dossier**:
 A structured tactical record summarizing the mechanical attributes, traits, and lore of a specific game entity or hazard.
 _Avoid_: Card, item page, statblock
@@ -31,6 +35,10 @@ _Avoid_: Border style, card outline, frame label
 **Omnibar**:
 The global quick-jump search bar (activated via keyboard shortcut or header) providing instant autocomplete across all chapters, rules, and compendium entities.
 _Avoid_: Search box, finder, spotlight
+
+**Page Presentation**:
+A dedicated, tailored Flutter reading page layout template designed for a specific content archetype (such as a Species dossier, Origin folio, or Path progression track), establishing unique visual hierarchy, tabular sidebars, and thematic staging.
+_Avoid_: Generic markdown page, standard view, article template
 
 **Player**:
 An authenticated participant who creates characters, manages inventory, and takes part in game sessions.
@@ -53,6 +61,10 @@ _Avoid_: Mockup, widget draft, screen stub
 **Ability**:
 A specialized tactical action, active technique, or passive modification available to characters through their training or cybernetics.
 _Avoid_: Skill, power, feat
+
+**Ability Card**:
+A specialized, tactile Flutter visual container widget designed to render a discrete tactical action, active technique, or passive modification embedded within the linear reading flow.
+_Avoid_: Statblock, ability block, flat text block
 
 **Condition**:
 A persistent physical or environmental status effect (such as Suffocation, Bleeding, or Radiation) that impairs character performance or vitality.

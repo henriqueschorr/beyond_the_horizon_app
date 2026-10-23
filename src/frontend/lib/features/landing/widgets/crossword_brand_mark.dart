@@ -99,18 +99,16 @@ class CrosswordBrandMark extends StatelessWidget {
 /// Dedicated private letter tile widget adhering strictly to Rule 7 and Rule 10 of Agents.md.
 class _CrosswordLetterTile extends StatelessWidget {
   final String char;
-  final double cellSize;
 
   const _CrosswordLetterTile({
     required this.char,
-    this.cellSize = CrosswordBrandMark.baseCellSize,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: cellSize,
-      height: cellSize,
+      width: CrosswordBrandMark.baseCellSize,
+      height: CrosswordBrandMark.baseCellSize,
       child: Center(
         child: MonumentalText(char),
       ),

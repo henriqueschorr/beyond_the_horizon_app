@@ -236,6 +236,7 @@ The documentation engine provides an interactive reference for all Beyond the Ho
   - **Translation Record (public.documentation_page_translations):** Holds locale-specific title, summary excerpt, and the storage path pointer to the localized markdown file.
   - **Phase 1 Execution:** All content is populated in pt-BR. When English content (en-US) is introduced in future phases, adding translation rows requires zero database migrations or table alterations.
 - **Specialized Page Layouts (public.documentation_layout):** Dictates how the Flutter client composes the page (documentation, species, origin, path, abilities).
+- **Content-First Schema Derivation:** Per ADR 0007, table definitions for documentation pages and the Table of Contents hierarchy (public.codex_index) are derived directly from the finalized Markdown files in content/codex/. Field lengths, parent-child levels, and slug algorithms are benchmarked against the real manuscript and YAML frontmatter before applying the migration.
 
 ### 6.2 Entity-Relationship Model
 

@@ -23,7 +23,7 @@ For extensive cross-universe comparative research across *Alien*, *Fallout*, *Mo
 ### 2.2 Canvas & Materiality Shaders
 The client architecture incorporates three specialized canvas shaders:
 - **StarSurface:** A deterministic sub-pixel starfield with central reading corridor attenuation to guarantee zero interference with text legibility, complemented by a subtle radial nebula wash. Wrapped in a RepaintBoundary for zero per-frame repaint overhead. Employed exclusively on the public landing page.
-- **GrainSurface:** A continuous hardware-accelerated seamless Gaussian noise texture surface (assets/textures/noise.png) inspired by brutalist data-logistics and cyber-typography (SL24). Replaces CPU-bound vector point loops with GPU texture sampling for a locked 60/120 FPS, providing authentic analog 35mm film grain, risograph toner stipple, and tactile print materiality across all interactive containers, non-text buttons, and as a continuous film grain pass over the landing and player command deck viewports. Interactive controls (input fields, primary CTA, secondary actions, and utility docks) employ prominent borders in AppColors.darkBorderProminent, solid chassis fills, and high-contrast typography to pop out decisively against the textured canvas. Includes an interactive user toggle preference managed via SettingsController and TerminalSettingsDrawer, backed by browser local storage persistence (pref_noise_enabled). When disabled, GrainConfiguration propagates the deactivated state down the widget hierarchy, completely removing the raster noise pass and providing 100% vector-sharp void surfaces with zero GPU texture overhead.
+- **GrainSurface:** A continuous hardware-accelerated seamless Gaussian noise texture surface (assets/textures/noise.png) inspired by brutalist data-logistics and cyber-typography (SL24). Replaces CPU-bound vector point loops with GPU texture sampling for a locked 60/120 FPS, providing authentic analog 35mm film grain, risograph toner stipple, and tactile print materiality across all interactive containers, non-text buttons, and as a continuous film grain pass over the landing and player home viewports. Interactive controls (input fields, primary CTA, secondary actions, and utility docks) employ prominent borders in AppColors.darkBorderProminent, solid chassis fills, and high-contrast typography to pop out decisively against the textured canvas. Includes an interactive user toggle preference managed via SettingsController and TerminalSettingsDrawer, backed by browser local storage persistence (pref_noise_enabled). When disabled, GrainConfiguration propagates the deactivated state down the widget hierarchy, completely removing the raster noise pass and providing 100% vector-sharp void surfaces with zero GPU texture overhead.
 - **CrtSurface:** An atmospheric cathode-ray tube monitor surface shader. Features:
   - Horizontal cathode-ray scanlines with configurable alpha.
   - Curved perimeter glass vignette darkening display edges and corners.
@@ -40,7 +40,7 @@ To guarantee optimal visual density, tactile telemetry ergonomics, and uncomprom
   - Viewports below 768px width display an atmospheric telemetry warning directing the user to connect via a desktop or tablet station. Future smartphone views will be evaluated as dedicated companion views in subsequent phases.
 
 ### 2.4 Graphic Brand Mark & Emblem Explorations (Logo Candidates)
-Alongside the typographic wordmarks employed across the Landing and Command Deck viewports (Sections 6.1 and 7.1), the system explores standalone graphic emblems for application icons, favicons, telemetry badges, and companion headers. These candidates translate the core pillars of **Minimalist Brutalism**, **Cassette Futurism**, and **Cosmic Sci-Fi** into pure 2D vector geometry, strictly adhering to the canonical palette (void canvas #101214, titanium white #F0ECE1, and spot accent orange #FE6403):
+Alongside the typographic wordmarks employed across the Landing and Player Home viewports (Sections 6.1 and 7.1), the system explores standalone graphic emblems for application icons, favicons, telemetry badges, and companion headers. These candidates translate the core pillars of **Minimalist Brutalism**, **Cassette Futurism**, and **Cosmic Sci-Fi** into pure 2D vector geometry, strictly adhering to the canonical palette (void canvas #101214, titanium white #F0ECE1, and spot accent orange #FE6403):
 
 #### Candidate A: The Gravitational Singularity / Accretion Horizon (Concept H2)
 A pure astronomical event horizon representing a cosmic singularity:
@@ -263,16 +263,16 @@ Positioned inside the black hole void beneath the submerged letters:
 
 ---
 
-## 7. Authenticated Player Home Page Architecture (Command Deck)
+## 7. Authenticated Player Home Page Architecture
 
 Below is the canonical structural design for the Authenticated Player Home Page (PlayerHomePage in src/frontend/lib/features/home/player/pages/player_home_page.dart):
 
 <p align="center">
-  <img src="./assets/player_home_sketch.png" alt="Player Home Command Deck Sketch" />
+  <img src="./assets/player_home_sketch.png" alt="Player Home Page Sketch" />
 </p>
 
 ### 7.1 Typographic Brand Mark & Vertical O-Alignment Geometry
-The brand mark on the Command Deck (HomeBrandMark in src/frontend/lib/features/home/widgets/home_brand_mark.dart) is structured as two horizontal lines with mathematical alignment:
+The brand mark on the Player Home Page (HomeBrandMark in src/frontend/lib/features/home/widgets/home_brand_mark.dart) is structured as two horizontal lines with mathematical alignment:
 
 ```
 Column:    [0]     [1]     [2]     [3]     [4]     [5]     [6]     [7]     [8]
@@ -356,6 +356,17 @@ The only differentiator across domain types is the geometric framing silhouette:
    - Uses Space Grotesk Semi-Bold 12.0px with AppColors.darkTextMuted (AppTypography.actionLabelSmallMuted / ActionLabelSmallMutedText in rest state, illuminating to ActionLabelSmallHighlightedText on hover).
    - Border in AppColors.darkBorderSubtle, illuminating to AppColors.accentOrange on hover with tactile micro-physics.
    - Completely decoupled from primary game navigation to prevent accidental session termination while keeping the bottom-right quadrant open for upcoming character and creature artwork (OP-02B).
+
+### 7.5 Tablet Ergonomics & Responsive Scaling
+To preserve the structural integrity and negative space balance of the two-column grid across supported platforms (Phase 1):
+1. **Desktop Viewports (1024px width and above):**
+   - Employs standard 48.0px horizontal padding and 40.0px vertical padding.
+   - Brand mark and lore epigraph box render at 100% natural geometry.
+2. **Tablet Viewports (768px to 1023px width):**
+   - Dynamically tightens horizontal padding to 24.0px via LayoutBuilder, maximizing available column space.
+   - Scales down HomeBrandMark and LoreEpigraphBox using FittedBox with BoxFit.scaleDown to guarantee that two-column elements never cause horizontal scroll or layout overflow.
+3. **Sub-Tablet Viewports (Below 768px width):**
+   - Handled exclusively by ResponsiveTelemetryGuard, displaying the atmospheric terminal notice instructing the user to connect using a desktop or tablet station.
 
 ---
 

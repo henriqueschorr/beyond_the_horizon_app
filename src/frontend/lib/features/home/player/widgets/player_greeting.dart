@@ -22,15 +22,9 @@ class PlayerGreeting extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.baseline,
       textBaseline: TextBaseline.alphabetic,
       children: [
-        // const DisplayTitleText('//'),
-        // const DisplayTitleHighlightedText('//'),
-        // const DisplayTitleHighlightedText('➤'),
-        const SizedBox(width: 6.0),
         DisplayTitleText(l10n.dashboard.welcomePrefix),
         const SizedBox(width: 6.0),
         DisplayTitleHighlightedText(callsign),
-        // const SizedBox(width: 6.0),
-        // const DisplayTitleText(']'),
       ],
     );
   }
