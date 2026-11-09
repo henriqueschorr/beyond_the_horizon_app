@@ -13,9 +13,13 @@ Work the tree in **rounds**. The **frontier** is every decision whose prerequisi
 
 ### Rules for the Interview:
 1. **The User Makes Every Decision**: Never make decisions on behalf of the user, and never answer your own questions. Present the question with clear options, rationale, and your recommendation clearly labeled as `(Recommended)`.
-2. **Interactive Questioning**: Use the interactive `ask_question` tool to present the round's frontier directly to the user as a modal with clear selectable options and a write-in response.
-3. **If formatting in text**: Always present numbered questions with distinct selectable options (e.g., Option A, Option B) and clearly designate `(Recommended Option)` so the user can easily select or provide their own direction. Never print an answer that appears as if the agent already settled the decision.
-4. **Facts vs Decisions**: When a question turns on a **fact** you can look up in the codebase, do not ask it. Look it up. When a question turns on a **decision**, do not decide it. Ask the user, giving options and your recommendation.
+2. **Mandatory Pre-Question Analysis in Chat (The Text Area)**: Before presenting options or calling `ask_question`, ALWAYS write a structured, detailed briefing in the chat message:
+   - **Context & Dilemma**: Clearly explain what architectural or design choice is being made and why it matters.
+   - **Option-by-Option Breakdown**: For every option, explain what choosing it means in practice, its concrete trade-offs (pros vs. cons), and its downstream impact. Never present bare, unexplained options.
+   - **Recommendation Rationale**: Provide an explicit, reasoned justification for the `(Recommended)` option.
+3. **Interactive Questioning with Annotated Options**: Use the interactive `ask_question` tool to present the round's frontier directly to the user as a modal with clear selectable options and a write-in response. Each option string in the tool call MUST include a concise 1-sentence descriptor summarizing its practical implication or trade-off (e.g., `(Recommended) Option Name - Brief consequence/trade-off summary`).
+4. **If formatting in text**: Always present numbered questions with distinct selectable options (e.g., Option A, Option B) and clearly designate `(Recommended Option)` so the user can easily select or provide their own direction. Never print an answer that appears as if the agent already settled the decision.
+5. **Facts vs Decisions**: When a question turns on a **fact** you can look up in the codebase, do not ask it. Look it up. When a question turns on a **decision**, do not decide it. Ask the user, giving options and your recommendation.
 
 Each round the user answers reshapes the tree: settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round.
 
