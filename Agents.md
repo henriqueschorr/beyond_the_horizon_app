@@ -33,9 +33,4 @@ Detailed domain-specific policies are modularized inside the .agents/rules/ dire
 
 ## 3. Skills Environment & Workflows
 
-This repository provides specialized procedural playbooks in the skills/ directory:
-
-- **design (skills/design/SKILL.md)**: Interactive design interview (grill-with-docs) for architectural alignment, SDD updates, and ADR creation. The agent presents options and recommendations via interactive prompts, and the user makes all decisions.
-- **planner (skills/planner/SKILL.md)**: Tracer-bullet vertical slice breakdown (to-tickets) publishing flat, sequentially numbered tickets in design/tickets/ with explicit blocking dependencies.
-- **prototype (skills/prototype/SKILL.md)**: Interactive UI wireframing and visual ideation for companion views and layouts before implementing Flutter widgets.
-- **wait-what (skills/wait-what/SKILL.md)**: Immediate comprehension recovery and re-pitching playbook adhering to ASD-STE100 Simplified Technical English and domain glossary standards.
+Procedural agent playbooks (`design`, `planner`, `prototype`, `wait-what`) are provided globally via the centralized `toolkit` repository (`D:\Workspace Github\toolkit`) and are available on-demand across all sessions.
